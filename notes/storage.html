@@ -1,0 +1,711 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title>duration_link_static</title>
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+<style type="text/css">
+/**
+ * prism.js default theme for JavaScript, CSS and HTML
+ * Based on dabblet (http://dabblet.com)
+ * @author Lea Verou
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: black;
+	text-shadow: 0 1px white;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+@media print {
+	code[class*="language-"],
+	pre[class*="language-"] {
+		text-shadow: none;
+	}
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #f5f2f0;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: slategray;
+}
+
+.token.punctuation {
+	color: #999;
+}
+
+.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #905;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #690;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+	color: #a67f59;
+	background: hsla(0, 0%, 100%, .5);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+	color: #07a;
+}
+
+.token.function {
+	color: #DD4A68;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+	color: #e90;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+</style>
+</head>
+<body>
+<h1 id="toc_0">Storage</h1>
+
+<h2 id="toc_1">Table of contents</h2>
+
+<ol>
+<li><a href="#specifier">Storage class specifiers</a></li>
+<li><a href="#duration">Storage duration</a></li>
+<li><a href="#scope">Scope</a></li>
+<li><a href="#linkage">Linkage types</a></li>
+<li><a href="#static">Static</a></li>
+</ol>
+
+<h2 id="toc_2"><a name="specifier"></a> 1. Storage class specifiers <a href="#top">&uarr;top</a></h2>
+
+<p>Variables: &lt;scope, duration, linkage&gt;</p>
+
+<p>The <strong>storage class</strong> determines the part of memory where storage is allocated for an object and how long the storage allocation continues to exist.
+A <strong>storage class specifier</strong> is used to refine the decl of a variable, a function and parameters. The specifier affects a variable&#39;s <u>storage duration</u>, <u>scope</u> and <u>linkage</u>.</p>
+
+<p>The storage duration of a variable is the portion of program execution during which storage for the variable exists. A variable&#39;s scope can be <em>block</em> (&quot;{}&quot;), <em>function</em>, <em>program</em> or <em>namespace</em>, etc. The linkage of a variable determines whether it may be shared by more than one file in the same program.</p>
+
+<ul>
+<li><strong>auto</strong>: automatic storage duration.<br>
+<em>since c++11, <code>auto</code> is no longer a storage class specifier, and is instead a simple type specifier</em>.</li>
+<li><strong>register</strong>: automatic storage duration. Also hints to the compiler to place the object in the processor&#39;s register. The placement cannot be guaranteed, and if the compiler fails to allocate a machine register for a <em>register</em> obj, the obj is treated as <code>auto</code>.<br>
+<em>the <code>register</code> keyword was deprecated since c++11, and will be removed from c++17</em>.</li>
+<li><strong>static</strong>: static or thread storage duration and internal linkage. Instructs the compiler to keep a local variable in existence during the life-time of the program instead of creating and destorying it each time it comes into and goes out of scope.<br>
+<em>the <code>static</code> specifier is used in a decl of a class member, it declares a static member; when used in a decl of an obj, it specifies static storage duration (except if combined with thread_local); when used in a decl at namespace scope, it specifies internal linkage</em>.</li>
+<li><strong>extern</strong>: static or thread storage duration and external linkage.<br>
+<em>the <code>extern</code> specifier is only allowed in the decls of variables and funcs (except class members or func paras). It specifies external linkage, and does not technically affect storage duration, but it cannot be used in a definition of an automatic storage duration obj, so all extern objs have static or thread durations. In addition, a variable decl that uses extern and has no initializer is not a definition</em>.</li>
+<li><strong>thread_local</strong>: thread storage duration.<br>
+<em>the <code>thread_local</code> keyword is only allowed for objects declared at namespace scope, objs declared at block scope, and static data members. It can be combined with <code>static</code> or <code>extern</code> to specify internal or external linkage, respectively, but that additional static doesn&#39;t affect the storage duration</em>.</li>
+</ul>
+
+<p>Only one storage class specifier may appear in a decl except that thread local may be combined with <em>stati</em> or with <em>extern</em>.</p>
+
+<h2 id="toc_3"><a name="duration"></a> 2. Storage duration <a href="#top">&uarr;top</a></h2>
+
+<p>All objects in a program have one of the following storage durations:  </p>
+
+<ul>
+<li><strong>auto</strong>. The obj is allocated at the beginning of the enclosing code block and deallocated at the end. All local objs have this storage duration, except those declared <code>static</code>, <code>extern</code> or <code>thread_local</code>. <u>If auto variables are not inited, they will contain garbage</u>. Memory is allocated for the obj at each invocation of the block.</li>
+<li><strong>static</strong>. The storage for the objs is allocated when the program begins and deallocated when the program ends. Only one instance of the obj exists. All objs declared at namespace scope (including global namespace) have this storage duration, plus those declared with <code>static</code> or <code>extern</code>.<br></li>
+<li><strong>thread</strong>. The objs is allocated when the thread begins and deallocated when the thread ends. <u>Each thread has its own instance of the obj</u>. Only objs declared <code>thread_local</code> have this storage duration. <code>thread_local</code> can appear together with <code>static</code> or <code>extern</code> to adjust linkage.</li>
+<li><strong>dynamic</strong>. The obj is allocated and deallocated per request by using dynamic mem funcs.</li>
+</ul>
+
+<pre><code class="language-cpp">thread_local unsigned int rage = 1;
+std::mutex cout_mutex;
+
+void increase_rage(const std::string&amp; thread_name){
+    ++ rage; //modifying outside a lock is okay
+             //, this is a thread-local variable
+    std::lock_guard&lt;std::mutex&gt; lock(cout_mutex);
+}</code></pre>
+
+<p>Variables declared inside a block are called <strong>local</strong> variables, which have <strong>automatic duration</strong>.<br>
+Variables declared outside of a block are called <strong>global</strong> variables, which have <strong>static duration</strong> (means they are created when program starts and are destroyed when it ends).</p>
+
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+int value(5); // global variable
+static int n; //file scoped variable
+ 
+int main()
+{
+    int value = 7; // hides the global variable value
+    value++; // increments local value, not global value
+    ::value--; // decrements global value, not local value
+ 
+    std::cout &lt;&lt; &quot;global value: &quot; &lt;&lt; ::value &lt;&lt; &quot;\n&quot;;
+    std::cout &lt;&lt; &quot;local value: &quot; &lt;&lt; value &lt;&lt; &quot;\n&quot;;
+    return 0;
+} // local value is destroyed</code></pre>
+
+<h2 id="toc_4"><a name="scope"></a> 2. Scope <a href="#top">&uarr;top</a></h2>
+
+<p><strong>scope</strong> is the code part where the declaration can be seen and used.</p>
+
+<h3 id="toc_5">block scope</h3>
+
+<pre><code class="language-cpp">int f(int n=2)      //scope of &#39;n&#39; begins
+try                 //func try block
+{                   //the body of the func begins
+    ++ n;           //&#39;n&#39; is in scope and refers to func para
+    {
+        int n = 2;  //scope of local var &#39;n&#39; begins
+                    //scope of func para &#39;n&#39; interrupted
+        ++ n;       //&#39;n&#39; refers to the local var in this block
+    }               //scope of the local var &#39;n&#39; ends
+                    //scope of func para &#39;n&#39; resumes
+} catch (...) {
+    ++ n;           //&#39;n&#39; is in scope and refers to func para
+    throw;
+}                   //last exception handler ends, &#39;n&#39; scope ends
+int a = n;      //ERROR: name &#39;n&#39; is not in scope</code></pre>
+
+<h3 id="toc_6">function scope</h3>
+
+<p>a label (an only a label) is declared inside a func is in scope everywhere in that func, in all nested blocks, before and after its own decl.</p>
+
+<pre><code class="language-cpp">void f() {
+    {
+        goto label; //&#39;label&#39; in scope even though decled later
+        label:;
+    }
+    goto label; //label ignores block scope
+}
+void g() {
+    goto label; //ERROR: label not in scope in g()
+}</code></pre>
+
+<h3 id="toc_7">namespace scope</h3>
+
+<p>Namespaces provide a method for preventing name conflicts in large projects. Symbols declared inside a namespace block are placed in a named scope that prevents them from being mistaken for identically-named symbols in other scopes. Multi namespace blocks with the same name are allowed. All decls within those blocks are declared in the named scope.</p>
+
+<p>The top-level scope of a translation unit (&quot;file scope&quot; or &quot;global scope&quot;) is also a namespace that is properly called &quot;global namespace scope&quot;, where the entity scope begins at the decl and continues to the end of translation unit. </p>
+
+<pre><code class="language-cpp">namespace vec {
+    template&lt; typename T &gt;
+    class vector {
+        // ...
+    };
+} // of vec
+ 
+int main(){
+    std::vector&lt;int&gt; v1; // Standard vector.
+    vec::vector&lt;int&gt; v2; // User defined vector.
+ 
+    v1 = v2; // Error: v1 and v2 are different object&#39;s type.
+    
+    {   using namespace std;
+        vector&lt;int&gt; v3; // Same as std::vector
+        v1 = v3; }      // OK
+ 
+    {   using vec::vector;
+        vector&lt;int&gt; v4; // Same as vec::vector
+        v2 = v4; }      // OK
+ 
+    return 0;
+}</code></pre>
+
+<h3 id="toc_8">file scope</h3>
+
+<p>All vars and funcs defined outside funcs have file scope, meaning that they are visible from their declarations until the end of the file (file is the compiled source file, with all includes being resolved).</p>
+
+<h3 id="toc_9">class scope</h3>
+
+<p>The potential scope of a name declared in a class begins at the point of decl and includes the rest of the class body and all func bodies (even if defined outside the class def or before the decl of the name).</p>
+
+<pre><code class="language-cpp">class X {
+    int f(int a = n) {  //X::n is in scope inside default para
+        return a*n;     //X::n is in scope inside func body
+    }
+    int g();
+    int i = n*2;        //X::n is in scope inside initializer
+    //int x[n];         //ERROR: n is not in scope in class body
+    static const int n = 1;
+    int x[n];           //OK: n is now in scope in class body
+};
+int X::g() { return n; }//X::n is in scope</code></pre>
+
+<h2 id="toc_10"><a name="linkage"></a> 3. Linkage types <a href="#top">&uarr;top</a></h2>
+
+<p><strong>translation unit</strong>: a basic unit of compilation. Commonly known as a &quot;source file&quot; or a &quot;.cpp file&quot; after being preprocessed, finishing including all header files.</p>
+
+<p><strong>Linkage</strong>: the way the names of objects and functions are shared between translation units.  </p>
+
+<ul>
+<li><p><strong>external linkage</strong>: they can refer to program elements in any translation unit in the program, i.e. the element is shared among the units. The same name in another translation unit is guaranteed to refer to the same obj or class. (<strong>global</strong>)</p>
+
+<pre><code class="language-cpp">//global.cpp
+int i; //global variable, extern by default
+------------
+//main.cpp
+extern int i; //forward decl for i</code></pre></li>
+<li><p><strong>internal linkage</strong>: they refer only to program elements inside their own translation units; they are not shared with other units. The same name in another translation unit may refer to a different obj or a different class. (<strong>local</strong>)</p>
+
+<pre><code class="language-cpp">static int i;          //static ensures internal linkage
+                       //can only be used within this file
+const int ci;          //static by default
+extern const int eci;  //explicitly extern
+static int si;         //explicitly static
+
+int foo();             //extern by default
+static int bar();      //explicitly static</code></pre></li>
+<li><p><strong>no linkage</strong>: they refer to unique entities. The same name in another scope may not refer to the same obj.</p></li>
+</ul>
+
+<h2 id="toc_11"><a name="static"></a> 4. Static <a href="#top">&uarr;top</a></h2>
+
+<h3 id="toc_12">static data members</h3>
+
+<pre><code class="language-cpp">class X{ static int n}; //declaration (uses &#39;static&#39;)
+int X::n = 1;           //definition (does not use &#39;static&#39;)</code></pre>
+
+<h3 id="toc_13">static member functions</h3>
+
+<p>Static member funcs are not associated with any obj. When called, they have no <code>this</code> pointer.  </p>
+
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+
+class X{
+    private:
+        static int n;
+        int m = 2;
+    public:
+        static int get_n(){return n;} 
+        //ERROR: invalid use in static member function
+        //static int get_m(){return m;}
+        int get_n_2(){return n;} 
+        int get_m_2(){return m;} 
+};
+
+int X::n = 1; //init
+
+int main(int argc, char *argv[]){
+    //ERROR: n is a private member
+    //std::cout &lt;&lt; &quot;n= &quot; &lt;&lt; X::n &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot;n= &quot; &lt;&lt; X::get_n() &lt;&lt; std::endl;
+    //std::cout &lt;&lt; &quot;m= &quot; &lt;&lt; X::get_m() &lt;&lt; std::endl;
+    X my_x;
+    std::cout &lt;&lt; &quot;n= &quot; &lt;&lt; my_x.get_n_2() &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot;m= &quot; &lt;&lt; my_x.get_m_2() &lt;&lt; std::endl;
+}
+</code></pre>
+
+<h3 id="toc_14">static local variables</h3>
+
+<p>static variables declared at block scope are inited the first time control passes through their decl (unless their initialization is zero- or constant-initialization, which can be performed before the block is first entered). On all further calls, the decl is skipped.</p>
+
+<h3 id="toc_15">declaration vs. definition</h3>
+
+<p><strong>Declaration</strong>s introduces names and types without giving details, such as where storage is located or how things are implemented:</p>
+
+<pre><code class="language-cpp">extern int x;               //obj decl
+class Widget;               //class decl
+bool func(const Widget&amp; w); //func decl
+enum class Color;           //scoped enum decl</code></pre>
+
+<p><strong>Definition</strong>s provide the storage locations or implementation details:</p>
+
+<pre><code class="language-cpp">int x;                      //obj definition
+class Widget {              //class def
+    ...
+};
+bool func(const Widget&amp; w){ //func def
+    return w.size() &lt; 10;
+}
+enum class Color
+{ Yellow, Red, Blue };      //scoped enum def</code></pre>
+
+<script type="text/javascript">
+var _self="undefined"!=typeof window?window:"undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?self:{},Prism=function(){var e=/\blang(?:uage)?-(?!\*)(\w+)\b/i,t=_self.Prism={util:{encode:function(e){return e instanceof n?new n(e.type,t.util.encode(e.content),e.alias):"Array"===t.util.type(e)?e.map(t.util.encode):e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/\u00a0/g," ")},type:function(e){return Object.prototype.toString.call(e).match(/\[object (\w+)\]/)[1]},clone:function(e){var n=t.util.type(e);switch(n){case"Object":var a={};for(var r in e)e.hasOwnProperty(r)&&(a[r]=t.util.clone(e[r]));return a;case"Array":return e.map&&e.map(function(e){return t.util.clone(e)})}return e}},languages:{extend:function(e,n){var a=t.util.clone(t.languages[e]);for(var r in n)a[r]=n[r];return a},insertBefore:function(e,n,a,r){r=r||t.languages;var l=r[e];if(2==arguments.length){a=arguments[1];for(var i in a)a.hasOwnProperty(i)&&(l[i]=a[i]);return l}var o={};for(var s in l)if(l.hasOwnProperty(s)){if(s==n)for(var i in a)a.hasOwnProperty(i)&&(o[i]=a[i]);o[s]=l[s]}return t.languages.DFS(t.languages,function(t,n){n===r[e]&&t!=e&&(this[t]=o)}),r[e]=o},DFS:function(e,n,a){for(var r in e)e.hasOwnProperty(r)&&(n.call(e,r,e[r],a||r),"Object"===t.util.type(e[r])?t.languages.DFS(e[r],n):"Array"===t.util.type(e[r])&&t.languages.DFS(e[r],n,r))}},plugins:{},highlightAll:function(e,n){for(var a,r=document.querySelectorAll('code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'),l=0;a=r[l++];)t.highlightElement(a,e===!0,n)},highlightElement:function(n,a,r){for(var l,i,o=n;o&&!e.test(o.className);)o=o.parentNode;o&&(l=(o.className.match(e)||[,""])[1],i=t.languages[l]),n.className=n.className.replace(e,"").replace(/\s+/g," ")+" language-"+l,o=n.parentNode,/pre/i.test(o.nodeName)&&(o.className=o.className.replace(e,"").replace(/\s+/g," ")+" language-"+l);var s=n.textContent,u={element:n,language:l,grammar:i,code:s};if(!s||!i)return t.hooks.run("complete",u),void 0;if(t.hooks.run("before-highlight",u),a&&_self.Worker){var g=new Worker(t.filename);g.onmessage=function(e){u.highlightedCode=e.data,t.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(u.element),t.hooks.run("after-highlight",u),t.hooks.run("complete",u)},g.postMessage(JSON.stringify({language:u.language,code:u.code,immediateClose:!0}))}else u.highlightedCode=t.highlight(u.code,u.grammar,u.language),t.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(n),t.hooks.run("after-highlight",u),t.hooks.run("complete",u)},highlight:function(e,a,r){var l=t.tokenize(e,a);return n.stringify(t.util.encode(l),r)},tokenize:function(e,n){var a=t.Token,r=[e],l=n.rest;if(l){for(var i in l)n[i]=l[i];delete n.rest}e:for(var i in n)if(n.hasOwnProperty(i)&&n[i]){var o=n[i];o="Array"===t.util.type(o)?o:[o];for(var s=0;s<o.length;++s){var u=o[s],g=u.inside,c=!!u.lookbehind,f=0,h=u.alias;u=u.pattern||u;for(var p=0;p<r.length;p++){var d=r[p];if(r.length>e.length)break e;if(!(d instanceof a)){u.lastIndex=0;var m=u.exec(d);if(m){c&&(f=m[1].length);var y=m.index-1+f,m=m[0].slice(f),v=m.length,k=y+v,b=d.slice(0,y+1),w=d.slice(k+1),P=[p,1];b&&P.push(b);var A=new a(i,g?t.tokenize(m,g):m,h);P.push(A),w&&P.push(w),Array.prototype.splice.apply(r,P)}}}}}return r},hooks:{all:{},add:function(e,n){var a=t.hooks.all;a[e]=a[e]||[],a[e].push(n)},run:function(e,n){var a=t.hooks.all[e];if(a&&a.length)for(var r,l=0;r=a[l++];)r(n)}}},n=t.Token=function(e,t,n){this.type=e,this.content=t,this.alias=n};if(n.stringify=function(e,a,r){if("string"==typeof e)return e;if("Array"===t.util.type(e))return e.map(function(t){return n.stringify(t,a,e)}).join("");var l={type:e.type,content:n.stringify(e.content,a,r),tag:"span",classes:["token",e.type],attributes:{},language:a,parent:r};if("comment"==l.type&&(l.attributes.spellcheck="true"),e.alias){var i="Array"===t.util.type(e.alias)?e.alias:[e.alias];Array.prototype.push.apply(l.classes,i)}t.hooks.run("wrap",l);var o="";for(var s in l.attributes)o+=(o?" ":"")+s+'="'+(l.attributes[s]||"")+'"';return"<"+l.tag+' class="'+l.classes.join(" ")+'" '+o+">"+l.content+"</"+l.tag+">"},!_self.document)return _self.addEventListener?(_self.addEventListener("message",function(e){var n=JSON.parse(e.data),a=n.language,r=n.code,l=n.immediateClose;_self.postMessage(t.highlight(r,t.languages[a],a)),l&&_self.close()},!1),_self.Prism):_self.Prism;var a=document.getElementsByTagName("script");return a=a[a.length-1],a&&(t.filename=a.src,document.addEventListener&&!a.hasAttribute("data-manual")&&document.addEventListener("DOMContentLoaded",t.highlightAll)),_self.Prism}();"undefined"!=typeof module&&module.exports&&(module.exports=Prism),"undefined"!=typeof global&&(global.Prism=Prism);
+</script>
+<script type="text/javascript">
+Prism.languages.clike={comment:[{pattern:/(^|[^\\])\/\*[\w\W]*?\*\//,lookbehind:!0},{pattern:/(^|[^\\:])\/\/.*/,lookbehind:!0}],string:/(["'])(\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,"class-name":{pattern:/((?:\b(?:class|interface|extends|implements|trait|instanceof|new)\s+)|(?:catch\s+\())[a-z0-9_\.\\]+/i,lookbehind:!0,inside:{punctuation:/(\.|\\)/}},keyword:/\b(if|else|while|do|for|return|in|instanceof|function|new|try|throw|catch|finally|null|break|continue)\b/,"boolean":/\b(true|false)\b/,"function":/[a-z0-9_]+(?=\()/i,number:/\b-?(?:0x[\da-f]+|\d*\.?\d+(?:e[+-]?\d+)?)\b/i,operator:/--?|\+\+?|!=?=?|<=?|>=?|==?=?|&&?|\|\|?|\?|\*|\/|~|\^|%/,punctuation:/[{}[\];(),.:]/};
+</script>
+<script type="text/javascript">
+Prism.languages.c=Prism.languages.extend("clike",{keyword:/\b(asm|typeof|inline|auto|break|case|char|const|continue|default|do|double|else|enum|extern|float|for|goto|if|int|long|register|return|short|signed|sizeof|static|struct|switch|typedef|union|unsigned|void|volatile|while)\b/,operator:/\-[>-]?|\+\+?|!=?|<<?=?|>>?=?|==?|&&?|\|?\||[~^%?*\/]/,number:/\b-?(?:0x[\da-f]+|\d*\.?\d+(?:e[+-]?\d+)?)[ful]*\b/i}),Prism.languages.insertBefore("c","string",{macro:{pattern:/(^\s*)#\s*[a-z]+([^\r\n\\]|\\.|\\(?:\r\n?|\n))*/im,lookbehind:!0,alias:"property",inside:{string:{pattern:/(#\s*include\s*)(<.+?>|("|')(\\?.)+?\3)/,lookbehind:!0},directive:{pattern:/(#\s*)\b(define|elif|else|endif|error|ifdef|ifndef|if|import|include|line|pragma|undef|using)\b/,lookbehind:!0,alias:"keyword"}}},constant:/\b(__FILE__|__LINE__|__DATE__|__TIME__|__TIMESTAMP__|__func__|EOF|NULL|stdin|stdout|stderr)\b/}),delete Prism.languages.c["class-name"],delete Prism.languages.c["boolean"];
+</script>
+<script type="text/javascript">
+Prism.languages.cpp=Prism.languages.extend("c",{keyword:/\b(alignas|alignof|asm|auto|bool|break|case|catch|char|char16_t|char32_t|class|compl|const|constexpr|const_cast|continue|decltype|default|delete|do|double|dynamic_cast|else|enum|explicit|export|extern|float|for|friend|goto|if|inline|int|long|mutable|namespace|new|noexcept|nullptr|operator|private|protected|public|register|reinterpret_cast|return|short|signed|sizeof|static|static_assert|static_cast|struct|switch|template|this|thread_local|throw|try|typedef|typeid|typename|union|unsigned|using|virtual|void|volatile|wchar_t|while)\b/,"boolean":/\b(true|false)\b/,operator:/[-+]{1,2}|!=?|<{1,2}=?|>{1,2}=?|\->|:{1,2}|={1,2}|\^|~|%|&{1,2}|\|?\||\?|\*|\/|\b(and|and_eq|bitand|bitor|not|not_eq|or|or_eq|xor|xor_eq)\b/}),Prism.languages.insertBefore("cpp","keyword",{"class-name":{pattern:/(class\s+)[a-z0-9_]+/i,lookbehind:!0}});
+</script>
+</body>
+
+</html>

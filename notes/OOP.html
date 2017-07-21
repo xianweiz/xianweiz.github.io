@@ -1,0 +1,992 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title>OOP</title>
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+<style type="text/css">
+/**
+ * prism.js default theme for JavaScript, CSS and HTML
+ * Based on dabblet (http://dabblet.com)
+ * @author Lea Verou
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: black;
+	text-shadow: 0 1px white;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+@media print {
+	code[class*="language-"],
+	pre[class*="language-"] {
+		text-shadow: none;
+	}
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #f5f2f0;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: slategray;
+}
+
+.token.punctuation {
+	color: #999;
+}
+
+.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #905;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #690;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+	color: #a67f59;
+	background: hsla(0, 0%, 100%, .5);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+	color: #07a;
+}
+
+.token.function {
+	color: #DD4A68;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+	color: #e90;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+</style>
+</head>
+<body>
+<h1 id="toc_0"><a name="top"></a>Table of Contents</h1>
+
+<ol>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#base-derived">Define base and derived classes</a></li>
+<li><a href="#virtual">Virtual functions</a></li>
+<li><a href="#abstract">Abstract base classes</a></li>
+<li><a href="#access-control">Access control and inheritance</a></li>
+<li><a href="#class-scope">Class scope under inheritance</a></li>
+<li><a href="#copy-control">Constructors and copy control</a></li>
+</ol>
+
+<h1 id="toc_1">(1) Object-Oriented Programming</h1>
+
+<p>The key ideas of OOP are <strong>data abstraction</strong>, <strong>inheritance</strong>, and <strong>dynamic binding</strong>.</p>
+
+<h2 id="toc_2">(i) <a name="overview"></a> Overview <a href="#top">&uarr;top</a></h2>
+
+<p><strong>Base class</strong>:</p>
+
+<pre><code class="language-cpp">class Quote {
+public:
+    std::string isbn() const;
+    virtual double net_price(std::size_t n) const;
+};</code></pre>
+
+<p><strong>Derived class</strong>:<br>
+a derived class must include in its own class body a decl or all the virtual funcs it intends to define for itself. <code>override</code> can be used to note that the member func is an override of a virtual it inherits.</p>
+
+<pre><code class="language-cpp">//Bulk_quote inherits from Quote
+class Bulk_quote : public Quote {
+public:
+    double net_price(std::size_t) const override;
+}</code></pre>
+
+<p><strong>Dynamic binding</strong>:<br>
+through dynamic binding, we can use the same code to process objs of either type <em>Quote</em> or <em>Bulk_quote</em> interchangeably.</p>
+
+<p>Dynamic binding happens when a virtual function is called through a <strong>reference (or a pointer) to a base class</strong>.</p>
+
+<pre><code class="language-cpp">//cal and print the price for the given #copies
+double print_total (ostream &amp;os,
+                        const Quote &amp;item, size_t n) {
+    //depending on the type of obj bound to item para
+    //calls either Quote::net_price or Bulk_quote::net_price
+    double ret = item.net_price(n);
+    return ret;
+}
+-----------
+//basic has type Quote; bulk has type Bulk_quote
+print_total(cout, basic, 20); //calls Quote::net_price
+print_total(cout, bulk, 20); //calls Bulk_quote::net_price</code></pre>
+
+<h2 id="toc_3">(ii) <a name="base-derived"></a> Define base and derived classes <a href="#top">&uarr;top</a></h2>
+
+<h3 id="toc_4">definition</h3>
+
+<p>Base classes ordinarily should define a <strong>virtual destructor</strong>, which is needed even if it does no work.</p>
+
+<pre><code class="language-cpp">class Quote {
+public:
+    Quote() = default; //default cstr
+    Quote(const std::string &amp;book, double sales_price):
+                    bookNo(book), price(sales_price) { }
+    std::string isbn() const { return bookNo; }
+    //return the total sales price for the #items
+    //derived classes will override and apply different
+    // discount algorithms
+    virtual double net_price(std::size_t n) const
+        { return n*price; }
+    virtual ~Quote () = default; //dynamic binding for dstr
+private:
+    std::string bookNo;          //ISBN number of this item
+protected:
+    double price = 0.0;          //normal, undiscountd price
+};</code></pre>
+
+<p>Derived classes inherit the members of their base class. However, a derived class needs to be able to provide its own definitions for operations, e.g., <em>net_price</em>, that are type dependent. </p>
+
+<p>Any nonstatic member func, other than a cstr, may be virtual. Member funcs that are not declared as <em>virtual</em> are resolved at <strong>compile time</strong>, not run time. When we call a virtual function <u><em>through a pointer or reference</em></u>, the call will be dynamically bound.</p>
+
+<p>A derived class must specify from which class(es) it inherits in <strong>class derivation list</strong>. Each base class name may be preceded by an optional <strong>access specifier</strong>, which is one of <em>public, protected, private</em>. </p>
+
+<p>Derived class frequently, but not always, override the virtual funcs that they inherit. If no override, then the derived class inherits the version defined in its base class.</p>
+
+<pre><code class="language-cpp">class Bulk_quote : public Quote {
+public:
+    Bulk_quote() = default;
+    Bulk_quote(const std::string&amp;, double, 
+                std::size_t, double);
+    //overrides the base version to impl bulk purchase discount policy
+    double net_price(std::size_t) const override;
+private:
+    std::size_t min_qty = 0; //min purchase for the discount to apply
+    double discount = 0.0;   //fractional discount to appy
+};</code></pre>
+
+<h3 id="toc_5">derived-to-base conversion</h3>
+
+<p>A derived object contains multiple parts: a subobject containing the (nonstatic) members defined in the <u>derived class</u> itself, plus subobjects corresponding to each <u>base class</u>.</p>
+
+<p>Since a derived obj contains subparts of its base class(es), we can use an obj of a derived type <u><strong>as if</strong></u> it were an obj of its base type(s). In particular, we can bind a base-class ref or ptr to the base-class part of a derived obj:</p>
+
+<pre><code class="language-cpp">Quote item;         //obj of base type
+Bulk_quote bulk;    //obj of derived type
+Quote *p = &amp;item;   //p points to a Quote obj
+p = &amp;bulk;          //p points to the Quote part of bulk
+Quote &amp;r = bulk;    //r bound to the Quote part of bulk</code></pre>
+
+<p>The conversion is implicitly applied by compiler, which means that we can use an obj of derived type or a ref to a derived type when a ref to the base type is required. Likewise, we can use a ptr to a derived type where a ptr to the base type is required.</p>
+
+<h3 id="toc_6">derived-class constructors</h3>
+
+<p>Although a derived obj contains members of base class, it cannot directly init those members; instead, it must use a <u>base-class cstr</u> to init its base-class part:</p>
+
+<pre><code class="language-cpp">Bulk_quote(const std::string&amp; book, double p, 
+                std::size_t qty, double disc) :
+        Quote(book, p), min_qty(qty), discount (disc) { }</code></pre>
+
+<p><strong>The base class is inited first, and then the members of the derived class are inited in the order in which they are declared in the class</strong>.</p>
+
+<p>The scope of a <u>derived class is nested inside the scope of its base class</u>; thus, there is no distinction between a member of the derived class uses its own members and base-class members. A derived class may access the <u>public and protected</u> members of its base class.</p>
+
+<p>If a base class defines a <strong>static</strong> member, there is only one such member defined for the entire hierarchy. And static members obey normal access control.</p>
+
+<h3 id="toc_7">preventing inheritance</h3>
+
+<p>We can prevent a class from being used as a base by following the class name with <strong>final</strong>:</p>
+
+<pre><code class="language-cpp">class NoDerived final { };      //NoDerived can&#39;t be a base class
+class Base { };
+//Last is final; we cannot inherit from Last
+class Last final : Base { ];    //Last can&#39;t be a base class
+class Bad : NoDerived { };      //ERROR: NoDerived is final
+class Bad2 : Last { };          //ERROR: Last is final</code></pre>
+
+<h3 id="toc_8">conversions and inheritance</h3>
+
+<p>Ordinarily, the type of a reference or pointer and the obj to which the reference/pointer refers must match exactly, with <strong>two exceptions</strong>:  </p>
+
+<pre><code class="language-cpp">double dval = 3.14;
+doule &amp;dref = dval; //OK
+int &amp;iref = dval;   //ERROR: not match
+
+double d2;
+double *pi = &amp;d2;
+int *i_pi = &amp;d2;    //ERROR: not match</code></pre>
+
+<p>1) we can init a ref to <em>const</em> from any expr that can be converted.</p>
+
+<pre><code class="language-cpp">double dval = 3.14;
+const int &amp;ri = dval;
+---------compiler transformation
+const int temp = dval; //create a temp const int from double
+const int &amp;ri = temp;  //bind ri to that temp
+//Note: if no &#39;const&#39;, then we could change &#39;temp&#39; but cannot change &#39;dval&#39;</code></pre>
+
+<p>2) we can bind a ptr or ref to a base-class type to an obj of a type derived from the base class. When we use a ref (or ptr) to a base-class type, we don&#39;t know the actual type of the obj to which the ptr or ref is bound.</p>
+
+<pre><code class="language-cpp">Quote item;
+Bulk_quote bulk;
+Quote *p = &amp;item;   //p points to Quote obj
+p = &amp;bulk;          //p points to the Quote part of bulk
+Quote &amp;r = bulk;    //r bound to the Quote part of bulk</code></pre>
+
+<p>The conversion from derived to base exists because <strong>every derived obj contains a base-class part to which a ptr or ref of the base-class type can be bound</strong>. There is no similar guarantee for base-class objs, and thus no automatic conversion from the base class to derived.</p>
+
+<pre><code class="language-cpp">Quote base;
+Bulk_quote* bulkP = &amp;base;  //ERROR: cannot convert base to derived
+Bulk_quote&amp; bulkRef = base; //ERROR: ditto</code></pre>
+
+<p>The automatic derived-to-base conversion applies <strong>only for conversions to a reference or pointer type</strong>. There is no such conversion from a derived-class type to the base-class type. Note that when we init or assign an obj of a class type, we are actually calling a func, cstr for init, and asgn operator for assign. These members normally have a para that is a ref to the const version of the class type.</p>
+
+<p>When we init or assign an obj of a base type from an obj of a derived type, <strong>only the base-class part</strong> of the derived obj is copied, moved, or assigned. The derived part of the obj is ignored.</p>
+
+<pre><code class="language-cpp">Bulk_quote bulk;  //obj of derived type
+Quote item(bulk); //uses the Queue::Quote(const Quote&amp;) cstr
+item = bulk;      //calls Quote::operator=(const Quote&amp;)</code></pre>
+
+<h2 id="toc_9">(iii) <a name="virtual"></a> Virtual functions <a href="#top">&uarr;top</a></h2>
+
+<p>C++ dynamic binding happens <strong>only</strong> when a <strong>virtual</strong> member func is called through a <strong>ref or a ptr to a base-class type</strong>. When a virtual func is called through a ref or ptr, the compiler generates code to <strong>decide at runtime</strong> which func to call. </p>
+
+<p>Once a function is declared as <em>virtual</em>, it <u>remains <em>virtual</em></u> in all the derived classes, which are not required to repeat the virtual keyword. When a derived class overrides a virtual, the parameters in the base and derived classes must match exactly, except only when virtuals return ref/ptr related by inheritance. </p>
+
+<h3 id="toc_10">final and override</h3>
+
+<p>The compiler rejects a program if a func marked override does not override an existing virtual func; any attempt to override a func that has been defined as final will be flagged as error.</p>
+
+<pre><code class="language-cpp">stuct B {
+    virtual void f1(int) const;
+    virtual void f2();
+    void f3();
+};
+struct D2 : B {
+    //inherits f2() and f3() from B and overrides f1(int)
+    void f1(int) const final; //subseq classes can&#39;t override f1(int)
+    void f2(int) override;    //ERROR: B has no f2(int) func
+};
+struct D3 : D2 {
+    void f2();                //OK: overrides f2 inherited from indirect base B
+    void f1(int) const;       //ERROR: D2 declared f2 as final
+};</code></pre>
+
+<p>Virtual function implementation is based on <a href="http://www.learncpp.com/cpp-tutorial/125-the-virtual-table/">virtual table</a>.</p>
+
+<h3 id="toc_11">default arguments</h3>
+
+<p>Virtual functions that have default arguments should use the same argument values in the base and derived classes.</p>
+
+<h3 id="toc_12">circumventing the virtual mechanism</h3>
+
+<p>In some cases, we want to force the call to use a particular version of the virtual, which can be achieved with scope operator:</p>
+
+<pre><code class="language-cpp">//calls the version from the base class regardless of the dynamic type of baseP
+double undiscounted = baseP-&gt;Quote::net_price(42);</code></pre>
+
+<h2 id="toc_13">(iv) <a name="abstract"></a> Abstract base classes <a href="#top">&uarr;top</a></h2>
+
+<p>We can provide a <strong>pure virtual</strong> function, which does not have to be defined. We specify that a virtual func is a pure virtual by writing <strong>=0</strong> in place of a func body. However, we <u>can provide a definition</u> for a pure virtual, but the func body must be defined <u>outside</u> the class.</p>
+
+<pre><code class="language-cpp">double net_price(std::size_t) const = 0;</code></pre>
+
+<p>A class containing (or inheriting without overriding) a pure virtual function is an <strong>abstract base class</strong>. An abstract base class defines an interface for subsequent classes to override. We <u>cannot (directly) create objects</u> of a type that is an <u>abstract</u> base class. Classes that inherit from abstract base must define the pure virtual func, or those classes will be abstract as well.</p>
+
+<h2 id="toc_14">(v) <a name="access-control"></a> Access control and inheritance <a href="#top">&uarr;top</a></h2>
+
+<h3 id="toc_15">protected members</h3>
+
+<p>A class uses <em>protected</em> for those members that it is willing to share with its derived or friend classes but wants to protect from general access. </p>
+
+<p>A derived class member or friend may access the protected members of the base class <strong>only</strong> through a <strong>derived object</strong>. The derived class has no special access to the protected members of base-class objects.</p>
+
+<pre><code class="language-cpp">class Base {
+protected:
+    int prot_mem;                   //protected member
+};
+class Sneaky : public Base {
+    friend void clobber(Sneaky&amp;);   //can access Sneaky::prot_mem
+    friend void clobber(Base&amp;);     //can&#39;t access
+    int j;                          //j is private by default
+};
+-----------
+//OK: clobber can access the private and protected
+//  members in Sneaky objects
+void clobber(Sneaky &amp;s) { s.j = s.prot_mem = 0; }
+//ERROR: clobber can&#39;t access the protected members in Base
+void clobber(Base &amp;b) { b.prot_mem = 0; }</code></pre>
+
+<h3 id="toc_16">public, private and protected inheritance</h3>
+
+<p>Access to a member that a class inherits is controlled by a combination of the <u>access specifier for that member in the base class</u>, and the <u>access specifier in the derivation list of the derived class</u>.</p>
+
+<pre><code class="language-cpp">class Base {
+public:
+    void pub_mem(); //public member
+protected:
+    int prot_mem;   //protected member
+private:
+    char priv_mem;  //private member
+};
+struct Pub_Derv : public Base {
+    //OK: derived classes can access protected members
+    int f() { return prot_mem; }
+    //ERROR: private members are inaccessible to derived classes
+    char g() { return priv_mem; }
+};
+struct Priv_Derv : private Base {
+    //private derivation doesn&#39;t affect access in derived class
+    int f1() const { return prot_mem; }
+};</code></pre>
+
+<ul>
+<li><p><strong>Access specifier</strong>: access to the members of a base class is controlled by the <strong>access specifiers</strong> in the base class itself. Both <em>Pub_Derv</em> and <em>Priv_Derv</em> may access the protected member <em>prot_mem</em>. Neither may access the private member <em>priv_mem</em>.<br>
+The <strong>derivation access specifier</strong> has no effect on whether members (and friends) of a derived class may access the members of its own direct base class.</p></li>
+<li><p><strong>Derivation access specifier</strong>: controls the access that users of the derived class - including other classes derived from the derived class - have to the members inherited from Base:</p>
+
+<pre><code class="language-cpp">Pub_Derv d1;  //members inherited from Base are public
+Priv_Derv d2; //members inherited from Base are private
+d1.pub_mem(); //OK: pub_mem is public in derived class
+d2.pub_mem(); //ERROR: pub_mem is private in derived</code></pre>
+
+<p>The derivation access specifier used by a derived class also controls access from classes that inherit from that derived class:</p>
+
+<pre><code class="language-cpp">struct Derived_from_Public : public Pub_Derv {
+    //OK: Base::prot_mem remains protected in Pub_Derv
+    int use_base() { return prot_mem; }
+};
+
+struct Derived_from_Private : public Priv_Derv {
+    //ERROR: Base::prot_mem is private in Priv_Derv
+    int use_base() { return prot_mem; }
+};</code></pre></li>
+</ul>
+
+<h3 id="toc_17">accessibility of derived-to-base conversion</h3>
+
+<p>Whether the derived-to-base conversion is accessible depends on which code is trying to use the conversion and may depend on the access specifier used in the derived class&#39; derivation. Assuming D inhertis from B:</p>
+
+<ul>
+<li><strong>user code</strong> may use the conversion <strong>only</strong> if D <strong>inherits publicly</strong> from B. User code may not use the conversion if D inherits from B using protected or private;</li>
+<li><strong>member funcs and friends</strong> of <strong>D</strong> can <strong>always</strong> use the conversion to B regardless of how D inherits from B;</li>
+<li><strong>member funcs and friends</strong> of <strong>classes derived from D</strong> may use the conversion if D inherits from B using <strong>public or protected</strong>.</li>
+</ul>
+
+<p><strong>For any given point in your code, if a public member of the base class would be accessible, then the derived-to-base conversion is also accessible, and not otherwise</strong>.</p>
+
+<h3 id="toc_18">friendship and inheritance</h3>
+
+<p>Friendship is <u>not transitive or inherited</u>. Friends of the base have no special access to members of its derived classes, and friends of a derived class have no special access to the base class:</p>
+
+<pre><code class="language-cpp">class Base {
+    //added friend decl; other members as before
+    friend class Pa1; //Pa1 has no access to classes derived from Base
+};
+
+class Pa1 {
+public:
+    int f(Base b) { return b.prot_mem; } //OK: Pa1 is friend of Base
+    int f2(Sneaky s) { return s.j; }     //ERROR: Pa1 is not friend of Sneaky
+    //access to a base class is controlled by the base class
+    //  even inside a derived obj
+    int f3(Sneaky s) { return s.prot_mem; } //OK: pa1is a friend
+};</code></pre>
+
+<p><em>f3</em> is correct as it follows the notion that each class controls access to its own members. <em>Pa1</em> is a friend of <em>Base</em>, so <em>Pa1</em> can access the members of <em>Base</em> objects. That access includes access to <em>Base</em> objects that are embedded in an obj of a type derived from <em>Base</em>.</p>
+
+<h3 id="toc_19">exempting individual members</h3>
+
+<p>A derived class may provide a using decl only for names it is permitted to access: </p>
+
+<pre><code class="language-cpp">class Base {
+public:
+    std::size_t size() const { return n; }
+protected:
+    std::size_t n;
+};
+
+class Derived : private Base {
+public:
+    //maintain access levels for members related to the size of the obj
+    using Base::size;
+protected:
+    using Base::n;
+};</code></pre>
+
+<p>Because <em>Derived</em> uses <em>private</em> inheritance, the inherited members, size and n, are (by default) <em>private</em> members of <em>Derived</em>. The using decls adjust the accessibility of these members.</p>
+
+<h2 id="toc_20">(vi) <a name="class-scope"></a> Class scope under inheritance <a href="#top">&uarr;top</a></h2>
+
+<h3 id="toc_21">static type and dynamic type</h3>
+
+<p>The <strong>static type</strong> of an expr is always known at compile time - it is the type with which a var is declared or that an expr yields. The <strong>dynamic type</strong> is the type of the obj in memory that a var or expr represents. The dynamic type may not be known until run time.</p>
+
+<pre><code class="language-cpp">double print_total(ostream &amp;os, const Quote &amp;item, size_t n) {
+    double ret = item.net_price(n);
+    return ret;
+}</code></pre>
+
+<p>The static type of <em>item</em> is <em>Quote&amp;</em>. The dynamic type depends on the type of the argument to which <em>item</em> is bound. That type cannot be known until a call is executed at run time. If we pass a <em>Bulk_quote</em> obj to <em>print_total</em>, then the static type (<em>Quote&amp;</em>) of <em>item</em> will differ from its dynamic type (<em>Bulk_quote</em>). </p>
+
+<p>The dynamic type of an expr that is neither a ref nor a ptr is always the same as that expr&#39;s static type. E.g., a var of type <em>Quote</em> is always a <em>Quote</em> obj. <strong>The static type of a ptr or ref to a base class may differ from its dynamic type</strong>.</p>
+
+<h3 id="toc_22">name lookup happens at compile time</h3>
+
+<p>The static type of an obj, ref or ptr determines which members of that obj are visible.</p>
+
+<pre><code class="language-cpp">class Disc_quote : public Quote {
+public:
+    std::pair&lt;size_t, double&gt; discount_policy() const {
+        return {quantity, discount};
+        //other members as before
+    }
+};</code></pre>
+
+<p>We can use <em>discount_policy</em> only through an obj, ptr, or ref of type <em>Disc_quote</em> or of a class derived from <em>Disc_quote</em>:</p>
+
+<pre><code class="language-cpp">//Bulk_quote inherits from Disc_quote
+Bulk_quote bulk;
+Bulk_quote *bulkP = &amp;bulk;  //static and dyn types are same
+Quote *itemP = &amp;bulk;       //static and dyn types differ
+bulkP-&gt;discount_policy();   //OK: bulkP has type Bulk_quote*
+itemP-&gt;discount_policy();   //ERROR: itemP has type Quote*</code></pre>
+
+<p>Even though <em>bulk</em> has a member named <em>discount_policy</em>, that member is not visible through <em>itemP</em>, whose type is a ptr to <em>Quote</em>, meaning that the search for <em>discount_policy</em> starts in class <em>Quote</em>. The <em>Quote</em> class has no member named <em>discount_policy</em>, so we cannot call that member on an obj, ref or ptr of type <em>Quote</em>.</p>
+
+<p>Given the call p-&gt;mem() (or obj.mem()), the following steps happen:</p>
+
+<ul>
+<li>first determine the static type of p (or obj).</li>
+<li>look for <em>mem</em> in the class that corresponds to the static type of p (or obj). If <em>mem</em> is not found, look in the direct base class and continue up the chain of classes until <em>mem</em> is found or the last class is searched.</li>
+<li>once <em>mem</em> is found, do normal type checking to see if this call is legal given the definition that was found.</li>
+<li>assuming the call is legal, the compiler generates code, which varies depending on whether the call is virtual or not:
+
+<ul>
+<li>if <em>mem</em> is virtual and the call is made through a ref or ptr, then the compiler generates code to determine at run time which version to run based on the dynamic type of the obj;</li>
+<li>ow, if the func is nonvirtual, or if the call is on an obj (not a ref or ptr), the compiler generates a normal func call. </li>
+</ul></li>
+</ul>
+
+<h3 id="toc_23">class scope</h3>
+
+<p>Each class defines its own scope within which its members are defined. Under inheritance, the scope of a derived class is nested inside the scope of its base classes. If a name is unresolved within the scope of the derived class, the enclosing base-class scopes are searched for a def of that name.</p>
+
+<p><strong>A derived-class member with the same name as a member of the base class hides direct use of the base-class member</strong>.</p>
+
+<p><strong>We can use a hidden base-class member by using the scope operator</strong>.</p>
+
+<p>Funcs defined in an inner scope do not overload funcs declared in an outer scope. As a result, funcs defined in a derived class do <strong>NOT overload</strong> members defined in its base class(es), <strong>but hide</strong> the funcs in base.</p>
+
+<pre><code class="language-cpp">struct Base {
+    int memfcn();
+};
+struct Derived : Base {
+    int memfcn(int);    //hides memfcn in the base
+};
+Derived d; Base b;
+
+b.memfcn();             //calls Base::memfcn
+d.memfcn(10);           //calls Derived::memfcn
+d.memfcn();             //ERROR: memfcn with no argu is hidden
+d.Base::memfcn();       //OK: calls Base::memfcn</code></pre>
+
+<h3 id="toc_24">virtual functions and scope</h3>
+
+<p><u>Why virtual funcs must have the same para list in the base and derived classes?</u><br>
+If the base and derived members took arguments that differed from one another, there would be no way to call the derived version through a ref or ptr to the base class</p>
+
+<h2 id="toc_25">(vii) <a name="copy-control"></a> Constructors and copy control <a href="#top">&uarr;top</a></h2>
+
+<h3 id="toc_26">virtual destructors</h3>
+
+<p>A base class almost always needs a destructor, so that it can make the destructor virtual. Executing <em>delete</em> on a pointer to base that points to a derived obj has undefined behavior if the base&#39;s destructor is not virtual.</p>
+
+<pre><code class="language-cpp">class Quote {
+public:
+    //virtual dstr needed if a base ptr pointing
+    //  to a derived obj is deleted
+    virtual ~Quote() = default; //dynamic binding for dstr
+};
+
+Quote *itemP = new Quote;       //same static and dynamic type
+delete itemP;                   //dstr for Quote called
+itemP = new Bulk_quote;         //static and dynamic types differ
+delete itemP;                   //dstr for Bulk_quote called</code></pre>
+
+<p><strong>virtual destructors turn off synthesized move</strong>: If a class defines a destructor - even if it uses <em>=default</em> to use the synthesized version - the compiler will not synthesize a move operation for that class. </p>
+
+<h3 id="toc_27">synthesized copy control and inheritance</h3>
+
+<p>The synthesized copy-control members in a base or derived class execute like any other synthesized cstr, asgnment operator, or dstr. In addition, these synthesized members init, assign, or destry the direct base part of an obj by using the crspding operation from the base class.</p>
+
+<p>The syned default cstr, or any of the copy-control members of either a base or a derived class, may be defined as deleted. The way in which a base class is defined can cause a derived-class member to be defined as deleted:</p>
+
+<pre><code class="language-cpp">class B{
+public:
+    B();
+    B(const B&amp;) = delete;
+    //other members, not including a move cstr
+};
+class D : public B {
+    //no cstrs
+};
+
+D d;                //OK: D&#39;s syned default cstr uses B&#39;s default cstr
+D d2(d);            //ERROR: d&#39;s syned copy cstr is deleted
+D d3(std::move(d)); //ERROR: implicitly uses D&#39;s deleted copy cstr</code></pre>
+
+<h3 id="toc_28">derived-class copy-control members</h3>
+
+<p>The initialization phase of a derived-class cstr inits the base-class part(s) of a derived obj as well as init its own members. Likewise, the copy and move cstrs for a derived class must copy/move the members of its part as well as the members in the derived, and a derived-class asgnment op must assign the members in the base part of the derived obj.</p>
+
+<p>Differently, the dstr is responsible <strong>only</strong> for destroying the resources allocated by the derived class. The base-class part of a derived obj is destroyed automatically.</p>
+
+<p><strong>defining a derived copy or move cstr</strong><br>
+When a derived class defines a copy or move operation, that operation is rspl for copying or moving the entire obj, including base-class members.</p>
+
+<pre><code class="language-cpp">class Base { /* ... */ };
+class D : public Base {
+public:
+    //by default, the base class default cstr inits the base part of an obj
+    //to use the copy or move cstr, we must explicitly call
+    //that cstr in the cstr init list
+    D(const D&amp; d) : Base(d)         //copy the base members
+        /* initializers for members of D */ { ... }
+    D(D&amp;&amp; d) : Base(std::move(d))   //move the base members
+        /* initializers for members of D */ { ... }
+};</code></pre>
+
+<p><strong>derived-class assignment operator</strong><br>
+Like copy and move cstrs, a derived-class asgnment operator must assign its base part explicitly:  </p>
+
+<pre><code class="language-cpp">//Base::operator=(const Base&amp;) is not invoked auto
+D &amp;D::operator=(const D &amp;rhs) {
+    Base::operator=(rhs); //assigns the base part
+    //assigns the members in derived class, as usual
+    return *this;
+};</code></pre>
+
+<p><strong>derived-class dstr</strong><br>
+Unlike the cstrs and asgnment ops, a derived dstr is rspl only for destroying the rscs allocated by the derived class:</p>
+
+<pre><code class="language-cpp">class D : public Base {
+public:
+    //Base::~Base invoked auto
+    ~D() { /*do what it takes to clean up derived members*/ }
+};</code></pre>
+
+<p>Objs are destroyed in the opposite order from which they are constructed: the derived dstr is run first, and then the base-class dstrs are invoked, back up through the inheritance hierarchy.</p>
+
+<h3 id="toc_29">inherited constructors</h3>
+
+<p>A derived class can reuse the cstrs defined by its direct base class. A class may inherit constructors <strong>only</strong> from its direct base, and a class cannot inherit the default, copy and move cstrs. If the derived class does not directly define these cstrs, the compiler synthesizes them as usual.</p>
+
+<pre><code class="language-cpp">class Bulk_quote : public Disc_quote {
+public:
+    using Disc_quote::Disc_quote; //inherit Disc_quote&#39;s cstr
+    double net_price(std::size_t) const;
+};</code></pre>
+
+<p>When applied to a cstr, a <em>using</em> decl causes the compiler to generate a derived cstr crspding to each cstr in the base. That is, for each cstr in the base class, the compiler generates a cstr in the derived class that has the same para list.</p>
+
+<p>The compiler-generated cstrs have the form:</p>
+
+<pre><code class="language-cpp">derived (parms) : base(args) { }</code></pre>
+
+<p>where <em>derived</em> is the name of the derived class, <em>base</em> is the name of the base class; <em>parms</em> is the para list of the cstr, and <em>args</em> pass the para from the derived cstr to the base cstr.</p>
+
+<pre><code class="language-cpp">Bulk_quote(const std::string&amp; book, double price,
+                std::size_t qty, double disc) :
+            Disc_quote(book, price, qty, disc) { }</code></pre>
+
+<script type="text/javascript">
+var _self="undefined"!=typeof window?window:"undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?self:{},Prism=function(){var e=/\blang(?:uage)?-(?!\*)(\w+)\b/i,t=_self.Prism={util:{encode:function(e){return e instanceof n?new n(e.type,t.util.encode(e.content),e.alias):"Array"===t.util.type(e)?e.map(t.util.encode):e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/\u00a0/g," ")},type:function(e){return Object.prototype.toString.call(e).match(/\[object (\w+)\]/)[1]},clone:function(e){var n=t.util.type(e);switch(n){case"Object":var a={};for(var r in e)e.hasOwnProperty(r)&&(a[r]=t.util.clone(e[r]));return a;case"Array":return e.map&&e.map(function(e){return t.util.clone(e)})}return e}},languages:{extend:function(e,n){var a=t.util.clone(t.languages[e]);for(var r in n)a[r]=n[r];return a},insertBefore:function(e,n,a,r){r=r||t.languages;var l=r[e];if(2==arguments.length){a=arguments[1];for(var i in a)a.hasOwnProperty(i)&&(l[i]=a[i]);return l}var o={};for(var s in l)if(l.hasOwnProperty(s)){if(s==n)for(var i in a)a.hasOwnProperty(i)&&(o[i]=a[i]);o[s]=l[s]}return t.languages.DFS(t.languages,function(t,n){n===r[e]&&t!=e&&(this[t]=o)}),r[e]=o},DFS:function(e,n,a){for(var r in e)e.hasOwnProperty(r)&&(n.call(e,r,e[r],a||r),"Object"===t.util.type(e[r])?t.languages.DFS(e[r],n):"Array"===t.util.type(e[r])&&t.languages.DFS(e[r],n,r))}},plugins:{},highlightAll:function(e,n){for(var a,r=document.querySelectorAll('code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'),l=0;a=r[l++];)t.highlightElement(a,e===!0,n)},highlightElement:function(n,a,r){for(var l,i,o=n;o&&!e.test(o.className);)o=o.parentNode;o&&(l=(o.className.match(e)||[,""])[1],i=t.languages[l]),n.className=n.className.replace(e,"").replace(/\s+/g," ")+" language-"+l,o=n.parentNode,/pre/i.test(o.nodeName)&&(o.className=o.className.replace(e,"").replace(/\s+/g," ")+" language-"+l);var s=n.textContent,u={element:n,language:l,grammar:i,code:s};if(!s||!i)return t.hooks.run("complete",u),void 0;if(t.hooks.run("before-highlight",u),a&&_self.Worker){var g=new Worker(t.filename);g.onmessage=function(e){u.highlightedCode=e.data,t.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(u.element),t.hooks.run("after-highlight",u),t.hooks.run("complete",u)},g.postMessage(JSON.stringify({language:u.language,code:u.code,immediateClose:!0}))}else u.highlightedCode=t.highlight(u.code,u.grammar,u.language),t.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(n),t.hooks.run("after-highlight",u),t.hooks.run("complete",u)},highlight:function(e,a,r){var l=t.tokenize(e,a);return n.stringify(t.util.encode(l),r)},tokenize:function(e,n){var a=t.Token,r=[e],l=n.rest;if(l){for(var i in l)n[i]=l[i];delete n.rest}e:for(var i in n)if(n.hasOwnProperty(i)&&n[i]){var o=n[i];o="Array"===t.util.type(o)?o:[o];for(var s=0;s<o.length;++s){var u=o[s],g=u.inside,c=!!u.lookbehind,f=0,h=u.alias;u=u.pattern||u;for(var p=0;p<r.length;p++){var d=r[p];if(r.length>e.length)break e;if(!(d instanceof a)){u.lastIndex=0;var m=u.exec(d);if(m){c&&(f=m[1].length);var y=m.index-1+f,m=m[0].slice(f),v=m.length,k=y+v,b=d.slice(0,y+1),w=d.slice(k+1),P=[p,1];b&&P.push(b);var A=new a(i,g?t.tokenize(m,g):m,h);P.push(A),w&&P.push(w),Array.prototype.splice.apply(r,P)}}}}}return r},hooks:{all:{},add:function(e,n){var a=t.hooks.all;a[e]=a[e]||[],a[e].push(n)},run:function(e,n){var a=t.hooks.all[e];if(a&&a.length)for(var r,l=0;r=a[l++];)r(n)}}},n=t.Token=function(e,t,n){this.type=e,this.content=t,this.alias=n};if(n.stringify=function(e,a,r){if("string"==typeof e)return e;if("Array"===t.util.type(e))return e.map(function(t){return n.stringify(t,a,e)}).join("");var l={type:e.type,content:n.stringify(e.content,a,r),tag:"span",classes:["token",e.type],attributes:{},language:a,parent:r};if("comment"==l.type&&(l.attributes.spellcheck="true"),e.alias){var i="Array"===t.util.type(e.alias)?e.alias:[e.alias];Array.prototype.push.apply(l.classes,i)}t.hooks.run("wrap",l);var o="";for(var s in l.attributes)o+=(o?" ":"")+s+'="'+(l.attributes[s]||"")+'"';return"<"+l.tag+' class="'+l.classes.join(" ")+'" '+o+">"+l.content+"</"+l.tag+">"},!_self.document)return _self.addEventListener?(_self.addEventListener("message",function(e){var n=JSON.parse(e.data),a=n.language,r=n.code,l=n.immediateClose;_self.postMessage(t.highlight(r,t.languages[a],a)),l&&_self.close()},!1),_self.Prism):_self.Prism;var a=document.getElementsByTagName("script");return a=a[a.length-1],a&&(t.filename=a.src,document.addEventListener&&!a.hasAttribute("data-manual")&&document.addEventListener("DOMContentLoaded",t.highlightAll)),_self.Prism}();"undefined"!=typeof module&&module.exports&&(module.exports=Prism),"undefined"!=typeof global&&(global.Prism=Prism);
+</script>
+<script type="text/javascript">
+Prism.languages.clike={comment:[{pattern:/(^|[^\\])\/\*[\w\W]*?\*\//,lookbehind:!0},{pattern:/(^|[^\\:])\/\/.*/,lookbehind:!0}],string:/(["'])(\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,"class-name":{pattern:/((?:\b(?:class|interface|extends|implements|trait|instanceof|new)\s+)|(?:catch\s+\())[a-z0-9_\.\\]+/i,lookbehind:!0,inside:{punctuation:/(\.|\\)/}},keyword:/\b(if|else|while|do|for|return|in|instanceof|function|new|try|throw|catch|finally|null|break|continue)\b/,"boolean":/\b(true|false)\b/,"function":/[a-z0-9_]+(?=\()/i,number:/\b-?(?:0x[\da-f]+|\d*\.?\d+(?:e[+-]?\d+)?)\b/i,operator:/--?|\+\+?|!=?=?|<=?|>=?|==?=?|&&?|\|\|?|\?|\*|\/|~|\^|%/,punctuation:/[{}[\];(),.:]/};
+</script>
+<script type="text/javascript">
+Prism.languages.c=Prism.languages.extend("clike",{keyword:/\b(asm|typeof|inline|auto|break|case|char|const|continue|default|do|double|else|enum|extern|float|for|goto|if|int|long|register|return|short|signed|sizeof|static|struct|switch|typedef|union|unsigned|void|volatile|while)\b/,operator:/\-[>-]?|\+\+?|!=?|<<?=?|>>?=?|==?|&&?|\|?\||[~^%?*\/]/,number:/\b-?(?:0x[\da-f]+|\d*\.?\d+(?:e[+-]?\d+)?)[ful]*\b/i}),Prism.languages.insertBefore("c","string",{macro:{pattern:/(^\s*)#\s*[a-z]+([^\r\n\\]|\\.|\\(?:\r\n?|\n))*/im,lookbehind:!0,alias:"property",inside:{string:{pattern:/(#\s*include\s*)(<.+?>|("|')(\\?.)+?\3)/,lookbehind:!0},directive:{pattern:/(#\s*)\b(define|elif|else|endif|error|ifdef|ifndef|if|import|include|line|pragma|undef|using)\b/,lookbehind:!0,alias:"keyword"}}},constant:/\b(__FILE__|__LINE__|__DATE__|__TIME__|__TIMESTAMP__|__func__|EOF|NULL|stdin|stdout|stderr)\b/}),delete Prism.languages.c["class-name"],delete Prism.languages.c["boolean"];
+</script>
+<script type="text/javascript">
+Prism.languages.cpp=Prism.languages.extend("c",{keyword:/\b(alignas|alignof|asm|auto|bool|break|case|catch|char|char16_t|char32_t|class|compl|const|constexpr|const_cast|continue|decltype|default|delete|do|double|dynamic_cast|else|enum|explicit|export|extern|float|for|friend|goto|if|inline|int|long|mutable|namespace|new|noexcept|nullptr|operator|private|protected|public|register|reinterpret_cast|return|short|signed|sizeof|static|static_assert|static_cast|struct|switch|template|this|thread_local|throw|try|typedef|typeid|typename|union|unsigned|using|virtual|void|volatile|wchar_t|while)\b/,"boolean":/\b(true|false)\b/,operator:/[-+]{1,2}|!=?|<{1,2}=?|>{1,2}=?|\->|:{1,2}|={1,2}|\^|~|%|&{1,2}|\|?\||\?|\*|\/|\b(and|and_eq|bitand|bitor|not|not_eq|or|or_eq|xor|xor_eq)\b/}),Prism.languages.insertBefore("cpp","keyword",{"class-name":{pattern:/(class\s+)[a-z0-9_]+/i,lookbehind:!0}});
+</script>
+</body>
+
+</html>

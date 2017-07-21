@@ -1,0 +1,243 @@
+<html>
+<head>
+<title>Reading List</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF">
+<center>
+	<p><font size="+2" face="Arial, Helvetica, sans-serif"><b>Reading List</b></font>
+	</p>
+	<table width="48%">
+	<tr><td> 0. Three topics are chosen around multiprocessors: deterministic replay, cache and main memory; </td></tr>
+	<tr><td> 1. Words in blue starting with '<font color=0000ff>&#8627</font>' under each paper title is a brief summary of the paper; </td></tr>
+	<tr><td> 2. <font color=ff0000>[<i>Italic red words within brackets</i>]</font> are my classification labels for the paper;</td></tr>
+	<tr><td> 3. Three selected papers are listed for each topic;</td></tr>
+	<tr><td> 4. Main factors in choosing the papers are contents, novality, conferences and citations, etc.</td></tr>
+	</table>
+</center>
+<p>
+
+<center>
+<table width="90%" border="2" cellspacing="0" cellpadding="0">
+  <tr bgcolor="#87CEFA"> 
+    <td colspan="3"><font face="Arial, Helvetica, sans-serif"><b>
+	Determistic Replay in Multiprocessors
+	</b><br>
+	In multiprocessors, multithreaded programs are executed non-deterministically; 
+	for bug reproduction and fault tolerance, deterministic replay was proposed to record sufficient execution events and replay these events later.
+	</font></td>
+  </tr>
+
+  <tr>
+  <td width="80%"><font face="Arial, Helvetica, sans-serif"> 
+     A "Flight Data Recorder" for enabling full-system multiprocessor deterministic replay
+  </font>
+    <font size="2" color="red">
+	 [<i>hardware, offline, one-run</i>]
+    </font>
+    <br><font size="2" color="blue">
+	&#8627;Processor-based offline full-system deterministic replay of multiprocessor executions.
+	FDR is a practical low-overhead hardware recorder for cache-coherent multiprocessors.
+    </font>
+  </td>
+  <td width="15%"><font face="Arial, Helvetica, sans-serif">
+     ISCA'2003 [cite'353]
+  </font></td>
+  <td width="5%" align="center"><font face="Arial, Helvetica, sans-serif">
+     <a href="http://xhfamily.com/x/files/isca03_fdr.pdf">pdf</a>
+  </font></td>
+  </tr>
+
+  <tr>
+  <td width="85%"><font face="Arial, Helvetica, sans-serif"> 
+     PRES: Probabilistic replay with execution sketching on multiprocessors
+  </font>
+    <font size="2" color="red">
+	 [<i>software, offline, several-run</i>]
+    </font>
+    <br><font size="2" color="blue">
+	&#8627;A software-only solution to reproduce concurrency bug on multiprocessors in multiple runs, which greatly lowers record overhead.
+    </font>
+  </td>
+  <td width="10%"><font face="Arial, Helvetica, sans-serif">
+     SOSP'2009 [cite'162]
+  </font></td>
+  <td width="5%" align="center"><font face="Arial, Helvetica, sans-serif">
+     <a href="http://www.cs.columbia.edu/~junfeng/12fa-e6121/papers/pres.pdf">pdf</a>
+  </font></td>
+  </tr>
+
+  <tr>
+  <td width="85%"><font face="Arial, Helvetica, sans-serif"> 
+     Respec: Efficient online multiprocessor replay via speculation and external determinism
+  </font>
+    <font size="2" color="red">
+	 [<i>software, online, one-run</i>]
+    </font>
+    <br><font size="2" color="blue">
+	&#8627;The first system to support low-overhead, online deterministic replay on multiprocessors without hardware support.
+    </font>
+  </td>
+  <td width="10%"><font face="Arial, Helvetica, sans-serif">
+     ASPLOS'2010 [cite'99]
+  </font></td>
+  <td width="5%" align="center"><font face="Arial, Helvetica, sans-serif">
+     <a href="http://web.eecs.umich.edu/~nsatish/papers/ASPLOS-10-Respec.pdf">pdf</a>
+  </font></td>
+  </tr>
+
+
+</table>
+</center>
+
+<br><br>
+
+<center>
+<table width="90%" border="2" cellspacing="0" cellpadding="0">
+  <tr bgcolor="#87CEFA"> 
+    <td colspan="3"><font face="Arial, Helvetica, sans-serif"><b>
+	Cache Management in CMP
+	</b><br>
+	CMPs often execute a wide variety of applications with differing requirements. 
+	To maximize performance, cache should be configured with respect to workload characteristics.
+	</font></td>
+  </tr>
+
+  <tr>
+  <td width="80%"><font face="Arial, Helvetica, sans-serif"> 
+     Token coherence: Decoupling performance and correctness
+  </font>
+    <font size="2" color="red">
+	 [<i>coherence</i>]
+    </font>
+    <br><font size="2" color="blue">
+	&#8627;A new coherence framework to enable coherence protocols by separating performance from correctness.
+    </font>
+  </td>
+  <td width="15%"><font face="Arial, Helvetica, sans-serif">
+     ISCA'2003 [cite'259]
+  </font></td>
+  <td width="5%" align="center"><font face="Arial, Helvetica, sans-serif">
+     <a href="https://www.cis.upenn.edu/~milom/papers/isca03_token_coherence.pdf">pdf</a>
+  </font></td>
+  </tr>
+
+  <tr>
+  <td width="85%"><font face="Arial, Helvetica, sans-serif"> 
+     ASR: Adaptive selective replication for CMP caches
+  </font>
+    <font size="2" color="red">
+	 [<i>partition wrt average access time</i>]
+    </font>
+    <br><font size="2" color="blue">
+	&#8627;Dynamically monitors workload behaviors and then adjusts the replication level to minimize average access time.
+    </font>
+  </td>
+  <td width="10%"><font face="Arial, Helvetica, sans-serif">
+     MICRO'2006 [cite'193]
+  </font></td>
+  <td width="5%" align="center"><font face="Arial, Helvetica, sans-serif">
+     <a href="http://pdf.aminer.org/000/499/619/asr_adaptive_selective_replication_for_cmp_caches.pdf">pdf</a>
+  </font></td>
+  </tr>
+
+  <tr>
+  <td width="85%"><font face="Arial, Helvetica, sans-serif"> 
+     Ubik: Efficient cache sharing with strict QoS for latency-critical workloads
+  </font>
+    <font size="2" color="red">
+	 [<i>partition wrt QoS</i>]
+    </font>
+    <br><font size="2" color="blue">
+	&#8627;Proposed Ubik, a dynamic partitioning technique that predicts and exploits the transient behavior of latency-critical workloads to 
+	maintain their tail latency while maximizing the cache space available to batch applications.
+    </font>
+  </td>
+  <td width="10%"><font face="Arial, Helvetica, sans-serif">
+     ASPLOS'2014 [cite'3]
+  </font></td>
+  <td width="5%" align="center"><font face="Arial, Helvetica, sans-serif">
+     <a href="http://people.csail.mit.edu/sanchez/papers/2014.ubik.asplos.pdf">pdf</a>
+  </font></td>
+  </tr>
+
+</table>
+</center>
+
+<br><br>
+
+<center>
+<table width="90%" border="2" cellspacing="0" cellpadding="0">
+  <tr bgcolor="#87CEFA"> 
+    <td colspan="3"><font face="Arial, Helvetica, sans-serif"><b>
+	Main Memory in CMP
+	</b><br>
+	CMPs have limited off-chip bandwidth, which is competed by various applications.
+	The potential interference may harm both system performance and individual application performance.
+	</font></td>
+  </tr>
+
+  <tr>
+  <td width="80%"><font face="Arial, Helvetica, sans-serif"> 
+     Scaling the bandwidth wall: Challenges in and avenues for CMP scaling
+  </font>
+    <font size="2" color="red">
+	 [<i>general study</i>]
+    </font>
+    <br><font size="2" color="blue">
+	&#8627;Developed an analytical model to study the bandwidth wall problems for CMP systems.
+    </font>
+  </td>
+  <td width="15%"><font face="Arial, Helvetica, sans-serif">
+     ISCA'2009 [cite'142]
+  </font></td>
+  <td width="5%" align="center"><font face="Arial, Helvetica, sans-serif">
+     <a href="http://www.ece.ncsu.edu/arpers/Papers/isca09-bwwall.pdf">pdf</a>
+  </font></td>
+  </tr>
+
+  <tr>
+  <td width="85%"><font face="Arial, Helvetica, sans-serif"> 
+     Understanding how off-chip memory bandwidth partitioning in chip multiprocessors affects system performance
+  </font>
+    <font size="2" color="red">
+	 [<i>partition</i>]
+    </font>
+    <br><font size="2" color="blue">
+	&#8627;Constructed an analytical model to understand how bandwidth partitioning affects performance,
+	and how bandwidth and cache partitioning interact with one another. 
+    </font>
+  </td>
+  <td width="10%"><font face="Arial, Helvetica, sans-serif">
+     HPCA'2010 [cite'62]
+  </font></td>
+  <td width="5%" align="center"><font face="Arial, Helvetica, sans-serif">
+     <a href="http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=5416655">pdf</a>
+  </font></td>
+  </tr>
+
+  <tr>
+  <td width="85%"><font face="Arial, Helvetica, sans-serif"> 
+     Thread cluster memory scheduling: Exploiting differences in memory access behavior
+  </font>
+    <font size="2" color="red">
+	 [<i>scheduling</i>]
+    </font>
+    <br><font size="2" color="blue">
+	&#8627;A new memory scheduling that addresses system throughput and fairness separately with the goal of achieving the best of both.
+    </font>
+  </td>
+  <td width="10%"><font face="Arial, Helvetica, sans-serif">
+     MICRO'2010 [cite'175]
+  </font></td>
+  <td width="5%" align="center"><font face="Arial, Helvetica, sans-serif">
+     <a href="http://users.ece.cmu.edu/~omutlu/pub/tcm_micro10.pdf">pdf</a>
+  </font></td>
+  </tr>
+
+</table>
+</center>
+
+</body>
+</html>

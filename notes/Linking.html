@@ -1,0 +1,1103 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title>Linking</title>
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+<style type="text/css">
+/**
+ * prism.js default theme for JavaScript, CSS and HTML
+ * Based on dabblet (http://dabblet.com)
+ * @author Lea Verou
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: black;
+	text-shadow: 0 1px white;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+@media print {
+	code[class*="language-"],
+	pre[class*="language-"] {
+		text-shadow: none;
+	}
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #f5f2f0;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: slategray;
+}
+
+.token.punctuation {
+	color: #999;
+}
+
+.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #905;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #690;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+	color: #a67f59;
+	background: hsla(0, 0%, 100%, .5);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+	color: #07a;
+}
+
+.token.function {
+	color: #DD4A68;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+	color: #e90;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+</style>
+</head>
+<body>
+<h1 id="toc_0">Linking</h1>
+
+<p>Linking is the process of collecting and combining various pieces of code and data into a single file that can be <strong>loaded</strong> (copied) into memory and executed. Linking is performed automatically by programs called <strong>linkers</strong>, which enable <em>separate compilation</em>.</p>
+
+<h2 id="toc_1">Table of contents</h2>
+
+<ol>
+<li><a href="#overview">Overview of compiler drivers</a></li>
+<li><a href="#obj-files">Object files</a></li>
+<li><a href="#symbol">Symbol resolution</a></li>
+<li><a href="#reloc">Relocation</a></li>
+<li><a href="#exe-obj">Executable object files</a></li>
+<li><a href="#load">Loading executable obj files</a></li>
+<li><a href="#dyn-link">Dynamic linking with shared libraries</a></li>
+<li><a href="#append">Appendix</a></li>
+</ol>
+
+<h2 id="toc_2">1. <a name="overview"></a> Overview of compiler drivers <a href="#top">&uarr;top</a></h2>
+
+<p>Most compilation systems provide a <strong>compiler driver</strong> that invokes the language <u>preprocessor</u>, <u>compiler</u>, <u>assembler</u>, and <u>linker</u>.</p>
+
+<p>invoke GCC driver to build the program: <code>$gcc -O2 -g -o p main.c swap.c</code>  </p>
+
+<figure>
+  <center>
+  <img src="link_img/compiler_driver.png" alt="The Pulpit Rock" width="650">
+  <figcaption>Fig.1 - <b>Phases of compiler driver</b>. Suppose source code is "prog.c".</figcaption>
+  </center>
+</figure>
+
+<p>Steps to translate source file into executable:</p>
+
+<ul>
+<li><p>step1: the driver runs C <strong>preprocessor</strong> (cpp), translating C file <em>main.c</em> into an  ASCII intermediate file <em>main.i</em>, which is still C code (<code>gcc -E</code>);</p>
+
+<pre><code class="language-bash">$cpp [other arguments] main.c /tmp/main.i
+
+$cpp main.c main.i</code></pre></li>
+<li><p>step2: the driver runs C <strong>compiler</strong> (ccl), which translates <em>main.i</em> into an ASCII assembly langu file <em>main.s</em>, where various optimizations are performed for the specific arch (<code>gcc -S</code>);</p>
+
+<pre><code class="language-bash">$ccl /tmp/main.i main.c -O2 [other arguments] -o /tmp/main.s
+
+$gcc -S main.c</code></pre></li>
+<li><p>step3: the driver runs the <strong>assembler</strong> (as), which translates <em>main.s</em> into a relocatable obj file <em>main.o</em>;</p>
+
+<pre><code class="language-bash">$as [other arguments] -o /tmp/main.o /tmp/main.s
+
+$gcc -c main.c
+$nm main.o</code></pre></li>
+<li><p>step4: the driver goes through the same process to get <em>swap.o</em>;</p></li>
+<li><p>step 5: finally, it runs the <strong>linker</strong> program ld, which combines <em>main.o</em> and <em>swap.o</em>, along with the necessary system obj files, to create the executable obj file p.</p>
+
+<pre><code class="language-bash">$ld -o p [sys obj files and args] /tmp/main.o /tmp/swap.o</code></pre></li>
+<li><p>step 6: to run the executable <code>p</code>, type its name in shell, which invokes a func in the OS called the <strong>loader</strong>, which creates a process by reading the file and creating an addr space for the process. Page table entries for the instrs, data and program stack are created and the register set is inited. Then the loader executes a jump instr to the first instr in the program.</p></li>
+</ul>
+
+<h3 id="toc_3">preprocessor (*.c &rarr; *.i)</h3>
+
+<p><strong>cpp</strong> expands all macro definitions and include statements (and anything else starting with a <code>#</code>) and passes the result to the actual compiler.</p>
+
+<h3 id="toc_4">compiler (*.i &rarr; *.s)</h3>
+
+<figure>
+  <center>
+  <img src="link_img/compiler_phases.png" alt="The Pulpit Rock" width="650">
+  <figcaption>Fig.2 - <b>Compiler phases</b>.</figcaption>
+  </center>
+</figure>
+
+<ul>
+<li><p><strong>Lexical analyasis</strong> (scanner): reads stream of chars making up the source code and groups into <strong>tokens</strong>, including <em>keywords</em>, <em>identifiers</em>, <em>integers</em>, <em>operators</em> and <em>special symbols</em>, etc.</p>
+
+<pre><code class="language-cpp">int a;
+a = a + 2;
+
+//return: int(keyword), a(id), ;(special symbol) ...</code></pre></li>
+<li><p><strong>Syntax analysis</strong> (parser): the tokens during scanning are grouped together using a <strong>context-free grammer</strong>. Ouput is a parse tree or a derivation. </p>
+
+<pre><code class="language-cpp">//to parse a+2
+Expr   -&gt; Expr + Expr
+       -&gt; Variable + Expr
+       -&gt; T_IDENTIFIER + Expr
+       -&gt; T_IDENTIFIER + Constant
+       -&gt; T_IDENTIFIER + T_INTCONSTANT</code></pre></li>
+<li><p><strong>Semantic analysis</strong>: the parse tree or derivation is next checked for semantic errors.</p>
+
+<pre><code class="language-cpp">//scanned valid tokens and successfully match rules
+int arr[2], c;
+c = arr * 10;
+//type-check error: incompatible type</code></pre></li>
+<li><p><strong>Intermediate code generation</strong>: creates intermediate representation for the source code; the representation is easy to generate and easy to translate into the final assembly code. Commonly used is three-address code (TAC), which is a generic assembly language.</p>
+
+<pre><code class="language-cpp">//source code      |   //TAC codes
+a = b * c + b * d  |    _t1 = b * c
+                   |    _t2 = b * d
+                   |    _t3 = _t1 + _t2
+                   |    a = _t3</code></pre></li>
+<li><p><strong>Intermediate code optimization</strong>: optimizes the TAC codes to produce the smallest, fastest and most efficient form, still in TAC codes.</p>
+
+<pre><code class="language-cpp">//before opt           |   //after opt
+_t1 = b * c            |   _t1 = b * c
+_t3 = _t1 + 0          |   a = _t2
+_t3 = b * c
+_t4 = _t2 + _t3
+a = _t4</code></pre></li>
+<li><p><strong>Object code generation</strong>: translate TAC codes into assembly ones. Memory locations are selected for each variable, and instructions are chosen for each operation.</p></li>
+<li><p><strong>Object code optimization</strong>: transforms the obj code into tighter, more efficient obj code, to make efficient use of precessor(s) and registers.</p></li>
+</ul>
+
+<p><strong>symbol table</strong><br>
+a symbol table contains info about all the <strong>ids</strong> in the program along with important attributes like <strong>type</strong> and <strong>scope</strong>. Ids can be found in the <u>lexical analysis</u> phase and added to the symbol table. During the two phases that follow (<u>syntax and semantic analysis</u>), the compiler updates the id entry in the table to include info about its type and scope. When <u>generating intermediate code</u>, the type of the var is used to determine which instrs to aid in register allocation. The mem loc determined in the <u>code gen</u> phase might also be kept in the symbol table.</p>
+
+<h3 id="toc_5">assembler (*.s &rarr; *.o)</h3>
+
+<p>Assembler takes as input the assembly code generated by the compilation step, and translates it into machine code as an obj file. An obj file is a binary representation of the source program.  </p>
+
+<pre><code class="language-cpp">//assembly          |   //machine code
+push %ebp           |   0:  55
+mov %esp, %ebp      |   1: 89 ec
+xor %eax, %eax      |   3:  31 c0</code></pre>
+
+<p>The assembler gives a memory location to each variable and instruction, and the location is actually represented <u>symbolically</u> or via <u>offsets</u>. It also make a list of all the unresolved references that presumably defined in other obj file or libraries, e.g. <code>printf</code>. A typical obj file contains the program text (instructions) and data (constants and strings), info about instrs and data that depend on absolute addr, a symbol table of unresolved references, and psbly some debugging info. (<code>nm main.o</code>)</p>
+
+<h3 id="toc_6">static linking (*.o &rarr; *[.exe])</h3>
+
+<p><strong>Static linkers</strong> such as the Unix <code>ld</code> program takes as input a collection of <u>relocatable obj files</u> and command-line arguments and generate as output a fully linked <u>executable obj file</u> that can be loaded and run. The input relocatable obj files consist of various code and data sections. Instructions / initialized global variables / uninit variables are in different sections.</p>
+
+<p>To build the executable, the linker must perform two main tasks:</p>
+
+<ul>
+<li><strong>symbol resolution</strong>. Obj files define and reference <em>symbols</em>. The purpose of symbol resolution is to <u>associate each symbol reference with exactly one symbol definition</u>.</li>
+<li><strong>relocation</strong>. Compilers and assemblers generate code and data sections that start at addr 0. The linker <em>relocates</em> these sections by <u>associating a mem location with each symbol definition</u>, and then <u>modifying all of the references</u> to those symbols so that they point to this mem loc.</li>
+</ul>
+
+<h2 id="toc_7">2. <a name="obj-files"></a> Object files <a href="#top">&uarr;top</a></h2>
+
+<p>Object files come in three forms:</p>
+
+<ul>
+<li><strong>relocatable obj file</strong>. Contains binary code and data in a form that can be <u>combined with other</u> relocatable obj files at compile time to create an exe obj file.</li>
+<li><strong>executable obj file</strong>. Contains binary code and data in a form that can be <u>copied directly into mem</u> and executed.</li>
+<li><strong>shared obj file</strong>. A special type of relocatable obj file that can be <u>loaded into mem and linked dynamically</u>, at either load time or run time.</li>
+</ul>
+
+<p><u>Compilers and assemblers</u> generate <u>relocatable</u> obj files (including shared obj files). <u>Linkers</u> generate <u>executable</u> obj files. Technically, an <em>obj module</em> is a sequence of bytes, and an <em>obj file</em> is an obj module stored on disk in a file.</p>
+
+<p><strong>relocatable obj files</strong>  </p>
+
+<figure>
+  <center>
+  <img src="link_img/reloc_obj.png" alt="The Pulpit Rock" width="250">
+  <figcaption>Fig.3 - <b>Typical ELF relocatable object file</b>.</figcaption>
+  </center>
+</figure>
+
+<h3 id="toc_8">symbols and symbol tables</h3>
+
+<p>Each relocatable obj module, <em>m</em>, has a <strong>symbol table</strong> that contains info about the symbols that are defined and referenced by <em>m</em>. In the context of a linker, there are three different kinds of symbols:</p>
+
+<figure>
+  <center>
+  <img src="link_img/link_symbols.png" alt="The Pulpit Rock" width="400">
+  <figcaption>Fig.4 - <b>Different kinds of symbols</b>. Local linker symbols (static) are different from local program variables, which are managed at run time on stack.</figcaption>
+  </center>
+</figure>
+
+<ul>
+<li><strong>global</strong>: global symbols that are defined by module <em>m</em> and that can be <u>referenced by other modules</u>. Global linker symbols correspond to <u>nonstatic funcs</u> and <u>global vars that are defined without the <em>static</em></u> attribute.</li>
+<li><strong>external</strong>: global symbols that are <u>referenced by module <em>m</em> but defined by some other module</u>. Such symbols are called <u><em>externals</em></u> and correspond to funcs and vars that are defined in other modules.</li>
+<li><strong>local (static)</strong>: local symbols that are <u>defined and referenced exclusively by module <em>m</em></u>. Some local linker symbols correspond funcs and global vars that are defined with the <em>static</em> attribute. These symbols are visible anywhere within module <em>m</em>, but cannot be referenced by other modules.</li>
+</ul>
+
+<p><strong>Symbol tables are built by assemblers</strong>, using symbols exported by the compiler into the assembly-language <code>.s</code> file. An ELF symbol table is contained in the <code>.symtab</code> section. It contains an array of entries.</p>
+
+<pre><code class="language-cpp">typedef struct {
+    int name;           //byte offset into str table that points to symbol name
+    int value;          //symbol&#39;s addr: section offset, or VM addr
+    int size;           //obj size in bytes
+    char type:4,        //data, func, sec, or src file name (4 bits)
+        binding:4;      //local or global (4 bits)
+    char reserved;      //unused
+    char section;       //section header index, ABS, UNDEF or COMMON
+} Elf_symbol;</code></pre>
+
+<p>Each symbol is associated with some section of the obj file, denoted by the <em>section</em> field, which is an index into the <u>section header table</u>. There are three special pseudo sections that don&#39;t have entries in the section header table:</p>
+
+<ul>
+<li>ABS is for symbols that should not be relocated;</li>
+<li>UNDEF is for undefined symbols, that are referenced in this obj module but defined elsewhere;</li>
+<li>COMMON is for uninited data objs that are not yet allocated; <code>value</code> gives the alignment requirement, and <code>size</code> gives the min size.</li>
+</ul>
+
+<h3 id="toc_9">symbol table entries</h3>
+
+<pre><code class="language-none">//COMMAND: objdump -r -d -t main.o
+//Alt CMD: readelf -s main.o
+main.o:     file format elf32-i386
+
+//l=local, g=global; 
+//d=debug, f=file, O=object, F=function
+SYMBOL TABLE:
+00000000 l    df *ABS*  00000000 main.c
+00000000 l    d  .text  00000000 .text
+00000000 l    d  .data  00000000 .data
+00000000 l    d  .bss   00000000 .bss
+00000000 l    d  .note.GNU-stack    00000000 .note.GNU-stack
+00000000 l    d  .comment   00000000 .comment
+00000000 g     O .data  00000008 buf 
+00000000 g     F .text  00000014 main
+00000000         *UND*  00000000 swap</code></pre>
+
+<p>The first nine entries in the symbol table are local symbols that the linker uses internally, and we care more about the remaining ones:</p>
+
+<p><code>buf</code> is an 8B object located at an offset (i.e., value) of zero in the <code>.data</code> section. <code>main</code> is a 20B func located at an offset of zero in the <code>.text</code> section. <code>swap</code> is an external variable (<em>UND</em>).</p>
+
+<p>symbol table entries for <code>swap.o</code>:</p>
+
+<pre><code class="language-none">swap.o:     file format elf32-i386
+
+SYMBOL TABLE:
+00000000 l    df *ABS*  00000000 swap.c
+00000000 l    d  .text  00000000 .text
+00000000 l    d  .data  00000000 .data
+00000000 l    d  .bss   00000000 .bss
+00000000 l    d  .note.GNU-stack    00000000 .note.GNU-stack
+00000000 l    d  .comment   00000000 .comment
+00000000 g     O .data  00000004 bufp0
+00000000         *UND*  00000000 buf
+00000004       O *COM*  00000004 bufp1
+00000000 g     F .text  00000035 swap</code></pre>
+
+<p><code>bufp0</code> is a 4B inited obj starting at offset 0 in <code>.data</code>; next is a reference to the external <code>buf</code> symbol in the initialization code for <code>bufp0</code>; and, <code>bufp1</code> is a 4B uninited data obj (with a 4B alignment requirement) that will eventually be allocated as a <code>.bss</code> obj when this module is linked; <code>swap</code> is a 53B func at an offset of zero in <code>.text</code>.</p>
+
+<h2 id="toc_10"><a name="symbol"></a> 3. Symbol resolution <a href="#top">&uarr;top</a></h2>
+
+<p>The linker resolves symbol references by <u>associating each ref with exactly one symbol definition from the symbol tables of its input relocatable obj files</u>. Symbol resolution is easy for references to local variables that are defined in the same module as the ref.</p>
+
+<p>Resolving ref to global symbols is trickier. When the compiler encounters a symbol (either a var or func name) that is not defined in the current module, it assumes that it is defined in some other module, generally a <strong>linker symbol table entry</strong>, and leaves it for the linker to handle. If the linker is unable to find a def for the referenced symbol in any of its input modules, it prints an error msg and terminates.</p>
+
+<h3 id="toc_11">linking with static libraries</h3>
+
+<p>Related funcs can be compiled into separate obj modules and then packaged in a single <strong>static library</strong> file. Application programs can then use any of the funcs defined in the library by specifying a single file name on the command line:</p>
+
+<pre><code class="language-bash">$gcc main.c /usr/lib/libm.a /usr/lib/libc.a</code></pre>
+
+<p>At link time, the linker will <strong>only</strong> copy obj modules that are referenced by the program, which reduces the size of the executable on disk and in memory.</p>
+
+<p>On Unix systems, static libraries are stored on disk as <strong>archive</strong>, which is a collection of concatentated relocatable obj files, with a header that describes the size and loc of each member obj file. </p>
+
+<p><code>-static</code> tells the compiler driver that the linker should build a fully linked executable obj file that can be loaded into memory and run without any further linking at load time.</p>
+
+<h3 id="toc_12">linkers use static libraries to resolve references</h3>
+
+<p>During the symbol resolution phase, the linker scans the relocatable obj files and archives left to right in the same <u>sequential order</u> that they appear on the compiler driver&#39;s command line. (The driver automatically translates any <code>.c</code> files on the cmd line into <code>.o</code> files.) During this scan, the linker maintains a set <strong>E</strong> of relocatable obj files that will be merged to form the executable, a set <strong>U</strong> of unresolved symbols (i.e., symbols referred to, but not yet defined), and a set <strong>D</strong> of symbols that have been defined in previous input files. Initially, <strong>E</strong>/<strong>U</strong>/<strong>D</strong> are empty.</p>
+
+<ul>
+<li>for each input file <em>f</em> on the cmd line, the linker determines if <em>f</em> is an obj file or an archive. If <em>f</em> is an obj file, the linker adds <em>f</em> to <strong>E</strong>, updates <strong>U</strong> and <strong>D</strong> to reflect the symbol defs and refs in <em>f</em>, and proceeds to the next input file;</li>
+<li>if <em>f</em> is an archive, the linker attempts to match the unresolved symbol in <strong>U</strong> against the symbols defined by the members of the archive. If some archive member, <em>m</em>, defines a symbol that resolves a ref in <strong>U</strong>, then <em>m</em> is added to <strong>E</strong>, and the linker updates <strong>U</strong> and <strong>D</strong> to reflect the symbol defs and refs in <em>m</em>. This process iterates over the member obj files in the archive until a fixed point is reached where <strong>U</strong> and <strong>D</strong> no long change. At this point, any member obj files not contained in <strong>E</strong> are simply discarded and the linker proceeds to the next input file;</li>
+<li>if <strong>U</strong> is nonempty when the linker finishes scanning the input files on the cmd line, it prints an error and terminates. Ow, it merges and relocates the obj files in <strong>E</strong> to build the executable file.</li>
+</ul>
+
+<p>The ordering of libraries and obj files on the cmd line is significant, and the general rule is to place libraries at the end of cmd line. And, if libraries are not independent, they must be ordered so that for symbol <code>s</code> that is referenced externally by a member of an archive, at least one def of <code>s</code> follows a ref to <code>s</code> on the cmd line. E.g., suppose <code>foo.c</code> calls funcs in <code>libx.a</code> and <code>libz.a</code> that call funcs in <code>liby.a</code>. Then, <code>libx.a</code> and <code>libz.a</code> must precede <code>liby.a</code> on the cmd line:</p>
+
+<pre><code class="language-bash">$gcc foo.c libx.a libz.a liby.a</code></pre>
+
+<p>Libraries can be repeated on the cmd line if necessary to satisfy the dependence requirements. E.g., suppose <code>foo.c</code> calls a func in <code>libx.a</code> that calls a func in <code>liby.a</code> that calls a func in <code>libx.a</code>. Then <code>libx.a</code> must be repeated on the cmd line:</p>
+
+<pre><code class="language-bash">$gcc foo.c libx.a liby.a libx.a</code></pre>
+
+<h2 id="toc_13"><a name="reloc"></a> 4. Relocation <a href="#top">&uarr;top</a></h2>
+
+<p>Once the linker has completed the symbol resolution step, it has associated each symbol ref in the code with exactly one symbol def (i.e., a symbol table entry in one of its input obj modules). At this point, the linker knows the exact sizes of the code and data sections in its input obj modules. It is now ready to begin the relocation step, where it <u>merges the input modules and assigns run-time addr to each symbol</u>. Relocation consists of two steps:</p>
+
+<figure>
+  <center>
+  <img src="link_img/relocating.png" alt="The Pulpit Rock" width="600">
+  <figcaption>Fig.5 - <b>Relocating code and data</b>.</figcaption>
+  </center>
+</figure>
+
+<ul>
+<li><strong>Relocating sections and symbol definitions</strong>. In this step, the linker <u>merges</u> all sections of the same type into a new <u>aggregate section</u> of the same type. The linker then assigns run-time mem addres to the new aggregate sections, to each section defined by the input modules, and to each symbol defined by the input modules. When this step is complete, every instr and global var in the program has a unique run-time mem addr.</li>
+<li><strong>Relocating symbol references within sections</strong>. In this step, the linker modifies every symbol ref in the bodies of the <em>code</em> and <em>data</em> sections so that they point to the correct run-time addres. To perform this step, the linker relies on data structures in the relocatable obj modules known as <em>relocation entries</em>.</li>
+</ul>
+
+<h3 id="toc_14">relocation entries</h3>
+
+<p>When an assembler generates an obj module, it does not know where the code and data will ultimately be stored in memory. Nor does it know the locs of any <u>externally defined</u> funcs or global vars that are <u>referenced by the module</u>. So, whenever the assembler encounters a ref to an obj whose ultimate loc is unknown, it generates a <strong>relocation entry</strong> that tells the linker how to modify the ref when it merges the obj file into an executable. Relocation entries for code are placed in <code>.rel.text</code>, and for inited data are in <code>.rel.data</code>.</p>
+
+<pre><code class="language-cpp">typedef struct {
+    int offset;     //offset to the ref to relocate
+    int symbol:24,  //symbol the ref should point to
+        type:8;     //relocation type, tell the linker how to modify the new ref
+} Elf32_Rel;</code></pre>
+
+<p>Whereas 11 different relocation types are defined by ELF, we mainly concern two basic ones:</p>
+
+<ul>
+<li><strong>R_386_PC32</strong>: relocate a ref that uses a 32-bit PC-relative addr, which is an offset from the current run-time value of the PC. When CPU executes an instr using PC-relative addressing, it forms the effective addr by <u>adding the 32-bit value encoded in the instr to the current run-time value of the PC</u>, which is always the addr of the next instr in mem.</li>
+<li><strong>R_386_32</strong>: relocate a ref that uses a 32-bit absolute addr, which makes CPU directly uses the 32-bit value encoded in the instr as the effective addr, without further modifications.</li>
+</ul>
+
+<h3 id="toc_15">relocating symbol references</h3>
+
+<pre><code class="language-cpp">foreach section s {              //iterate over each section
+    foreach relocation entry r { //iterate over each reloc entry in each sec
+        refptr=s+r.offset;       //ptr to ref to be relocated
+        
+        //relocate a PC-relative ref
+        if(r.type == R_386_PC32) {
+            //ADDR(s): run-time addr for the sec
+            refaddr = ADDR(s)+r.offset; //ref&#39;s runtime addr
+            //ADDR(r.symbol): run-time addr of the symbol
+            *refptr = (unsigned) (ADDR(r.symbol)) + *refptr - refaddr);
+        }
+    
+        //relocate an absolute ref
+        if(r.type == R_386_32)
+            *refptr = (unsigned) (ADDR(r.symbol) + *refptr);
+    }
+}</code></pre>
+
+<p><strong>relocating PC-relative references</strong></p>
+
+<p><code>main</code> routine in the <code>.text</code> sec of <code>main.o</code> calls the <code>swap</code> routine, which is defined in <code>swap.o</code>.</p>
+
+<pre><code class="language-none">Disassembly of section .text:
+
+00000000 &lt;main&gt;:
+   0:   55                      push   %ebp
+   1:   89 e5                   mov    %esp,%ebp
+   3:   83 e4 f0                and    $0xfffffff0,%esp
+   6:   e8 fc ff ff ff          call   7 &lt;main+0x7&gt;  //swap()
+            7: R_386_PC32   swap                     //reloc entry
+   b:   b8 00 00 00 00          mov    $0x0,%eax
+  10:   89 ec                   mov    %ebp,%esp
+  12:   5d                      pop    %ebp
+  13:   c3                      ret    </code></pre>
+
+<p><code>call</code> instr begins at sec offset <code>0x6</code> and consists of the 1-byte opcode <code>0xe8</code>, followed by the 32-bit ref <code>0xfffffffc</code> (-4 decimal), which is stored in little-endian byte order. </p>
+
+<p>The relocation entry <code>r</code> consists of three fields:</p>
+
+<pre><code class="language-cpp">r.offset = 0x7
+r.symbol = swap
+r.type = R_386_PC32</code></pre>
+
+<p>These fields tell the linker to modify the 32-bit PC-relative ref starting at offset <code>0x7</code> so that it will point to the <code>swap</code> routine at run time. Now suppose the linker has determined that</p>
+
+<pre><code class="language-none">ADDR(s) = ADDR(.text) = 0x80483b4
+ADDR(r.symbol) = ADDR(swap) = 0x80483c8</code></pre>
+
+<p>The linker first computes the run-time addr of the ref:</p>
+
+<pre><code class="language-none">refaddr = ADDR(s)   + r.offset
+        = 0x80483b4 + 0x7
+        = 0x80483bb</code></pre>
+
+<p>It then updates the ref from its current value (-4) to <code>0x9</code> so that it will point to the <code>swap</code> routine at run time:</p>
+
+<pre><code class="language-none">*refptr = (unsigned) (ADDR(r.symbol) + *refptr - refaddr)
+        = (unsigned) (0x80483c8      + (-4)    - 0x80483bb)
+        = (unsigned) (0x9)</code></pre>
+
+<p>In the resulting executable obj file, the <code>call</code> instr has the following relocated form:</p>
+
+<pre><code class="language-cpp">80483ba:    e8  09 00 00 00     call 80483c8 &lt;swap&gt; //swap;</code></pre>
+
+<p>At run time, the <code>call</code> instr will be stored at addr <code>0x80483ba</code>. When the CPU executes the <code>call</code> instr, the PC has a value of <code>0x80483bf</code>, which is the addr of the instr immediately following <code>call</code> instr. To execute the instr, the CPU performs the following steps:</p>
+
+<pre><code class="language-none">push PC onto stack
+PC &lt;- PC + 0x9 = 0x80483bf + 0x9 = 0x80483c8</code></pre>
+
+<p>Thus, the next instr to execute is the first instr of the <code>swap</code> routine, which is just what we want.</p>
+
+<p><strong>relocating absolute references</strong><br>
+the <code>swap.o</code> module inits the global ptr <code>bufp0</code> to the addr of the first element of the global <code>buf</code> array:</p>
+
+<pre><code class="language-none">Disassembly of section .text:
+
+00000000 &lt;swap&gt;:
+   0:   55                      push   %ebp
+   1:   89 e5                   mov    %esp,%ebp
+   3:   83 ec 10                sub    $0x10,%esp
+   6:   c7 05 00 00 00 00 04    movl   $0x4,0x0
+   d:   00 00 00
+            8: R_386_32 bufp1
+            c: R_386_32 buf
+  10:   a1 00 00 00 00          mov    0x0,%eax
+            11: R_386_32    bufp0
+  15:   8b 00                   mov    (%eax),%eax
+  17:   89 45 fc                mov    %eax,-0x4(%ebp)
+  1a:   a1 00 00 00 00          mov    0x0,%eax
+            1b: R_386_32    bufp0
+  1f:   8b 15 00 00 00 00       mov    0x0,%edx
+            21: R_386_32    bufp1
+  25:   8b 12                   mov    (%edx),%edx
+  27:   89 10                   mov    %edx,(%eax)
+  29:   a1 00 00 00 00          mov    0x0,%eax
+            2a: R_386_32    bufp1
+  2e:   8b 55 fc                mov    -0x4(%ebp),%edx
+  31:   89 10                   mov    %edx,(%eax)
+  33:   c9                      leave
+  34:   c3                      ret</code></pre>
+
+<pre><code class="language-cpp">int *bufp0 = &amp;buf[0];</code></pre>
+
+<p>Since <code>bufp0</code> is an initialized obj, it will be stored in the <code>.data</code> sec of <code>swap.o</code> relocatable obj module. Since it is inited to the addr of a global array, it&#39;ll need to be relocated.</p>
+
+<pre><code class="language-cpp">00000000 &lt;bufp0&gt;:
+    0:  00 00 00 00                     //int *bufp0 = &amp;buf[0];
+                        0: R-386_32 buf //Relocation entry</code></pre>
+
+<p><code>.data</code> sec contains a single 32-bit ref, the <code>bufp0</code> ptr, which has a value of <code>0x0</code>. The relocation entry tells the linker that this is a 32-bit absolute ref, beginning at offset 0, which must be relocated so that it points to the symbol <code>buf</code>. Now, suppose the linker had determined that</p>
+
+<pre><code class="language-none">ADDR(r.symbol) = ADDR(buf) = 0x8049454
+
+*refptr = (unsigned) (ADDR(r.symbol)) + *refptr)
+        = (unsigned) (0x8049454       + 0)
+        = (unsigned) (0x8049454)</code></pre>
+
+<p>In the resulting exe obj file, the ref has the following relocated form:</p>
+
+<pre><code class="language-cpp">0804945c    &lt;bufp0&gt;:
+ 804945c:   54 94 04 08     Relocated!</code></pre>
+
+<p>The linker has decided that at run time the var <code>bufp0</code> will be located at mem addr <code>0x804945c</code> and will be inited to <code>0x8049454</code>, which is the run-time addr of the <code>buf</code> array.</p>
+
+<h2 id="toc_16"><a name="exe-obj"></a> 5. Executable object files <a href="#top">&uarr;top</a></h2>
+
+<figure>
+  <center>
+  <img src="link_img/exe_obj.png" alt="The Pulpit Rock" width="400">
+  <figcaption>Fig.6 - <b>Typical ELF executable object file</b>.</figcaption>
+  </center>
+</figure>
+
+<p>The format of an executable obj file is similar to that of a relocatable obj file. The ELF header describes the overall format of the file. It also includes the program&#39;s <strong>entry point</strong>, which is the addr of the first instr to execute when the program runs. The <code>.text</code>, <code>.rodata</code> and <code>.data</code> sections are similar to those in a relocatable obj file, except that these sections have been relocated to their eventual run-time mem addr. The <code>.init</code> section defines a small func, called <code>_init</code>, that will be called by the program&#39;s init code. Since the executable is <em>fully linked</em> (relocated), it needs no <code>.rel</code> sections.</p>
+
+<figure>
+  <center>
+  <img src="link_img/seg_header_table.png" alt="The Pulpit Rock" width="400">
+  <figcaption>Fig.7 - <b>Segment header table for the example executable (objdump -t p)</b>. off: file offset, vaddr/paddr: virtual/physical addr, align: segment alignment, filesz: segment size in the obj file, memsz: segment size in mem, flags: run-time permissions</figcaption>
+  </center>
+</figure>
+
+<p>ELF executables are designed to be easy to load into mem, with contiguous chunks of the exe file mapped to contiguous mem segments. This mapping is described by the <strong>segment header table</strong>. From <strong>Fig. 7</strong>, we see that two mem segments will be inited with the contents of the exe obj file. Lines 1 and 2 shows that the code segment is aligned to a 4KB boundary, has r/x permissions, starts at mem addr 0x8048000, has a total mem size of 0x448 bytes, and is inited with the first 0x448 bytes of the exe obj file, which includes the ELF header, the segment header table, and the <code>.init</code>, <code>.text</code> and <code>.rodata</code> sections.</p>
+
+<p>Lines 3 and 4 tell us that the data segment is aligned to a 4KB boundary, has r/w permissions, starts at mem addr 0x8049448, has a total mem size of 0x104 bytes, and is inited with the 0xe8 bytes starting at file offset 0x448, which in this case is the beginning of the <code>.data</code> section. The remaining bytes in the segment crspds to <code>.bss</code> data that will be inited to zero at run time.</p>
+
+<h2 id="toc_17"><a name="load"></a> 6. Loading executable obj files <a href="#top">&uarr;top</a></h2>
+
+<p>Any Unix program can invoke the loader by calling the <strong>execve</strong> function, which copies the code and data in the executable object file from disk into memory, and then runs the program by jumping to its first instruction, or <strong>entry point</strong>. This process of copying the program into memory and then running it is known as <strong>loading</strong>.</p>
+
+<p>Every Unix program has a run-time memory image similar to the one in Fig. 8. On a 32-bit Linux systems, the code segment starts at address 0x8048000. The data segment follows at the next 4KB aligned address. The run-time <strong>heap</strong> follows on the first 4KB aligned address past the read/write segment and grows up via calls to the malloc library. There is also a segment that is reserved for shared libraries. The user stack always starts at the largest legal user addr and grows down. The segment above the stack is reserved for the code and data in the memory-resident part of the OS kernel.</p>
+
+<figure>
+  <center>
+  <img src="link_img/linux_mem.png" alt="The Pulpit Rock" width="350">
+  <figcaption>Fig.8 - <b>Linux run-time memory image</b>.</figcaption>
+  </center>
+</figure>
+
+<p>When the loader runs, it creates the memory image shown in Fig. 8. Guided by the segment header table in the executable, it copies chunks of the executable into the code and data segments. Next, the loader jumps to the program&#39;s entry point, which is always the address of the <strong>_start</strong> symbol. The <strong>startup code</strong> at the <strong>_start</strong> addr is defined in the obj file <strong>crt1.o</strong> and is the same for all C programs. </p>
+
+<h2 id="toc_18"><a name="dyn-link"></a> 7. Dynamic linking with shared libraries  <a href="#top">&uarr;top</a></h2>
+
+<p>A shared library is an object module that, at <strong>run time</strong>, can be loaded at an arbitrary memory address and linked with a program in memory. The process is known as <strong>dynamic linking</strong> and is performed by a program called a <strong>dynamic linker</strong>. Shared libraries are also referred to as <strong>shared objects</strong> (.so).</p>
+
+<p>Shared libraries are &quot;shared&quot; in two different ways:</p>
+
+<ul>
+<li>there is exactly one .so file for a particular library. The code and data in this .so file are shared by all of the exe obj files that reference the library.</li>
+<li>a single copy of the .text section of a shared library in memory can be shared by different running processes.</li>
+</ul>
+
+<pre><code class="language-bash">#build a library
+$gcc -shared -fPIC -o libvector.so addvec.c multvec.c
+#link the library into the program
+$gcc -o p2 main2.c ./libvector.so</code></pre>
+
+<figure>
+  <center>
+  <img src="link_img/dynamic_link.png" alt="The Pulpit Rock" width="450">
+  <figcaption>Fig.9 - <b>Dynamic linking with shared libraries</b>.</figcaption>
+  </center>
+</figure>
+
+<p>This creates an exe obj file p2 in a form that can be linked with libvector.so at run time. Do some of the linking statically when the exe file is created, and then complete the linking process dynamically when the program is loaded. Note that none of the code or data sections from libvector.so are actually copied into the exe p2 at this point. Instead, the linker copies some relocation and symbol table info that will allow reference to code and data in libvector.so to be resolved at run time.</p>
+
+<p>When the loader loads and runs the exe p2, it loads the partially linked exe p2. Next, it notices that p2 contains a <code>.interp</code> section, which contains the path name of the dynamic linker, which is itself a shared object. The dynamic linker then finishes the linking task by performing the following relocations:</p>
+
+<ul>
+<li>relocating the text and data of <code>libc.so</code> into some memory segment;</li>
+<li>relocating the text and data of <code>libvector.so</code> into another memory segment;</li>
+<li>relocating any reference in <code>p2</code> to symbols defined by <code>libc.so</code> and <code>libvector.so</code>.</li>
+</ul>
+
+<p>Finally, the dynamic linker passes control to the application. From this point on, the locations of the shared libraries are fixed and do not change during execution of the program.</p>
+
+<h3 id="toc_19">Loading and linking shared libraries from applications</h3>
+
+<p>Above sections discussed the scenario in which the dynamic linker loads and links shared libraries when an app is loaded, just before it executes. However, it is also psbl for an app to request the dynamic linker to load and link arbitrary shared libraries while the app is running, without having to link in the app against those libraries at compile time.</p>
+
+<h2 id="toc_20"><a name="append"></a> 8. Appendix  <a href="#top">&uarr;top</a></h2>
+
+<h3 id="toc_21">1) Preprocessor examples</h3>
+
+<ul>
+<li>including files</li>
+</ul>
+
+<pre><code class="language-cpp">#include &lt;stdio.h&gt;
+
+int main(){
+    printf(&quot;Hello world!\n&quot;);
+    return 0;
+ }</code></pre>
+
+<p>The preprocessor replaces the line <code>#include &lt;stdio.h&gt;</code> with the text of the file &#39;stdio.h&#39;. <code>#include</code> often compels with the use of <code>#include</code> guards or <code>#pragma once</code> to prevent double inclusion.</p>
+
+<pre><code class="language-cpp">//pragma once
+#pragma once 
+
+struct foo {
+    int member;
+};
+-------------
+//include guards
+#ifndef _HEADER_H
+#define _HEADER_H
+        
+struct foo {
+    int member;
+};
+        
+#endif</code></pre>
+
+<ul>
+<li>macro definitions and expansion<br></li>
+</ul>
+
+<p>two types of macros, object-like and function like.</p>
+
+<pre><code class="language-cpp">//obj-like
+#define &lt;identifier&gt; &lt;replacement token list&gt;
+//e.g.:
+#define PI 3.14159
+//func-like
+#define &lt;identifier&gt; (&lt;para list&gt;) &lt;replacement token list&gt;
+//e.g.:
+#define min(X, Y) ((X) &lt; (Y) ? (X) : (Y))
+
+//delete the macro
+#undef &lt;identifier&gt;</code></pre>
+
+<ul>
+<li>conditional compilation</li>
+</ul>
+
+<p>the <em>if-else</em> directives <code>#if</code>, <code>#ifdef</code>, <code>#ifndef</code>, <code>#else</code>, <code>#elif</code> and <code>#endif</code> can be used for conditional compilation:</p>
+
+<pre><code class="language-cpp">#if VERBOSE &gt;= 2
+    print(&quot;trace message&quot;);
+#endif
+----------
+#ifdef __unix__
+    #include &lt;unistd.h&gt;
+#elif defined _WIN32
+    #include &lt;windows.h&gt;
+#endif</code></pre>
+
+<h3 id="toc_22">2) relocatable object file elements</h3>
+
+<ul>
+<li><strong>ELF header</strong>: begins with a 16B sequence that describes the <u>word size</u> and <u>byte ordering</u> of the system. The rest of ELF header contains info that allows a linker to parse and interpret the obj file, including <u>size of ELF header</u>, <u>obj file type</u> (e.g., relocatable, executable or shared), <u>machine type</u> (e.g., IA32), the <u>file offset of the section header table</u>, and the size and #entries in the section header table.</li>
+<li><strong>section header table</strong>: describes the locations and sizes of the various sections, each has a fixed sized entry.</li>
+<li>other sections:
+
+<ul>
+<li><strong>.text</strong>: the <u>machine code</u> of the compiled program.</li>
+<li><strong>.rodata</strong>: <u>read-only data</u> such as the format strings in <em>printf</em> statements, and jump tables for switch statements.</li>
+<li><strong>.data</strong>: <u>inited global variables</u>. Local vars are maintained at run time on the stack, and do not appear in either .data or .bss sections;</li>
+<li><strong>.bss</strong>: <u>uninited global variables</u>. This sec occupies no actual space in the obj file; is it merely a place holder. Obj file formats distinguish between inited and uninited vars for space efficiency: uninited vars do not have to occupy any actual disk space in the obj file.</li>
+<li><strong>.symtab</strong>: a symbol table with info about funcs and global vars that are defined and referenced in the program;</li>
+<li><strong>.rel.text</strong>: <u>a list of locs in the .text section that will need to be modified</u> when the linker combines this obj file with others. In general, any instruction that calls an external func or references a global var will need to be modified. But, instrs that call local funcs do not need to be modified. </li>
+<li><strong>.rel.data</strong>: <u>relocation info for any global vars that are referenced or defined by the module</u>. In general, any inited global var whose initial value is the addr of a global var or externally defined func will need to be modified.</li>
+<li><strong>.debug</strong>: a debugging symbol table with entries for local vars and typedefs defined in the program, global vars defined and refed in the program, and the original source file. It is only present if the compiler driver is invoked with <code>-g</code> option.</li>
+<li><strong>.line</strong>: a mapping bt line numbers in orig source program and machine code instrs in the .text section. Only present if invoked with <code>-g</code> option.</li>
+<li><strong>.strtab</strong>: a string table for the symbol tables in .symtab and .debug sections, and for the sec names in the sec headers. A string table is a seq of null-terminated char strings.</li>
+</ul></li>
+</ul>
+
+<h3 id="toc_23">3) resolve multl defined global symbols</h3>
+
+<p>At compile time, the compiler exports each global symbol to the assembler as either <strong>strong</strong> or <strong>weak</strong>, and the assembler encodes this info implicitly in the symbol table of the relocatable obj file. Funcs and inited global vars get strong symbols (<code>buf</code>, <code>bufp0</code>, <code>main</code> and <code>swap</code>). Uninited global vars get weak symbols (<code>bufp1</code>). Unix linker deals with multi defined symbols as follow:</p>
+
+<ul>
+<li><p>Rule 1: multi strong symbols are not allowed;</p>
+
+<pre><code class="language-cpp">/* foo.c */                |   /* bar.c */
+int x = 10;                |   int x = 11;
+                           |
+int main(){                |   void f(){
+reurn 0;                   |   }
+}</code></pre></li>
+<li><p>Rule 2: given a strong symbol and multi weak symbols, choose the strong one;</p>
+
+<pre><code class="language-cpp">/* foo2.c */               |   /* bar2.c */
+#include &lt;stdio.h&gt;         |   int x;
+void f();                  |
+                           |    void f(){
+int x = 10;                |       x = 11;
+                           |    }
+int main(){
+    f();
+    printf(&quot;x = %d\n&quot;, x);
+    return 0;
+}</code></pre>
+
+<p>At run time, func <code>f</code> changes the value of <code>x</code> from 10 to 11, which might be unexpected for <code>main</code>.</p></li>
+<li><p>Rule 3: given multi weak symbols, choose any of the weak symbols.</p>
+
+<pre><code class="language-cpp">/* foo3.c */               |   /* bar3.c */
+#include &lt;stdio.h&gt;         |   double x;
+void f();                  |
+                           |    void f(){
+int x = 10;                |       x = -0.0;
+int y = 42;                |    }
+int main(){
+    f();
+    printf(&quot;x = 0x%x, y = 0x%x\n&quot;, x, y);
+    return 0;
+}</code></pre>
+
+<p>On an IA32 machine, doubles are 8B and ints are 4B. Thus, the asgnment <code>x=-0.0</code> overwrites the memory locations for <code>x</code> and <code>y</code> with the double-precision floating-point representation of negative zero.</p>
+
+<p>To avoid such subtle and nasty bug, invoke the linker with a flag <code>-fno-common</code>, which triggers an error if it encounters multi defined global symbols.</p></li>
+</ul>
+
+<script type="text/javascript">
+var _self="undefined"!=typeof window?window:"undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?self:{},Prism=function(){var e=/\blang(?:uage)?-(?!\*)(\w+)\b/i,t=_self.Prism={util:{encode:function(e){return e instanceof n?new n(e.type,t.util.encode(e.content),e.alias):"Array"===t.util.type(e)?e.map(t.util.encode):e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/\u00a0/g," ")},type:function(e){return Object.prototype.toString.call(e).match(/\[object (\w+)\]/)[1]},clone:function(e){var n=t.util.type(e);switch(n){case"Object":var a={};for(var r in e)e.hasOwnProperty(r)&&(a[r]=t.util.clone(e[r]));return a;case"Array":return e.map&&e.map(function(e){return t.util.clone(e)})}return e}},languages:{extend:function(e,n){var a=t.util.clone(t.languages[e]);for(var r in n)a[r]=n[r];return a},insertBefore:function(e,n,a,r){r=r||t.languages;var l=r[e];if(2==arguments.length){a=arguments[1];for(var i in a)a.hasOwnProperty(i)&&(l[i]=a[i]);return l}var o={};for(var s in l)if(l.hasOwnProperty(s)){if(s==n)for(var i in a)a.hasOwnProperty(i)&&(o[i]=a[i]);o[s]=l[s]}return t.languages.DFS(t.languages,function(t,n){n===r[e]&&t!=e&&(this[t]=o)}),r[e]=o},DFS:function(e,n,a){for(var r in e)e.hasOwnProperty(r)&&(n.call(e,r,e[r],a||r),"Object"===t.util.type(e[r])?t.languages.DFS(e[r],n):"Array"===t.util.type(e[r])&&t.languages.DFS(e[r],n,r))}},plugins:{},highlightAll:function(e,n){for(var a,r=document.querySelectorAll('code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'),l=0;a=r[l++];)t.highlightElement(a,e===!0,n)},highlightElement:function(n,a,r){for(var l,i,o=n;o&&!e.test(o.className);)o=o.parentNode;o&&(l=(o.className.match(e)||[,""])[1],i=t.languages[l]),n.className=n.className.replace(e,"").replace(/\s+/g," ")+" language-"+l,o=n.parentNode,/pre/i.test(o.nodeName)&&(o.className=o.className.replace(e,"").replace(/\s+/g," ")+" language-"+l);var s=n.textContent,u={element:n,language:l,grammar:i,code:s};if(!s||!i)return t.hooks.run("complete",u),void 0;if(t.hooks.run("before-highlight",u),a&&_self.Worker){var g=new Worker(t.filename);g.onmessage=function(e){u.highlightedCode=e.data,t.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(u.element),t.hooks.run("after-highlight",u),t.hooks.run("complete",u)},g.postMessage(JSON.stringify({language:u.language,code:u.code,immediateClose:!0}))}else u.highlightedCode=t.highlight(u.code,u.grammar,u.language),t.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(n),t.hooks.run("after-highlight",u),t.hooks.run("complete",u)},highlight:function(e,a,r){var l=t.tokenize(e,a);return n.stringify(t.util.encode(l),r)},tokenize:function(e,n){var a=t.Token,r=[e],l=n.rest;if(l){for(var i in l)n[i]=l[i];delete n.rest}e:for(var i in n)if(n.hasOwnProperty(i)&&n[i]){var o=n[i];o="Array"===t.util.type(o)?o:[o];for(var s=0;s<o.length;++s){var u=o[s],g=u.inside,c=!!u.lookbehind,f=0,h=u.alias;u=u.pattern||u;for(var p=0;p<r.length;p++){var d=r[p];if(r.length>e.length)break e;if(!(d instanceof a)){u.lastIndex=0;var m=u.exec(d);if(m){c&&(f=m[1].length);var y=m.index-1+f,m=m[0].slice(f),v=m.length,k=y+v,b=d.slice(0,y+1),w=d.slice(k+1),P=[p,1];b&&P.push(b);var A=new a(i,g?t.tokenize(m,g):m,h);P.push(A),w&&P.push(w),Array.prototype.splice.apply(r,P)}}}}}return r},hooks:{all:{},add:function(e,n){var a=t.hooks.all;a[e]=a[e]||[],a[e].push(n)},run:function(e,n){var a=t.hooks.all[e];if(a&&a.length)for(var r,l=0;r=a[l++];)r(n)}}},n=t.Token=function(e,t,n){this.type=e,this.content=t,this.alias=n};if(n.stringify=function(e,a,r){if("string"==typeof e)return e;if("Array"===t.util.type(e))return e.map(function(t){return n.stringify(t,a,e)}).join("");var l={type:e.type,content:n.stringify(e.content,a,r),tag:"span",classes:["token",e.type],attributes:{},language:a,parent:r};if("comment"==l.type&&(l.attributes.spellcheck="true"),e.alias){var i="Array"===t.util.type(e.alias)?e.alias:[e.alias];Array.prototype.push.apply(l.classes,i)}t.hooks.run("wrap",l);var o="";for(var s in l.attributes)o+=(o?" ":"")+s+'="'+(l.attributes[s]||"")+'"';return"<"+l.tag+' class="'+l.classes.join(" ")+'" '+o+">"+l.content+"</"+l.tag+">"},!_self.document)return _self.addEventListener?(_self.addEventListener("message",function(e){var n=JSON.parse(e.data),a=n.language,r=n.code,l=n.immediateClose;_self.postMessage(t.highlight(r,t.languages[a],a)),l&&_self.close()},!1),_self.Prism):_self.Prism;var a=document.getElementsByTagName("script");return a=a[a.length-1],a&&(t.filename=a.src,document.addEventListener&&!a.hasAttribute("data-manual")&&document.addEventListener("DOMContentLoaded",t.highlightAll)),_self.Prism}();"undefined"!=typeof module&&module.exports&&(module.exports=Prism),"undefined"!=typeof global&&(global.Prism=Prism);
+</script>
+<script type="text/javascript">
+Prism.languages.clike={comment:[{pattern:/(^|[^\\])\/\*[\w\W]*?\*\//,lookbehind:!0},{pattern:/(^|[^\\:])\/\/.*/,lookbehind:!0}],string:/(["'])(\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,"class-name":{pattern:/((?:\b(?:class|interface|extends|implements|trait|instanceof|new)\s+)|(?:catch\s+\())[a-z0-9_\.\\]+/i,lookbehind:!0,inside:{punctuation:/(\.|\\)/}},keyword:/\b(if|else|while|do|for|return|in|instanceof|function|new|try|throw|catch|finally|null|break|continue)\b/,"boolean":/\b(true|false)\b/,"function":/[a-z0-9_]+(?=\()/i,number:/\b-?(?:0x[\da-f]+|\d*\.?\d+(?:e[+-]?\d+)?)\b/i,operator:/--?|\+\+?|!=?=?|<=?|>=?|==?=?|&&?|\|\|?|\?|\*|\/|~|\^|%/,punctuation:/[{}[\];(),.:]/};
+</script>
+<script type="text/javascript">
+Prism.languages.c=Prism.languages.extend("clike",{keyword:/\b(asm|typeof|inline|auto|break|case|char|const|continue|default|do|double|else|enum|extern|float|for|goto|if|int|long|register|return|short|signed|sizeof|static|struct|switch|typedef|union|unsigned|void|volatile|while)\b/,operator:/\-[>-]?|\+\+?|!=?|<<?=?|>>?=?|==?|&&?|\|?\||[~^%?*\/]/,number:/\b-?(?:0x[\da-f]+|\d*\.?\d+(?:e[+-]?\d+)?)[ful]*\b/i}),Prism.languages.insertBefore("c","string",{macro:{pattern:/(^\s*)#\s*[a-z]+([^\r\n\\]|\\.|\\(?:\r\n?|\n))*/im,lookbehind:!0,alias:"property",inside:{string:{pattern:/(#\s*include\s*)(<.+?>|("|')(\\?.)+?\3)/,lookbehind:!0},directive:{pattern:/(#\s*)\b(define|elif|else|endif|error|ifdef|ifndef|if|import|include|line|pragma|undef|using)\b/,lookbehind:!0,alias:"keyword"}}},constant:/\b(__FILE__|__LINE__|__DATE__|__TIME__|__TIMESTAMP__|__func__|EOF|NULL|stdin|stdout|stderr)\b/}),delete Prism.languages.c["class-name"],delete Prism.languages.c["boolean"];
+</script>
+<script type="text/javascript">
+Prism.languages.cpp=Prism.languages.extend("c",{keyword:/\b(alignas|alignof|asm|auto|bool|break|case|catch|char|char16_t|char32_t|class|compl|const|constexpr|const_cast|continue|decltype|default|delete|do|double|dynamic_cast|else|enum|explicit|export|extern|float|for|friend|goto|if|inline|int|long|mutable|namespace|new|noexcept|nullptr|operator|private|protected|public|register|reinterpret_cast|return|short|signed|sizeof|static|static_assert|static_cast|struct|switch|template|this|thread_local|throw|try|typedef|typeid|typename|union|unsigned|using|virtual|void|volatile|wchar_t|while)\b/,"boolean":/\b(true|false)\b/,operator:/[-+]{1,2}|!=?|<{1,2}=?|>{1,2}=?|\->|:{1,2}|={1,2}|\^|~|%|&{1,2}|\|?\||\?|\*|\/|\b(and|and_eq|bitand|bitor|not|not_eq|or|or_eq|xor|xor_eq)\b/}),Prism.languages.insertBefore("cpp","keyword",{"class-name":{pattern:/(class\s+)[a-z0-9_]+/i,lookbehind:!0}});
+</script>
+<script type="text/javascript">
+!function(e){var t={variable:[{pattern:/\$?\(\([\w\W]+?\)\)/,inside:{variable:[{pattern:/(^\$\(\([\w\W]+)\)\)/,lookbehind:!0},/^\$\(\(/],number:/\b-?(?:0x[\dA-Fa-f]+|\d*\.?\d+(?:[Ee]-?\d+)?)\b/,operator:/--?|-=|\+\+?|\+=|!=?|~|\*\*?|\*=|\/=?|%=?|<<=?|>>=?|<=?|>=?|==?|&&?|&=|\^=?|\|\|?|\|=|\?|:/,punctuation:/\(\(?|\)\)?|,|;/}},{pattern:/\$\([^)]+\)|`[^`]+`/,inside:{variable:/^\$\(|^`|\)$|`$/}},/\$(?:[a-z0-9_#\?\*!@]+|\{[^}]+\})/i]};e.languages.bash={shebang:{pattern:/^#!\s*\/bin\/bash|^#!\s*\/bin\/sh/,alias:"important"},comment:{pattern:/(^|[^"{\\])#.*/,lookbehind:!0},string:[{pattern:/((?:^|[^<])<<\s*)(?:"|')?(\w+?)(?:"|')?\s*\r?\n(?:[\s\S])*?\r?\n\2/g,lookbehind:!0,inside:t},{pattern:/("|')(?:\\?[\s\S])*?\1/g,inside:t}],variable:t.variable,"function":{pattern:/(^|\s|;|\||&)(?:alias|apropos|apt-get|aptitude|aspell|awk|basename|bash|bc|bg|builtin|bzip2|cal|cat|cd|cfdisk|chgrp|chmod|chown|chroot|chkconfig|cksum|clear|cmp|comm|command|cp|cron|crontab|csplit|cut|date|dc|dd|ddrescue|df|diff|diff3|dig|dir|dircolors|dirname|dirs|dmesg|du|egrep|eject|enable|env|ethtool|eval|exec|expand|expect|export|expr|fdformat|fdisk|fg|fgrep|file|find|fmt|fold|format|free|fsck|ftp|fuser|gawk|getopts|git|grep|groupadd|groupdel|groupmod|groups|gzip|hash|head|help|hg|history|hostname|htop|iconv|id|ifconfig|ifdown|ifup|import|install|jobs|join|kill|killall|less|link|ln|locate|logname|logout|look|lpc|lpr|lprint|lprintd|lprintq|lprm|ls|lsof|make|man|mkdir|mkfifo|mkisofs|mknod|more|most|mount|mtools|mtr|mv|mmv|nano|netstat|nice|nl|nohup|notify-send|nslookup|open|op|passwd|paste|pathchk|ping|pkill|popd|pr|printcap|printenv|printf|ps|pushd|pv|pwd|quota|quotacheck|quotactl|ram|rar|rcp|read|readarray|readonly|reboot|rename|renice|remsync|rev|rm|rmdir|rsync|screen|scp|sdiff|sed|seq|service|sftp|shift|shopt|shutdown|sleep|slocate|sort|source|split|ssh|stat|strace|su|sudo|sum|suspend|sync|tail|tar|tee|test|time|timeout|times|touch|top|traceroute|trap|tr|tsort|tty|type|ulimit|umask|umount|unalias|uname|unexpand|uniq|units|unrar|unshar|uptime|useradd|userdel|usermod|users|uuencode|uudecode|v|vdir|vi|vmstat|wait|watch|wc|wget|whereis|which|who|whoami|write|xargs|xdg-open|yes|zip)(?=$|\s|;|\||&)/,lookbehind:!0},keyword:{pattern:/(^|\s|;|\||&)(?:let|:|\.|if|then|else|elif|fi|for|break|continue|while|in|case|function|select|do|done|until|echo|exit|return|set|declare)(?=$|\s|;|\||&)/,lookbehind:!0},"boolean":{pattern:/(^|\s|;|\||&)(?:true|false)(?=$|\s|;|\||&)/,lookbehind:!0},operator:/&&?|\|\|?|==?|!=?|<<<?|>>|<=?|>=?|=~/,punctuation:/\$?\(\(?|\)\)?|\.\.|[{}[\];]/};var a=t.variable[1].inside;a["function"]=e.languages.bash["function"],a.keyword=e.languages.bash.keyword,a.boolean=e.languages.bash.boolean,a.operator=e.languages.bash.operator,a.punctuation=e.languages.bash.punctuation}(Prism);
+</script>
+</body>
+
+</html>

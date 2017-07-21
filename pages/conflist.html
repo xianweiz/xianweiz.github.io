@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>Conf List</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<style type="text/css">
+table           { border-collapse:collapse } <!--/* Ensure no space between cells   */-->
+tr.strikeout td { position:relative        } <!--/* Setup a new coordinate system   */-->
+tr.strikeout td:before {                     /* Create a new element that       */
+  content: " ";                              /* .has no text content            */
+  position: absolute;                        /* .is absolutely positioned       */
+  left: 0; top: 50%; width: 100%;            /* .with the top across the middle */
+  border-bottom: 2px dotted #f00;             /* .and with a border on the top   */
+}    
+</style>
+
+<style type="text/css">
+	.TFtable{
+		width:95%; 
+		border-collapse:collapse; 
+		font-size:10pt
+	}
+	.TFtable td{ 
+		padding:7px; border:#4e95f4 1px solid;
+		font-size:10pt
+	}
+	/* provide some minimal visual accomodation for IE8 and below */
+	.TFtable tr{
+		background: #b8d1f3;
+		font-size:10pt
+	}
+	/*  Define the background color for all the ODD background rows  */
+	.TFtable tr:nth-child(odd){ 
+		background: #b8d1f3;
+	}
+	/*  Define the background color for all the EVEN background rows  */
+	.TFtable tr:nth-child(even){
+		background: #dae5f4;
+	}
+</style>
+
+<script type="text/javascript" src="../js/gs_sortable.js"></script>
+<script type="text/javascript">
+<!--
+var TSort_Data = new Array('conf_table','','s','s','s','','','');
+var TSort_Initial = new Array(1, "2A", "3A")
+tsRegister();
+//-->
+</script>
+
+<center>
+<p><font size="+2" face="Arial, Helvetica, sans-serif"><b>2016-2017 Arch Conf List [partial]</b></font>
+    <br><font size="2" color="blue">
+    &#8627;A temporary substitute for the improperly operating <a href="http://www.google.com/url?q=http%3A%2F%2Fconfsearch.ethz.ch%2Fconfsearch%2Ffaces%2Fpages%2Fstaticresults.jsp%3Fquery%3Dics%2520hpdc%2520spaa%2520podc%2520asap%2520pact%2520icpp%2520cases%2520islped%2520sc%2520iccad%2520codes%2520iccd%2520micro%2520asplos%2520hpca%2520date%2520isca%2520dac%2520icdcs%2520cgo%2520hipeac%2520ipdps%2520aspdac%26graphicView%3D1%26sortMode%3D1&sa=D&sntz=1&usg=AFrqEzeyXCSrlGcYmFElWIIt9lqlvnOLJw">confsearch</a>
+    </font>	
+</p>
+
+<div id="my_table"> </div>
+<script type="text/javascript" src="../js/conf.js"> </script>
+
+<font size=2 color="blue">Thanks for the <a href="http://www.allmyscripts.com/Table_Sort/">JS</a> to sort table.</font>
+</center>
+
+</body>
+</html>
