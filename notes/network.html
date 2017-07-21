@@ -1,0 +1,870 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title>network</title>
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+<style type="text/css">
+/**
+ * prism.js default theme for JavaScript, CSS and HTML
+ * Based on dabblet (http://dabblet.com)
+ * @author Lea Verou
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: black;
+	text-shadow: 0 1px white;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+@media print {
+	code[class*="language-"],
+	pre[class*="language-"] {
+		text-shadow: none;
+	}
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #f5f2f0;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: slategray;
+}
+
+.token.punctuation {
+	color: #999;
+}
+
+.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #905;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #690;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+	color: #a67f59;
+	background: hsla(0, 0%, 100%, .5);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+	color: #07a;
+}
+
+.token.function {
+	color: #DD4A68;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+	color: #e90;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+</style>
+</head>
+<body>
+<h1 id="toc_0">Network Programming</h1>
+
+<h2 id="toc_1">Table of contents</h2>
+
+<ol>
+<li><a href="#cs">Client-server</a></li>
+<li><a href="#model">OSI and Internet model</a></li>
+<li><a href="#net">Networks</a></li>
+<li><a href="#ip">The global IP internet</a></li>
+<li><a href="#socket">The sockets interface</a></li>
+<li><a href="#protocol">Example application protocols</a></li>
+</ol>
+
+<h2 id="toc_2"><a name="cs"></a> 1. Client-server <a href="#top">&uarr;top</a></h2>
+
+<p>A client-server <strong>transaction</strong> is simply a sequence of steps carried out by a client and a server. It&#39;s NOT database transations and do not share any of their properties, such as atomicity. </p>
+
+<figure>
+  <center>
+  <img src="net_img/trans.png" alt="The Pulpit Rock" width="400">
+  <figcaption>Fig.1 - <b>A client-server transaction</b>. </figcaption>
+  </center>
+</figure>
+
+<h2 id="toc_3"><a name="model"></a> 2. OSI and Internet model <a href="#top">&uarr;top</a></h2>
+
+<p>The <strong>Internet model</strong> (also known as <strong>Internet protocol suite</strong> or <strong>TCP/IP</strong>) is a subset of <strong>Open Systems Interconnect (OSI) model</strong> that provides end-to-end connectivity specifying how data should be packetized, addressed, transmitted, routed and received at the destination. The functionality is organized into four abstraction layers.</p>
+
+<figure>
+  <center>
+  <img src="net_img/layer.png" alt="The Pulpit Rock" width="400">
+  <figcaption>Fig.2 - <b>The mapping of the Internet stack layers to the OSI model</b>. Layers of Internet model are also called as Application/Transport/Internet/Link layer. </figcaption>
+  </center>
+</figure>
+
+<ul>
+<li>The <strong>Internet application layer</strong> combines the <code>application</code>, <code>presentation</code> and <code>session</code> layers of the OSI model. Application layer provides process-to-process data exchange for application. It&#39;s in this layer where the Internet protocols, e.g., HTTP, SSH, DNS, are implemented that directly interact with Internet applications.</li>
+<li>The bottom <strong>link layer</strong>, crspds to <code>datalink</code> and <code>physical</code> layers in OSI stack, contains communication methods for data that remains within a single network segment (link). Network drivers are implemented here to send packets over physical network media such as <code>Ethernet</code>, <code>PPP</code> and <code>ADSL</code>.</li>
+<li>The <em>Network</em> layer (or, <strong>Internet layer</strong>) is a group of internetworking methods, protocols, and specifications that are used to transport packets (datagrams) from the source host across network boundaries. The ICMP, ARP and DHCP are implemented in the Network layer on top of IP.</li>
+<li>The <strong>transport layer</strong> provide host-to-host communication services for applications, typically including TCP and UDP.</li>
+</ul>
+
+<h2 id="toc_4"><a name="net"></a> 3. Networks <a href="#top">&uarr;top</a></h2>
+
+<p>Clients and servers often run on separate hosts and communicate using the hardware and software resources of <strong>computer network</strong>. </p>
+
+<figure>
+  <center>
+  <img src="net_img/host.png" alt="The Pulpit Rock" width="400">
+  <figcaption>Fig.3 - <b>Hardware organization of a network host</b>. </figcaption>
+  </center>
+</figure>
+
+<p>To a host, a network is just another <u>I/O device</u> that serves as a source and sink for data. An <strong>adapter</strong> plugged into an expansion slot on the I/O bus provides the physical interface to the network. Data received from the network is copied from the adapter across the I/O and memory buses into memory, typically by a <u>DMA transfer</u>. Similarly, data can also be copied from memory to the network.</p>
+
+<p>Physically, a network is a hierarchical system that is organized by geographical proximity. At the lowest level is <strong>LAN</strong> that spans a building or a campus, e.g., the most popular <strong>Ethernet</strong>.</p>
+
+<figure>
+  <center>
+  <img src="net_img/eth_seg.png" alt="The Pulpit Rock" width="200">
+  <figcaption>Fig.4 - <b>Ethernet segment</b>. </figcaption>
+  </center>
+</figure>
+
+<p>An <strong>Ethernet segment</strong> consists of some wires and a small box called a <strong>hub</strong>. Ethernet segments typically span small areas, such as a room or a floor in a building. Each wire has the same max bit bw, with one end being attached to an adaptor on a host, and the other end to a port on the hub. A hub slavishly copies every bit that it receives on each port to every other port. Thus, every host sees every bit.</p>
+
+<p>Each Ethernet adapter has a globally unique 48-bit addr that is stored in a NVM on the adaptor. A host can send a chunk of bits called a <strong>frame</strong> to any other host on the segment. Each frame includes some fixed number of <strong>header</strong> bits that identify the source and dest of teh frame and the frame length, followed by a <strong>payload</strong> of data bits. Every host adapter sees the frame, but only the dest host actually reads it.</p>
+
+<figure>
+  <center>
+  <img src="net_img/bri_eth.png" alt="The Pulpit Rock" width="400">
+  <figcaption>Fig.5 - <b>Bridged Ethernet segments</b>. </figcaption>
+  </center>
+</figure>
+
+<p>Multi Ethernet segments can be connected into larger LANs, called <strong>bridged Ethernets</strong>, using a set of wires and small boxes called <strong>bridges</strong>. Bridged Ethernets can span entire buildings or campuses. </p>
+
+<p>Multi incompatible LANs can be connected by specialized computers called <strong>routers</strong> to form an <strong>internet</strong>. Each router has an adapter (port) for each network that it is connected to. Routers can also connect high-speed point-to-point phone connections, which are examples of networks known as WANs. </p>
+
+<figure>
+  <center>
+  <img src="net_img/sm_internet.png" alt="The Pulpit Rock" width="400">
+  <figcaption>Fig.6 - <b>A small internet</b>. Two LANs and two WANs are connected by three routers.</figcaption>
+  </center>
+</figure>
+
+<p>The curcial property of an internet is that it can consist of different LANs and WANs with radically different and incompatible technologies. Each host is physically connected to every other host, but how it is psbl for some <u><em>source host</em> to send data bits to another <em>dest host</em> across all of these incompatible networks</u>?</p>
+
+<h3 id="toc_5">protocol</h3>
+
+<p>The solution is a layer of <strong>protocol software</strong> running on each host and router that smoothes out the differences bt the different networks. This software is implemented as a <strong>protocol</strong> that governs how hosts and routers cooperate in order to transfer data. The protocol must provide two basic capabilities:</p>
+
+<ul>
+<li><strong>Naming scheme</strong>: the internet protocol smoothes the differences by defining a uniform format for host addresses. Each host is then assigned at least one of these <em>internet addresses</em> that uniquely identifies it.</li>
+<li><strong>Delivery mechanism</strong>: the internet protocol defines a uniform way to bundle up data bits into discrete chunks called <em>packets</em>.</li>
+</ul>
+
+<h2 id="toc_6"><a name="ip"></a> 4. The global IP internet <a href="#top">&uarr;top</a></h2>
+
+<p>Each Internet host runs software that implements the <strong>TCP/IP</strong> protocol. Internet clients and servers communicate using a mix of <strong>sockets interface</strong> funcs and Unix I/O funcs. The sockets funcs are typically implemented as <u>system calls</u> that trap into the kernel and call various kernel-mode funcs in TCP/IP.</p>
+
+<p>TCP/IP is actually a family of protocols, each of which contributes different capabilities:</p>
+
+<ul>
+<li><strong>IP protocol</strong>: provides the basic naming scheme and a delivery mechanism that can send packets, known as <em>datagrams</em>, from one Internet host to any other host. (<u>host-to-host</u>)<br>
+The IP mechanism is <u>unreliable</u> in the sense that it makes no effort to recover if datagrams are lost or duplicated in the network.</li>
+<li><strong>UDP</strong>: UDP extends IP slightly, so that packets can be transferred from <u>process to process</u>, rather than host to host.</li>
+<li><strong>TCP</strong>: a complex protocol that builds on IP to provide <u>reliable</u> full duplex (bidirectional) connections bt processes.</li>
+</ul>
+
+<p>From a programmer&#39;s perspective, we can think of the Internet as a worldwide collection of hosts with the following properties:</p>
+
+<ul>
+<li>the set of hosts is mapped to a set of 32-bit <strong>IP addresses</strong>.</li>
+<li>the set of IP addresses is mapped to a set of identifiers called <strong>Internet domain names</strong>.</li>
+<li>a process on one Internet host can communicate with a process on any other Internet host over a <strong>connection</strong>.</li>
+</ul>
+
+<h3 id="toc_7">IP addresses</h3>
+
+<p>An <strong>IP address</strong> is an unsigned 32-bit integer. Network programs store IP addresses in the <em>IP address structure</em>.</p>
+
+<pre><code class="language-cpp">//netinet/in.h
+
+/* Internet address structure */
+struct in_addr {
+    unsigned int s_addr;    //network byte order (big-endian)
+};</code></pre>
+
+<p>Because Internet hosts can have different host byte orders, TCP/IP defines a <u>uniform <em>network byte order</em></u> (big-endian byte order) for any integer data item. Addresses in IP address structures are always stored in (big-endian) network byte order, even if the host byte order is little-endian. Unix provides the following funcs for converting between network and host byte order:</p>
+
+<pre><code class="language-cpp">#include &lt;netinet/in.h&gt;
+
+//converts a 32-bit int from host to network byte order
+unsigned long int htonl(unsigned long int hostlong);
+unsigned short int htons(unsigned short int hostshort);
+
+//converts a 32-bit int from network to host byte order
+unsigned long int ntohl(unsigned long int netlong);
+unsigned short int ntohs(unsigned short int netshort);</code></pre>
+
+<p>IP addresses are typically presented to humans in <u><em>dotted-decimal notation</em></u>. e.g., <code>128.2.194.242</code> is <code>0x8002c2f2</code>. Internet programs convert back and forth bt IP addresses and dotted-decimal strings using the funcs <code>inet_aton</code> and <code>inet_ntoa</code>:</p>
+
+<pre><code class="language-cpp">#include &lt;arpa/inet.h&gt;
+
+//convert string to an IP addr in network byte order
+//  returns 1 if OK, 0 on error
+int inet_aton(const char *p, struct in_addr *p);
+//convert an IP addr in network byte order to its str
+//  returns a ptr to a dotted-decimal str
+char *inet_ntoa(struct in_addr in);</code></pre>
+
+<h3 id="toc_8">internet domain names</h3>
+
+<p>The Internet defines a mapping bt the set of domain names and the set of IP addresses. The mapping is maintained in a distributed world-wide database known as <strong>DNS</strong>. Conceptually, the DNS database consists of millions of the <em>host entry structures</em>, each of which defines the mapping bt a set of domain names (an official name and a list of aliases) and a set of IP addresses.</p>
+
+<pre><code class="language-cpp">//netbd.h
+
+/* DNS host entry structure */
+struct hostent {
+    char    *h_name;        //official domain name of host
+    char    **h_aliases;    //Null-terminated arr of domain names
+    int     h_addrtype;     //host addr type (AF_INET)
+    int     h_length;       //len of an addr, in bytes
+    char    **h_addr_list;  //Null-terminated arr of in_addr structs
+};</code></pre>
+
+<p>Internet applications retrieve arbitrary host entries from the DNS database by calling the <code>gethostbyname</code> and <code>gethostbyaddr</code> funcs:</p>
+
+<pre><code class="language-cpp">#include &lt;netdb.h&gt;
+
+//returns: non-NULL ptr if OK, NULL ptr on error with h_errno set
+struct hostent *gethostbyname(const char *name);
+//returns: non-NULL ptr if OK, NULL ptr on error with h_errno set
+struct hostent *gethostbyaddr(const char *addr, int len, 0);</code></pre>
+
+<h3 id="toc_9">internet connections</h3>
+
+<p>Internet clients and servers communicates by sending and receiving streams of bytes over <strong>connections</strong>. </p>
+
+<ul>
+<li><strong>point-to-point</strong>: a connection is a <em>point-to-point</em> in the sense that it connects a pair of processes. </li>
+<li><strong>full-duplex</strong>: data can flow in both directions at the same time.</li>
+<li><strong>reliable</strong>: the stream of bytes sent by the source process is eventually received by the dest process in the same order it was sent.</li>
+</ul>
+
+<p>A <strong>socket</strong> is an end point of a connection. Each socket has a crspding <strong>socket address</strong> that consists of an Internet addr and a 16-bit integer <strong>port</strong>, and is denoted by <em>address:port</em>. The port in the client&#39;s socket addr is assigned auto by the kernel when the client makes a connection request, and is known as an <strong>ephemeral port</strong>. However, the port in the server&#39;s socket addr is typically known as <strong>well-known port</strong> that is associated with the service. (see <code>/etc/services</code> for the comprehensive list of services and ports provided on that machine)</p>
+
+<p>A connection is uniquely identified by the <strong>socket pair</strong>:</p>
+
+<pre><code class="language-none">(cliaddr:cliport, servaddr:servport)</code></pre>
+
+<h2 id="toc_10"><a name="socket"></a> 5. The sockets interface <a href="#top">&uarr;top</a></h2>
+
+<p>The <strong>sockets interface</strong> is a set of funcs that are used in conjunction with the Unix I/O funcs to build network applications.</p>
+
+<figure>
+  <center>
+  <img src="net_img/socket.png" alt="The Pulpit Rock" width="500">
+  <figcaption>Fig.7 - <b>Overview of the sockets interface</b>.</figcaption>
+  </center>
+</figure>
+
+<h3 id="toc_11">socket address structures</h3>
+
+<p>From the perspective of the Unix kernel, a socket is an end point for communication. From the perspective of a Unix program, a socket is an open file with a crspding descriptor.</p>
+
+<p>Internet socket addresses are stored in 16-byte structures of the type <code>sockaddr_in</code>. For Internet applications, the <code>sin_family</code> member is <code>AF_INET</code>, the <code>sin_port</code> member is a 16-bit port number, and the <code>sin_addr</code> is a 32-bit IP address. The IP addr and port number are always stored in network (big-endian) byte order.</p>
+
+<pre><code class="language-cpp">//sockaddr: socketbits.h (included by socket.h)
+//sockaddr_in: netinet/in.h
+
+/* Generic socket addr structures (for connect, bind and accept) */
+struct sockaddr {
+    unsigned short  sa_family;  //protocol family
+    char            sa_data[14];//addr data
+};
+
+/* Internet-style socket addr structure */
+struct sockaddr_in {
+    unsigned short  sin_family; //Addr family (always AF_INET)
+    unsigned short  sin_port;   //Port num in network byte order
+    struct in_addr  sin_addr;   //IP addr in network byte order
+    unsigned char   sin_zero[8];//Pad to sizeof(struct sockaddr)
+};</code></pre>
+
+<p>The <code>connect</code>, <code>bind</code> and <code>accept</code> funcs require a ptr to a protocol-specific socket addr structure. To make the funcs accept any kind of socket addr structure, without <code>void*</code> ptr, the solution is to define sockets funcs to expect a ptr to a generic <code>sockaddr</code> structure, and then require apps to cast ptrs to protocol-specific structures to this generic structure.</p>
+
+<pre><code class="language-cpp">typedef struct sockaddr SA;</code></pre>
+
+<h3 id="toc_12">client-side functions</h3>
+
+<h4 id="toc_13">The <code>socket</code> function</h4>
+
+<p>Clients and servers use the <code>socket</code> func to create a <strong>socket descriptor</strong>.</p>
+
+<pre><code class="language-cpp">#include &lt;sys/types.h&gt;
+#include &lt;sys/socket.h&gt;
+
+//returns: nonnegative descriptor if OK, -1 on error
+int socket(int domain, int type, int protocol);</code></pre>
+
+<p>In our codes, we will always call the <code>socket</code> func with the arguments</p>
+
+<pre><code class="language-cpp">//AF_INET: indicates using the Internet
+//SOCK_STREAM: indicates that the socket will be an end point for an Internet connection
+//clientfd: returned with being partially opened and cannot be used for reading and writing
+clientfd = Socket(AF_INET, SOCK_STREAM, 0);</code></pre>
+
+<h4 id="toc_14">The <code>connect</code> function</h4>
+
+<p>A client establishes a connection with a server by calling the <code>connect</code> func.</p>
+
+<pre><code class="language-cpp">#include &lt;sys/socket.h&gt;
+
+//returns: 0 if OK, -1 on error
+int connect(int sockfd, struct sockaddr *serv_addr, 
+                int addrlen);</code></pre>
+
+<p>The <code>connect</code> func attempts to establish an Internet connection with the server at socket addr <code>serv_addr</code>, where <code>addrlen</code> is <code>sizeof(sockaddr_in)</code>. The <code>connect</code> func blocks until either the connection is successfully established or an error occurs. If successful, the <code>sockfd</code> descriptor is now ready for reading and writing, and the resulting connection is characterized by the socket pair</p>
+
+<pre><code class="language-none">//x: client&#39;s IP addr
+//y: ephermeral port that uniquely identifies the client
+(x:y, serv_addr.sin_addr:serv_addr.sin_port)</code></pre>
+
+<h4 id="toc_15">The <code>open_clientfd</code> function</h4>
+
+<p><code>open_clientfd</code> is a help func wrapped by <code>socket</code>
+and <code>connect</code>. A client can call <code>open_clientfd</code> to establish a conn with a server.</p>
+
+<p>The <code>client_fd</code> func establishes a conn with a server running on host <code>hostname</code> and listening for conn requests on the well-known port <code>port</code>. It returns an open socket descriptor that is ready for input and output using the Unix I/O funcs.</p>
+
+<pre><code class="language-cpp">int open_clientfd(char *hostname, int port) {
+    int clientfd;
+    struct hostent *hp;
+    struct sockaddr_in serveraddr;
+    
+    //creating the socket descriptor
+    if((clientfd = socket(AF_INET, SOCK_STREAM, 0)) &lt; 0)
+        return -1;  //check errno for cause of error
+        
+    /* Fill in the server&#39;s IP addr and port */
+    if((hp=gethostbyname(hostname)) == NULL)
+        return -2;  //check h_errno for cause of error
+    bzero((char *) &amp;serveraddr, sizeof(serveraddr));
+    serveraddr.sin_family = AF_INET;
+    bcopy((char *)hp-&gt;h_addr_list[0],
+            (char *)&amp;serveraddr.sin_addr.s_addr, hp-&gt;h_length);
+    serveraddr.sin_port = htons(port);
+    
+    /* Establish a conn with the server */
+    if(connect(clientfd, (SA *) &amp;serveraddr,
+            sizeof(serveraddr)) &lt; 0)
+        return -1;
+    return clientfd;
+}</code></pre>
+
+<h3 id="toc_16">server-side functions</h3>
+
+<p>The remaining sockets funcs -- <code>bind</code>, <code>listen</code> and <code>accept</code> -- are used by servers to establish conns with clients.</p>
+
+<h4 id="toc_17">The <code>bind</code> function</h4>
+
+<p>The <code>bind</code> func tells the kernel to associate the server&#39;s socket addr in <code>my_addr</code> with the socket descriptor <code>sockfd</code>, The <code>addrlen</code> argument is <code>sizeof(sockaddr_in)</code>.</p>
+
+<pre><code class="language-cpp">#include &lt;sys/socket.h&gt;
+
+//returns: 0 if OK, -1 on error
+int bind(int sockfd, sockaddr *my_addr, int addrlen);</code></pre>
+
+<h4 id="toc_18">The <code>listen</code> function</h4>
+
+<p>Clients are active entities that initiate conn requests. Servers are passive entities that wait for conn requests from clients. By default, the kernel assumes that a descriptor created by the <code>socket</code> func crspds to an <code>active socket</code> that will live on the client end of a conn. A server calls the <code>listen</code> func to tell the kernel that the descriptor will be used by a server instead of a client.</p>
+
+<pre><code class="language-cpp">#include &lt;sys/socket.h&gt;
+
+//returns: 0 if OK, -1 on error
+int listen(int sockfd, int backlog);</code></pre>
+
+<p>The <code>listen</code> func converts <code>sockfd</code> from an active socket to a <em>listening socket</em> that can accept conn reqs from clients. The <code>backlog</code> argument is a hint about #outstanding conn reqs that the kernel should queue up before it starts to refuse reqs. </p>
+
+<h3 id="toc_19">The <code>open_listenfd</code> function</h3>
+
+<p>It&#39;s helpful to combine the <code>socket</code>, <code>bind</code> and <code>listen</code> funcs into a helper func called <code>open_listenfd</code> that a server can use to create a listening descriptor.</p>
+
+<pre><code class="language-cpp">int open_listenfd(int port) {
+    int listenfd, optval = 1;
+    struct sockaddr_in serveraddr;
+    
+    /* Create a socket descriptor */
+    if((listendfd = socket(AF_INET, SOCK_STREAM, 0)) &lt; 0)
+        return -1;
+    
+    /* Eliminate &quot;Add already in use&quot; error from bind */
+    if(setsockopt(listenfd, SOL_SOCKET, SO_REUSEADDR,
+                    (const void*)&amp;optval, sizeof(int)) &lt; 0)
+        return -1;
+        
+    /* Listenfd will be an end point for all reqs to
+        port on any IP add for this host */
+    bzero((char *) &amp;serveraddr, sizeof(serveraddr));
+    serveraddr.sin_family = AF_INET;
+    serveraddr.sin_addr.s_addr = htonl(INADDE_ANY);
+    serveraddr.sin_port = htons(unsigned short)port);
+    if(bind(listenfd, (SA *)&amp;serveraddr, 
+            sizeof(serveraddr)) &lt; 0)
+        return -1;
+    
+    /* Make it a listening socket ready to accept conn reqs */
+    if(listen(listenfd, LISTENQ) &lt; 0)
+        return -1;
+    return listenfd;
+}</code></pre>
+
+<p>The <code>open_listenfd</code> func opens and returns a listening descriptor that is ready to receive conn reqs on the well-known port <code>port</code>.</p>
+
+<h4 id="toc_20">The <code>accept</code> function</h4>
+
+<p>Servers wait for conn reqs from clients by calling the <code>accept</code> func:</p>
+
+<pre><code class="language-cpp">#include &lt;sys/socket.h&gt;
+
+//returns: nonnegative conned descriptor if OK, -1 on error
+int accept(int listenfd, struct sockaddr *addr, int *addrlen);</code></pre>
+
+<p>The <code>accept</code> func waits for a conn req from a client to arrive on the listening descriptor <code>listenfd</code>, then fills in the clients&#39;s socket addr in <code>addr</code>, and returns a <em>connected descriptor</em> that can be used to communicate with the client using Unix I/O funcs.</p>
+
+<figure>
+  <center>
+  <img src="net_img/descriptor.png" alt="The Pulpit Rock" width="400">
+  <figcaption>Fig.8 - <b>The roles of the listening and connected descriptors</b>.</figcaption>
+  </center>
+</figure>
+
+<p>The listening descriptor serves as an end point for client conn reqs. It&#39;s typically createad once and exists for the lifetime of the server. The connected descriptor is the end point of the conn that is established bt the client and the server. It is created each time the server accepts a conn req and exists only as long as it takes the server to service a client.</p>
+
+<h2 id="toc_21"><a name="protocol"></a> 6. Example application protocols <a href="#top">&uarr;top</a></h2>
+
+<h3 id="toc_22">HTTP</h3>
+
+<p>HTTP is a simple protocol. A Web client (known as a <em>browser</em>) opens an Internet conn to a server and requests some <em>content</em>. The server responds with the requested content and then closes the conn. The browser reads the content and displays it on the screen.</p>
+
+<h3 id="toc_23">SSH</h3>
+
+<p>Secure Shell is an encrypted network protocol to allow remote login and other network services to operate securely over an unsecured network. </p>
+
+<h3 id="toc_24">FTP</h3>
+
+<p>File Transfer Protocol is a standard network protocol used to transfer computer files from one host to another host over a TCP-based network. FTP is built on a client-server arch and uses separate control and data conns bt the client and the server.</p>
+
+<h4 id="toc_25">TFTP</h4>
+
+<p>Trivial File Transfer Protocol is a simple, lock-step FTP that allows a client to get from or put a file onto a remote host. TFTP lacks security and most of the advanced features offered by more robust file transfer protocols such as FTP.</p>
+
+<h4 id="toc_26">SFTP</h4>
+
+<p>Simple File Transfer Protocol is an unsecured file transfer protocol with a level of complexity intermediate bt TFTP and FTP.</p>
+
+<h3 id="toc_27">DHCP</h3>
+
+<p>The Dynamic Host Configuration Protocol is a standardized network protocol used on IP network for dynamically distributing network configuration parameters, such as IP addresses for interfaces and services. With DHCP, computer request IP addresses and networking paras auto from a DHCP server, reducing the need for a network administrator or a user to configure these settings manually.</p>
+
+<h3 id="toc_28">LDAP</h3>
+
+<p>The Lightweight Directory Access Protocol is an open, vendor-neutral, industry standard app protocol for accessing and maintaining distributed directory info services over an IP network.</p>
+
+<h3 id="toc_29">LPD</h3>
+
+<p>The Linear Printer Daemon protocol (or Line Printer Remote protocol) is a network protocol for submitting print jobs to a remote printer.</p>
+
+<script type="text/javascript">
+var _self="undefined"!=typeof window?window:"undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?self:{},Prism=function(){var e=/\blang(?:uage)?-(?!\*)(\w+)\b/i,t=_self.Prism={util:{encode:function(e){return e instanceof n?new n(e.type,t.util.encode(e.content),e.alias):"Array"===t.util.type(e)?e.map(t.util.encode):e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/\u00a0/g," ")},type:function(e){return Object.prototype.toString.call(e).match(/\[object (\w+)\]/)[1]},clone:function(e){var n=t.util.type(e);switch(n){case"Object":var a={};for(var r in e)e.hasOwnProperty(r)&&(a[r]=t.util.clone(e[r]));return a;case"Array":return e.map&&e.map(function(e){return t.util.clone(e)})}return e}},languages:{extend:function(e,n){var a=t.util.clone(t.languages[e]);for(var r in n)a[r]=n[r];return a},insertBefore:function(e,n,a,r){r=r||t.languages;var l=r[e];if(2==arguments.length){a=arguments[1];for(var i in a)a.hasOwnProperty(i)&&(l[i]=a[i]);return l}var o={};for(var s in l)if(l.hasOwnProperty(s)){if(s==n)for(var i in a)a.hasOwnProperty(i)&&(o[i]=a[i]);o[s]=l[s]}return t.languages.DFS(t.languages,function(t,n){n===r[e]&&t!=e&&(this[t]=o)}),r[e]=o},DFS:function(e,n,a){for(var r in e)e.hasOwnProperty(r)&&(n.call(e,r,e[r],a||r),"Object"===t.util.type(e[r])?t.languages.DFS(e[r],n):"Array"===t.util.type(e[r])&&t.languages.DFS(e[r],n,r))}},plugins:{},highlightAll:function(e,n){for(var a,r=document.querySelectorAll('code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'),l=0;a=r[l++];)t.highlightElement(a,e===!0,n)},highlightElement:function(n,a,r){for(var l,i,o=n;o&&!e.test(o.className);)o=o.parentNode;o&&(l=(o.className.match(e)||[,""])[1],i=t.languages[l]),n.className=n.className.replace(e,"").replace(/\s+/g," ")+" language-"+l,o=n.parentNode,/pre/i.test(o.nodeName)&&(o.className=o.className.replace(e,"").replace(/\s+/g," ")+" language-"+l);var s=n.textContent,u={element:n,language:l,grammar:i,code:s};if(!s||!i)return t.hooks.run("complete",u),void 0;if(t.hooks.run("before-highlight",u),a&&_self.Worker){var g=new Worker(t.filename);g.onmessage=function(e){u.highlightedCode=e.data,t.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(u.element),t.hooks.run("after-highlight",u),t.hooks.run("complete",u)},g.postMessage(JSON.stringify({language:u.language,code:u.code,immediateClose:!0}))}else u.highlightedCode=t.highlight(u.code,u.grammar,u.language),t.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(n),t.hooks.run("after-highlight",u),t.hooks.run("complete",u)},highlight:function(e,a,r){var l=t.tokenize(e,a);return n.stringify(t.util.encode(l),r)},tokenize:function(e,n){var a=t.Token,r=[e],l=n.rest;if(l){for(var i in l)n[i]=l[i];delete n.rest}e:for(var i in n)if(n.hasOwnProperty(i)&&n[i]){var o=n[i];o="Array"===t.util.type(o)?o:[o];for(var s=0;s<o.length;++s){var u=o[s],g=u.inside,c=!!u.lookbehind,f=0,h=u.alias;u=u.pattern||u;for(var p=0;p<r.length;p++){var d=r[p];if(r.length>e.length)break e;if(!(d instanceof a)){u.lastIndex=0;var m=u.exec(d);if(m){c&&(f=m[1].length);var y=m.index-1+f,m=m[0].slice(f),v=m.length,k=y+v,b=d.slice(0,y+1),w=d.slice(k+1),P=[p,1];b&&P.push(b);var A=new a(i,g?t.tokenize(m,g):m,h);P.push(A),w&&P.push(w),Array.prototype.splice.apply(r,P)}}}}}return r},hooks:{all:{},add:function(e,n){var a=t.hooks.all;a[e]=a[e]||[],a[e].push(n)},run:function(e,n){var a=t.hooks.all[e];if(a&&a.length)for(var r,l=0;r=a[l++];)r(n)}}},n=t.Token=function(e,t,n){this.type=e,this.content=t,this.alias=n};if(n.stringify=function(e,a,r){if("string"==typeof e)return e;if("Array"===t.util.type(e))return e.map(function(t){return n.stringify(t,a,e)}).join("");var l={type:e.type,content:n.stringify(e.content,a,r),tag:"span",classes:["token",e.type],attributes:{},language:a,parent:r};if("comment"==l.type&&(l.attributes.spellcheck="true"),e.alias){var i="Array"===t.util.type(e.alias)?e.alias:[e.alias];Array.prototype.push.apply(l.classes,i)}t.hooks.run("wrap",l);var o="";for(var s in l.attributes)o+=(o?" ":"")+s+'="'+(l.attributes[s]||"")+'"';return"<"+l.tag+' class="'+l.classes.join(" ")+'" '+o+">"+l.content+"</"+l.tag+">"},!_self.document)return _self.addEventListener?(_self.addEventListener("message",function(e){var n=JSON.parse(e.data),a=n.language,r=n.code,l=n.immediateClose;_self.postMessage(t.highlight(r,t.languages[a],a)),l&&_self.close()},!1),_self.Prism):_self.Prism;var a=document.getElementsByTagName("script");return a=a[a.length-1],a&&(t.filename=a.src,document.addEventListener&&!a.hasAttribute("data-manual")&&document.addEventListener("DOMContentLoaded",t.highlightAll)),_self.Prism}();"undefined"!=typeof module&&module.exports&&(module.exports=Prism),"undefined"!=typeof global&&(global.Prism=Prism);
+</script>
+<script type="text/javascript">
+Prism.languages.clike={comment:[{pattern:/(^|[^\\])\/\*[\w\W]*?\*\//,lookbehind:!0},{pattern:/(^|[^\\:])\/\/.*/,lookbehind:!0}],string:/(["'])(\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,"class-name":{pattern:/((?:\b(?:class|interface|extends|implements|trait|instanceof|new)\s+)|(?:catch\s+\())[a-z0-9_\.\\]+/i,lookbehind:!0,inside:{punctuation:/(\.|\\)/}},keyword:/\b(if|else|while|do|for|return|in|instanceof|function|new|try|throw|catch|finally|null|break|continue)\b/,"boolean":/\b(true|false)\b/,"function":/[a-z0-9_]+(?=\()/i,number:/\b-?(?:0x[\da-f]+|\d*\.?\d+(?:e[+-]?\d+)?)\b/i,operator:/--?|\+\+?|!=?=?|<=?|>=?|==?=?|&&?|\|\|?|\?|\*|\/|~|\^|%/,punctuation:/[{}[\];(),.:]/};
+</script>
+<script type="text/javascript">
+Prism.languages.c=Prism.languages.extend("clike",{keyword:/\b(asm|typeof|inline|auto|break|case|char|const|continue|default|do|double|else|enum|extern|float|for|goto|if|int|long|register|return|short|signed|sizeof|static|struct|switch|typedef|union|unsigned|void|volatile|while)\b/,operator:/\-[>-]?|\+\+?|!=?|<<?=?|>>?=?|==?|&&?|\|?\||[~^%?*\/]/,number:/\b-?(?:0x[\da-f]+|\d*\.?\d+(?:e[+-]?\d+)?)[ful]*\b/i}),Prism.languages.insertBefore("c","string",{macro:{pattern:/(^\s*)#\s*[a-z]+([^\r\n\\]|\\.|\\(?:\r\n?|\n))*/im,lookbehind:!0,alias:"property",inside:{string:{pattern:/(#\s*include\s*)(<.+?>|("|')(\\?.)+?\3)/,lookbehind:!0},directive:{pattern:/(#\s*)\b(define|elif|else|endif|error|ifdef|ifndef|if|import|include|line|pragma|undef|using)\b/,lookbehind:!0,alias:"keyword"}}},constant:/\b(__FILE__|__LINE__|__DATE__|__TIME__|__TIMESTAMP__|__func__|EOF|NULL|stdin|stdout|stderr)\b/}),delete Prism.languages.c["class-name"],delete Prism.languages.c["boolean"];
+</script>
+<script type="text/javascript">
+Prism.languages.cpp=Prism.languages.extend("c",{keyword:/\b(alignas|alignof|asm|auto|bool|break|case|catch|char|char16_t|char32_t|class|compl|const|constexpr|const_cast|continue|decltype|default|delete|do|double|dynamic_cast|else|enum|explicit|export|extern|float|for|friend|goto|if|inline|int|long|mutable|namespace|new|noexcept|nullptr|operator|private|protected|public|register|reinterpret_cast|return|short|signed|sizeof|static|static_assert|static_cast|struct|switch|template|this|thread_local|throw|try|typedef|typeid|typename|union|unsigned|using|virtual|void|volatile|wchar_t|while)\b/,"boolean":/\b(true|false)\b/,operator:/[-+]{1,2}|!=?|<{1,2}=?|>{1,2}=?|\->|:{1,2}|={1,2}|\^|~|%|&{1,2}|\|?\||\?|\*|\/|\b(and|and_eq|bitand|bitor|not|not_eq|or|or_eq|xor|xor_eq)\b/}),Prism.languages.insertBefore("cpp","keyword",{"class-name":{pattern:/(class\s+)[a-z0-9_]+/i,lookbehind:!0}});
+</script>
+</body>
+
+</html>

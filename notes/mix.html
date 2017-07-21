@@ -1,0 +1,982 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title>rand_note</title>
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+<style type="text/css">
+/**
+ * prism.js default theme for JavaScript, CSS and HTML
+ * Based on dabblet (http://dabblet.com)
+ * @author Lea Verou
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: black;
+	text-shadow: 0 1px white;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+@media print {
+	code[class*="language-"],
+	pre[class*="language-"] {
+		text-shadow: none;
+	}
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #f5f2f0;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: slategray;
+}
+
+.token.punctuation {
+	color: #999;
+}
+
+.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #905;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #690;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+	color: #a67f59;
+	background: hsla(0, 0%, 100%, .5);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+	color: #07a;
+}
+
+.token.function {
+	color: #DD4A68;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+	color: #e90;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+</style>
+</head>
+<body>
+<h1 id="toc_0"><a name="top"></a>Table of Contents</h1>
+
+<ol>
+<li><a href="#afs-commands">AFS Commands</a></li>
+<li><a href="#crontab-tasks">Crontab Tasks</a></li>
+<li><a href="#job-control">Job Control</a></li>
+<li><a href="#file-in-linux">File in Linux</a></li>
+<li><a href="#shell-basics">Shell Basics</a></li>
+<li><a href="#check-infos">Check Infos</a></li>
+<li><a href="#shell-variables">Shell Variables</a></li>
+<li><a href="#archive">Archive</a></li>
+<li><a href="#others">Others</a></li>
+</ol>
+
+<h6 id="toc_1"><em>organized by <a href="https://people.cs.pitt.edu/%7Exianeizhang/">Xianwei Zhang</a>, Nov 2015!</em></h6>
+
+<h2 id="toc_2"><a name="afs-commands"></a>1. AFS Commands <a href="#top">&uarr;top</a></h2>
+
+<h3 id="toc_3">(1) Access control list</h3>
+
+<ul>
+<li><p>giver user <xianeizhang> read rights in your <private> directory:  </p>
+
+<div><pre><code class="language-bash">$fs sa ~/private/xianeizhang l  
+$fs sa simu01 xianeizhang rlidwka  
+$fs listacl ~/private/simu01  </code></pre></div></li>
+<li><p>remove a user  </p>
+
+<div><pre><code class="language-bash">$fs setacl -dir ~/private/simu01 -acl xianeizhang none</code></pre></div></li>
+</ul>
+
+<h3 id="toc_4">(2) Ticket management</h3>
+
+<ul>
+<li>obtain and cache Kerberos ticket: <code>$kinit</code></li>
+<li>list cached Kerberos tickets: <code>$klist</code></li>
+<li>destroy the ticket: <code>$kdestroy</code></li>
+<li>renew the ticket for further 25 hrs: <code>$kinit -R</code><br></li>
+</ul>
+
+<h3 id="toc_5">(3) Token management</h3>
+
+<ul>
+<li>get tokens for authentication to AFS (after having the ticket): <code>$aklog</code></li>
+<li>display the issuer&#39;s tokens: <code>$tokens</code></li>
+<li>destroy the token: <code>unlog</code></li>
+</ul>
+
+<h3 id="toc_6">(4) Create keytab file for pwdless login</h3>
+
+<ul>
+<li><p>steps: </p>
+
+<div><pre><code class="language-bash">$ktutil
+    #-- after -k is digit &#39;1&#39;, NOT letter &#39;l&#39;
+    ktutil:  addent -password -p xianeizhang@DEPT.CS.PITT.EDU -k 1 -e aes256-cts
+    Password for xianeizhang@DEPT.CS.PITT.EDU:
+    #-- write out the keytab to disk
+    ktutil:  wkt xianeizhang.keytab
+    ktutil:  q
+#-- no output if smoothly executed
+$kinit xianeizhang@DEPT.CS.PITT.EDU -k -t xianeizhang.keytab  
+$klist -k xianeizhang.keytab  
+KVNO Principal
+---- -------------------------------------------
+   1 xianeizhang@DEPT.CS.PITT.EDU
+$ktutil:
+    ktutil:  read_kt xianeizhang.keytab
+    ktutil:  list
+    slot KVNO Principal
+    ---- ---------------------
+    1   1           xianeizhang@DEPT.CS.PITT.EDU
+    #-- delete the key from keytab file &lt;delent #slot&gt;
+    ktutil:  delent 1
+    ktutil:  list
+    ktutil:  q</code></pre></div></li>
+</ul>
+
+<h3 id="toc_7">(5) Script to renew tokens</h3>
+
+<ul>
+<li><p>steps  </p>
+
+<div><pre><code class="language-bash">$kinit xianeizhang
+$aklog
+$nohup $HOME/bin/krb_afs_renewal.sh &amp;</code></pre></div></li>
+<li><p>script<br>
+click <a href="krb_afs_renewal.sh">here</a> to download krb_afs_renewal.sh</p></li>
+</ul>
+
+<h4 id="toc_8">(6) Restore AFS User files and Project Volumes</h4>
+
+<ul>
+<li>AFS files - less than 24 hours</li>
+</ul>
+
+<p>When you delete or change a file by mistake, you should first checked the backup <OldFiles> directory, which contains a complete copy of all the directories, subdirectories, and files as they appeared the last time they were backed up (backup is usually done every midnight).</p>
+
+<p>To view a Project Volume backup, you must mount it. Follow these steps:</p>
+
+<div><pre><code class="language-bash">    #-- login afs server
+    #-- enter project volume directory
+    $cd ~/private/bench/
+    #-- get the volume
+    $fs lq .
+    Volume Name                    Quota       Used %Used   Partition
+    cs.u.x.zhang.bench         200000000  141054086   71%         55%
+    #-- mount the volume&#39;s backup, &lt;proj-volume&gt;.backup
+    #--  e.g., volume is cs.u.x.zhang.bench, and backup should be cs.u.x.zhang.bench.backup
+    $cd ~/private/simu10
+    $fs mkm bench.1130 cs.u.x.zhang.bench.backup
+    #-- now, restore the changed file
+    $cp bench.1130/&lt;filename&gt; ~/private/bench
+    #-- you don&#39;t need to unmount the volume, as files in .backup do not count against your disk quota usage
+    #-- but unmounting is possible
+    $fs rmmount bench.1130</code></pre></div>
+
+<ul>
+<li>AFS files -- after 24 hours</li>
+</ul>
+
+<p>If you failed to discover the mistake the same day, the only way to restore files is to contact technical staff to let them load backup tapes to restore the files.</p>
+
+<p>More backup restore info can be found at <a href="https://www.cmu.edu/computing/repair/restore/afs.html">CMU afs</a> and 
+<a href="https://www.cmu.edu/computing/repair/restore/afs.html">Stanford afs</a></p>
+
+<h2 id="toc_9"><a name="crontab-tasks"></a>2. Crontab Tasks <a href="#top">&uarr;top</a></h2>
+
+<ul>
+<li><p>Crontab can be used to schedule a job that runs on certain interval <a href="">cron_cmd</a>.   </p>
+
+<ul>
+<li>Crontab format (0-59, 0-23, 1-31, 1-12, 0-6):<br>
+<code>MIN HOUR DOM MON DOW CMD</code><br></li>
+<li>every 5 minuts:<br>
+<code>*/5 * * * * /home/my.sh</code><br></li>
+<li>every 5 hours:<br>
+<code>0 */5 * * * /home/my.sh</code></li>
+</ul></li>
+<li><p>Setup a task:  </p>
+
+<div><pre><code class="language-bash">$crontab -e
+0 * * * * $HOME/bin/krb_afs_renewal.sh  
+*/1 * * * * $HOME/bin/krb_afs_renewal.sh  </code></pre></div></li>
+<li><p>Cron job cannot be used to schedule a job in seconds interval.</p>
+
+<div><pre><code class="language-bash">while true
+do
+    /home/my.sh
+    sleep 5
+done
+$nohup ./every-5-seconds.sh &amp;</code></pre></div></li>
+</ul>
+
+<h2 id="toc_10"><a name="job-control"></a>3. Job Control <a href="#top">&uarr;top</a></h2>
+
+<ul>
+<li>list all background jobs: <code>$jobs (kill %n)</code></li>
+<li>bring one job to the front: <code>$fg &lt;job id&gt;</code></li>
+<li>suspend one running process: <code>$^Z</code></li>
+<li><p>refer to a job:</p>
+
+<div><pre><code class="language-bash"> #-- %1&#39; is &#39;fg %1&#39;, bringing job 1 from background to foreground
+ $%n
+ #-- resumes job 1 in the background, equivalent to &#39;bg %1&#39;
+ $%1 &amp;</code></pre></div></li>
+</ul>
+
+<h2 id="toc_11"><a name="file-in-linux"></a>4. File in Linux <a href="#top">&uarr;top</a></h2>
+
+<ul>
+<li>display dir type with &#39;/&#39;: <code>$ls -F</code></li>
+<li>change file permission (<strong>UGO</strong>=<em>user-group-other</em>)
+
+<ul>
+<li>for all uers (<strong>a</strong>), add (<strong>+</strong>) read-write (<strong>rw</strong>) permission: <code>chmod a+rw file.dat</code></li>
+<li>for other users (<strong>o</strong>), cancel (<strong>-</strong>) the read-execute (<strong>rx</strong>) permission: <code>chmod o-rx file.dat</code></li>
+<li>for group and other users (<strong>go</strong>), cancel (<strong>-</strong>) all permissions (<strong>rwx</strong>): <code>chmod go-rwx file.dat</code></li>
+</ul></li>
+<li>file link
+
+<ul>
+<li>hard link: <code>$ln file1 file2</code></li>
+<li>symbol link: <code>$ln -s file1 file2</code> </li>
+</ul></li>
+</ul>
+
+<h2 id="toc_12"><a name="shell-basics"></a>5. Shell Basics <a href="#top">&uarr;top</a></h2>
+
+<p>visit <a href="http://iarchsys.com/?p=600">blog1</a> and <a href="http://iarchsys.com/?p=624">blog2</a> to learn more ...</p>
+
+<h3 id="toc_13">(1) Shell info</h3>
+
+<ul>
+<li>list all available shells: <code>$cat /etc/shells</code></li>
+<li>show current shell: <code>echo $0</code> or <code>echo $SHELL</code>
+####(2) Shell autologout</li>
+<li>show TMOUT: <code>$echo $autologout</code></li>
+<li>cancel autologout: <code>$unset autologout</code></li>
+<li><p>shell environment variables</p>
+
+<div><pre><code class="language-bash">$[print]env (list all)
+$setenv SVN_EDITOR vim (bash: export SVN_EDITOR=vim)
+$setenv PATH &quot;${PATH}:/usr/local:/usr/local/bin&quot;</code></pre></div></li>
+<li><p>get the last n characters of a string: <code>${str:${#str}-$n}</code></p>
+
+<ul>
+<li>you can simply mix bash substrings - <code>${string:offset[:length]}</code></li>
+</ul></li>
+<li><p>loop</p>
+
+<div><pre><code class="language-bash">for bankID in {0..7}
+for (( bankID=0; bankID &lt;= 7; bankID++ ))
+if (( $n &lt;= 5)) i.e., if [ $n -le 5 ]</code></pre></div></li>
+<li><p>settings</p>
+
+<ul>
+<li><p>cfg:</p>
+
+<div><pre><code class="language-bash">CHIP=&quot;4Gb&quot;
+ROWS_2Gb=32768
+ROWS_4Gb=65536
+ROWS_8Gb=131072</code></pre></div></li>
+<li><p>.sh:</p>
+
+<div><pre><code class="language-bash">row_name=&quot;ROWS_$CHIP&quot;
+ROWS=${!row_name}</code></pre></div></li>
+</ul></li>
+<li><p>value extraction: </p>
+
+<div><pre><code class="language-bash">for chunk_dir in $(find $scheme_dir -maxdepth 1 -mindepth 1 -type d -name &quot;1024_chunks&quot; -o -name &quot;16384_chunks&quot;)</code></pre></div></li>
+<li><p>info</p>
+
+<div><pre><code class="language-bash">NOW=$(date)
+SERVERNAME=${hostname}
+CWD=$(pwd)</code></pre></div></li>
+<li><p>get user input via keyboard</p>
+
+<div><pre><code class="language-bash">$read -p &quot;Enter something:&quot; var1 var2 var3</code></pre></div></li>
+</ul>
+
+<h2 id="toc_14"><a name="check-infos"></a>6. Check Infos <a href="#top">&uarr;top</a></h2>
+
+<h3 id="toc_15">(1) CPU info</h3>
+
+<ul>
+<li>show processing units: <code>$nproc</code></li>
+<li>CPU arch info: <code>$lscpu</code></li>
+<li>more info: <code>$less /proc/cpuinfo</code></li>
+<li>cache info: <code>/sys/devices/system/cpu/cpu0/cache/index[0-3]/…</code> or <code>getconf LEVEL1_DCACHE_LINESIZE</code></li>
+</ul>
+
+<h3 id="toc_16">(2) Process info</h3>
+
+<p>commands:  </p>
+
+<div><pre><code class="language-bash"> $top
+  $shift+A to have multi-window process view
+  $type k and input PID to kill a process
+  $type u and input user name to get process from the user alone
+ detailed info
+ $ps -Af</code></pre></div>
+
+<h3 id="toc_17">(3) Other info</h3>
+
+<ul>
+<li>memory: <code>$free -m</code></li>
+<li>disk and filesystem: <code>$df -h</code></li>
+<li>32 or 64: <code>$uname -a/-m</code> or <code>$arch</code></li>
+</ul>
+
+<h3 id="toc_18">(4) GLIBC</h3>
+
+<div><pre><code class="language-bash"> $ldd --version
+ $strings /usr/local/gcc-4.8.2/lib64/libstdc++.so.6 | grep LIBCXX
+ $gcc --version
+ $ldd &lt;executable&gt;
+ 
+ /pin-2.13-62732-gcc.4.4.7-linux/intel64/runtime/cpplibs/libstdc++.so.6: version  `GLIBCXX_3.4.18&#39; not found ( required by/obj-intel64/pinatrace.so), 
+ $strings libstdc++.so.6 | grep GLIBCXX
+ $cp /usr/local/gcc-4.8.2/lib64/libstdc++.so.6 .</code></pre></div>
+
+<h3 id="toc_19">(5) Count</h3>
+
+<div><pre><code class="language-bash">$getconf PAGESIZE
+cout word frequency in a file
+$ tr &#39; &#39; &#39;\n&#39; &lt; test.trace/test_anno  | grep memR | wc -l
+$grep -o -c mem test.trace/test_anno</code></pre></div>
+
+<h2 id="toc_20"><a name="shell-variables"></a>7. Shell Variables<a href="#top">&uarr;top</a></h2>
+
+<h3 id="toc_21">(1) Default value</h3>
+
+<ul>
+<li>if var is not set, set it do default: <code>var=xxx</code></li>
+<li>if var is not set, use default: <code>var-xxx</code></li>
+<li>if var is empty, set to default: <code>var:=xxx</code></li>
+</ul>
+
+<div><pre><code class="language-bash"> echo &quot;default&#39;=&#39;: dist= ${dist=1.0}&quot;   #-- dist=1.0
+ echo &quot;after&#39;=&#39;: dist= $dist&quot;     #-- dist=1.0
+ echo &quot;---------&quot;
+ echo &quot;default &#39;-&#39;: weather= ${weather-sunny}&quot; #-- weather=sunny
+ echo &quot;after &#39;-&#39;: weather= $weather&quot;    #-- weather= (&#39;-&#39; just use default, never set)
+ echo &quot;---------&quot;
+ weather=&quot;&quot; #-- weather has been set, but just an empty value
+ echo &quot;default &#39;-&#39;: weather= ${weather-sunny}&quot; #-- weather=
+ echo &quot;default &#39;=&#39;: weather= ${weather=sunny}&quot; #-- weather=
+ echo &quot;default &#39;:=&#39;: weather= ${weather:=sunny}&quot; #-- weather= sunny
+ echo &quot;---------&quot;
+ unset weather #--weather now is unset
+ echo &quot;default &#39;=&#39;: weather= ${weather=sunny}&quot; #-- weather= sunny
+ echo &quot;default &#39;:=&#39;: weather= ${weather:=sunny}&quot; #-- weather= sunny</code></pre></div>
+
+<h3 id="toc_22">(2) Perform arithmetic operations</h3>
+
+<ul>
+<li><p>integer operation</p>
+
+<div><pre><code class="language-bash">#op=+-*/% ++ -- ** and comparison
+$(( var1 op var2 ))</code></pre></div></li>
+<li><p>float operation</p>
+
+<div><pre><code class="language-bash">$(echo &quot;scale=2; $total_time/$reads&quot; | bc -l)
+$(awk -v tot=$total_time -v read=$reads &#39;BEGIN{printf(&quot;%.2f&quot;, tot/read)}&#39;</code></pre></div></li>
+</ul>
+
+<h3 id="toc_23">(3) Comparison</h3>
+
+<ul>
+<li><p>difference between <em>[</em> and <em>[[</em></p>
+
+<ul>
+<li><p><strong>[[</strong> handles empty strings and strings with whitespaces, so no need to quote variaes</p>
+
+<div><pre><code class="language-bash">if [ -f &quot;$file&quot; ] i.e., if [[ -f $file ]]
+[ ! $file ]
+[[ $sentence == $checkme ]] i.e., [ &quot;$sentence&quot; == &quot;$checkme&quot; ]</code></pre></div></li>
+<li><p><strong>[</strong> is the same as &#39;test&#39; builtin, and works like the &#39;test&#39; binary</p>
+
+<div><pre><code class="language-bash">if test &quot;$name&quot; = &quot;xianwei&quot; i.e., if [ &quot;$name&quot; = &quot;xianwei&quot; ]</code></pre></div></li>
+<li><p>for <strong>[</strong>, operators like <em>&amp;&amp;</em> and <em>||</em> must be used in separate brackets</p>
+
+<div><pre><code class="language-bash">if [ $foo -ge 3 -a $foo -lt 10 ]
+if [ $first -eq 0 ] &amp;&amp; [ $second -eq 0 ], i.e., if [[ $first -eq 0 &amp;&amp; $second -eq 0 ]]
+if [ $first -eq $second]</code></pre></div></li>
+<li><p><strong>[[</strong> is bash specific, <em>==</em> and <em>!=</em> apply bash pattern matching rules</p>
+
+<div><pre><code class="language-bash">if [[ $suffix == *ECC* ]]</code></pre></div></li>
+<li><p><strong>[[</strong> has a <em>=~</em> regex match operator</p>
+
+<div><pre><code class="language-bash">if [ &quot;$ANSWER&quot; = y -o &quot;$ANSWER&quot; = yes ]
+or
+if [[ $ANSWER =~ ^y(es)?$ ]]
+or
+if [[ $ANSWER = y* ]] </code></pre></div></li>
+<li><p>others</p>
+
+<div><pre><code class="language-bash">empty (unset, tab/space) string: if [ -z $test_str ]
+if [[ $test_str != foo]], 
+i.e., if [ ! &quot;test_str&quot; == &quot;foo&quot; ], 
+i.e., if [ &quot;test_str&quot; != foo ]</code></pre></div></li>
+</ul></li>
+</ul>
+
+<h2 id="toc_24">8. <a name="archive"></a>Archive<a href="#top">&uarr;top</a></h2>
+
+<h3 id="toc_25">(1) Creating an archive using <em>tar</em></h3>
+
+<div><pre><code class="language-bash"> $tar cvf archive_name dirname/ (note: no compression here)
+    c -- create a new archive
+    v -- verbosely list files which are processed
+    f - following is the archive file name
+ $tar cvfz archieve_name.tar.gz dirname/ (note: creating a tar gizpped archive)
+    z -- filter the archive through gzip
+    note: .tgz is same as .tar.gz
+ $tar cvfj archive_name.tar.bz2 dirname/ (note: a bzip2 tar archive)
+    j -- filter the archive through bzip2
+    gzip vs bzip2: bzip2 takes more time to compress and decompress than gzip, but bzip2 is smaller in size
+    note: .tbz and .tb2 is same as .tar.bz2</code></pre></div>
+
+<h3 id="toc_26">(2) Untar an arhive using <em>tar</em></h3>
+
+<div><pre><code class="language-bash"> $tar xvf archive_name.tar
+    x -- extract files from archive
+ $tar xvf archive_name.tar -C /target/dir 
+    note: extract to a specified dir
+ $tar xvfz archive_name.tar.gz
+    note: extract a gizpped tar archive
+ $tar xvfj archive_name.tar.bz2
+    note: extract a bzipped tar archive</code></pre></div>
+
+<h3 id="toc_27">(3) Listing an archive using tar (without extracting)</h3>
+
+<div><pre><code class="language-bash"> $tar tvf archive_name.tar
+ $tar tvfz archive_name.tar.gz
+ $tar tvfj archive_name.tar.bz2</code></pre></div>
+
+<h3 id="toc_28">(4) Extract a single file (from <em>tar</em>, <em>tar.gz</em>, <em>tar.bz2</em>)</h3>
+
+<div><pre><code class="language-bash"> $tar xvf archive_file.tar /path/to/file
+ $tar xvfz archive_file.tar.gz /path/to/file
+ $tar xvfj archive_file.tar.bz2 /path/to/file
+    extract a/multiple dirs from a tar archive
+ $tar xvf archive_file.tar /path/to/dir1/ /path/to/dir2/
+    extract group of files using regex
+ $tar xvf archive_file.tar --wildcards &#39;*.cpp&#39;</code></pre></div>
+
+<h3 id="toc_29">(5) Adding a file or dir to an existing archive</h3>
+
+<div><pre><code class="language-bash"> $tar rvf archive_name.tar newfile
+    note: cannot add file or dir to a compressed archive</code></pre></div>
+
+<h3 id="toc_30">(6) Estimate the tar archive size before archiving</h3>
+
+<div><pre><code class="language-bash"> $tar -cf - /dir/to/archive | wc -c
+ $tar -czf - /dir/to/archive | wc -c
+ $tar -cjf - /dir/to/archive | wc -c</code></pre></div>
+
+<h2 id="toc_31">9. <a name="others"></a>Others<a href="#top">&uarr;top</a></h2>
+
+<h3 id="toc_32">(1) wget</h3>
+
+<ul>
+<li>no-check: <code>wget --no-check-certificate</code></li>
+</ul>
+
+<h3 id="toc_33">(2) Mac double-click run</h3>
+
+<ul>
+<li><em>.command</em></li>
+<li>Terminal &gt; Preferences &gt; Settings &gt; Profiles &gt; Shell: &gt; When the shell exits: -&gt; Close if the shell exited cleanly</li>
+</ul>
+
+<h3 id="toc_34">(3) Latex</h3>
+
+<h4 id="toc_35">underline</h4>
+
+<p>default \underline{} doesn’t allow line breaks; use \ul{} command of soul package instead:</p>
+
+<ul>
+<li><p>underline</p>
+
+<div><pre><code class="language-none">\usepackage{soul}
+\ul{xxx}</code></pre></div></li>
+</ul>
+
+<h4 id="toc_36">Latex citations</h4>
+
+<ul>
+<li><p>author-year<br>
+<code>\bibliographystyle{apalike}</code> (linebreak issue)<br>
+solution to linebreak:  </p>
+
+<div><pre><code class="language-none">\usepackage[square]{natbib}
+\let\citeN\citet
+\let\cite\citep
+------------ number
+\usepackage[square, numbers]{natbib}</code></pre></div>
+
+<p>Without spacing line:  </p>
+
+<div><pre><code class="language-none">\usepackage[square, authoryear]{natbib}
+
+\let\OLDthebibliography\thebibliography
+\renewcommand\thebibliography[1]{
+\OLDthebibliography{#1}
+\setlength{\parskip}{0pt} #space bt paras
+\setlength{\itemsep}{0pt plus 0.3ex} #space bt items
+
+\begin{singlespace}
+\bibliographystyle{plainnat}
+\bibliography{refresh,twr,scaling,jedec,dram,approx_security,stacked,page_os,hpca16}
+\end{singlespace}
+OR ----&gt; bbl
+\addtolength\itemsep{-1em}
+}
+
+\bibliographystyle{plainnat}
+</code></pre></div></li>
+</ul>
+
+<h4 id="toc_37">black-circuled number</h4>
+
+<div><pre><code class="language-cpp">\usepackage{pifont}
+\ding{202}
+\ding{203}</code></pre></div>
+
+<h4 id="toc_38">figure/table numbered in section</h4>
+
+<div><pre><code class="language-c">\usepackage{chngcntr}
+\counterwithin{figure}{chapter}
+\counterwithin{table}{chapter}</code></pre></div>
+
+<h4 id="toc_39">move up title</h4>
+
+<div><pre><code class="language-none">\usepackage{titling}
+\setlength{\droptitle}{-9em}   % This is your set screw</code></pre></div>
+
+<h4 id="toc_40">reduce space bt author and title</h4>
+
+<div><pre><code class="language-none">\begin{document}
+
+\title{Research Statement\vspace{-2ex}}
+\author{Xianwei Zhang%\\
+   % \texttt{xianeizhang@cs.pitt.edu}
+   }
+ \date{}
+\maketitle</code></pre></div>
+
+<h4 id="toc_41">reduce section gap</h4>
+
+<div><pre><code class="language-none">\usepackage{titlesec}
+
+%\titlespacing{command}{left spacing}{before spacing}{after spacing}[right]
+\titlespacing\section{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+\titlespacing\subsection{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+\titlespacing\subsubsection{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}</code></pre></div>
+
+<script type="text/javascript">
+var _self="undefined"!=typeof window?window:"undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?self:{},Prism=function(){var e=/\blang(?:uage)?-(?!\*)(\w+)\b/i,t=_self.Prism={util:{encode:function(e){return e instanceof n?new n(e.type,t.util.encode(e.content),e.alias):"Array"===t.util.type(e)?e.map(t.util.encode):e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/\u00a0/g," ")},type:function(e){return Object.prototype.toString.call(e).match(/\[object (\w+)\]/)[1]},clone:function(e){var n=t.util.type(e);switch(n){case"Object":var a={};for(var r in e)e.hasOwnProperty(r)&&(a[r]=t.util.clone(e[r]));return a;case"Array":return e.map&&e.map(function(e){return t.util.clone(e)})}return e}},languages:{extend:function(e,n){var a=t.util.clone(t.languages[e]);for(var r in n)a[r]=n[r];return a},insertBefore:function(e,n,a,r){r=r||t.languages;var l=r[e];if(2==arguments.length){a=arguments[1];for(var i in a)a.hasOwnProperty(i)&&(l[i]=a[i]);return l}var o={};for(var s in l)if(l.hasOwnProperty(s)){if(s==n)for(var i in a)a.hasOwnProperty(i)&&(o[i]=a[i]);o[s]=l[s]}return t.languages.DFS(t.languages,function(t,n){n===r[e]&&t!=e&&(this[t]=o)}),r[e]=o},DFS:function(e,n,a,r){r=r||{};for(var l in e)e.hasOwnProperty(l)&&(n.call(e,l,e[l],a||l),"Object"!==t.util.type(e[l])||r[e[l]]?"Array"!==t.util.type(e[l])||r[e[l]]||(r[e[l]]=!0,t.languages.DFS(e[l],n,l,r)):(r[e[l]]=!0,t.languages.DFS(e[l],n,null,r)))}},plugins:{},highlightAll:function(e,n){for(var a,r=document.querySelectorAll('code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'),l=0;a=r[l++];)t.highlightElement(a,e===!0,n)},highlightElement:function(n,a,r){for(var l,i,o=n;o&&!e.test(o.className);)o=o.parentNode;o&&(l=(o.className.match(e)||[,""])[1],i=t.languages[l]),n.className=n.className.replace(e,"").replace(/\s+/g," ")+" language-"+l,o=n.parentNode,/pre/i.test(o.nodeName)&&(o.className=o.className.replace(e,"").replace(/\s+/g," ")+" language-"+l);var s=n.textContent,u={element:n,language:l,grammar:i,code:s};if(!s||!i)return t.hooks.run("complete",u),void 0;if(t.hooks.run("before-highlight",u),a&&_self.Worker){var g=new Worker(t.filename);g.onmessage=function(e){u.highlightedCode=e.data,t.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(u.element),t.hooks.run("after-highlight",u),t.hooks.run("complete",u)},g.postMessage(JSON.stringify({language:u.language,code:u.code,immediateClose:!0}))}else u.highlightedCode=t.highlight(u.code,u.grammar,u.language),t.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(n),t.hooks.run("after-highlight",u),t.hooks.run("complete",u)},highlight:function(e,a,r){var l=t.tokenize(e,a);return n.stringify(t.util.encode(l),r)},tokenize:function(e,n){var a=t.Token,r=[e],l=n.rest;if(l){for(var i in l)n[i]=l[i];delete n.rest}e:for(var i in n)if(n.hasOwnProperty(i)&&n[i]){var o=n[i];o="Array"===t.util.type(o)?o:[o];for(var s=0;s<o.length;++s){var u=o[s],g=u.inside,c=!!u.lookbehind,f=0,h=u.alias;u=u.pattern||u;for(var p=0;p<r.length;p++){var d=r[p];if(r.length>e.length)break e;if(!(d instanceof a)){u.lastIndex=0;var m=u.exec(d);if(m){c&&(f=m[1].length);var y=m.index-1+f,m=m[0].slice(f),v=m.length,k=y+v,b=d.slice(0,y+1),w=d.slice(k+1),P=[p,1];b&&P.push(b);var A=new a(i,g?t.tokenize(m,g):m,h);P.push(A),w&&P.push(w),Array.prototype.splice.apply(r,P)}}}}}return r},hooks:{all:{},add:function(e,n){var a=t.hooks.all;a[e]=a[e]||[],a[e].push(n)},run:function(e,n){var a=t.hooks.all[e];if(a&&a.length)for(var r,l=0;r=a[l++];)r(n)}}},n=t.Token=function(e,t,n){this.type=e,this.content=t,this.alias=n};if(n.stringify=function(e,a,r){if("string"==typeof e)return e;if("Array"===t.util.type(e))return e.map(function(t){return n.stringify(t,a,e)}).join("");var l={type:e.type,content:n.stringify(e.content,a,r),tag:"span",classes:["token",e.type],attributes:{},language:a,parent:r};if("comment"==l.type&&(l.attributes.spellcheck="true"),e.alias){var i="Array"===t.util.type(e.alias)?e.alias:[e.alias];Array.prototype.push.apply(l.classes,i)}t.hooks.run("wrap",l);var o="";for(var s in l.attributes)o+=(o?" ":"")+s+'="'+(l.attributes[s]||"")+'"';return"<"+l.tag+' class="'+l.classes.join(" ")+'" '+o+">"+l.content+"</"+l.tag+">"},!_self.document)return _self.addEventListener?(_self.addEventListener("message",function(e){var n=JSON.parse(e.data),a=n.language,r=n.code,l=n.immediateClose;_self.postMessage(t.highlight(r,t.languages[a],a)),l&&_self.close()},!1),_self.Prism):_self.Prism;var a=document.getElementsByTagName("script");return a=a[a.length-1],a&&(t.filename=a.src,document.addEventListener&&!a.hasAttribute("data-manual")&&document.addEventListener("DOMContentLoaded",t.highlightAll)),_self.Prism}();"undefined"!=typeof module&&module.exports&&(module.exports=Prism),"undefined"!=typeof global&&(global.Prism=Prism);
+</script>
+<script type="text/javascript">
+Prism.languages.clike={comment:[{pattern:/(^|[^\\])\/\*[\w\W]*?\*\//,lookbehind:!0},{pattern:/(^|[^\\:])\/\/.*/,lookbehind:!0}],string:/(["'])(\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,"class-name":{pattern:/((?:\b(?:class|interface|extends|implements|trait|instanceof|new)\s+)|(?:catch\s+\())[a-z0-9_\.\\]+/i,lookbehind:!0,inside:{punctuation:/(\.|\\)/}},keyword:/\b(if|else|while|do|for|return|in|instanceof|function|new|try|throw|catch|finally|null|break|continue)\b/,"boolean":/\b(true|false)\b/,"function":/[a-z0-9_]+(?=\()/i,number:/\b-?(?:0x[\da-f]+|\d*\.?\d+(?:e[+-]?\d+)?)\b/i,operator:/--?|\+\+?|!=?=?|<=?|>=?|==?=?|&&?|\|\|?|\?|\*|\/|~|\^|%/,punctuation:/[{}[\];(),.:]/};
+</script>
+<script type="text/javascript">
+Prism.languages.c=Prism.languages.extend("clike",{keyword:/\b(asm|typeof|inline|auto|break|case|char|const|continue|default|do|double|else|enum|extern|float|for|goto|if|int|long|register|return|short|signed|sizeof|static|struct|switch|typedef|union|unsigned|void|volatile|while)\b/,operator:/\-[>-]?|\+\+?|!=?|<<?=?|>>?=?|==?|&&?|\|?\||[~^%?*\/]/,number:/\b-?(?:0x[\da-f]+|\d*\.?\d+(?:e[+-]?\d+)?)[ful]*\b/i}),Prism.languages.insertBefore("c","string",{macro:{pattern:/(^\s*)#\s*[a-z]+([^\r\n\\]|\\.|\\(?:\r\n?|\n))*/im,lookbehind:!0,alias:"property",inside:{string:{pattern:/(#\s*include\s*)(<.+?>|("|')(\\?.)+?\3)/,lookbehind:!0},directive:{pattern:/(#\s*)\b(define|elif|else|endif|error|ifdef|ifndef|if|import|include|line|pragma|undef|using)\b/,lookbehind:!0,alias:"keyword"}}},constant:/\b(__FILE__|__LINE__|__DATE__|__TIME__|__TIMESTAMP__|__func__|EOF|NULL|stdin|stdout|stderr)\b/}),delete Prism.languages.c["class-name"],delete Prism.languages.c["boolean"];
+</script>
+<script type="text/javascript">
+Prism.languages.cpp=Prism.languages.extend("c",{keyword:/\b(alignas|alignof|asm|auto|bool|break|case|catch|char|char16_t|char32_t|class|compl|const|constexpr|const_cast|continue|decltype|default|delete|do|double|dynamic_cast|else|enum|explicit|export|extern|float|for|friend|goto|if|inline|int|long|mutable|namespace|new|noexcept|nullptr|operator|private|protected|public|register|reinterpret_cast|return|short|signed|sizeof|static|static_assert|static_cast|struct|switch|template|this|thread_local|throw|try|typedef|typeid|typename|union|unsigned|using|virtual|void|volatile|wchar_t|while)\b/,"boolean":/\b(true|false)\b/,operator:/[-+]{1,2}|!=?|<{1,2}=?|>{1,2}=?|\->|:{1,2}|={1,2}|\^|~|%|&{1,2}|\|?\||\?|\*|\/|\b(and|and_eq|bitand|bitor|not|not_eq|or|or_eq|xor|xor_eq)\b/}),Prism.languages.insertBefore("cpp","keyword",{"class-name":{pattern:/(class\s+)[a-z0-9_]+/i,lookbehind:!0}});
+</script>
+<script type="text/javascript">
+!function(e){var t={variable:[{pattern:/\$?\(\([\w\W]+?\)\)/,inside:{variable:[{pattern:/(^\$\(\([\w\W]+)\)\)/,lookbehind:!0},/^\$\(\(/],number:/\b-?(?:0x[\dA-Fa-f]+|\d*\.?\d+(?:[Ee]-?\d+)?)\b/,operator:/--?|-=|\+\+?|\+=|!=?|~|\*\*?|\*=|\/=?|%=?|<<=?|>>=?|<=?|>=?|==?|&&?|&=|\^=?|\|\|?|\|=|\?|:/,punctuation:/\(\(?|\)\)?|,|;/}},{pattern:/\$\([^)]+\)|`[^`]+`/,inside:{variable:/^\$\(|^`|\)$|`$/}},/\$(?:[a-z0-9_#\?\*!@]+|\{[^}]+\})/i]};e.languages.bash={shebang:{pattern:/^#!\s*\/bin\/bash|^#!\s*\/bin\/sh/,alias:"important"},comment:{pattern:/(^|[^"{\\])#.*/,lookbehind:!0},string:[{pattern:/((?:^|[^<])<<\s*)(?:"|')?(\w+?)(?:"|')?\s*\r?\n(?:[\s\S])*?\r?\n\2/g,lookbehind:!0,inside:t},{pattern:/("|')(?:\\?[\s\S])*?\1/g,inside:t}],variable:t.variable,"function":{pattern:/(^|\s|;|\||&)(?:alias|apropos|apt-get|aptitude|aspell|awk|basename|bash|bc|bg|builtin|bzip2|cal|cat|cd|cfdisk|chgrp|chmod|chown|chroot|chkconfig|cksum|clear|cmp|comm|command|cp|cron|crontab|csplit|cut|date|dc|dd|ddrescue|df|diff|diff3|dig|dir|dircolors|dirname|dirs|dmesg|du|egrep|eject|enable|env|ethtool|eval|exec|expand|expect|export|expr|fdformat|fdisk|fg|fgrep|file|find|fmt|fold|format|free|fsck|ftp|fuser|gawk|getopts|git|grep|groupadd|groupdel|groupmod|groups|gzip|hash|head|help|hg|history|hostname|htop|iconv|id|ifconfig|ifdown|ifup|import|install|jobs|join|kill|killall|less|link|ln|locate|logname|logout|look|lpc|lpr|lprint|lprintd|lprintq|lprm|ls|lsof|make|man|mkdir|mkfifo|mkisofs|mknod|more|most|mount|mtools|mtr|mv|mmv|nano|netstat|nice|nl|nohup|notify-send|nslookup|open|op|passwd|paste|pathchk|ping|pkill|popd|pr|printcap|printenv|printf|ps|pushd|pv|pwd|quota|quotacheck|quotactl|ram|rar|rcp|read|readarray|readonly|reboot|rename|renice|remsync|rev|rm|rmdir|rsync|screen|scp|sdiff|sed|seq|service|sftp|shift|shopt|shutdown|sleep|slocate|sort|source|split|ssh|stat|strace|su|sudo|sum|suspend|sync|tail|tar|tee|test|time|timeout|times|touch|top|traceroute|trap|tr|tsort|tty|type|ulimit|umask|umount|unalias|uname|unexpand|uniq|units|unrar|unshar|uptime|useradd|userdel|usermod|users|uuencode|uudecode|v|vdir|vi|vmstat|wait|watch|wc|wget|whereis|which|who|whoami|write|xargs|xdg-open|yes|zip)(?=$|\s|;|\||&)/,lookbehind:!0},keyword:{pattern:/(^|\s|;|\||&)(?:let|:|\.|if|then|else|elif|fi|for|break|continue|while|in|case|function|select|do|done|until|echo|exit|return|set|declare)(?=$|\s|;|\||&)/,lookbehind:!0},"boolean":{pattern:/(^|\s|;|\||&)(?:true|false)(?=$|\s|;|\||&)/,lookbehind:!0},operator:/&&?|\|\|?|==?|!=?|<<<?|>>|<=?|>=?|=~/,punctuation:/\$?\(\(?|\)\)?|\.\.|[{}[\];]/};var a=t.variable[1].inside;a["function"]=e.languages.bash["function"],a.keyword=e.languages.bash.keyword,a.boolean=e.languages.bash.boolean,a.operator=e.languages.bash.operator,a.punctuation=e.languages.bash.punctuation}(Prism);
+</script>
+</body>
+
+</html>

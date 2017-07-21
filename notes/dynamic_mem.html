@@ -1,0 +1,947 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title>dynamic_mem</title>
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+<style type="text/css">
+/**
+ * prism.js default theme for JavaScript, CSS and HTML
+ * Based on dabblet (http://dabblet.com)
+ * @author Lea Verou
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: black;
+	text-shadow: 0 1px white;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+@media print {
+	code[class*="language-"],
+	pre[class*="language-"] {
+		text-shadow: none;
+	}
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #f5f2f0;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: slategray;
+}
+
+.token.punctuation {
+	color: #999;
+}
+
+.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #905;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #690;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+	color: #a67f59;
+	background: hsla(0, 0%, 100%, .5);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+	color: #07a;
+}
+
+.token.function {
+	color: #DD4A68;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+	color: #e90;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+</style>
+</head>
+<body>
+<h1 id="toc_0">Dynamic Memory</h1>
+
+<h2 id="toc_1">Table of contents</h2>
+
+<ol>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#shared-ptr">Shared_ptr</a></li>
+<li><a href="#manage">Manage memory directly</a></li>
+<li><a href="#unique-ptr">Unique_ptr</a></li>
+<li><a href="#weak-ptr">weak_ptr</a></li>
+<li><a href="#array">Dynamic arrays</a></li>
+<li><a href="#alloc">Allocator</a></li>
+</ol>
+
+<h2 id="toc_2"><a name="overview"></a> 1. Overview <a href="#top">&uarr;top</a></h2>
+
+<p><u>Static memory</u> is used for local static objects, for class static data members and for variables defined outside any func. <u>Stack memory</u> is used for nonstatic objects defined inside funcs. Objs allocated in static or stack memory are automatically created and destroyed by the compiler.</p>
+
+<p>In addition to static or stack memory, programs can use <u>heap memory</u> to dynamically allocate objects. Dynamic memory is managed through a pair of operators:</p>
+
+<ul>
+<li><strong>new</strong>: allocates, and optionally initializes, and obj in dynamic memory and returns a ptr to that obj;</li>
+<li><strong>delete</strong>: takes a ptr to a dynamic obj, destroy that obj, and frees the associated memory.</li>
+</ul>
+
+<p>To make using dynamic memory easier (and safer), the new library provides two <strong>smart pointer</strong> types that manage dynamic objs:</p>
+
+<ul>
+<li><strong>shared_ptr</strong>: allows multi ptr to refer to the same obj;</li>
+<li><strong>unique_ptr</strong>: &quot;owns&quot; the obj to which it points;</li>
+<li><strong>weak_ptr</strong>: a weak ref to an obj managed by a <code>shared_ptr</code>.</li>
+</ul>
+
+<h2 id="toc_3"><a name="shared-ptr"></a> 2. shared_ptr <a href="#top">&uarr;top</a></h2>
+
+<p><strong>shared_ptr</strong> is a smart ptr that retains shared ownership of an obj through a ptr. Several <code>shared_ptr</code> objs may own the same obj. The obj is destroyed and its mem deallocated when either of the following happens:</p>
+
+<ul>
+<li>the last remaining <code>shared_ptr</code> owning the obj is destroyed;</li>
+<li>the last remaing <code>shared_ptr</code> owning the obj is assigned another ptr via <code>operator=</code> or <code>reset()</code></li>
+</ul>
+
+<p>The obj is destroyed using <code>delete-expression</code> or a custom deleter that is supplied to <code>shared_ptr</code> during construction.</p>
+
+<pre><code class="language-cpp">//a default inited smart ptr holds a null ptr
+shared_ptr&lt;string&gt; p1;      //point at a str
+shared_ptr&lt;list&lt;int&gt;&gt; p2;   //point at a list of ints
+
+//smart ptr is used similarly to normal ptr
+//if p1 is not null, check whether it&#39;s the empty str
+if(p1 &amp;&amp; p1-&gt;empty())
+    *p1 = &quot;hi&quot;; //if so, deref p1 to assign a new val to that str</code></pre>
+
+<h3 id="toc_4">(i) make_shared function</h3>
+
+<p><code>make_shared</code> allocates and initializes an obj in dynamic memory, and returns a <code>shared_ptr</code> that points to that obj. Like the sequential-container <code>emplace</code> members, <code>make_shared</code> uses its arguments to <u>construct an obj</u> of the given type.</p>
+
+<pre><code class="language-cpp">//shared_ptr that points to an int with val 42
+shared_ptr&lt;int&gt; p3 = make_shared&lt;int&gt;(42);
+//p4 points to a string with value 99999
+shared_ptr&lt;string&gt; p4 = make_shared&lt;string&gt;(5, &#39;9&#39;);
+//p5 points to an int that is value inited to 0
+shared_ptr&lt;int&gt; p5 = make_shared&lt;int&gt;();
+//p6 points to a dynamically allocated, empty vector&lt;string&gt;
+auto p6 = make_shared&lt;vector&lt;string&gt;&gt;();</code></pre>
+
+<h3 id="toc_5">(ii) copying and assigning shared_ptrs</h3>
+
+<p>when we copy or assign a <code>shared_ptr</code>, each <code>shared_ptr</code> keeps track of how many other <code>shared_ptr</code>s point to the same obj:</p>
+
+<pre><code class="language-cpp">auto p = make_shared&lt;int&gt;(42);  //obj to which p points has one user
+auto q(p);                      //p and q points to the same obj
+                                //obj to which p and q point has two users</code></pre>
+
+<p><code>shared_ptr</code> can be thought to have an associated counter, called as <strong>reference count</strong>. Whenever we copy a <code>shared_ptr</code>, the count is incremented. E.g., the counter is incremented when we use it to init another <code>shared_ptr</code>, when we use it as the right-hand operand of an assignment, or when we pass it to or return it from a func by value; the counter is decremented when we assign a new value to the <code>shared_ptr</code> and when the <code>shared_ptr</code> itself is destroyed, such as when a local <code>shared_ptr</code> goes out of scope.</p>
+
+<p>Once a <code>shared_ptr</code>&#39;s counter goes to zero, the <code>shared_ptr</code> automatically frees the obj that it manges:</p>
+
+<pre><code class="language-cpp">auto r = make_shared&lt;int&gt;(42);  //int to which r points has one user
+r = q;      //assign to r, making it point to different addr
+            //increase the use count for the obj to which q points
+            //reduce the use count of the obj to which r had pointed
+            //the obj r had pointed to has no users; that obj is automatically freed</code></pre>
+
+<p><code>shared_ptr</code>s automatically destroy their objects, and automatically free the associated memory:<br>
+The dstr for <code>shared_ptr</code> decrements the ref count of the obj to which that <code>shared_ptr</code> points. If the count goes to zero, the <code>shared_ptr</code> dstr destroys the obj to which the <code>shared_ptr</code> points and frees the mem used by that obj (calling the obj&#39;s dstr).</p>
+
+<pre><code class="language-cpp">void use_factory(T arg) {
+    shared_ptr&lt;Foo&gt; p = factory(arg);
+    //use p
+} //p goes out scope; the mem to which p points is auto freed
+
+shared_ptr&lt;Foo&gt; use_factory(T arg) {
+    shared_ptr&lt;Foo&gt; p = factory(arg);
+    //use p
+    return p;   //ref count is incremented when we rtn p
+} //p goes out of scope; the mem to which p points is not freed</code></pre>
+
+<h3 id="toc_6">(iii) dynamic lifetime</h3>
+
+<p>Programs tend to use dynamic memory for one of three purposes:</p>
+
+<ul>
+<li>they don&#39;t know how many objects they&#39;ll need<br>
+e.g., container classes</li>
+<li>they don&#39;t know the precise type of the objs they need<br>
+e.g., class inheritance</li>
+<li>they want to share data between several objs</li>
+</ul>
+
+<pre><code class="language-cpp">vector&lt;string&gt; v1;      //empty vector
+{ //new scope
+    vector&lt;string&gt; v2 = {&quot;a&quot;, &quot;an&quot;, &quot;the&quot;};
+    v1 = v2;            //copies the elems from v2 into v1
+} //v2 is destroyed, which destroys the elems in v2
+  //v1 has three elems, which are copies of the ones orginally in v2
+  
+Blob&lt;string&gt; b1;        //emoty Blob
+{ //new scope
+    Blob&lt;string&gt; b2 = {&quot;a&quot;, &quot;an&quot;, &quot;the&quot;};
+    b1 = b2;            //b1 and b2 share the same elems
+} //b2 is destroyed, but the elems in b2 must not be destroyed
+  //b1 points to the elems originally created in b2</code></pre>
+
+<h2 id="toc_7"><a name="manage"></a> 3. Manage memory directly <a href="#top">&uarr;top</a></h2>
+
+<h3 id="toc_8">(i) new</h3>
+
+<p><code>new</code> constructs an obj of type int on heap and returns a pointer to that object.
+By default, dynamically allocated objects are <u>default inited</u>:</p>
+
+<ul>
+<li>variables defined outside any func body are inited to zero;</li>
+<li>variables of built-in type defined in a func are uninitalized;</li>
+<li>variables of class type are inited by their default cstr.</li>
+</ul>
+
+<pre><code class="language-cpp">int *pi = new int;          //pi points to dynamically allocated
+                            //unamed, uninitialized int
+                        
+string *ps = new string;    //inited to empty string
+int *pi = new int(1024);    //obj to which pi points has value 1024
+vector&lt;int&gt; *pv = new vector&lt;int&gt;{0,1,2,3,4};
+
+//allocate and init a const int
+const int *pci = new const int(1024);
+//allocate a default-inited const empty string
+const string *pcs = new const string;</code></pre>
+
+<h3 id="toc_9">(ii) free</h3>
+
+<p><code>free</code> destroys the obj to which its given ptr points, and it frees the crspding memory.</p>
+
+<pre><code class="language-cpp">int i, *pi1 = &amp;i, *pi2 = nullptr;
+double *pd = new double(33), *pd2 = pd;
+
+delete i;       //ERROR: i is not a pointer
+delete pi1;     //undefined: pi1 refers to a local
+                //, which is a statically allocated obj
+delete pd;      //OK
+delete pd2;     //undefined: the mem pointed by pd2 was already freed
+delete pi2;     //OK: always ok to delete a null ptr</code></pre>
+
+<p>Compiler knows that <code>i</code> is not a ptr. However, <u>compilers cannot tell whether a ptr points to a statically or dynamically allocated obj</u>; and, the compiler <u>cannot tell whether mem addressed by a ptr has already been freed</u>.</p>
+
+<p>Although the value of a <code>const</code> obj cannot be modified, the obj itself can be destroyed.</p>
+
+<pre><code class="language-cpp">const int *pci = new const int(1024);
+delete pci;     //OK: deletes a const obj</code></pre>
+
+<p>Dynamic memory managed through built-in pointers (rather than smart pointers) exists until it is explicitly freed. After being deleted, the ptr becomes what is referred to as a <strong>dangling pointer</strong>. We can assign <code>nullptr</code> to the ptr after using <code>delete</code>.</p>
+
+<p>However, resetting the value of a ptr after delete provides only limited protection:</p>
+
+<pre><code class="language-cpp">int *p(new int(42));    //p points to dynamic mem
+auto q = p;             //p and q point to the same mem
+delete p;               //invalidates both p and q
+p = nullptr;            //indicates p is no longer bound to an obj
+//but, resetting p has no effect on q</code></pre>
+
+<h3 id="toc_10">(iii) using shared_ptrs with new</h3>
+
+<p>If we do not init a smart ptr, it is inited as a null ptr; we can also init a smart ptr from a ptr returned by new:</p>
+
+<pre><code class="language-cpp">shared_ptr&lt;double&gt; p1;              //shared ptr that can point to a double
+shared_ptr&lt;int&gt; p2(new int(42));    //p2 points to an int with value 42</code></pre>
+
+<p>The smart ptr cstrs that take ptrs are <strong>explicit</strong>. Hence, we cannot implicitly convert a built-in ptr to a smart ptr; we must use the direct form of initialization to init a smart ptr:</p>
+
+<pre><code class="language-cpp">shared_ptr&lt;int&gt; p1 = new int(1024); //ERROR: must use direct init
+shared_ptr&lt;int&gt; p2(new int(1024));  //OK: uses direct init
+
+shared_ptr&lt;int&gt; clone(int p) {
+    return new int(p);              //ERROR: implicit conversion
+}
+shared_ptr&lt;int&gt; clone(int p) {
+    //OK: explicitly create from int*
+    return shared_ptr&lt;int&gt;(new int(p));
+}</code></pre>
+
+<p>By default, a ptr used to init a smart ptr must point to dynamic memory because, by default, smart ptrs use delete to free the associated obj.</p>
+
+<p><strong>it is dangerous to use a built-in ptr to access an obj owned by a smart ptr; because we may not know when that obj is destroyed</strong>.</p>
+
+<pre><code class="language-cpp">//ptr is created and inited when process is called
+void process(shared_ptr&lt;int&gt; ptr) {
+    //use ptr
+}//ptr goes out of scope and is destroyed
+
+shared_ptr&lt;int&gt; p(new int(42)); //ref count is 1
+process(p);                     //in process, ref count is 2
+int i = *p;                     //OK: ref count is 1
+
+int *x(new int(1024));          //danger: x is a plain ptr
+process(x);                     //ERROR: cannot convert int* to shared_ptr&lt;int&gt;
+process(shared_ptr&lt;int&gt;(x));    //legal, but the mem will be deleted
+int j = *x;                     //undefined: x is a dangling ptr</code></pre>
+
+<h3 id="toc_11">(iv) other shared_ptr operations</h3>
+
+<p><code>get</code> returns a built-in ptr to the obj that the smart ptr is managing. The func is intended for cases when we need to pass a built-in ptr to code that can&#39;t use a smart ptr. The code that uses the return from <code>get</code> must not delete that ptr.</p>
+
+<pre><code class="language-cpp">shared_ptr&lt;int&gt; p(new int(42)); //ref count is 1
+int *q = p.get();               //OK: but don&#39;t use q in any way that might delete its ptr
+{ //new block
+    //undefined: two independent shared_ptrs point to the same mem
+    shared_ptr&lt;int&gt; (q);
+} //block ends, q is destroyed, and the mem to which q points is freed
+int foo = *p;           //undefined: the mem to which p points was freed</code></pre>
+
+<p><strong>Don&#39;t use get to initialize or assign another smart pointer</strong>.</p>
+
+<p><code>reset</code> to assign a new ptr to a shared_ptr, by updating the ref count and, if appropriate, deletes the obj to which p points:</p>
+
+<pre><code class="language-cpp">p.reset(new int(1024));         //OK: p points to a new obj
+
+if(!p.unique())
+    p.reset(new string(*p));    //we aren&#39;t alone, allocate a new copy
+*p += newVal;   //now that we know we&#39;re the only ptr, ok to change this obj</code></pre>
+
+<h3 id="toc_12">(v) smart pointers and exceptions</h3>
+
+<p>when we use a smart ptr, the smart ptr class ensures that mem is freed when it is no longer needed even if the block is exited permaturely:</p>
+
+<pre><code class="language-cpp">void f {
+    shared_ptr&lt;int&gt; sp(new int(42));    //allocate a new obj
+    //code that throws an exception that is not caught inside f
+} //shared_ptr freed auto when the func ends</code></pre>
+
+<p>In contrast, mem that we manage directly is not auto freed when an exception occurs. If we use built-in ptrs to manage mem and an exception occurs after a <code>new</code> but before the crspding <code>delete</code>, then that mem won&#39;t be freed:</p>
+
+<pre><code class="language-cpp">void f {
+    int *ip = nw int(42);   //dynamically allocate a new obj
+    //code that throws an exception that is not caught inside f
+    delete ip;              //free the mem before exiting
+}</code></pre>
+
+<p>Classes that allocate resources - and that don&#39;t define dstrs to free those rscs - can be subject to the same kind of errors that arise when we use dynamic memory. It is easy to forget to release the rscs. Similarly, if an exception happens between when the rscs is allocated and when it is freed, the program will leak that rsc.</p>
+
+<pre><code class="language-cpp">struct destination;                 //represents what we are connecting to
+struct connection;                  //info needed to use the connection
+
+connection connect(destination*);   //open the connection
+void disconnect(connection);        //close the given conn
+
+void f(destination &amp;d /* other paras */){
+    //get a conn; must remember to close it when done
+    connection c = connect(&amp;d);
+    //use the connection
+    //if we forget to call disconnect, there will be noway to close c
+}</code></pre>
+
+<p>If <code>connection</code> had a dstr, that dstr would auto close the connection when <code>f</code> completes. However, no dstr is provided.</p>
+
+<p>We can use <code>shared_ptr</code> to ensure that the <code>connection</code> is properly closed, by using our own deletion code.</p>
+
+<pre><code class="language-cpp">void end_connection(connection *p) { disconnect(*p); }
+
+void f(destination &amp;d /* other paras */){
+    //get a conn; must remember to close it when done
+    connection c = connect(&amp;d);
+    shared_ptr&lt;connection&gt; p(&amp;c, end_connection);
+    //use the connection
+    //if we forget to call disconnect, there will be noway to close c
+}</code></pre>
+
+<h2 id="toc_13"><a name="unique-ptr"></a> 4. unique_ptr <a href="#top">&uarr;top</a></h2>
+
+<p>A <code>unique_ptr</code> &quot;owns&quot; the obj to which it points. Unlike <code>shared_ptr</code>, only one <code>unique_ptr</code> at a time can point to a given obj. The obj to which a <code>unique_ptr</code> points is destroyed when the <code>unique_ptr</code> is destroyed.</p>
+
+<pre><code class="language-cpp">unique_ptr&lt;double&gt; p1;              //unique_ptr that can point at a double
+unique_ptr&lt;int&gt; p2(new int(42));    //p2 points to int with value 42</code></pre>
+
+<p>Because a <code>unique_ptr</code> owns the obj to which it points, it <u>does not support ordinary copy or assignment</u>:</p>
+
+<pre><code class="language-cpp">unique_ptr&lt;string&gt; p1(new string(&quot;abcd&quot;));
+unique_ptr&lt;string&gt; p2(p1);  //ERROR: no copy for unique_ptr
+unique_ptr&lt;string&gt; p3;
+p3 = p2;                    //ERROR: no assign for unique_ptr</code></pre>
+
+<p>Although we can&#39;t copy or assign <code>unique_ptr</code>, we <u>can transfer ownership from one (nonconst) <code>unique_ptr</code> to another by calling <code>release</code> or <code>reset</code></u>:</p>
+
+<pre><code class="language-cpp">//transfers ownership from p1 (which points to the string) to p2
+unique_ptr&lt;string&gt; p2(p1.release());    //release makes p1 null
+unique_ptr&lt;string&gt; p3(new string(&quot;Trex&quot;));
+//transfers ownership from p3 to p2
+p2.reset(p3.release());     //reset deletes the mem to which p2 had pointed</code></pre>
+
+<p>The <code>release</code> returns the ptr currently stored in the <code>unique_ptr</code> and makes that <code>unique_ptr</code> null; thus, p2 is inited from the ptr value that had been stored in p1 and p1 becomes null. The <code>reset</code> takes an optional ptr and repositions the <code>unique_ptr</code> to point to the given ptr. If the <code>unique_ptr</code> is not null, then the obj to which the <code>unique_ptr</code> had pointed is deleted. The call to <code>reset</code> on p2, therefore, frees the mem used by the string inited from &quot;abcd&quot;, transfers p3&#39;s ptr to p2, and makes p3 null.</p>
+
+<p>Calling <code>release</code> breaks the connection bt a <code>unique_ptr</code> and the obj it had been managing. The return is usually used to init or assign another smart ptr; if no smart ptr to hold the return, then the program takes over responsibility for freeing that rsc:</p>
+
+<pre><code class="language-cpp">p2.release();           //WRONG: p2 won&#39;t free the mem and we&#39;ve lost the ptr
+auto p = p2.release();  //OK, but we must remeber to delete(p)</code></pre>
+
+<h3 id="toc_14">(i) passing and returning unique_ptrs</h3>
+
+<p>There&#39;s one exception to the rule that we cannot copy a <code>unique_ptr</code>: <strong>we can copy or assign a unique_ptr that is about to be destroyed</strong>.</p>
+
+<pre><code class="language-cpp">unique_ptr&lt;int&gt; clone(int p) {
+    //OK: explicitly create a unique_ptr&lt;int&gt; from int*
+    return unique_ptr&lt;int&gt;(new int(p));
+}
+
+unique_ptr&lt;int&gt; clone(int p) {
+    unique_ptr&lt;int&gt; ret(new int(p));
+    // ...
+    return ret;
+}</code></pre>
+
+<p>In both cases, the compiler knows that the obj being returned is about to be destroyed, and hence, the compiler does a special kind of &quot;copy&quot;.</p>
+
+<h3 id="toc_15">(ii) passing a deleter to unique_ptr</h3>
+
+<p>overriding the deleter in a <code>unique_ptr</code> affects the <code>unique_ptr</code> type as well as we construct (or <code>reset</code>) objs of that type.</p>
+
+<pre><code class="language-cpp">//p points to an obj of type objT and uses an obj of type delT to free that obj
+//it will call an obj named fcn of type delT
+unique_ptr&lt;objT, delT&gt; p(new objT, fcn);
+
+void f(destination &amp;d /* other paras */){
+    connection c = connect(&amp;d); //open the conn
+    //when p is destroyed, the conn will be closed
+    unique_ptr&lt;connection, decltype(end_connection)*&gt;
+        p(&amp;c, end_connection);
+    //use the connection
+    //when f exits, even if by an exception, the conn will be properly closed
+}</code></pre>
+
+<h2 id="toc_16"><a name="weak-ptr"></a> 5. weak_ptr <a href="#top">&uarr;top</a></h2>
+
+<p>A <strong>weak_ptr</strong> is a smart ptr that does not control the lifetime of the obj to which it points. Instead, a <code>weak_ptr</code> points to an obj that is managed by a <code>shared_ptr</code>. Binding a <code>weak_ptr</code> to a <code>shared_ptr</code> does not change the ref count of that <code>shared_ptr</code>. Once the last <code>shared_ptr</code> pointing to the obj goes away, the obj itself will be deleted. The obj will be deleted even if there are <code>weak_ptr</code> pointing to it.</p>
+
+<pre><code class="language-cpp">auto p = make_shared&lt;int&gt;(42);
+weak_ptr&lt;int&gt; wp(p);    //wp weakly shares with p; use count in p is unchanged</code></pre>
+
+<p>Because the obj might no longer exist, we cannot use a <code>weak_ptr</code> to access its obj directly. To access the obj, we must call <code>lock</code>, which checks whether the obj to which the <code>weak_ptr</code> points still exists. if so, <code>lock</code> returns a <code>shared_ptr</code> to the shared obj.</p>
+
+<pre><code class="language-cpp">if(shared_ptr&lt;int&gt; np = wp.lock()) { //true if np is not null
+    //inside the if, np shares its obj with p
+}</code></pre>
+
+<h2 id="toc_17"><a name="array"></a> 6. Dynamic arrays <a href="#top">&uarr;top</a></h2>
+
+<p>The language and library provide two ways to allocate an array of objects at once. The language defines a second kind of <code>new</code> expr that allocates and initializes an array of objs; the library includs a template class named <code>allocator</code> that lets us separate allocation from initialization.</p>
+
+<h3 id="toc_18">new and arrays</h3>
+
+<p><code>new</code> allocates the requested number of objs and returns a ptr to the first one, instead getting an obj of array type:</p>
+
+<pre><code class="language-cpp">//call get_size to determine how many ints to allocate
+int *pia = new int[get_size()];     //pia points to the 1st of these ints
+
+//can also allocate using a type alias
+typedef int arrT[42];               //arrT names the type arr of 42 ints
+int *p = new arrT;                  //allocates an arr of 42 ints
+//compiler executes as if we had written int *p = new int[42];</code></pre>
+
+<p>initializing an array of dynamically allocated objects:</p>
+
+<pre><code class="language-cpp">int *pia = new int[10];             //block of ten uninited ints
+int *pia2 = new int[10];            //block of ten ints value inited to 0
+string *psa = new string[10];       //block of ten empty strings
+string *psa2 = new string[10]();    //ditto
+
+//block of ten ints each inited from the crspding initializer
+int *pia3 = new int[10]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+//block of ten strings; first four are inited from the given initers
+//remaining elements are value inited
+string *psa3 = new string[10]{&quot;a&quot;, &quot;an&quot;, &quot;the&quot;, string(3, &#39;x&#39;)};</code></pre>
+
+<p><strong>freeing dynamic arrays</strong><br>
+Elements in an array are destroyed in reverse order, i.e., from last to first.</p>
+
+<pre><code class="language-cpp">delete p;                           //p must point to a dynamically allocated obj or be null
+delete [] pa;                       //pa must point to dynamically allocated arr or be null</code></pre>
+
+<p><strong>smart pointers and dynamic arrays</strong><br>
+The library provides a version of <code>unique_ptr</code> that can manage arrays allocated by new.</p>
+
+<pre><code class="language-cpp">//up points to an arr of ten uninited ints
+unique_ptr&lt;int[]&gt; up(new int[10]);
+up.release;                         //auto uses delete[] to destroy its ptr
+
+for(size_t i=0; i != 10; ++i)
+    up[i] = i;                      //assign a new value to each of the elems</code></pre>
+
+<p>unlike <code>unique_ptr</code>, <code>shared_ptr</code>s provide no direct support for managing a dynamic array, and we must provide our own deleter to manage:</p>
+
+<pre><code class="language-cpp">//to use a shared_ptr we must supply deleter
+shared_ptr&lt;int&gt; sp(new int[10], [](int *p) { delete[] p; });
+sp.reset();                         //uses the lambda to free the array
+
+//shared_ptrs don&#39;t have subscript operator and don&#39;t support ptr arithmetic
+for(size_t i=0; i != 10; ++i)
+    *(sp.get() + i) = i;            //use get to get a built-in ptr</code></pre>
+
+<h2 id="toc_19"><a name="alloc"></a> 7. Allocator <a href="#top">&uarr;top</a></h2>
+
+<p>In general, coupling allocation and construction can be wasteful:</p>
+
+<pre><code class="language-cpp">string *const p = new string[n];    //construct n empty strings
+string s;
+string *q = p;                      //q points to the first string
+while(cin &gt;&gt; s &amp;&amp; q != p+n)
+    *q++ = s;                       //assign a new value to *q
+const size_t size = q - p;          //remember how many strings we read
+//use the array
+delete[] p;                         //p points to an arr; must use delete[]</code></pre>
+
+<p>The <code>new</code> expr allocates and inits <code>n</code> strings, which might be larger than what we need. Moreover, for those objs we do use, we immediately assign new values over the previously inited strings. The elems that are used are written twice: first when the elems are default inited; and subsequently when we assign to them. More importantly, classes that do not have default cstrs cannot be dynamically allocated as array.</p>
+
+<h3 id="toc_20">allocator class</h3>
+
+<p>the library <strong>allocator</strong> class lets us separate allocation from construction. It provides type-aware allocation of raw, unconstructed, memory. </p>
+
+<ul>
+<li><strong>allocator<T> a</strong>: defines an allocator obj named <em>a</em> that can allocate mem for obj of type T;</li>
+<li><strong>a.allocate(n)</strong>: allocates raw, unconstructed mem to hold <em>n</em> objs of type T;</li>
+<li><strong>a.deallocate(p, n)</strong>: deallocates mem that held <em>n</em> objs of type T starting at the addr in the T* ptr <em>p</em>; <em>n</em> is the size requested when p was created. The user must run <code>destroy</code> on any objs that were constructed in this mem before calling <code>deallocate</code>;</li>
+<li><strong>a.construct(p, args)</strong>: <em>p</em> must be a ptr to type T that points to raw mem; <em>args</em> are passed to a cstr for type T, which is used to construct an obj in the mem pointed by <em>p</em>;</li>
+<li><strong>a.destroy(p)</strong>: runs the dstr on the obj pointed to by the T* ptr <em>p</em>.</li>
+</ul>
+
+<p>When an <code>allocator</code> obj allocates memory, it allocates mem that is appropriately sized and aligned to hold objs of the given type:</p>
+
+<pre><code class="language-cpp">allocator&lt;string&gt; alloc;            //obj that can allocate strings
+auto const p = alloc.allocate(n);   //allocate n unconstructed strings</code></pre>
+
+<p>The mem an allocator allocates is <em>unconstructed</em>. We must <code>construct</code> objects in order to use mem returned by <code>allocate</code>: </p>
+
+<pre><code class="language-cpp">auto q = p;                         //q will point to one past the last csted elem
+alloc.construct(q++);               //*q is the empty str
+alloc.construct(q++, 10, &#39;c&#39;);      //*q is cccccccccc
+alloc.construct(q++, &quot;hi&quot;);         //*q is hi!
+
+cout &lt;&lt; *p &lt;&lt; endl;                 //OK: uses the string output operator
+cout &lt;&lt; *q &lt;&lt; endl;                 //disaster: q points to unconstructed mem</code></pre>
+
+<p>when we&#39;re finished using the objs, we must destroy the elems we constructed, by calling <code>destroy</code> on each constructed elem:</p>
+
+<pre><code class="language-cpp">while (q != p)
+    alloc.destroy(--q);             //free the strings we actually allocated</code></pre>
+
+<p>once the elems have been destroyed, we can either reuse the mem to hold other strings or return the mem to the system. we free the mem by calling <code>deallocate</code>:</p>
+
+<pre><code class="language-cpp">alloc.deallocate(p, n);</code></pre>
+
+<p><strong>algorithms to copy and fill uninitialized memory</strong><br>
+As a companion to the <code>allocator</code> class, the library also defines two algs that can construct objs in uninited mem.</p>
+
+<ul>
+<li><strong>uninitialized_copy(b, e, b2)</strong>: copies elems from the input range denoted by iters <em>b</em> and <em>e</em> into unconstructed, raw mem denoted by the iter <em>b2</em>. The mem denoted by <em>b2</em> must be large enough to hold a copy of elemes in the input range.</li>
+<li><strong>uninitalized<em>copy</em>n(b, n, b2)</strong>: copies <em>n</em> elems starting from the one denoted by the iter <em>b</em> into raw mem starting at <em>b2</em>.</li>
+<li><strong>uninitalized_fill(b, e, t)</strong>: constructs objs in the range of raw mem denoted by iters <em>b</em> and <em>e</em> as a copy of <em>t</em>.</li>
+<li><strong>uninitalized<em>fill</em>n(b, n, t)</strong>: constructs an unsigned number <em>n</em> objs starting at <em>b</em> and <em>b</em> must denote unconstructed, raw mem large enough to hold hte given #objs.</li>
+</ul>
+
+<p>Assume we have a <code>vector</code> of <code>int</code>s that we want to copy into dynamic mem. We&#39;ll allocate mem for twice as many <code>int</code>s as are in the <code>vector</code>. We&#39;ll construct the first half of the newly allocated mem by copying elems from the orig <code>vector</code>, and construct elems in the second half by filling them with a given value:</p>
+
+<pre><code class="language-cpp">//allocate twice as many elems as vi holds
+auto p = alloc.allocate(vi.state() * 2);
+//construct elems starting at p as copies of elems in vi
+auto q = uninitialized_copy(vi.begin(), vi.end(), p);
+//init the remaining elems to 42
+uninitalized_fill_n(q, vi.size(), 42);</code></pre>
+
+<script type="text/javascript">
+var _self="undefined"!=typeof window?window:"undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?self:{},Prism=function(){var e=/\blang(?:uage)?-(?!\*)(\w+)\b/i,t=_self.Prism={util:{encode:function(e){return e instanceof n?new n(e.type,t.util.encode(e.content),e.alias):"Array"===t.util.type(e)?e.map(t.util.encode):e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/\u00a0/g," ")},type:function(e){return Object.prototype.toString.call(e).match(/\[object (\w+)\]/)[1]},clone:function(e){var n=t.util.type(e);switch(n){case"Object":var a={};for(var r in e)e.hasOwnProperty(r)&&(a[r]=t.util.clone(e[r]));return a;case"Array":return e.map&&e.map(function(e){return t.util.clone(e)})}return e}},languages:{extend:function(e,n){var a=t.util.clone(t.languages[e]);for(var r in n)a[r]=n[r];return a},insertBefore:function(e,n,a,r){r=r||t.languages;var l=r[e];if(2==arguments.length){a=arguments[1];for(var i in a)a.hasOwnProperty(i)&&(l[i]=a[i]);return l}var o={};for(var s in l)if(l.hasOwnProperty(s)){if(s==n)for(var i in a)a.hasOwnProperty(i)&&(o[i]=a[i]);o[s]=l[s]}return t.languages.DFS(t.languages,function(t,n){n===r[e]&&t!=e&&(this[t]=o)}),r[e]=o},DFS:function(e,n,a){for(var r in e)e.hasOwnProperty(r)&&(n.call(e,r,e[r],a||r),"Object"===t.util.type(e[r])?t.languages.DFS(e[r],n):"Array"===t.util.type(e[r])&&t.languages.DFS(e[r],n,r))}},plugins:{},highlightAll:function(e,n){for(var a,r=document.querySelectorAll('code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'),l=0;a=r[l++];)t.highlightElement(a,e===!0,n)},highlightElement:function(n,a,r){for(var l,i,o=n;o&&!e.test(o.className);)o=o.parentNode;o&&(l=(o.className.match(e)||[,""])[1],i=t.languages[l]),n.className=n.className.replace(e,"").replace(/\s+/g," ")+" language-"+l,o=n.parentNode,/pre/i.test(o.nodeName)&&(o.className=o.className.replace(e,"").replace(/\s+/g," ")+" language-"+l);var s=n.textContent,u={element:n,language:l,grammar:i,code:s};if(!s||!i)return t.hooks.run("complete",u),void 0;if(t.hooks.run("before-highlight",u),a&&_self.Worker){var g=new Worker(t.filename);g.onmessage=function(e){u.highlightedCode=e.data,t.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(u.element),t.hooks.run("after-highlight",u),t.hooks.run("complete",u)},g.postMessage(JSON.stringify({language:u.language,code:u.code,immediateClose:!0}))}else u.highlightedCode=t.highlight(u.code,u.grammar,u.language),t.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(n),t.hooks.run("after-highlight",u),t.hooks.run("complete",u)},highlight:function(e,a,r){var l=t.tokenize(e,a);return n.stringify(t.util.encode(l),r)},tokenize:function(e,n){var a=t.Token,r=[e],l=n.rest;if(l){for(var i in l)n[i]=l[i];delete n.rest}e:for(var i in n)if(n.hasOwnProperty(i)&&n[i]){var o=n[i];o="Array"===t.util.type(o)?o:[o];for(var s=0;s<o.length;++s){var u=o[s],g=u.inside,c=!!u.lookbehind,f=0,h=u.alias;u=u.pattern||u;for(var p=0;p<r.length;p++){var d=r[p];if(r.length>e.length)break e;if(!(d instanceof a)){u.lastIndex=0;var m=u.exec(d);if(m){c&&(f=m[1].length);var y=m.index-1+f,m=m[0].slice(f),v=m.length,k=y+v,b=d.slice(0,y+1),w=d.slice(k+1),P=[p,1];b&&P.push(b);var A=new a(i,g?t.tokenize(m,g):m,h);P.push(A),w&&P.push(w),Array.prototype.splice.apply(r,P)}}}}}return r},hooks:{all:{},add:function(e,n){var a=t.hooks.all;a[e]=a[e]||[],a[e].push(n)},run:function(e,n){var a=t.hooks.all[e];if(a&&a.length)for(var r,l=0;r=a[l++];)r(n)}}},n=t.Token=function(e,t,n){this.type=e,this.content=t,this.alias=n};if(n.stringify=function(e,a,r){if("string"==typeof e)return e;if("Array"===t.util.type(e))return e.map(function(t){return n.stringify(t,a,e)}).join("");var l={type:e.type,content:n.stringify(e.content,a,r),tag:"span",classes:["token",e.type],attributes:{},language:a,parent:r};if("comment"==l.type&&(l.attributes.spellcheck="true"),e.alias){var i="Array"===t.util.type(e.alias)?e.alias:[e.alias];Array.prototype.push.apply(l.classes,i)}t.hooks.run("wrap",l);var o="";for(var s in l.attributes)o+=(o?" ":"")+s+'="'+(l.attributes[s]||"")+'"';return"<"+l.tag+' class="'+l.classes.join(" ")+'" '+o+">"+l.content+"</"+l.tag+">"},!_self.document)return _self.addEventListener?(_self.addEventListener("message",function(e){var n=JSON.parse(e.data),a=n.language,r=n.code,l=n.immediateClose;_self.postMessage(t.highlight(r,t.languages[a],a)),l&&_self.close()},!1),_self.Prism):_self.Prism;var a=document.getElementsByTagName("script");return a=a[a.length-1],a&&(t.filename=a.src,document.addEventListener&&!a.hasAttribute("data-manual")&&document.addEventListener("DOMContentLoaded",t.highlightAll)),_self.Prism}();"undefined"!=typeof module&&module.exports&&(module.exports=Prism),"undefined"!=typeof global&&(global.Prism=Prism);
+</script>
+<script type="text/javascript">
+Prism.languages.clike={comment:[{pattern:/(^|[^\\])\/\*[\w\W]*?\*\//,lookbehind:!0},{pattern:/(^|[^\\:])\/\/.*/,lookbehind:!0}],string:/(["'])(\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,"class-name":{pattern:/((?:\b(?:class|interface|extends|implements|trait|instanceof|new)\s+)|(?:catch\s+\())[a-z0-9_\.\\]+/i,lookbehind:!0,inside:{punctuation:/(\.|\\)/}},keyword:/\b(if|else|while|do|for|return|in|instanceof|function|new|try|throw|catch|finally|null|break|continue)\b/,"boolean":/\b(true|false)\b/,"function":/[a-z0-9_]+(?=\()/i,number:/\b-?(?:0x[\da-f]+|\d*\.?\d+(?:e[+-]?\d+)?)\b/i,operator:/--?|\+\+?|!=?=?|<=?|>=?|==?=?|&&?|\|\|?|\?|\*|\/|~|\^|%/,punctuation:/[{}[\];(),.:]/};
+</script>
+<script type="text/javascript">
+Prism.languages.c=Prism.languages.extend("clike",{keyword:/\b(asm|typeof|inline|auto|break|case|char|const|continue|default|do|double|else|enum|extern|float|for|goto|if|int|long|register|return|short|signed|sizeof|static|struct|switch|typedef|union|unsigned|void|volatile|while)\b/,operator:/\-[>-]?|\+\+?|!=?|<<?=?|>>?=?|==?|&&?|\|?\||[~^%?*\/]/,number:/\b-?(?:0x[\da-f]+|\d*\.?\d+(?:e[+-]?\d+)?)[ful]*\b/i}),Prism.languages.insertBefore("c","string",{macro:{pattern:/(^\s*)#\s*[a-z]+([^\r\n\\]|\\.|\\(?:\r\n?|\n))*/im,lookbehind:!0,alias:"property",inside:{string:{pattern:/(#\s*include\s*)(<.+?>|("|')(\\?.)+?\3)/,lookbehind:!0},directive:{pattern:/(#\s*)\b(define|elif|else|endif|error|ifdef|ifndef|if|import|include|line|pragma|undef|using)\b/,lookbehind:!0,alias:"keyword"}}},constant:/\b(__FILE__|__LINE__|__DATE__|__TIME__|__TIMESTAMP__|__func__|EOF|NULL|stdin|stdout|stderr)\b/}),delete Prism.languages.c["class-name"],delete Prism.languages.c["boolean"];
+</script>
+<script type="text/javascript">
+Prism.languages.cpp=Prism.languages.extend("c",{keyword:/\b(alignas|alignof|asm|auto|bool|break|case|catch|char|char16_t|char32_t|class|compl|const|constexpr|const_cast|continue|decltype|default|delete|do|double|dynamic_cast|else|enum|explicit|export|extern|float|for|friend|goto|if|inline|int|long|mutable|namespace|new|noexcept|nullptr|operator|private|protected|public|register|reinterpret_cast|return|short|signed|sizeof|static|static_assert|static_cast|struct|switch|template|this|thread_local|throw|try|typedef|typeid|typename|union|unsigned|using|virtual|void|volatile|wchar_t|while)\b/,"boolean":/\b(true|false)\b/,operator:/[-+]{1,2}|!=?|<{1,2}=?|>{1,2}=?|\->|:{1,2}|={1,2}|\^|~|%|&{1,2}|\|?\||\?|\*|\/|\b(and|and_eq|bitand|bitor|not|not_eq|or|or_eq|xor|xor_eq)\b/}),Prism.languages.insertBefore("cpp","keyword",{"class-name":{pattern:/(class\s+)[a-z0-9_]+/i,lookbehind:!0}});
+</script>
+</body>
+
+</html>

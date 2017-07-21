@@ -1,0 +1,793 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title>C++11 Memory Model</title>
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+<style type="text/css">
+/**
+ * prism.js default theme for JavaScript, CSS and HTML
+ * Based on dabblet (http://dabblet.com)
+ * @author Lea Verou
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: black;
+	text-shadow: 0 1px white;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+@media print {
+	code[class*="language-"],
+	pre[class*="language-"] {
+		text-shadow: none;
+	}
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #f5f2f0;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: slategray;
+}
+
+.token.punctuation {
+	color: #999;
+}
+
+.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #905;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #690;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+	color: #a67f59;
+	background: hsla(0, 0%, 100%, .5);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+	color: #07a;
+}
+
+.token.function {
+	color: #DD4A68;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+	color: #e90;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+</style>
+</head>
+<body>
+<h1 id="toc_0"><a name="top"></a>Table of Contents</h1>
+
+<ol>
+<li><a href="#sc">Sequential consistency</a></li>
+<li><a href="#concurr">Concurrency needs sync</a></li>
+<li><a href="#ordering">Memory ordering is crucial</a></li>
+<li><a href="#order-tech">Ordering techniques</a></li>
+<li><a href="#layout">Object layout</a></li>
+<li><a href="#c++11">C++11 techniques</a></li>
+</ol>
+
+<h1 id="toc_1">C++11 Memory Model</h1>
+
+<p>A memory model, a.k.a <em>memory consistency model</em>, is a specification of the allowed behavior of multithreaded programs executing with shared memory [<a href="http://www.morganclaypool.com/doi/pdf/10.2200/S00346ED1V01Y201104CAC016">1</a>]. The most basic model is <em>sequential consistency</em> (SC), where all insructions from all threads (appear to) form a total order that is consistent with the <em>program order</em> on each thread [<a href="http://research.cs.wisc.edu/multifacet/papers/isca03_flight_data_recorder.pdf">2</a>].</p>
+
+<p>One of the most important features of C++11 is to provide a multithreading-aware memory model, which enables write multithreaded programs without relying on platform-specific extensions.</p>
+
+<p>[1] <a href="http://www.morganclaypool.com/doi/pdf/10.2200/S00346ED1V01Y201104CAC016">Memory consistency primer</a><br>
+[2] <a href="http://research.cs.wisc.edu/multifacet/papers/isca03_flight_data_recorder.pdf">Flight data recorder</a></p>
+
+<h2 id="toc_2">(1) <a name="sc"></a> Sequential consistency <a href="#top">&uarr;top</a></h2>
+
+<p>SC means that all threads agree on the order in which memory operations occured, and that order is consistent with the oder of operations in the program source code.  </p>
+
+<p>Some programming languages offer SC in multiprocessor environment. In C++11, you can declare all shared variables as C++11 atomic types with default memory ordering constraints. In Java, you can mark all shared variables as <code>volatile</code> [<a href="http://bartoszmilewski.com/2008/11/11/who-ordered-sequential-consistency/">1</a>] [<a href="http://preshing.com/20120612/an-introduction-to-lock-free-programming/#sequential-consistency">2</a>].  </p>
+
+<p>The compiler inserts additional instructions behind the scenes, e.g. memory fences, to enforce the order.</p>
+
+<pre><code class="language-cpp">std::atomic&lt;int&gt; x(0), y(0);
+
+//thread1
+x = 1;
+//thread2
+y = 1;
+
+//thread3
+if(x==1 &amp;&amp; y==0)
+    print (&quot;x first&quot;);
+//thread4
+if(y==1 &amp;&amp; x==0)
+    print (&quot;y first&quot;);</code></pre>
+
+<p>C++11 atomic types guarantee SC, and thus it must be impsbl to print both messages.</p>
+
+<p>[1] <a href="http://bartoszmilewski.com/2008/11/11/who-ordered-sequential-consistency/">Sequential consistency_1</a><br>
+[2] <a href="http://preshing.com/20120612/an-introduction-to-lock-free-programming/#sequential-consistency">Sequential consistency_2</a></p>
+
+<h2 id="toc_3">(2) <a name="concurr"></a> Concurrency needs sync <a href="#top">&uarr;top</a></h2>
+
+<p>For performance gains, modern CPUs often execute instructions out of order to fully utilize resources. Since the hardware enforces instructions integrity, we can never notice this in a single thread execution. However, for multiple threads, this can lead to unpredictable bahaviors [<a href="http://stackoverflow.com/questions/286629/what-is-a-memory-fence">4</a>].</p>
+
+<p>In multi-threaded execution, uncontrolled scheduling leads to data race, where results depend on the timing execution of the code. With some bad luck (i.e., context switches that occur at untimely points in the execution), we get the wrong result. [<a href="http://pages.cs.wisc.edu/%7Eremzi/OSTEP/threads-intro.pdf">1</a>]</p>
+
+<h3 id="toc_4">(i) mutual exclusion (<em>atomic</em>)</h3>
+
+<p>To achieve atomicity, we can ask hardware for a few useful instructions to build <strong>mutual exclusion</strong>, which guarantees that if one thread is executing within the critical section, the others will be prevented from doing so.</p>
+
+<h3 id="toc_5">(ii) waiting for another (<em>conditional variable</em>)</h3>
+
+<p>There are many cases where a thread continues its execution only when some <strong>condition</strong> is met. Thus, one thread must wait for another to complete some action before it continues. [<a href="http://pages.cs.wisc.edu/%7Eremzi/OSTEP/threads-cv.pdf">2</a>] [<a href="http://en.cppreference.com/w/cpp/thread/condition_variable">3</a>]</p>
+
+<p>[1] <a href="http://pages.cs.wisc.edu/%7Eremzi/OSTEP/threads-intro.pdf">OSTEP threads</a><br>
+[2] <a href="http://pages.cs.wisc.edu/%7Eremzi/OSTEP/threads-cv.pdf">OSTEP conditional variable</a><br>
+[3] <a href="http://en.cppreference.com/w/cpp/thread/condition_variable">Wiki conditional variable</a><br>
+[4] <a href="http://stackoverflow.com/questions/286629/what-is-a-memory-fence">Memory fence</a></p>
+
+<h2 id="toc_6">(3) <a name="ordering"></a> Memory ordering is crucial <a href="#top">&uarr;top</a></h2>
+
+<p>Memory operations ordering in default system is very relaxed, and a CPU has much freedom to reorder the operations, and compilers may also arrange the instructions it emits in any order it likes, provided it doesn&#39;t affect the apparent operation of the program.</p>
+
+<p><strong>In multi-threaded scenario, to avoid race conditions, ordering should be enforced among accesses from different threads</strong></p>
+
+<h3 id="toc_7">(i) CPU limited guarantees</h3>
+
+<ul>
+<li>on any given CPU, dependent memory accesses will be issued in order;</li>
+<li>overlapping loads and stores within a specific CPU will appear to be ordered within that CPU;</li>
+<li>overlapping memory accesses may be merged or discarded.</li>
+</ul>
+
+<h3 id="toc_8">(ii) code transformations</h3>
+
+<p>The CPUs and other devices in a system can use a variety of tricks to improve performance, including reordering, deferral and combination of memory operations; speculative loads; speculative branch prediction and various types of caching.</p>
+
+<p><strong>compiler optimizations</strong></p>
+
+<ul>
+<li>what compiler knows<br>
+--&gt; all memory operations <u><em>in this thread</em></u> and exactly what they do, including data dependencies;<br>
+--&gt; how to be conservative enough in the face of psbl aliasing</li>
+<li>what doesn&#39;t know<br>
+--&gt; which mem locs are &quot;mutable shared&quot; variables and could change asynchronously due to mem operation <u><em>in another thread</em></u><br>
+--&gt; how to be conservative enough in the face of psbl sharing</li>
+<li>solution: tell it
+--&gt; somehow identify the operations on &quot;mutable shared&quot; locations</li>
+</ul>
+
+<p><u><strong>Independent memory operations are effectively performed in random order, but this can be a problem for CPU-CPU interaction and for I/O, and hence we need ordering.</strong></u></p>
+
+<h3 id="toc_9">(iii) ordering is a contract</h3>
+
+<p>You promise: to correctly synchronize your program (no race conditions)<br>
+&quot;The system&quot; promises: to provide the illusion of executing the program you wrote</p>
+
+<h2 id="toc_10">(4) <a name="order-tech"></a> Ordering techniques <a href="#top">&uarr;top</a></h2>
+
+<p>To guarantee SC, you must consider how to prevent memory reordering. Ways can be <em>lightweight sync or fence</em>, <em>full fence</em>, or <em>acquire/release semantics</em>.</p>
+
+<p>A release store makes its <u><em>its prior accesses</em></u> visible to a thread performing an acquire load that <u><em>sees (pair with) that store</em></u>.</p>
+
+<p><strong>Automating acquire and release:</strong><br>
+--&gt; don&#39;t write fences by hand.<br>
+--&gt; do make the compiler write barriers for you by using &quot;critical region&quot; abstractions: Mutexes and <strong>std::atomic&lt;&gt;</strong> variables.  </p>
+
+<h3 id="toc_11">(i) #1: use mutexes</h3>
+
+<p>use mutex locks to protect code that reads/writes shared variables.<br>
+<em>Pros:</em><br>
+<em>Cons:</em> requires care on every use of the shared vars.</p>
+
+<pre><code class="language-cpp">//Lock acquire/release:
+mut_x.lock(); //&quot;acquire&quot; mut_x ==&gt; ld.acq mut_x
+... read/write x ...
+mut_x.unlock(); //&quot;release&quot; mut_x ==&gt; st.rel mut_x</code></pre>
+
+<h3 id="toc_12">(ii) #2: std::atomic&lt;&gt;</h3>
+
+<p>special atomic types are automically safe from reordering.<br>
+<em>Pros:</em> just tag the var, not every place it&#39;s used<br>
+<em>Cons:</em> writing correct atomics code is harder than it looks.  </p>
+
+<pre><code class="language-cpp">std::atomics: read=acquire, write=release
+while(whose_turn != me){} //read whose_turn ==&gt; ld.acq whose_turn
+... read/write x ...
+whose_turn = someone_else; //write whose_turn ==&gt; st.rel whose_turn</code></pre>
+
+<h3 id="toc_13">(iii) #3: fences &amp; ordered APIs</h3>
+
+<p>A memory fence/barrier is a class of instructions that enforces memory loads/stores occur in expected order. Different from high level mutexes and atomics, memory fences are <strong>hardware dependent</strong>.</p>
+
+<p><strong>Lock-free programming</strong><br>
+A lock-free program can never be stalled entirely by any single thread. The entire &quot;locking up&quot; can be in any way, e.g., deadlock, livelock, or even malicious scheduling decisions [<a href="http://preshing.com/20120612/an-introduction-to-lock-free-programming/#sequential-consistency">1</a>] [<a href="http://stackoverflow.com/questions/14011849/lock-free-multithreaded-programming">2</a>].</p>
+
+<p>[1] <a href="http://preshing.com/20120612/an-introduction-to-lock-free-programming/#sequential-consistency">Sequential consistency</a><br>
+[2] <a href="http://stackoverflow.com/questions/14011849/lock-free-multithreaded-programming">Lock free programming</a><br>
+[3] <a href="http://preshing.com/20120913/acquire-and-release-semantics/">Acquire and release semantics</a></p>
+
+<h2 id="toc_14">(5) <a name="layout"></a> Object layout <a href="#top">&uarr;top</a></h2>
+
+<p>All data in a C++ program is made up of <em>objects</em>, each of which is &quot;a region of storage&quot;.<br>
+Objects can be of simple fundamental type such as <em>int</em> or <em>float</em>, and they can also be instances of user-defined classes.<br>
+Whenever its type, an object is stored in one or more <em>memory locations</em>. Each such memory location is either an object (or subobject) of a scalar type such as <em>short</em> or <em>my_class*</em> or a sequence of adjacent [<a href="http://en.cppreference.com/w/cpp/language/bit_field">1</a>].  </p>
+
+<ul>
+<li>Every variable is an obj, including those that are members of other objs.</li>
+<li>Every obj occupies <em>at least one</em> mem loc.</li>
+<li>Variables of fundamental type (e.g., <em>int</em> or <em>char</em>) are <em>exactly one</em> mem loc, whatever their size, even if they&#39;re adjacent or part of an array.</li>
+<li>Adjacent bit fields are part of the same mem loc.</li>
+</ul>
+
+<p>Given two global variables <em>char c</em> and <em>char d</em>:</p>
+
+<pre><code class="language-cpp">//Thread 1
+{ lock_guard&lt;mutex&gt; lock(cMutex);
+  c = 1;
+}
+//Thread 2
+{ lock_guard&lt;mutex&gt; lock(dMutex);
+  d = 1;
+}</code></pre>
+
+<p>There is no race in ideal C++11, but it is psbl in real life (e.g., [<a href="https://software.intel.com/en-us/articles/avoiding-and-identifying-false-sharing-among-threads">2</a>] and adjacent bit-fields, as one object):</p>
+
+<pre><code class="language-cpp">//system lays out c then d contiguously
+char tmp[4]; //32-bit scratchpad
+memcpy(&amp;tmp[0], &amp;c, 4); //read 32b starting at c
+tmp[1] = 1; //set only bits of d
+memcpy(&amp;c, &amp;temp[0], 4); //write 32 bits back
+//thread 2 sliently also write to c without holding cMutex</code></pre>
+
+<p>[1] <a href="http://en.cppreference.com/w/cpp/language/bit_field">Bit field</a><br>
+[2] <a href="https://software.intel.com/en-us/articles/avoiding-and-identifying-false-sharing-among-threads">False sharing</a></p>
+
+<p><strong>Speculation and register allocation</strong></p>
+
+<ul>
+<li><p>speculation:<br>
+the system (compiler, CPU, cache, ...) speculates that a condition may be true (e.g., branch prediction), or has reason to believe that a condition is often true (e.g., it was true the last 100 times we executed this code)<br>
+To save time, we can optimistically start further execution based on that guess. If it&#39;s right, we saved time. If it&#39;s wrong, we have to undo any speculative work.</p>
+
+<pre><code class="language-cpp">if(cond)    |   {
+lock x      |    unique_lock&lt;mutex&gt; hold(mut, defer_lock)
+...         |     if(cond)
+if(cond)    |      hold.lock();
+use x       |    ...
+...         |     if(cond)
+if(cond)    |      use x
+unlock x    |    ...
+            |   }//as-if &quot;if(cond) hold.unlock()&quot;</code></pre>
+
+<p>The above general pattern is safe w.r.t C++11 MMs. But beware compiler bugs ...</p>
+
+<pre><code class="language-cpp">//x is a shared var
+if(cond)
+ x = 42;
+//cond is speculated to be true, rewrite code
+r1 = x;   //read what&#39;s there
+x = 42;   //oops: optimistic write is NOT conditional
+if(!cond) //check if we guessed wrong
+x = r1;   //oops: back-out write is NOT sc</code></pre></li>
+<li><p>register allocation</p></li>
+</ul>
+
+<p><strong>conditional locks</strong>:<br>
+--&gt; Problem: your code conditionally takes a lock, but your system has a <strong>bug</strong> that changes a conditional write to be unconditional.</p>
+
+<h2 id="toc_15">(6) <a name="c++11"></a> C++11 techniques <a href="#top">&uarr;top</a></h2>
+
+<h3 id="toc_16">(i) std::lock_guard</h3>
+
+<p>The class <em><a href="http://en.cppreference.com/w/cpp/thread/lock_guard">lock_guard</a></em> is a mutex wrapper that provides a convenient RAII-style mechanism for owning a mutex for the duration of a scoped block.<br>
+When a lock<em>guard object is created, it attempts to take ownership of the mutex it is given. When control leaves the scope in which the lock</em>guard object was created, the lock_guard is destructed and the mutex is released.</p>
+
+<pre><code class="language-cpp">#include &lt;thread&gt;
+#include &lt;mutex&gt;
+#include &lt;iostream&gt;
+
+int g_i = 0;
+std::mutex g_i_mutex; //protects g_i
+
+void safe_incremenet(){
+  std::lock_guard&lt;std::mutex&gt; lock(g_i_mutex);
+  ++ g_i;
+  std::cout &lt;&lt; std::this_thread::get_id() &lt;&lt; &quot;:&quot; &lt;&lt; g_i &lt;&lt; &#39;\n&#39;;
+  
+  //g_i_mutex is automically released when lock goes out of scope
+}
+
+int main(){
+  std::cout &lt;&lt; __func__ &lt;&lt; &quot;: &quot; &lt;&lt; g_i &lt;&lt; &#39;\n&#39;;
+  
+  std::thread t1(safe_increment);
+  std::thread t2(safe_increment);
+  
+  t1.join();
+  t2.join();
+  
+  std&lt;&lt;cout &lt;&lt; __func__ &lt;&lt; &quot;: &quot; &lt;&lt; g_i &lt;&lt; &#39;\n&#39;;
+}</code></pre>
+
+<h3 id="toc_17">(ii) Use <em>std::atomic</em> for concurrency</h3>
+
+<p>Instantiations of <em>std::atomic</em> template offer operations that are guaranteed to be seen as <em>atomic</em> by other threads. Once a <em>std::atomic</em> object has been constructed, operations on it behave as if they were inside a mutex-protected critical section, but the operations are generally implemented using special machine instructions that are more efficient than would be the case if a mutex were employed.</p>
+
+<pre><code class="language-cpp">std::atomic&lt;int&gt; ai(0); //init ai to 0
+ai = 10; //atomically set ai to 10
+std::cout &lt;&lt; ai; //atomically read ai&#39;s value
+++ai; //atomically increment ai to 11
+--ai; //atomically decrement ai to 10</code></pre>
+
+<p>During execution of these statements, other threads reading ai may see only values of 0, 10 or 11. No other values are possible (assume this is the only thread modifying ai).</p>
+
+<p><strong>std::atomic guarantees only that the read of ai is atomic, no guarantee that the entire statement proceeds atomically.</strong>  </p>
+
+<p>Between the time ai&#39;s value is read and the operator&lt;&lt; is invoked to write to the standard output, another thread may have modified ai&#39;s value.</p>
+
+<p><strong>once a std::atomic object has been constructed, all member functions on it, including those comprising RMW operations, are guaranteed to be seen by other threads as atomic</strong></p>
+
+<h3 id="toc_18">(iii) Inherently nonportable features</h3>
+
+<p>To support low-level programming, C++ defines some features that are machine specific.</p>
+
+<ul>
+<li><p><strong>Bit-fields</strong><br>
+A bit-field holds a specified number of bits, and the memory layout of a bit-field is machine dependent.</p></li>
+<li><p><strong>volatile</strong><br>
+The <em>volatile</em> keyword is a directive to the compiler that it should not perform optimizations on such objects.</p></li>
+</ul>
+
+<h1 id="toc_19">C++ threads</h1>
+
+<h2 id="toc_20">(1) Managing threads</h2>
+
+<h3 id="toc_21">(i) basic management</h3>
+
+<ul>
+<li><p>detach thread [<a href="http://www.cplusplus.com/reference/thread/thread/detach/">1</a>]<br>
+detaches the thread represented by the object from the calling thread, allowing them to execute independently from each other.<br>
+Both threads continue without blocking nor synchronizing in any way.<br>
+When either one ends execution, its resources are released.</p>
+
+<p>Calling detach() on a thread object leaves the thread to run in the background, and it can no longer be joined.</p></li>
+<li><p>join thread [<a href="http://www.cplusplus.com/reference/thread/thread/join/">2</a>]<br>
+The function returns when the thread execution has completed.</p></li>
+<li><p>transferring ownership of a thread
+<code>std::thread t2=std::move(t1)</code></p></li>
+</ul>
+
+<p>[1] <a href="http://www.cplusplus.com/reference/thread/thread/detach/">Thread detach</a><br>
+[2] <a href="http://www.cplusplus.com/reference/thread/thread/join/">Thread join</a></p>
+
+<pre><code class="language-cpp">//compile: -std=c++0x -pthread
+//the func we want to execute on the new thread
+void task1(string msg){
+    cout &lt;&lt; &quot;task1 says: &quot; &lt;&lt; msg;
+}
+
+int main(){
+    //constructs the new thread and runs it
+    //form: thread(Function&amp;&amp; f, Args&amp;&amp;... args);
+    thread t1(task1, &quot;Hello&quot;);
+    
+    //makes the main thread wait for the new thread to finish, then continue
+    t1.join();
+}</code></pre>
+
+<pre><code class="language-cpp">void pause_thread(int n){
+    std::this_thread::sleep_for (std::chrono::seconds(n));
+    std::cout &lt;&lt; &quot;pause of &quot; &lt;&lt; n &lt;&lt; &quot; seconds ended\n&quot;;
+}
+
+int main(){
+    std::cout &lt;&lt; &quot;spawning and detaching 3 threads ...\n&quot;;
+    std::thread(pause_thread, 1).detach();
+    std::thread(pause_thread, 2).detach();
+    std::thread(pause_thread, 3).detach();
+    
+    std::cout &lt;&lt; &quot;Done spawning thread.\n&quot;;
+    //give the detached threads time to finish, but no guarantee
+    pause_thread(5);
+    return 0;
+}</code></pre>
+
+<script type="text/javascript">
+var _self="undefined"!=typeof window?window:"undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?self:{},Prism=function(){var e=/\blang(?:uage)?-(?!\*)(\w+)\b/i,t=_self.Prism={util:{encode:function(e){return e instanceof n?new n(e.type,t.util.encode(e.content),e.alias):"Array"===t.util.type(e)?e.map(t.util.encode):e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/\u00a0/g," ")},type:function(e){return Object.prototype.toString.call(e).match(/\[object (\w+)\]/)[1]},clone:function(e){var n=t.util.type(e);switch(n){case"Object":var a={};for(var r in e)e.hasOwnProperty(r)&&(a[r]=t.util.clone(e[r]));return a;case"Array":return e.map&&e.map(function(e){return t.util.clone(e)})}return e}},languages:{extend:function(e,n){var a=t.util.clone(t.languages[e]);for(var r in n)a[r]=n[r];return a},insertBefore:function(e,n,a,r){r=r||t.languages;var l=r[e];if(2==arguments.length){a=arguments[1];for(var i in a)a.hasOwnProperty(i)&&(l[i]=a[i]);return l}var o={};for(var s in l)if(l.hasOwnProperty(s)){if(s==n)for(var i in a)a.hasOwnProperty(i)&&(o[i]=a[i]);o[s]=l[s]}return t.languages.DFS(t.languages,function(t,n){n===r[e]&&t!=e&&(this[t]=o)}),r[e]=o},DFS:function(e,n,a){for(var r in e)e.hasOwnProperty(r)&&(n.call(e,r,e[r],a||r),"Object"===t.util.type(e[r])?t.languages.DFS(e[r],n):"Array"===t.util.type(e[r])&&t.languages.DFS(e[r],n,r))}},plugins:{},highlightAll:function(e,n){for(var a,r=document.querySelectorAll('code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'),l=0;a=r[l++];)t.highlightElement(a,e===!0,n)},highlightElement:function(n,a,r){for(var l,i,o=n;o&&!e.test(o.className);)o=o.parentNode;o&&(l=(o.className.match(e)||[,""])[1],i=t.languages[l]),n.className=n.className.replace(e,"").replace(/\s+/g," ")+" language-"+l,o=n.parentNode,/pre/i.test(o.nodeName)&&(o.className=o.className.replace(e,"").replace(/\s+/g," ")+" language-"+l);var s=n.textContent,u={element:n,language:l,grammar:i,code:s};if(!s||!i)return t.hooks.run("complete",u),void 0;if(t.hooks.run("before-highlight",u),a&&_self.Worker){var g=new Worker(t.filename);g.onmessage=function(e){u.highlightedCode=e.data,t.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(u.element),t.hooks.run("after-highlight",u),t.hooks.run("complete",u)},g.postMessage(JSON.stringify({language:u.language,code:u.code,immediateClose:!0}))}else u.highlightedCode=t.highlight(u.code,u.grammar,u.language),t.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(n),t.hooks.run("after-highlight",u),t.hooks.run("complete",u)},highlight:function(e,a,r){var l=t.tokenize(e,a);return n.stringify(t.util.encode(l),r)},tokenize:function(e,n){var a=t.Token,r=[e],l=n.rest;if(l){for(var i in l)n[i]=l[i];delete n.rest}e:for(var i in n)if(n.hasOwnProperty(i)&&n[i]){var o=n[i];o="Array"===t.util.type(o)?o:[o];for(var s=0;s<o.length;++s){var u=o[s],g=u.inside,c=!!u.lookbehind,f=0,h=u.alias;u=u.pattern||u;for(var p=0;p<r.length;p++){var d=r[p];if(r.length>e.length)break e;if(!(d instanceof a)){u.lastIndex=0;var m=u.exec(d);if(m){c&&(f=m[1].length);var y=m.index-1+f,m=m[0].slice(f),v=m.length,k=y+v,b=d.slice(0,y+1),w=d.slice(k+1),P=[p,1];b&&P.push(b);var A=new a(i,g?t.tokenize(m,g):m,h);P.push(A),w&&P.push(w),Array.prototype.splice.apply(r,P)}}}}}return r},hooks:{all:{},add:function(e,n){var a=t.hooks.all;a[e]=a[e]||[],a[e].push(n)},run:function(e,n){var a=t.hooks.all[e];if(a&&a.length)for(var r,l=0;r=a[l++];)r(n)}}},n=t.Token=function(e,t,n){this.type=e,this.content=t,this.alias=n};if(n.stringify=function(e,a,r){if("string"==typeof e)return e;if("Array"===t.util.type(e))return e.map(function(t){return n.stringify(t,a,e)}).join("");var l={type:e.type,content:n.stringify(e.content,a,r),tag:"span",classes:["token",e.type],attributes:{},language:a,parent:r};if("comment"==l.type&&(l.attributes.spellcheck="true"),e.alias){var i="Array"===t.util.type(e.alias)?e.alias:[e.alias];Array.prototype.push.apply(l.classes,i)}t.hooks.run("wrap",l);var o="";for(var s in l.attributes)o+=(o?" ":"")+s+'="'+(l.attributes[s]||"")+'"';return"<"+l.tag+' class="'+l.classes.join(" ")+'" '+o+">"+l.content+"</"+l.tag+">"},!_self.document)return _self.addEventListener?(_self.addEventListener("message",function(e){var n=JSON.parse(e.data),a=n.language,r=n.code,l=n.immediateClose;_self.postMessage(t.highlight(r,t.languages[a],a)),l&&_self.close()},!1),_self.Prism):_self.Prism;var a=document.getElementsByTagName("script");return a=a[a.length-1],a&&(t.filename=a.src,document.addEventListener&&!a.hasAttribute("data-manual")&&document.addEventListener("DOMContentLoaded",t.highlightAll)),_self.Prism}();"undefined"!=typeof module&&module.exports&&(module.exports=Prism),"undefined"!=typeof global&&(global.Prism=Prism);
+</script>
+<script type="text/javascript">
+Prism.languages.clike={comment:[{pattern:/(^|[^\\])\/\*[\w\W]*?\*\//,lookbehind:!0},{pattern:/(^|[^\\:])\/\/.*/,lookbehind:!0}],string:/(["'])(\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,"class-name":{pattern:/((?:\b(?:class|interface|extends|implements|trait|instanceof|new)\s+)|(?:catch\s+\())[a-z0-9_\.\\]+/i,lookbehind:!0,inside:{punctuation:/(\.|\\)/}},keyword:/\b(if|else|while|do|for|return|in|instanceof|function|new|try|throw|catch|finally|null|break|continue)\b/,"boolean":/\b(true|false)\b/,"function":/[a-z0-9_]+(?=\()/i,number:/\b-?(?:0x[\da-f]+|\d*\.?\d+(?:e[+-]?\d+)?)\b/i,operator:/--?|\+\+?|!=?=?|<=?|>=?|==?=?|&&?|\|\|?|\?|\*|\/|~|\^|%/,punctuation:/[{}[\];(),.:]/};
+</script>
+<script type="text/javascript">
+Prism.languages.c=Prism.languages.extend("clike",{keyword:/\b(asm|typeof|inline|auto|break|case|char|const|continue|default|do|double|else|enum|extern|float|for|goto|if|int|long|register|return|short|signed|sizeof|static|struct|switch|typedef|union|unsigned|void|volatile|while)\b/,operator:/\-[>-]?|\+\+?|!=?|<<?=?|>>?=?|==?|&&?|\|?\||[~^%?*\/]/,number:/\b-?(?:0x[\da-f]+|\d*\.?\d+(?:e[+-]?\d+)?)[ful]*\b/i}),Prism.languages.insertBefore("c","string",{macro:{pattern:/(^\s*)#\s*[a-z]+([^\r\n\\]|\\.|\\(?:\r\n?|\n))*/im,lookbehind:!0,alias:"property",inside:{string:{pattern:/(#\s*include\s*)(<.+?>|("|')(\\?.)+?\3)/,lookbehind:!0},directive:{pattern:/(#\s*)\b(define|elif|else|endif|error|ifdef|ifndef|if|import|include|line|pragma|undef|using)\b/,lookbehind:!0,alias:"keyword"}}},constant:/\b(__FILE__|__LINE__|__DATE__|__TIME__|__TIMESTAMP__|__func__|EOF|NULL|stdin|stdout|stderr)\b/}),delete Prism.languages.c["class-name"],delete Prism.languages.c["boolean"];
+</script>
+<script type="text/javascript">
+Prism.languages.cpp=Prism.languages.extend("c",{keyword:/\b(alignas|alignof|asm|auto|bool|break|case|catch|char|char16_t|char32_t|class|compl|const|constexpr|const_cast|continue|decltype|default|delete|do|double|dynamic_cast|else|enum|explicit|export|extern|float|for|friend|goto|if|inline|int|long|mutable|namespace|new|noexcept|nullptr|operator|private|protected|public|register|reinterpret_cast|return|short|signed|sizeof|static|static_assert|static_cast|struct|switch|template|this|thread_local|throw|try|typedef|typeid|typename|union|unsigned|using|virtual|void|volatile|wchar_t|while)\b/,"boolean":/\b(true|false)\b/,operator:/[-+]{1,2}|!=?|<{1,2}=?|>{1,2}=?|\->|:{1,2}|={1,2}|\^|~|%|&{1,2}|\|?\||\?|\*|\/|\b(and|and_eq|bitand|bitor|not|not_eq|or|or_eq|xor|xor_eq)\b/}),Prism.languages.insertBefore("cpp","keyword",{"class-name":{pattern:/(class\s+)[a-z0-9_]+/i,lookbehind:!0}});
+</script>
+</body>
+
+</html>

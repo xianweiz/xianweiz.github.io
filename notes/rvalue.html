@@ -1,0 +1,782 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title>rvalue</title>
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+<style type="text/css">
+/**
+ * prism.js default theme for JavaScript, CSS and HTML
+ * Based on dabblet (http://dabblet.com)
+ * @author Lea Verou
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: black;
+	text-shadow: 0 1px white;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+@media print {
+	code[class*="language-"],
+	pre[class*="language-"] {
+		text-shadow: none;
+	}
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #f5f2f0;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: slategray;
+}
+
+.token.punctuation {
+	color: #999;
+}
+
+.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #905;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #690;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+	color: #a67f59;
+	background: hsla(0, 0%, 100%, .5);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+	color: #07a;
+}
+
+.token.function {
+	color: #DD4A68;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+	color: #e90;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+</style>
+</head>
+<body>
+<h1 id="toc_0"><a name="top"></a>Table of Contents</h1>
+
+<ol>
+<li><a href="#value">Lvalues and Rvalues</a></li>
+<li><a href="#reference">Lvalue and Rvalue Reference</a></li>
+<li><a href="#move-forward">std::move and std::forward</a></li>
+<li><a href="#move-obj">Moving Objects</a></li>
+</ol>
+
+<h2 id="toc_1">(1) <a name="value"></a> Lvalues and Rvalues <a href="#top">&uarr;top</a></h2>
+
+<p>Every expression in C++ is either an <strong>rvalue</strong> or an <strong>lvalue</strong>. Roughly speaking, when we use an obj as an <u>rvalue</u>, we use the obj&#39;s <u>value</u> (its contents). When we use an obj as an <u>lvalue</u>, we use the obj&#39;s identity (its <u>location</u> in memory).</p>
+
+<p>Operators differ as to whether they require lvalue or rvalue operands and as to whether they return lvalues or rvalues. We can use an lvalue when rvalue is required (the obj&#39;s contents/value will be used), but we cannot use an rvalue when an lvalue (i.e., a location) is required.</p>
+
+<ul>
+<li>Assignment (<strong>=</strong>) requires a (nonconst) lvalue as its left-hand operands and yields its left-hand operand as an lvalue.</li>
+<li><p>The address-of operator (<strong>&amp;</strong>) requires an lvalue operand and returns a ptr to its operand as an rvalue.</p>
+
+<pre><code class="language-cpp">int ival = 42;
+int *p = &amp;ival;</code></pre></li>
+<li><p>The built-in dereference (<strong>*p</strong>) and subscript operators (<strong>arr[1]</strong>) and the iterator dereference (<strong>*it</strong>) and string (<strong>s[0]</strong>) and vector subscript (<strong>vec[n]</strong>) operators all yield lvalues.</p></li>
+<li><p>The built-in (<strong>++i</strong>) and iterator (<strong>++it</strong>) increment and decrement operators require lvalue operands and the prefix versions also yield lvalues.</p></li>
+</ul>
+
+<p>Lvalues and rvalues also differ when we use with <strong>decltype</strong>. When <em>decltype</em> is applied to an expr (other than a var), the result is a ref type if the expr yields an lvalue.</p>
+
+<pre><code class="language-cpp">int *p;
+//deref yields an lvalue
+decltype(*p); //type is: int&amp;
+//addr-of yields an rvalue
+decltype(&amp;p); //type is: int**</code></pre>
+
+<p>Heuristic to determine whether an expr is an lvalue: <strong>usually is if u can take its addr</strong>. To the contrary, rvalues are values whose addr cannot be obtained by dereferencing them, either because they are literals or because they are temporary in nature (such as values returned by funcs or explicit cstr calls).</p>
+
+<p><strong>A parameter is always an lvalue, even if its type is an rvalue ref</strong>.</p>
+
+<h2 id="toc_2">(2) <a name="reference"></a> Lvalue and Rvalue Reference <a href="#top">&uarr;top</a></h2>
+
+<h3 id="toc_3">(i) lvalue/rvalue reference</h3>
+
+<p>We cannot bind regular ref, i.e., <strong>lvalue references</strong>, to expressions that require a conversion (two exceptions: <code>const int &amp;i = dval;</code> and <code>Base &amp;bf = derived</code>), to literals, or to expr that return an rvalue.</p>
+
+<pre><code class="language-cpp">//(1) Lvalue ref aliases an existing obj
+std::string s = &quot;Ex&quot;;
+std::string&amp; r1 = s;
+r1 += &quot;ample&quot;; //modifies s
+//(2) implements pass-by-ref in func calls
+void double_string(std::string&amp; s){
+    s += s;
+}
+std::string str = &quot;Test&quot;;
+double_string(str);
+//(3) when a func&#39;s return type is lvalue ref,
+// the func call expr becomes an lvalue expr
+char&amp; char_number(std::string&amp; s, std::size_t n){
+    return s.at(n); //returns a ref to char
+}
+std::string str = &quot;Test&quot;;
+char_number(str, 1) = &#39;a&#39;; //func call is lvalue</code></pre>
+
+<p>An <strong>rvalue reference</strong> is an reference that must be bound to an rvalue. Like any ref, an rvalue ref is just an alias for an obj.</p>
+
+<p>Rvalue refs have the <strong>opposite</strong> binding properties: we can bind an rvalue ref to these kinds of exprs, but we cannot directly bind an rvalue ref to an lvalue.</p>
+
+<pre><code class="language-cpp">int i = 42;
+int &amp;r = i; //OK: r refers to i
+int &amp;&amp;rr = i; //ERROR: cannot bind rvalue ref to an lval
+int &amp;r2 = i * 42; //ERROR: i*42 is an rvalue
+const int &amp;r3 = i * 42; //OK: can bind a ref to const to rval
+int &amp;&amp;rr2 = i * 42; //OK: bind rr2 to the rst</code></pre>
+
+<p>When a func has both rvalue ref and lvalue ref overloads, the rvalue ref overload binds to rvalues, while the lvalue ref overload binds to lvalues.</p>
+
+<pre><code class="language-cpp">void f(int&amp; x){
+    std::cout &lt;&lt; &quot;lvalue ref overload f(&quot; &lt;&lt; x &lt;&lt; &quot;)\n&quot;;
+}
+void f(const int&amp; x){
+    std::cout &lt;&lt; &quot;lvalue ref to const overload f(&quot; &lt;&lt; x &lt;&lt; &quot;)\n&quot;;
+}
+void f(int&amp;&amp; x){
+        std::cout &lt;&lt; &quot;rvalue ref overload f(&quot; &lt;&lt; x &lt;&lt; &quot;)\n&quot;;
+}
+
+int main(){
+    int i = 1;
+    const int ci = 2;
+    f(i); //calls f(int&amp;)
+    f(ci); //calls f(const int&amp;)
+    f(3); //calls f(int&amp;&amp;)
+          //would call f(const int&amp;) if no f(int&amp;&amp;)
+}</code></pre>
+
+<p><strong>A variable is an lvalue; we cannot directly bind an rvalue ref to a var even if that var was defined as an rvalue ref type</strong>.</p>
+
+<h3 id="toc_4">(ii) universal reference</h3>
+
+<p>To declare an rvalue ref to some type T, we write <strong>T&amp;&amp;</strong>, but T&amp;&amp; is not always rvalue ref:</p>
+
+<pre><code class="language-cpp">void f(Widget&amp;&amp; param);     //rvalue ref
+Widget&amp;&amp; var1 = Widget();   //rvalue ref
+auto&amp;&amp; var2 = var1;         //NOT rvalue ref
+template&lt;typename T&gt;
+void f(std::vector&lt;T&gt;&amp;&amp; param); //rvalue ref
+template&lt;typename T&gt;
+void f(T&amp;&amp; param);          //NOT rvalue ref</code></pre>
+
+<p>T&amp;&amp; has two different meanings:  </p>
+
+<ul>
+<li><strong>rvalue reference</strong>: such refs bind only to rvalues, and primarily used to identify objs that may be moved from.</li>
+<li><strong>universal reference</strong>: can be either lvalue ref or rvalue ref.</li>
+</ul>
+
+<h2 id="toc_5">(3) <a name="move-forward"></a> std::move and std::forward <a href="#top">&uarr;top</a></h2>
+
+<p>Although we cannot directly bind an rvalue ref to an lvalue, we can <u>explicitly cast an lvalue to its corresponding rvalue ref type</u>; we can also <u>obtain an rvalue ref bound to an lvalue by calling a new library func named <strong>move</strong></u>.</p>
+
+<pre><code class="language-cpp">int&amp;&amp; rr1 = 42; //OK: literals are rvals, but var is lval
+int&amp;&amp; rr3 = std::move(rr1); //OK: return rval ref </code></pre>
+
+<p><em>std::move(arg)</em> returns an rvalue reference to arg; the func return is the same as</p>
+
+<pre><code class="language-cpp">static_cast&lt;remove_reference&lt;decltype(arg)&gt;::type&amp;&amp;&gt;(arg);</code></pre>
+
+<p><strong>std::move</strong> and <strong>std::forward</strong> are merely funcs (actually func templates) that perform casts, <u>std::move</u> unconditionally casts its argument to an <u>rvalue</u>, while <u>std::forward</u> performs this cast only if a particular <u>cond</u> is fulfilled. </p>
+
+<ul>
+<li>don&#39;t declare objs <em>const</em> if u wanna be able to move from them. <strong>Move requests on const objs are silently transformed into copy operations</strong>.</li>
+<li>std::move not only doesn&#39;t actually move anything, it doesn&#39;t even guarantee that the obj it&#39;s casting will be eligible to be moved.</li>
+<li>the only thing know for sure is that <strong>the result of applying std::move to an obj is an rvalue</strong>.</li>
+</ul>
+
+<pre><code class="language-cpp">class Annotation {
+public:
+    explicit Annotation(const std::string text)
+    : value(std::move(text)) //&quot;move&quot; text into value
+    { ... }                  //code doesn&#39;t do what it seems to!
+    ...
+private:
+    std::string value;
+};</code></pre>
+
+<p>The code correctly sets the <em>value</em> to the contents of <em>text</em>, but <em>text</em> is not <u>moved</u> into <em>value</em>, it&#39;s copied. <em>text</em> is cast to <em>rvalue</em> by std::move, but <em>text</em> is declared to be <em>const std::string</em>, so before the cast, <em>text</em> is is an lvalue <em>const std::string</em>, and the rst of the cast is an rvalue <em>const std::string</em> (i.e., <strong>constness remains</strong>).</p>
+
+<p><u>How compiler determine which std::string constructor to call</u>:<br>
+std::move(text) returns a rvalue <em>const std::string</em>, which cannot be passed to <em>std::string</em>&#39;s move cstr, because the move cstr takes an rvalue ref to a non-const. However, the rvalue can be passed to the copy cstr, because <strong>an lvalue-ref-to-const is permitted to bind to a const value</strong>. Therefore, <em>copy</em> cstr is invoked, even though <em>text</em> has been cast to an rvalue!</p>
+
+<pre><code class="language-cpp">class string {//std::string is actually a
+public:       //typedef for std::basic_string&lt;char&gt;
+    ...
+    string(const string&amp; rhs); //copy cstr
+    string(string&amp;&amp; rhs);      //move cstr
+    ...
+};</code></pre>
+
+<p><strong>Moving a value out of an obj generally modifies the obj, so the language should not permit const objs to be passed to funcs, e.g., move cstrs, that could modify them</strong>.</p>
+
+<p><strong>std::forward</strong> is a <em>conditional</em> cast:</p>
+
+<pre><code class="language-cpp">void process(const Widget&amp; lvalArg); //process lvalues
+void process(Widget&amp;&amp; rvalArg);      //process rvalues
+
+template&lt;typename T&gt;
+void logAndProcess(T&amp;&amp; param) {
+    auto now = std::chrono::system_clock::now();
+    makeLogEntry(&quot;Calling &#39;process&#39;&quot;, now);
+    process(std::forward&lt;T&gt;(param));
+}
+----------
+Widget w;
+
+logAndProcess(w);            //call with lvalue
+logAndProcess(std::move(w)); //call with rvalue</code></pre>
+
+<p><em>process</em> is overloaded for rvalues and rvalues and we naturally expect that the rvalue to be forwarded to rvalue overload of <em>process</em>, but:<br>
+<em>param</em> is an lvalue, and every call to <em>process</em> inside <em>logAndProcess</em> will thus want to invoke the lvalue overload for process.</p>
+
+<p>To prevent this, we should use the conditional-cast <strong>std::forward</strong>: <u>it casts to an rvalue only if its arguments was initialized with an rvalue</u>. The init info is encoded in <em>logAndProcess</em>&#39;s template para T, then passed to std::forward, which recovers the encoded info.</p>
+
+<p><strong>Takeaways:</strong>  </p>
+
+<ul>
+<li>std::move performs an unconditional cast to an rvalue. In and of itself, it doesn&#39;t move anything.</li>
+<li>std::forward casts its argument to an rvalue only if that argument is bound to an rvalue.</li>
+<li>Neither std::move nor std::forward do anything at runtime.</li>
+</ul>
+
+<h2 id="toc_6">(3) <a name="move-obj"></a> Moving Objects <a href="#top">&uarr;top</a></h2>
+
+<h3 id="toc_7">(i) an example</h3>
+
+<pre><code class="language-cpp">void StrVec::reallocate(){
+    auto newcapacity = size() ? 2*size() : 1;
+    //allocate new memory
+    auto newdata = alloc.allocate(newcapacity);
+    //move the data from old mem to the new
+    auto dest = newdata; //points to the 1st free pos in new
+    auto elem = elements; //points to 1st ele in old
+    
+    for(size_t i=0; i!=size(); ++i)
+        alloc.construct(dest++, std::move(*elem++));
+    free(); //free the old space we&#39;ve moved the eles
+}</code></pre>
+
+<p>Calling <em>move</em> returns a rst that causes <em>construct</em> to use the <em>string</em> move cstr: the mem managed by those <em>string</em>s will not be copied; instead, each <em>string</em> we construct will <strong>take over ownership</strong> of the mem from the <em>string</em> to which <em>elem</em> points.  </p>
+
+<p>After moving the elements, we call <em>free</em> to destroy the old eles and free the old memory. The <em>string</em>s themselves no longer manage the mem to which they had pointed; responsibility for their data has been moved to the eles in the new StrVec mem. We don&#39;t know the value the <em>string</em>s in the old StrVec mem have, but we are guaranteed that it is safe to run the <em>string</em> dstr on these objs.</p>
+
+<ul>
+<li>In some cases, moving, rather than copying, the obj can provide a significant performance boost;</li>
+<li>Some classes have a resource (such as a ptr or an IO buffer) that may not be shared. Hence, objs of these types can&#39;t be copied but can be moved.</li>
+</ul>
+
+<p><strong>The library containers, string and shared_ptr classes support move as well as copy. The IO and unique_ptr classes can be moved but not copied</strong>.</p>
+
+<p><strong>Rvalue references refer to objs that are about to be destroyed. Hence, we an &quot;steal&quot; state from an obj bound to an rvalue ref</strong>.</p>
+
+<h3 id="toc_8">(ii) Move constructors and assignment</h3>
+
+<p>Move cstrs and asgnment operator are similar to the crspding copy operations, but they &quot;<strong>steal</strong>&quot; resources from their given obj rather than copy them.</p>
+
+<p>The move cstr must ensure that the moved-from obj is left in a state such that destroying the obj will be harmless. In paticular, once its resources are moved, the original obj must no longer point to those moved resources - responsibility for those resources has been assumed by the newly created obj.</p>
+
+<pre><code class="language-cpp">StrVec::StrVec(StrVec &amp;&amp;s) noexcept //move won&#39;t throw
+    //member initializers take over the rsc in s
+    : elements (s.elements), first_free (s.first_free)
+      , cap(s.cap) {
+        //leave s in a state in which it is safe to run dstr
+        s.elements = s.first_free = s.cap == nullptr;
+    }</code></pre>
+
+<p><strong>Move cstrs and move asgnment operators that cannot throw exceptions should be marked as noexcept (on both decl and def)</strong>.</p>
+
+<p><strong>After a move operation, the &quot;moved-from&quot; obj must remain a valid, destructible obj but users may make no assumptions about its value</strong>.</p>
+
+<h3 id="toc_9">(iii) synthesized move operations</h3>
+
+<p>Copy cstr and copy asgnment operator are <strong>always</strong> synthesized by the compiler, if we don&#39;t define our own. Differently, for some classes the compiler does not synthesize move operations <strong>at all</strong>: if a class defines its own copy cstr, copy-asgn operator, or dstr;</p>
+
+<p>The compiler synthesizes a move cstr or a move-asgn operator <strong>only if</strong> the class doesn&#39;t define any of its own copy-control members and if every nonstatic data member of the class can be moved.</p>
+
+<p>The compiler can move members of built-in type, and it can also move members of a class type if the member&#39;s class has the cspding move operation:</p>
+
+<pre><code class="language-cpp">//the compiler will synthesize the move ops for X &amp; hasX
+struct X {
+    int i;         //built-in type can be moved
+    std::string s; //string defines its own move op
+};
+struct hasX {
+    X mem;         //X has synthesized move ops
+};
+---------
+X x, x2 = std::move(x);       //uses the syned move cstr
+hasX hx, hx2 = std::move(hx); //uses syned move cstr</code></pre>
+
+<p><strong>Classes that define a move cstr or move-asgn operator must also define their own copy operations. Ow, those members are deleted by default</strong>.</p>
+
+<h3 id="toc_10">(iv) assignment and member funcs</h3>
+
+<pre><code class="language-cpp">class HasPtr {
+public:
+    //added move cstr
+    HasPtr (HasPtr &amp;&amp;p) noexcept
+    : ps(p.ps), i(p.i) { p.ps = 0; }
+    //asgnment op is bothe the move- &amp; copy- asgn op
+    HasPtr&amp; operator= (HasPtr rhs) {
+        swap(*this, rhs); return *this;
+    }
+};</code></pre>
+
+<p>The asgnment operator has a nonref para, which means that the para is copy initialized. This single asgnment op acts as both the copy- and move-asgnment op. Depending on the type of the argument, copy init uses either the copy cstr or the move cstr; <strong>lvalues are copied and rvalues are moved</strong>.</p>
+
+<pre><code class="language-cpp">hp = hp2;           //hp2 is an lvalue; copy cstr used
+//the move cstr copies the ptr from hp2, no mem alloc
+hp = std::move(hp2); //move cstr moves hp2</code></pre>
+
+<p>Member funcs other than cstrs and asgnment can benefit from providing both copy and move versions, one takes an <strong>lvalue reference to const</strong>, and the other takes an <strong>rvalue reference to nonconst</strong>:</p>
+
+<pre><code class="language-cpp">class StrVec {
+public:
+    void push_back(const std::string&amp;); //copy ele
+    void push_back(std::string&amp;&amp;);      //move ele
+};
+
+void StrVec::push_back(const string&amp; s){
+    chk_n_alloc();
+    //cst a copy of s
+    alloc.construct(first_free++, s);
+}
+void StrVec::push_back(string &amp;&amp;s){
+    chk_n_alloc();
+    alloc.construct(first_free++, std::move(s));
+}
+-----------
+StrVec vec;             //empty StrVec
+string s = &quot;some string&quot;;
+vec.push_back(s);      //calls const string &amp;
+vec.push_back(&quot;done&quot;); //calls string&amp;&amp;</code></pre>
+
+<p>Ordinarily, we can call a member func on an obj, regardless of whether that obj is an lvalue or an rvalue:</p>
+
+<pre><code class="language-cpp">string s1 = &quot;a value&quot;, s2 = &quot;another&quot;;
+auto n = (s1+s2).find(&#39;a&#39;);
+--------
+s1+s2 = &quot;wow&quot;;</code></pre>
+
+<p>To prevent such usage, we&#39;d like to force the left-hand operand to be lvalue by placing a <strong>reference qualifier</strong> after the para list:</p>
+
+<pre><code class="language-cpp">class Foo {
+public:
+    //may assign only to modifiable lvalues
+    Foo &amp;operator=(const Foo&amp;) &amp;;
+};
+Foo &amp;Foo::operator= (const Foo &amp;rhs) &amp;
+{
+    //do whatever is needed to assign rhs to this obj
+    return *this;
+}</code></pre>
+
+<p>The ref qualifier can be either <strong>&amp;</strong> or <strong>&amp;&amp;</strong>. Like the <em>const</em> qualifier, a ref qualifier may appear only on a (nonstatic) member func and must appear in both the decl and def of the func.</p>
+
+<script type="text/javascript">
+var _self="undefined"!=typeof window?window:"undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?self:{},Prism=function(){var e=/\blang(?:uage)?-(?!\*)(\w+)\b/i,t=_self.Prism={util:{encode:function(e){return e instanceof n?new n(e.type,t.util.encode(e.content),e.alias):"Array"===t.util.type(e)?e.map(t.util.encode):e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/\u00a0/g," ")},type:function(e){return Object.prototype.toString.call(e).match(/\[object (\w+)\]/)[1]},clone:function(e){var n=t.util.type(e);switch(n){case"Object":var a={};for(var r in e)e.hasOwnProperty(r)&&(a[r]=t.util.clone(e[r]));return a;case"Array":return e.map&&e.map(function(e){return t.util.clone(e)})}return e}},languages:{extend:function(e,n){var a=t.util.clone(t.languages[e]);for(var r in n)a[r]=n[r];return a},insertBefore:function(e,n,a,r){r=r||t.languages;var l=r[e];if(2==arguments.length){a=arguments[1];for(var i in a)a.hasOwnProperty(i)&&(l[i]=a[i]);return l}var o={};for(var s in l)if(l.hasOwnProperty(s)){if(s==n)for(var i in a)a.hasOwnProperty(i)&&(o[i]=a[i]);o[s]=l[s]}return t.languages.DFS(t.languages,function(t,n){n===r[e]&&t!=e&&(this[t]=o)}),r[e]=o},DFS:function(e,n,a){for(var r in e)e.hasOwnProperty(r)&&(n.call(e,r,e[r],a||r),"Object"===t.util.type(e[r])?t.languages.DFS(e[r],n):"Array"===t.util.type(e[r])&&t.languages.DFS(e[r],n,r))}},plugins:{},highlightAll:function(e,n){for(var a,r=document.querySelectorAll('code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'),l=0;a=r[l++];)t.highlightElement(a,e===!0,n)},highlightElement:function(n,a,r){for(var l,i,o=n;o&&!e.test(o.className);)o=o.parentNode;o&&(l=(o.className.match(e)||[,""])[1],i=t.languages[l]),n.className=n.className.replace(e,"").replace(/\s+/g," ")+" language-"+l,o=n.parentNode,/pre/i.test(o.nodeName)&&(o.className=o.className.replace(e,"").replace(/\s+/g," ")+" language-"+l);var s=n.textContent,u={element:n,language:l,grammar:i,code:s};if(!s||!i)return t.hooks.run("complete",u),void 0;if(t.hooks.run("before-highlight",u),a&&_self.Worker){var g=new Worker(t.filename);g.onmessage=function(e){u.highlightedCode=e.data,t.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(u.element),t.hooks.run("after-highlight",u),t.hooks.run("complete",u)},g.postMessage(JSON.stringify({language:u.language,code:u.code,immediateClose:!0}))}else u.highlightedCode=t.highlight(u.code,u.grammar,u.language),t.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(n),t.hooks.run("after-highlight",u),t.hooks.run("complete",u)},highlight:function(e,a,r){var l=t.tokenize(e,a);return n.stringify(t.util.encode(l),r)},tokenize:function(e,n){var a=t.Token,r=[e],l=n.rest;if(l){for(var i in l)n[i]=l[i];delete n.rest}e:for(var i in n)if(n.hasOwnProperty(i)&&n[i]){var o=n[i];o="Array"===t.util.type(o)?o:[o];for(var s=0;s<o.length;++s){var u=o[s],g=u.inside,c=!!u.lookbehind,f=0,h=u.alias;u=u.pattern||u;for(var p=0;p<r.length;p++){var d=r[p];if(r.length>e.length)break e;if(!(d instanceof a)){u.lastIndex=0;var m=u.exec(d);if(m){c&&(f=m[1].length);var y=m.index-1+f,m=m[0].slice(f),v=m.length,k=y+v,b=d.slice(0,y+1),w=d.slice(k+1),P=[p,1];b&&P.push(b);var A=new a(i,g?t.tokenize(m,g):m,h);P.push(A),w&&P.push(w),Array.prototype.splice.apply(r,P)}}}}}return r},hooks:{all:{},add:function(e,n){var a=t.hooks.all;a[e]=a[e]||[],a[e].push(n)},run:function(e,n){var a=t.hooks.all[e];if(a&&a.length)for(var r,l=0;r=a[l++];)r(n)}}},n=t.Token=function(e,t,n){this.type=e,this.content=t,this.alias=n};if(n.stringify=function(e,a,r){if("string"==typeof e)return e;if("Array"===t.util.type(e))return e.map(function(t){return n.stringify(t,a,e)}).join("");var l={type:e.type,content:n.stringify(e.content,a,r),tag:"span",classes:["token",e.type],attributes:{},language:a,parent:r};if("comment"==l.type&&(l.attributes.spellcheck="true"),e.alias){var i="Array"===t.util.type(e.alias)?e.alias:[e.alias];Array.prototype.push.apply(l.classes,i)}t.hooks.run("wrap",l);var o="";for(var s in l.attributes)o+=(o?" ":"")+s+'="'+(l.attributes[s]||"")+'"';return"<"+l.tag+' class="'+l.classes.join(" ")+'" '+o+">"+l.content+"</"+l.tag+">"},!_self.document)return _self.addEventListener?(_self.addEventListener("message",function(e){var n=JSON.parse(e.data),a=n.language,r=n.code,l=n.immediateClose;_self.postMessage(t.highlight(r,t.languages[a],a)),l&&_self.close()},!1),_self.Prism):_self.Prism;var a=document.getElementsByTagName("script");return a=a[a.length-1],a&&(t.filename=a.src,document.addEventListener&&!a.hasAttribute("data-manual")&&document.addEventListener("DOMContentLoaded",t.highlightAll)),_self.Prism}();"undefined"!=typeof module&&module.exports&&(module.exports=Prism),"undefined"!=typeof global&&(global.Prism=Prism);
+</script>
+<script type="text/javascript">
+Prism.languages.clike={comment:[{pattern:/(^|[^\\])\/\*[\w\W]*?\*\//,lookbehind:!0},{pattern:/(^|[^\\:])\/\/.*/,lookbehind:!0}],string:/(["'])(\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,"class-name":{pattern:/((?:\b(?:class|interface|extends|implements|trait|instanceof|new)\s+)|(?:catch\s+\())[a-z0-9_\.\\]+/i,lookbehind:!0,inside:{punctuation:/(\.|\\)/}},keyword:/\b(if|else|while|do|for|return|in|instanceof|function|new|try|throw|catch|finally|null|break|continue)\b/,"boolean":/\b(true|false)\b/,"function":/[a-z0-9_]+(?=\()/i,number:/\b-?(?:0x[\da-f]+|\d*\.?\d+(?:e[+-]?\d+)?)\b/i,operator:/--?|\+\+?|!=?=?|<=?|>=?|==?=?|&&?|\|\|?|\?|\*|\/|~|\^|%/,punctuation:/[{}[\];(),.:]/};
+</script>
+<script type="text/javascript">
+Prism.languages.c=Prism.languages.extend("clike",{keyword:/\b(asm|typeof|inline|auto|break|case|char|const|continue|default|do|double|else|enum|extern|float|for|goto|if|int|long|register|return|short|signed|sizeof|static|struct|switch|typedef|union|unsigned|void|volatile|while)\b/,operator:/\-[>-]?|\+\+?|!=?|<<?=?|>>?=?|==?|&&?|\|?\||[~^%?*\/]/,number:/\b-?(?:0x[\da-f]+|\d*\.?\d+(?:e[+-]?\d+)?)[ful]*\b/i}),Prism.languages.insertBefore("c","string",{macro:{pattern:/(^\s*)#\s*[a-z]+([^\r\n\\]|\\.|\\(?:\r\n?|\n))*/im,lookbehind:!0,alias:"property",inside:{string:{pattern:/(#\s*include\s*)(<.+?>|("|')(\\?.)+?\3)/,lookbehind:!0},directive:{pattern:/(#\s*)\b(define|elif|else|endif|error|ifdef|ifndef|if|import|include|line|pragma|undef|using)\b/,lookbehind:!0,alias:"keyword"}}},constant:/\b(__FILE__|__LINE__|__DATE__|__TIME__|__TIMESTAMP__|__func__|EOF|NULL|stdin|stdout|stderr)\b/}),delete Prism.languages.c["class-name"],delete Prism.languages.c["boolean"];
+</script>
+<script type="text/javascript">
+Prism.languages.cpp=Prism.languages.extend("c",{keyword:/\b(alignas|alignof|asm|auto|bool|break|case|catch|char|char16_t|char32_t|class|compl|const|constexpr|const_cast|continue|decltype|default|delete|do|double|dynamic_cast|else|enum|explicit|export|extern|float|for|friend|goto|if|inline|int|long|mutable|namespace|new|noexcept|nullptr|operator|private|protected|public|register|reinterpret_cast|return|short|signed|sizeof|static|static_assert|static_cast|struct|switch|template|this|thread_local|throw|try|typedef|typeid|typename|union|unsigned|using|virtual|void|volatile|wchar_t|while)\b/,"boolean":/\b(true|false)\b/,operator:/[-+]{1,2}|!=?|<{1,2}=?|>{1,2}=?|\->|:{1,2}|={1,2}|\^|~|%|&{1,2}|\|?\||\?|\*|\/|\b(and|and_eq|bitand|bitor|not|not_eq|or|or_eq|xor|xor_eq)\b/}),Prism.languages.insertBefore("cpp","keyword",{"class-name":{pattern:/(class\s+)[a-z0-9_]+/i,lookbehind:!0}});
+</script>
+</body>
+
+</html>

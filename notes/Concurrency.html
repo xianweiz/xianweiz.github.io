@@ -1,0 +1,1648 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title>Concurrency</title>
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+<style type="text/css">
+/**
+ * prism.js default theme for JavaScript, CSS and HTML
+ * Based on dabblet (http://dabblet.com)
+ * @author Lea Verou
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: black;
+	text-shadow: 0 1px white;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+@media print {
+	code[class*="language-"],
+	pre[class*="language-"] {
+		text-shadow: none;
+	}
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #f5f2f0;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: slategray;
+}
+
+.token.punctuation {
+	color: #999;
+}
+
+.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #905;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #690;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+	color: #a67f59;
+	background: hsla(0, 0%, 100%, .5);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+	color: #07a;
+}
+
+.token.function {
+	color: #DD4A68;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+	color: #e90;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+</style>
+</head>
+<body>
+<h1 id="toc_0">Concurrency</h1>
+
+<h2 id="toc_1">Table of contents</h2>
+
+<ol>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#fut-pro">future-promise</a></li>
+<li><a href="#packaged">std::packaged_task</a></li>
+<li><a href="#async">async()</a></li>
+<li><a href="#threads">Threads</a></li>
+<li><a href="#prob">Concurrency problem</a></li>
+<li><a href="#mut-lock">Mutex and locks</a></li>
+<li><a href="#cond">Conditional variables</a></li>
+<li><a href="#atomics">Atomics</a></li>
+</ol>
+
+<h2 id="toc_2"><a name="overview"></a> 1. Overview <a href="#top">&uarr;top</a></h2>
+
+<p>The C++11 standard library provides several mechanisms to support concurrency. The first is <strong><code>std::thread</code></strong>, which together with sync objects (<code>std::mutex</code>, <code>std::lock_guards</code> and <code>std::condition_variables</code>, etc) offers a <strong>thread-based</strong> approach to achieve concurrency. </p>
+
+<p>However, working at the level of threads and locks can be quite tricky, and thus a higher-level of abstraction, <strong>task-based</strong> concurrency, is also supported in C++11, in the form of promises and futures. <strong><code>std::promise&lt;T&gt;</code></strong> and <strong><code>std::future&lt;T&gt;</code></strong> work in pairs to separate the act of calling a func from the act of waiting for the call rsts.</p>
+
+<p>Class <strong><code>std::packaged_task&lt;T&gt;</code></strong> makes codes more readable; it is a container for a task and its promise. The template type is the type of the task func, and it automatically creates and manages a <code>std::promise&lt;T&gt;</code> for use.</p>
+
+<p>Things become much simpiler if we use the <strong><code>std::async()</code></strong> func, which hides all the implementation, platform specific details. It takes as input a callable object and returns a future that will contain the return value. </p>
+
+<h2 id="toc_3"><a name="fut-pro"></a> 2. future - promise <a href="#top">&uarr;top</a></h2>
+
+<h3 id="toc_4">(i) overview</h3>
+
+<figure>
+  <center>
+  <img src="para_img/task_para.png" alt="The Pulpit Rock" width="400">
+  <figcaption>Fig.1 - <b>Info flow of task-based concurrency</b>. </figcaption>
+  </center>
+</figure>
+
+<p>A <strong><code>std::promise&lt;T&gt;</code></strong> obj represents a result in the <em>callee</em>-side of the asynchronous call, and it is the channel for passing the result asynchronously to the caller. When the task completes, it puts its result into a promise object calling <code>promise::set_value</code>.</p>
+
+<p>When the caller finally needs to access the result, it will call the blocking <strong><code>future::get</code></strong> to retrieve it. If the task has already completed, the result will be immediately available, ow, the caller thread will suspend until the result becomes available.</p>
+
+<p>This <strong>shared state</strong> can be associated to a future object by calling member <code>get_future</code>. After the call, both objects share the same shared state:<br>
+- The <u>promise</u> object is the asynchronous <u>provider</u> and is expected to set a value for the shared state at some point.<br>
+- The <u>future</u> object is an asynchronous return object that can <u>retrieve</u> the value of the shared state, waiting for it to be ready, if necessary.</p>
+
+<pre><code class="language-cpp">#include &lt;vector&gt;
+#include &lt;thread&gt;
+#include &lt;future&gt;
+#include &lt;numeric&gt;
+#include &lt;iostream&gt;
+ 
+void accumulate(std::vector&lt;int&gt;::iterator first,
+                std::vector&lt;int&gt;::iterator last,
+                std::promise&lt;int&gt; accumulate_promise) {
+    int sum = std::accumulate(first, last, 0);
+    accumulate_promise.set_value(sum);  // Notify future
+}
+ 
+int main() {
+    std::vector&lt;int&gt; numbers = { 1, 2, 3, 4, 5, 6 };
+    //create promise
+    std::promise&lt;int&gt; accumulate_promise;
+    //engagement with future
+    std::future&lt;int&gt; accumulate_future = accumulate_promise.get_future();
+    
+    std::thread work_thread(accumulate, numbers.begin(), 
+                            numbers.end(), std::move(accumulate_promise));
+                            
+    accumulate_future.wait();           // wait for result
+    std::cout &lt;&lt; &quot;result=&quot; &lt;&lt; accumulate_future.get() &lt;&lt; &#39;\n&#39;;
+    work_thread.join();                 // wait for thread completion
+}</code></pre>
+
+<h3 id="toc_5">(ii) std::promise&lt;T&gt;</h3>
+
+<p>The class template <strong><code>std::promise</code></strong> provides a facility to store a value or an exception that is later acquired asyn via a <code>std::future</code> obj created by the <code>std::promise</code> obj. Each promise is associated with a shared state, which contains some state info and a result which may be not yet evaluated, to be a value or an exception.</p>
+
+<p>The promise is the &quot;push&quot; end of promise-future communication channel: the operation that stores a value in the shared state synchronizes-with the successful return from any func that is waiting on the shared state (e.g., <code>std::future::get</code>).</p>
+
+<ul>
+<li><strong><code>get_future</code></strong>: returns a future obj associated with the promised result;</li>
+<li><strong><code>set_value</code></strong>: atomically stores the result into the shared state and makes the state ready;</li>
+<li><strong><code>set_value_at_thread_exit</code></strong>: stores the value into the shared state without making the state ready immediately. The state is made ready when the current thread exits, after all variables with thread-local storage duration have been destroyed;</li>
+<li><p><strong><code>set_exception</code></strong>: atomically stores the exception ptr into the shared state and makes the state ready;</p>
+
+<pre><code class="language-cpp">std::promise&lt;int&gt; result;
+
+std::thread t([&amp;]{
+        try {
+            // code that may throw
+            throw std::runtime_error(&quot;Example&quot;);
+        } catch(...) {
+            try {
+                // store anything thrown in the promise
+                result.set_exception(std::current_exception());
+            } catch(...) {} // set_exception() may throw too
+        }
+});
+
+try {
+    std::cout &lt;&lt; result.get_future().get();
+} catch(const std::exception&amp; e) {
+    std::cout &lt;&lt; &quot;Exception from the thread: &quot; &lt;&lt; e.what() &lt;&lt; &#39;\n&#39;;
+}
+t.join();</code></pre></li>
+<li><p><strong><code>set_exception_at_thread_exit</code></strong>: similar to that of value.</p></li>
+</ul>
+
+<h3 id="toc_6">(iii) std::future&lt;T&gt;</h3>
+
+<p>The class template <code>std::future</code> provides a mechanism to access the result of asynchronous operations:</p>
+
+<ul>
+<li>an asynchronous operation (created via <code>std::async</code>, <code>std::packaged_task</code>, or <code>std::promise</code>) can provide a <code>std::future</code> obj to the creator of that asyn operation;</li>
+<li>the creator of the asyn operation can then use a variety of methods to query, wait for, or extract a value from the <code>std::future</code>. These methods may block if the asyn operation has not yet provided a value;</li>
+<li>when the asyn operation is ready to send a rst to the creater, it can do so by modifying <em>shared state</em> (e.g., <code>std::promise::set_value</code>) that is linked to the creator&#39;s <code>std::future</code>.</li>
+</ul>
+
+<p>Member functions:</p>
+
+<ul>
+<li><strong>get()</strong>: returns the result; you can call <code>get()</code> for <u>only once</u>, because <code>get()</code> invalidates the future&#39;s state;</li>
+<li><p><strong>share()</strong>: transfers the shared state from <code>*this</code> to a <code>shared_future</code> and returns it;</p>
+
+<pre><code class="language-cpp">int get_value() { return 10; }
+
+std::future&lt;int&gt; fut = std::async(get_value);
+std::shared_future&lt;int&gt; shfut = fut.share();
+
+//shared futures can be accessed multi times
+std::cout &lt;&lt; &quot;value: &quot; &lt;&lt; shfut.get() &lt;&lt; &#39;\n&#39;;
+std::cout &lt;&lt; &quot;its double: &quot; &lt;&lt; shfut.get()*2 &lt;&lt; &#39;\n&#39;;</code></pre></li>
+<li><p><strong>valid()</strong>: checks if the future has a shared state;</p></li>
+<li><p><strong>wait()</strong>: waits for the result to become available;</p></li>
+<li><p><strong>wait_for(timeout_duration)</strong>: waits for teh result to become available. Blocks until specified <code>timeout_duration</code> has elapsed or the result becomes available, whichever comes first. Returns value (<code>deferred</code>, <code>ready</code> or <code>timeout</code>) identifies the state of the result.</p>
+
+<pre><code class="language-cpp">std::future&lt;int&gt; future = std::async(std::launch::async,
+    [](){ std::this_thread::sleep_for(std::chrono::seconds(3));
+    return 8; });
+
+std::cout &lt;&lt; &quot;waiting ...\n&quot;;
+std::future_status status;
+do{
+    status = future.wait_for(std::chrono::seconds(1));
+    if (status == std::future_status::deferred) {
+        std::cout &lt;&lt; &quot;deferred\n&quot;;
+    } else if (status == std::future_status::timeout) {
+        std::cout &lt;&lt; &quot;timeout\n&quot;;
+    } else if (status == std::future_status::ready) {
+        std::cout &lt;&lt; &quot;ready!\n&quot;;
+    }
+} while (status != std::future_status::ready);
+
+std::cout &lt;&lt; &quot;result is &quot; &lt;&lt; future.get() &lt;&lt; &#39;\n&#39;;</code></pre></li>
+<li><p><strong>wait_util(timeout_time)</strong>: waits for the rst to become available. Similar to <code>wait_for</code>.</p>
+
+<pre><code class="language-cpp">//try to call func asynchronously
+std::future&lt;...&gt; f(std::async(func));
+...
+//wait-1
+f.wait();      //wait for func to be done (might start bkgd task)
+
+//wait-2: wait for a limited time
+f.wait_for(std::chrono::seconds(10));  //wait for at most 10 secs for func
+
+//wait-3: wait until a specific timepoint has reached
+f.wait_until(std::system::now()+std::chrono::minutes(1));</code></pre></li>
+</ul>
+
+<h2 id="toc_7"><a name="packaged"></a> 3. std::packaged_task <a href="#top">&uarr;top</a></h2>
+
+<p><strong><code>std::package_task</code></strong> wraps any callable (func, lambda, bind expr, or another func obj) so that it can be invoked asyn. Its return value or exception thrown is stored in a shared state which can be accessed through <code>std::future</code> objs.</p>
+
+<ul>
+<li><strong>get_future</strong>: returns a future associated with the promised result; <code>get_future</code> can be called only once for each packaged_task;</li>
+<li><strong>make_ready_at_thread_exit</strong>: executes the func ensuring that the rst is ready only after the current threads exits and all objs of thread local storage duration are destroyed;</li>
+<li><strong>reset</strong>: resets the state abandoning any stored rsts of prev executions</li>
+</ul>
+
+<pre><code class="language-cpp">// unique function to avoid disambiguating the std::pow overload set
+int f(int x, int y) { return std::pow(x,y); }
+ 
+void task_lambda() {
+    std::packaged_task&lt;int(int,int)&gt; task([](int a, int b) {
+        return std::pow(a, b); });
+    std::future&lt;int&gt; result = task.get_future();
+ 
+    task(2, 9);
+    std::cout &lt;&lt; &quot;task_lambda:\t&quot; &lt;&lt; result.get() &lt;&lt; &#39;\n&#39;;
+}
+ 
+void task_bind() {
+    std::packaged_task&lt;int()&gt; task(std::bind(f, 2, 11));
+    std::future&lt;int&gt; result = task.get_future();
+ 
+    task();
+    std::cout &lt;&lt; &quot;task_bind:\t&quot; &lt;&lt; result.get() &lt;&lt; &#39;\n&#39;;
+}
+ 
+void task_thread() {
+    std::packaged_task&lt;int(int,int)&gt; task(f);
+    std::future&lt;int&gt; result = task.get_future();
+ 
+    std::thread task_td(std::move(task), 2, 10);
+    task_td.join();
+ 
+    std::cout &lt;&lt; &quot;task_thread:\t&quot; &lt;&lt; result.get() &lt;&lt; &#39;\n&#39;;
+}
+ 
+int main() {
+    task_lambda();
+    task_bind();
+    task_thread();
+}</code></pre>
+
+<h2 id="toc_8"><a name="async"></a> 4. async() <a href="#top">&uarr;top</a></h2>
+
+<p>With <code>packaged_task</code>, we still have to manually create the threads to run the task, and decide on which thread the task will run. Things can be much simpler using the high-level <code>std::async()</code> interface.</p>
+
+<ul>
+<li><code>async()</code> provides an interface to let a piece of functionality, a callable obj, run in the background as a separate thread, if psbl;</li>
+<li>class <code>future&lt;&gt;</code> allows you to wait for the thread to be finished and provides access to its outcome: return value of exception, if any.</li>
+</ul>
+
+<h3 id="toc_9">(i) example</h3>
+
+<pre><code class="language-cpp">int doSomething (char c) {
+    //...
+    return c;
+}
+int func1 () {
+    return doSomething(&#39;.&#39;);
+}
+int func2 () {
+    return doSomething(&#39;+&#39;);
+}
+int main() {
+    //start func1 asynchronously (now or later or never)
+    std::future&lt;int&gt; result1(std::async(func1));
+    //call func2 synchronously (here and now)
+    int result2 = func2();
+    //print result (wait for func1() to finish and add its result to result2
+    int result = result1.get() + result2;
+    
+    cout &lt;&lt; result &lt;&lt; endl;
+}</code></pre>
+
+<p>instead of calling: <code>int result = func1() + func2();</code>, we call:</p>
+
+<pre><code class="language-cpp">std::future&lt;int&gt; result1(std::async(func1));
+int result2 = func2();
+int result = result1.get() + result2;</code></pre>
+
+<p><code>func1()</code> is tried to start in the background, using <code>std::async</code>, and assign the result to an obj of class <code>std::future</code>.</p>
+
+<p>With the call of <code>get()</code>, one of the three things might happen:</p>
+
+<ul>
+<li>if <code>func1()</code> was started with <code>async()</code> in a separate thread and has already finished, we immediately get its result;</li>
+<li>if <code>func1()</code> was started but has not finished yet, <code>get()</code> blocks and waits for its end and yields the result;</li>
+<li>if <code>func1()</code> was not started yet, it will be forced to start now and, like a synchronous func call, <code>get()</code> will block until it yields the result.</li>
+</ul>
+
+<p>Without calling <code>get()</code>, there is no guarantee that <code>func1()</code> will ever be called. We have to ensure that we ask for the result of a functionality started with <code>async()</code> no earlier than necessary:</p>
+
+<pre><code class="language-cpp">std::future&lt;int&gt; result1(std::async(func1));
+//might call func2() after func1() ends
+int result = func2() + result1.get();</code></pre>
+
+<p>To have the best effect, in general, we should maximize the distance between calling <code>async()</code> and calling <code>get</code>, i.e., <strong>call early and return late</strong>.</p>
+
+<p>The object passed to <code>async</code> may be any type of callable object: function, member func, func object, or lambda (<code>std::async([]{ ... })</code>).</p>
+
+<h3 id="toc_10">(ii) launch policies</h3>
+
+<p>The exact behavior of <code>async()</code> is complex and highly depends on the lanunch policy, which can be passed as the first optional argument.</p>
+
+<p><code>async (launch policy, Fn&amp;&amp; fn, Args&amp;&amp; ...args</code></p>
+
+<ul>
+<li><strong>Asynchronous</strong>: <code>launch::async</code>, launches a new thread to call <code>fn</code> (as if a thread obj is constructed with <code>fn</code> and <code>args</code> as arguments, and accessing the shared state of the returned <code>future</code> joins it);</li>
+</ul>
+
+<pre><code class="language-cpp"> void print_ten (char c, int ms) {
+  for (int i=0; i&lt;10; ++i) {
+    std::this_thread::sleep_for (std::chrono::milliseconds(ms));
+    std::cout &lt;&lt; c;
+  }
+}
+
+int main ()
+{
+  std::cout &lt;&lt; &quot;with launch::async:\n&quot;;
+  std::future&lt;void&gt; foo = std::async (std::launch::async,print_ten,&#39;*&#39;,100);
+  std::future&lt;void&gt; bar = std::async (std::launch::async,print_ten,&#39;@&#39;,200);
+  // async &quot;get&quot; (wait for foo and bar to be ready):
+  foo.get();
+  bar.get();
+  std::cout &lt;&lt; &quot;\n\n&quot;; 
+  </code></pre>
+
+<ul>
+<li><strong>Deferred</strong>: <code>launch::deferred</code>, the call to <code>fn</code> is deferred until the shared state of the returned <code>future</code> is accessed (with <code>wait</code> or <code>get</code>). At that point, <code>fn</code> is called and the func is no longer considered deferred. When this call returns, the shared state of the returned <code>future</code> is made ready;</li>
+<li><strong>Automatic</strong>: <code>launch::async|launch::deferred</code>, the func chooses the policy auto (at some point). </li>
+</ul>
+
+<pre><code class="language-cpp">void print_ten (char c, int ms) {
+  for (int i=0; i&lt;10; ++i) {
+    std::this_thread::sleep_for (std::chrono::milliseconds(ms));
+    std::cout &lt;&lt; c;
+  }
+}
+
+int main ()
+{
+  std::cout &lt;&lt; &quot;with launch::async: &quot;;
+  std::future&lt;void&gt; foo = std::async (std::launch::async,print_ten,&#39;*&#39;,100);
+  std::future&lt;void&gt; bar = std::async (std::launch::async,print_ten,&#39;@&#39;,200);
+  // async &quot;get&quot; (wait for foo and bar to be ready):
+  foo.get(); bar.get();
+  std::cout &lt;&lt; &quot;\n\n&quot;;
+
+  std::cout &lt;&lt; &quot;with launch::deferred: &quot;;
+  foo = std::async (std::launch::deferred,print_ten,&#39;*&#39;,100);
+  bar = std::async (std::launch::deferred,print_ten,&#39;@&#39;,200);
+  // deferred &quot;get&quot; (perform the actual calls):
+  foo.get(); bar.get();
+  std::cout &lt;&lt; &#39;\n&#39;;
+
+  return 0;
+}
+
+possible output:
+with launch::async: **@**@**@*@**@*@@@@@
+
+with launch::deferred: **********@@@@@@@@@@</code></pre>
+
+<h2 id="toc_11"><a name="threads"></a> 5. Threads <a href="#top">&uarr;top</a></h2>
+
+<h3 id="toc_12">(i) class std::thread</h3>
+
+<p>the class thread represents a single thread of execution. Threads allow multi pieces of code to run asynchronously and simultaneously. </p>
+
+<p>Constructors:</p>
+
+<ul>
+<li><strong><code>thread()</code></strong>: createa a new thread obj which does not represent a thread;</li>
+<li><strong><code>thread(thread&amp;&amp; other)</code></strong>: move cstr. Constructs the thread obj to represent the thread of execution that was represented by other. After this call other no longer represents a thread of execution;</li>
+<li><strong><code>thread(Function&amp;&amp; f, Args&amp;&amp;... args)</code></strong>: creates a new <code>std::thread</code> obj and associates it with a thread of execution. First the cstr copies/moves all arguments (both the func obj f and all args ...) to thread-accessible storage;</li>
+<li><strong><code>thread(const thread&amp;)=delete</code></strong>: the copy cstr is deleted; threads are not copyable. No two <code>std::thread</code> objs may represent the same thread of execution.</li>
+</ul>
+
+<pre><code class="language-cpp">void f1(int n) {
+
+}
+void f2(int&amp; n) {
+}
+
+int main() {
+    int n = 0;
+    std::thread t1;     //t1 is not a thread
+    std::thread t2(f1, n+1);    //pass by value
+    std::thread t3(f2, std::ref(n));    //pass by ref
+    std::thread t4(std::move(t3));  //t4 is now running f2()
+                                    //t3 is no longer a thread
+    t2.join();
+    t4.join();
+}</code></pre>
+
+<p>Observers:  </p>
+
+<ul>
+<li><p><strong><code>joinable</code></strong>: checks if the thread obj identifies an active thread of execution. Specially, returns <code>true</code> if <code>get_id() != std::thread:id()</code>. So, a default constructed thread is not joinable.<br>
+A thread that has finished executing code, but has not yet been joined is still considered an active thread of execution and is therefore joinable.</p>
+
+<pre><code class="language-cpp">void foo() {
+std::this_thread::sleep_for(std::chrono::seconds(1));
+}
+
+int main() {
+    std::thread t;
+    std::cout &lt;&lt; &quot;before starting, joinable: &quot; &lt;&lt; t.joinable() &lt;&lt; &#39;\n&#39;;
+
+    t = std::thread(foo);
+    std::cout &lt;&lt; &quot;after starting, joinable: &quot; &lt;&lt; t.joinable() &lt;&lt; &#39;\n&#39;;
+
+    t.join();
+    std::cout &lt;&lt; &quot;after joining, joinable: &quot; &lt;&lt; t.joinable() &lt;&lt; &#39;\n&#39;;
+}
+-------output: 0 1 0</code></pre></li>
+<li><p><strong><code>get_id</code></strong>: returns a value of <code>std::thread::id</code> identifying the thread associated with <code>*this</code>;</p></li>
+<li><p><strong><code>native_handle</code></strong>: returns the impl defined underlying thread handle;</p></li>
+<li><p><strong><code>hardware_concurrency</code></strong>: returns the #concurrent threads supported by the impl. The value should be considered only a hint.</p></li>
+</ul>
+
+<p>Operations:  </p>
+
+<ul>
+<li><strong><code>join</code></strong>: blocks the current thread until the thread identified by <code>*this</code> finishes its execution;</li>
+<li><strong><code>detach</code></strong>: separates the thread of executioin from the thread object, allowing execution to continue independently. Any allocated resources will be freed once the thread exits;</li>
+<li><strong><code>swap(thread&amp; other)</code></strong>: exchanges the underlying handles of two thread objects.</li>
+</ul>
+
+<h3 id="toc_13">(ii) namespace this_thread</h3>
+
+<p>For any thread, including the main thread, <code>&lt;thread&gt;</code> declares namespace <code>std::this_thread</code>, which provides the thread_specific global funcs:</p>
+
+<ul>
+<li><strong><code>get_id()</code></strong>: return the id of the current thread;</li>
+<li><strong><code>sleep_for(dur)</code></strong>: blocks the execution of the current thread for <u>at least</u> the specified duration;</li>
+<li><strong><code>sleep_until(tim)</code></strong>: blocks the execution of the current thread until specified sleep_time has been reached.</li>
+<li><strong><code>yield()</code></strong>: provides a hint to the imple to reschedule the execution of threads, allowing other threads to run. </li>
+</ul>
+
+<h3 id="toc_14">(iii) basic usage</h3>
+
+<p>to start a thread, we simply have to declare an obj of class <strong><code>std::thread</code></strong> and pass the desired task as initial argument, and then either wait for its end or detach it:</p>
+
+<pre><code class="language-cpp">void doSomething();
+
+std::thread t(doSomething); //start doSomething() in the background
+...
+t.join();                   //wait for t to finish (block until doSomething() ends)</code></pre>
+
+<p>As for <code>async()</code>, we can pass anything that&#39;s a callable object (function, member func, func obj, lambda) together with psbl additional arguments. Unless you really you what you are doing, you should pass all objs necessary to process the passed functionality <strong>by value</strong> so that the thread uses only local copies.</p>
+
+<pre><code class="language-cpp">void doSomething(int num, char c) {
+    //any uncaught exception would cause the prog to terminate
+    try {
+        ...
+    }
+    //make sure no exception leaves the thread and terminates the program
+    catch(const exception&amp; e) {
+        cerr &lt;&lt; &quot;thread-exception (thread &quot; 
+             &lt;&lt; this_thread::get_id() &lt;&lt; &quot;): &quot; &lt;&lt; e.what &lt;&lt; endl;
+    }
+    catch(...) {
+        cerr &lt;&lt; &quot;thread-exception (thread &quot;
+             &lt;&lt; this_thread::get_id() &lt;&lt; &quot;)&quot; &lt;&lt; endl;
+    }
+}
+
+int main() {
+    //creating a thread might throw a std::system_error
+    try{
+        thread t1(doSomething, 5, &#39;.&#39;); //print 5 dots in separate thread
+        cout &lt;&lt; &quot;- started fg thread &quot; &lt;&lt; t1.get_id() &lt;&lt; endl;
+        
+        //print other chars in other bg threads
+        for(int i=0; i&lt;5; ++i) {
+            thread t(doSomething, 10 &#39;a&#39;+i); //print 10 chars in separate thread
+            cout &lt;&lt; &quot;- detach started bg thread &quot; &lt;&lt; t.get_id() &lt;&lt; endl;
+            t.detach();                 //detach thread into the bg
+        }
+        
+        cin.get();  wait for any input (return)
+        cout &lt;&lt; &quot;- join fg thread &quot; &lt;&lt; t1.get_id() &lt;&lt; endl;
+        t1.join();                      //wait for t1 to finish
+    }
+    catch (const exception&amp; e) {
+        cerr &lt;&lt; &quot;exception: &quot; &lt;&lt; e.what() &lt;&lt; endl;
+    }
+}</code></pre>
+
+<p>Detached threads can easily become a problem if they use nonlocal resources. Passing variables and objs to a thread by ref is always a risk, and passing by value is strongly recommended.</p>
+
+<p>And, the lifetime problem also applies to global and static objs, because when the program exits, the detached thread might still run, which means that it might access global or static obj that are already destroyed or under construction. Thus, we should ensure that these global/static objs are not destroyed before all detached threads accessing them are finished. Approaches can be:</p>
+
+<ul>
+<li>use <strong>condition variables</strong>, which the detached threads use to signal that they have finished. Before leaving main() or calling exit(), you&#39;d have to set these condition variables then to signal that a destruction is psbl;</li>
+<li>end the program by calling <strong><code>quick_exit()</code></strong>, which is to end a program without calling the dstrs for global and static objs.</li>
+</ul>
+
+<p>Because <code>std::cin</code>, <code>std::cout</code> and <code>std::cerr</code> and the other global stream objs are not destroyed during program execution, access to these objs in detached threads should introduce no undefined behavior. However, other problems, such as interleaved chars, might occur.</p>
+
+<p>The only safe way to terminate a detached thread is with one of the &quot;...at<em>thread</em>exit()&quot; functions, which force the main thread to wait for the detached thread to truly finish. </p>
+
+<p><strong>thread IDs</strong><br>
+This ID is a special type std::thread::id, which is guaranteed to be unique for each thread. Threads IDs can be obtained by the thread obj or inside a threas using namespace <code>this_thread</code>.</p>
+
+<pre><code class="language-cpp">std::thread t1(doSomething, 5, &#39;.&#39;);
+std::thread t2(doSomething, 5, &#39;+&#39;);
+std::thread t3(doSomething, 5, &#39;*&#39;);
+std::cout &lt;&lt; &quot;t3 ID:    &quot; &lt;&lt; t3.get_id()    &lt;&lt; endl;
+std::cout &lt;&lt; &quot;main ID:  &quot; &lt;&lt; std::this_thread::get_id() &lt;&lt; endl;
+std::cout &lt;&lt; &quot;nothread ID: &quot; &lt;&lt; std::thread::id() &lt;&lt; endl;</code></pre>
+
+<p>The only operations allowed for thread IDs are comparisons and calling the output operator for a stream. We cannot make any further assumptions, such as &quot;no thread&quot; has ID 0 or the main thread has ID 1.</p>
+
+<pre><code class="language-cpp">std::thread::id masterThreadID;
+void doSomething(){
+    if(std::this_thread::get_id() == masterThreadID) {
+        ...
+    }
+}
+
+std::thread master(doSomething);
+masterThreadID = master.get_id();
+...
+std::thread slave(doSomething);
+...</code></pre>
+
+<h2 id="toc_15"><a name="prob"></a> 6. Concurrency problem <a href="#top">&uarr;top</a></h2>
+
+<p>Each compiler can optimize code as long as the behavior of the program visible from the outside behaves the same (<strong>as-if rule</strong>). Hence, both compiler and hardware vendors can reorder the code to speed the program, as long as the <u><em>observable behavior</em></u> remains stable. E.g., compilers might unroll loops, reorder statemenets, eliminate dead code, prefetch data, and in modern architecture, a hardware buffer might reorder loads or stores, etc.</p>
+
+<h3 id="toc_16">(i) problems</h3>
+
+<p>To give compilers and hardware enough freedom to optimize code, C++ does NOT in general give a couple of guarantees, which might cost too much in performance. In C++, we might have the following problems:</p>
+
+<ul>
+<li><p><strong>Unsynchronized data access</strong>: when two threads running in parallel read and write the same data, it is open which statement comes first.</p></li>
+<li><p><strong>Half-written data</strong>: when one thread reads data, which another thread modifies, the reading thread might even read the data in the middle of the write of the other thread, thus reading neither the old nor the new value.</p></li>
+<li><p><strong>Reordered statements</strong>: statements and operations might be reordered so that <u>the behavior of each single thread is correct</u>, but in combination of all threads, expected behavior is broken.</p>
+
+<pre><code class="language-cpp">//ORIG CODE                |   //GENERATED CODE
+//- providing thread       |   //- consuming thread
+long data;                 |   while(!readyFlag) { //loop until data is ready
+bool readyFlag = false;    |       ;
+                           |    }
+data = 42;                 |   foo(data);
+readyFlag = true;          |
+                           |
+//PSBL CODE                |
+//- providing thread       |   //- consuming thread
+long data;                 |   foo(data);
+bool readyFlag = false;    |   while(!readyFlag) { //loop until data is ready
+                           |        ;
+readyFlag = true;          |   }
+data = 42;                 |</code></pre></li>
+</ul>
+
+<h3 id="toc_17">(ii) Features to solve the problems</h3>
+
+<p>To solve the three major problems of concurrent data access, we need the following concepts:</p>
+
+<ul>
+<li><strong>Atomicity</strong>: read or write access to a variable or to a sequence of statements happens <u>exclusively and without any interruption</u>, so that one thread can&#39;t read intermediate states caused by another thread.</li>
+<li><strong>Order</strong>: guarantee the order of specific statements or of a group of specific statements.</li>
+</ul>
+
+<p>C++ standard library provides different ways (from high-level to low-level) to deal with the concepts:</p>
+
+<ul>
+<li><strong>future-promise</strong>: the pair guarantee both atomoticity and order; setting the <em>outcome</em> (return value or exception) of a <em>shared state</em> is guaranteed to happen before the processing of the outcome, which implies that read and write access does not happen concurrently.</li>
+<li><strong>mutex</strong>es and <strong>lock</strong>s: grant exclusive access to <u><em>critical sections</em></u> or <em>protected zones</em>. However, if two threads use locked access to data, the order in which they access it may change from run to run.</li>
+<li><strong>condition variables</strong>: efficiently allow one thread to wait for some predicate controlled by another thread to become true. This helps to deal with the order of multi threads by allowing one or more threads to process data or a status provided by one or more other threads.</li>
+<li><strong>low-level interface of atomic data types</strong>: allow to relax the order of atomic statements or to use manual barriers for memory access. </li>
+</ul>
+
+<h2 id="toc_18"><a name="mut-lock"></a> 7. Mutexes and locks <a href="#top">&uarr;top</a></h2>
+
+<h3 id="toc_19">(i) std::mutex</h3>
+
+<p>A <strong>mutex</strong>, or <em>mutual exclusion</em>, is a synchronization primitive that can be used to protect data from being simultaneously accessed by multi threads. mutex offers <u>exclusive</u>, non-recursive ownership semantics.</p>
+
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;chrono&gt;
+#include &lt;thread&gt;
+#include &lt;mutex&gt;
+ 
+int g_num = 0;  // protected by g_num_mutex
+std::mutex g_num_mutex;
+ 
+void slow_increment(int id) {
+    for (int i = 0; i &lt; 3; ++i) {
+        g_num_mutex.lock();
+        ++g_num;
+        std::cout &lt;&lt; id &lt;&lt; &quot; =&gt; &quot; &lt;&lt; g_num &lt;&lt; &#39;\n&#39;;
+        g_num_mutex.unlock();
+ 
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+    }
+}
+ 
+int main() {
+    std::thread t1(slow_increment, 0);
+    std::thread t2(slow_increment, 1);
+    t1.join(); t2.join();
+}</code></pre>
+
+<p>This simple <code>lock-unlock</code> approach can, however, become pretty complicated. E.g., we should ensure that an exception, which ends an exclusive access, also unlocks the crspding mutex; ow, a rsc might become locked forever. Also, deadlock scenarios are psbl, with two thread waiting for a lock of the other thread before freeing their own lock.</p>
+
+<p>To deal with exceptions (guarnatee <strong>exception safety</strong>), we shoud not lock and unlock by ourselves; instead, we should use the <strong>RAII</strong> principle (Resource Acquisition Is Initialization), whereby the cstr acquires a rsc so that the dstr, which is always called even when an exception causes the end of the lifetime, releases rsc automatically.</p>
+
+<h3 id="toc_20">(ii) std::lock_guard</h3>
+
+<p><code>std::mutex</code> is usually not accessed directly: <code>std::unique_lock</code> and <code>std::lock_guard</code> are used to manage locking in <strong>exception-safe manner</strong>.
+Note that the locks should be limited to the shortest period psbl because they block other code from running in parallel.</p>
+
+<pre><code class="language-cpp">std::map&lt;std::string, std::string&gt; g_pages;
+std::mutex g_pages_mutex;
+ 
+void save_page(const std::string &amp;url) {
+    // simulate a long page fetch
+    std::this_thread::sleep_for(std::chrono::seconds(2));
+    std::string result = &quot;fake content&quot;;
+ 
+    std::lock_guard&lt;std::mutex&gt; guard(g_pages_mutex);
+    g_pages[url] = result;
+}//lock released here
+ 
+int main() {
+    std::thread t1(save_page, &quot;http://foo&quot;);
+    std::thread t2(save_page, &quot;http://bar&quot;);
+    t1.join(); t2.join();
+ 
+    // safe to access g_pages without lock now, as the threads are joined
+    for (const auto &amp;pair : g_pages) {
+        std::cout &lt;&lt; pair.first &lt;&lt; &quot; =&gt; &quot; &lt;&lt; pair.second &lt;&lt; &#39;\n&#39;;
+    }
+}</code></pre>
+
+<h4 id="toc_21">recursive locks</h4>
+
+<p>Sometimes, the ability to lock recursively is required. Typical examples are active objs or monitors, which contain a mutex and take lock inside every public method to protect data races corrupting the internal state of the obj. E.g., a db interface might look as follows:</p>
+
+<pre><code class="language-cpp">class DatabaseAccess {
+ private:
+    std::mutex dbMutex;
+    ... //state of database access
+ public:
+    void createTable (...) {
+        std::lock_guard&lt;std::mutex&gt; lg(dbMutex);
+        ...
+    }
+    void insertData (...) {
+        std::lock_guard&lt;std::mutex&gt; lg(dbMutex);
+        ...
+    }
+    ...
+};</code></pre>
+
+<p>When we introduce a public member func that might call other public member funcs, this can become complicated:</p>
+
+<pre><code class="language-cpp">void createTableAndInsertData (...) {
+    std::lock_guard&lt;std::mutex&gt; lg(dbMutex);
+    ...
+    createTable(...);   //ERROR: deadlock because dbMutex is locked again
+}</code></pre>
+
+<p>Calling <code>createTableAndInsertData()</code> will result in a deadlock because after locking <code>dbMutex</code>, the call of <code>createTable()</code> will try to lock <code>dbMutex</code> again, which will block until the lock of <code>dbMutex</code> is available, which will never happen because <code>createTableAndInsertData()</code> will block until <code>createTable()</code> is done. </p>
+
+<p>A <strong>recursive mutex</strong> is a lockable object, just like <em>mutex</em>, but allows the same thread to acquire multi levels of ownership over the mutex obj. The lock is released when the last crspding <code>unlock()</code> is called.</p>
+
+<pre><code class="language-cpp">class DatabaseAccess {
+ private:
+    std::recursive_mutex dbMutex;
+    ... //state of database access
+ public:
+    void createTable (...) {
+        std::lock_guard&lt;std::recursive_mutex&gt; lg(dbMutex);
+        ...
+    }
+    void insertData (...) {
+        std::lock_guard&lt;std::recursive_mutex&gt; lg(dbMutex);
+        ...
+    }
+    void createTableAndInsertData (...) {
+        std::lock_guard&lt;std::recursive_mutex&gt; lg(dbMutex);
+        ...
+        createTable(...);   //OK: no deadlock
+    }
+    ...
+};</code></pre>
+
+<h4 id="toc_22">tried and timed locks</h4>
+
+<p>sometimes a program wants to acquire a lock but doesn&#39;t want to block (forever) if this is not psbl. For this case, mutexes provide a <code>try_block()</code> member func that <em>tries</em> to acquire a lock. </p>
+
+<pre><code class="language-cpp">std::mutex m;
+
+//try to acquire a lock and do other stuff if not psbl
+while (m.try_lock() == false) {
+    doSomeOtherStuff();
+}
+std::lock_guard&lt;std::mutex&gt; lb(m, std::adopt_lock);
+...</code></pre>
+
+<p>To wait only for a particular amount of time, we can use a timed mutex, <code>try_lock_for()</code> and <code>try_lock_until</code> provided in <code>std::timed_mutex</code> and <code>std::recursive_timed_mutex</code>, respectively.</p>
+
+<pre><code class="language-cpp">std::timed_mutex m;
+
+//try for 1sec to acquire a lock
+if (m.try_lock_for(std::chrono::seconds(1))) {
+    std::lock_guard&lt;std::timed_mutex&gt; lg(m, std::adopt_lock);
+    ...
+} else {
+    couldNotGetTheLock();
+}</code></pre>
+
+<h4 id="toc_23">mutex constants</h4>
+
+<p>Mutex constants are used as tag argument for <code>unique_lock</code> to select a specific constructor: </p>
+
+<ul>
+<li><strong>adopt_lock</strong>: <code>unique_lock</code> objs constructed with <code>adopt_block</code> do not lock the mutex obj on construction, assuming instead that it is already locked by the current thread, and thus just adopts the ownership of the existing lock on the mutex rather than attempt to lock the mutex in the cstr.</li>
+<li><strong>defer_lock</strong>: <code>unique_lock</code> objs constructed with <code>defer_lock</code> do not lock the mutex obj automatically on construction, initializing them as not owning a lock. And later, the lock can be acquired by passing the <code>std::unique_lock</code> obj itself to <code>std::lock</code>.</li>
+<li><strong><code>try_to_lock</code></strong>: <code>unique_lock</code> objs constructed with <code>try_to_lock</code> attempt to lock the mutex obj by calling its <code>try_lock</code> member instead of its <code>lock</code> member.</li>
+</ul>
+
+<h4 id="toc_24">dealing with multiple locks</h4>
+
+<p>C++ enables to lock multi mutexes, avoiding deadlock: <code>std::lock()</code> locks all mutexes passed as arguments, blocking until all mutexes are locked or until an exception is thrown. In the latter case, it unlocks mutexes already successfully locked.</p>
+
+<pre><code class="language-cpp">std::mutex m1, m2;
+
+int idx = std::try_lock(m1, m2);    //try to lock both mutexes
+if(idx &lt; 0) {       //both locks succeeded
+    std::lock_guard&lt;std::mutex&gt; lockM1(m1, std::adopt_lock);
+    std::lock_guard&lt;std::mutex&gt; lockM1(m2, std::adopt_lock);
+    ...
+} /*auto unlock all mutexes*/ else {
+    //idx has zero-based index of first failed lock
+    cerr &lt;&lt; &quot;could not lock mutex m&quot; &lt;&lt; idx+1 &lt;&lt; endl;
+}</code></pre>
+
+<h3 id="toc_25">(iii) class <code>unique_lock</code></h3>
+
+<p>Besides class <code>lock_guard&lt;&gt;</code>, C++ standard library provides class <code>unique_lock&lt;&gt;</code>, which is lot more flexible when dealing with locks for mutexes. It allows <u>deferred locking</u>, <u>time-constrained attempts at locking</u>, <u>recursive locking</u>, <u>transfer of lock ownership</u>, and <u>use with condition variables</u>.</p>
+
+<ul>
+<li><code>std::lock_guard</code> keeps its associated mutex locked during the <u>entire life time</u> by acquiring the lock on construction and releasing the lock on destruction. </li>
+<li><code>std::unique_lock</code> is a lot more flexible when dealing with mutex locks. It has the same interface as <code>std::lock_guard</code> but provide extra abilities to program explicitly when and how to lock or unlock its mutex. Thus, this lock obj may or may not have a mutex locked (also known as <em>owning</em> a mutex).</li>
+<li>the ownership of a <code>std::unique_lock</code> can be transferred bt instances, and hence <code>std::unique_lock</code> is <em>movable</em> whereas <code>std::lock_guard</code> is not.</li>
+</ul>
+
+<pre><code class="language-cpp">std::mutex Mutex;
+
+std::unique_lock&lt;std::mutex&gt; Foo() {
+    std::unique_lock&lt;std::mutex&gt; lock(Mutex);
+    return lock;
+    // mutex isn&#39;t unlocked here!
+}
+
+void Bar() {
+    auto lock = Foo();
+}   // mutex is unlocked when lock goes out of scope</code></pre>
+
+<p>Member functions:</p>
+
+<ul>
+<li><p><strong><code>lock()</code></strong>: locks the associated mutes;</p>
+
+<pre><code class="language-cpp">int counter = 0;
+std::mutex counter_mutex;
+std::vector&lt;std::thread&gt; threads;
+
+auto worker_task = [&amp;](int id) {
+    std::unique_lock&lt;std::mutex&gt; lock(counter_mutex);
+    ++counter;
+    std::cout &lt;&lt; id &lt;&lt; &quot;, initial counter: &quot; &lt;&lt; counter &lt;&lt; &#39;\n&#39;;
+    lock.unlock();
+
+    // don&#39;t hold the lock while we simulate an expensive operation
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+
+    lock.lock();
+    ++counter;
+    std::cout &lt;&lt; id &lt;&lt; &quot;, final counter: &quot; &lt;&lt; counter &lt;&lt; &#39;\n&#39;;
+};
+
+for (int i = 0; i &lt; 10; ++i) threads.emplace_back(worker_task, i);
+
+for (auto &amp;thread : threads) thread.join();</code></pre></li>
+<li><p><strong><code>try_lock()</code></strong>: tries to lock the associated mutex, returns if the mutex is not available.</p></li>
+<li><p><strong><code>try_lock_for</code></strong>: tries to lock the associated mutex. Returns if the mutex has been unavailable for the specified time duration. </p></li>
+<li><p><strong><code>try_lock_until</code></strong>: tries to lock the associated mutex, returns if the mutex has been unavailable until specified time point has been reached.</p></li>
+<li><p><strong><code>unlock</code></strong>: unlocks the associated mutex.</p></li>
+<li><p><strong><code>swap</code></strong>: swaps state with another <code>std::unique_lock</code>.</p></li>
+<li><p><strong><code>release</code></strong>: disassociates the associated mutex without unlocking it.</p></li>
+<li><p><strong><code>mutex()</code></strong>: returns a ptr to the associated mutex.</p></li>
+<li><p><strong><code>owns_lock</code></strong> or <strong><code>operator bool</code></strong>: tests whether the lock owns its associated mutex.</p></li>
+</ul>
+
+<h3 id="toc_26">(iv) calling once for multi threads</h3>
+
+<p>Sometimes multi threads might not need some functionality that should get processed whenever the first thread needs it. A typical example is lazy initialization: the first time one of the threads needs sth that has to get processed, you process it (but not before, because u want to save the time to process it if it is not needed).</p>
+
+<p>For single-thread environment:</p>
+
+<pre><code class="language-cpp">static std::vector&lt;std::string&gt; staticData;
+
+void foo() {
+    if (staticData.empty()) {
+        staticData = initializeStaticData();
+    }
+    ...
+}</code></pre>
+
+<p>Such code doesn&#39;t work in multithreaded context, because of data races in checking. Instead of using mutex, we can use C++ standard library funcs <code>std::once_flag</code> and <code>std::call_once</code>:</p>
+
+<pre><code class="language-cpp">std::once_flag oc;              //global flag
+...
+std::call_once(os, initialize); //init if not inited yet
+
+static std::vector&lt;std::string&gt; staticData;
+
+void foo() {
+    static std::once_flag oc;
+    std::call_once(oc, []{
+        staticData = initializeStaticData();
+    });
+    ...
+}</code></pre>
+
+<p>The 1st argument passed to <code>call_once()</code> must be the crspding <code>once_flag</code>; further arguments are the usual arguments for callable objects: func, member func, func obj, or lambda, plus optional arguments for the func called. Thus, lazy initialization of an obj used in multi-threads might as follow:</p>
+
+<pre><code class="language-cpp">class X {
+ private:
+    mutable std::once_flag initDataFlag;
+    void initData() const;
+ public:
+    data getData() const {
+        std::call_once(initDataFlag, &amp;X::initData, this);
+        ...
+    }
+};</code></pre>
+
+<h2 id="toc_27"><a name="cond"></a> 8. Condition variables <a href="#top">&uarr;top</a></h2>
+
+<p>Sometimes, tasks performed by different threads have to wait for each other. Thus, we have to synchronize concurrent operations for other reasons than to access the same data.</p>
+
+<p><strong>Condition variables</strong> can be used to synchronize logical dependencies in data flow bt threads. A condition variable is a variable by which a thread can wake up one or multi other waiting threads.</p>
+
+<h3 id="toc_28">(i) steps</h3>
+
+<p>In principle, a condition variable works as follows:</p>
+
+<ul>
+<li><p>include both <code>&lt;mutex&gt;</code> and <code>&lt;condition_variable&gt;</code> to declare a mutex and a condition variable:</p>
+
+<pre><code class="language-cpp">#include &lt;mutex&gt;
+#include &lt;condition_variable&gt;
+
+std::mutex readyMutex;
+std::condition_variable readyCondVar;</code></pre></li>
+<li><p>the thread (or one of multi threads) that signals the fulfillment of a condition has to call</p>
+
+<pre><code class="language-cpp">readyCondVar.notify_one(); //notify one of the waiting threads
+//or
+readyCondVar.notify_all(); //notify all the waiting threads</code></pre></li>
+<li><p>any thread that waits for the condition has to call</p>
+
+<pre><code class="language-cpp">std::unique_lock&lt;std::mutex&gt; l(readyMutex);
+readyCondVar.wait(l);</code></pre></li>
+</ul>
+
+<p>Thus, the thread providing or preparing sth simply calls <code>notify_one()</code> or <code>notify_all()</code> for the cond var, which for one or all the waiting threads is the moment to wake up.</p>
+
+<p>Cond var in general might have so-called <u><em>spurious wakeups</em></u>, i.e., a wait on a cond var may return even if the cond var has not been noified. Thus, a wakeup does not necessarily mean that the required cond now holds. Rather, after a wakeup we still need some code to verify that the cond in fact has arrived.</p>
+
+<pre><code class="language-cpp">bool readyFlag;         //a flag signaling the cond is indeed satisfied
+std::mutex readyMutex;  //a mutex
+std::condition_variable readyCondVar;   //a cond var
+
+//locks the mutex, updates the cond, unlocks the mutex and notifies the cond var
+void thread1() {
+    //do sth thread2 needs as preparation
+    std::cout &lt;&lt; &quot;&lt;return&gt;&quot; &lt;&lt; std::endl;
+    std::cin.get();
+    
+    //signal that thread1 has prepared a cond
+    {
+        std::lock_guard&lt;std::mutex&gt; lg(readyMutex);
+        readyFlag = true;
+    }//release lock
+    readyCondVar.notify_one();
+}
+
+void thread2() {
+    //wait until thread1 is ready (readyFlag is true)
+    {
+        std::unque_lock&lt;std::mutex&gt; ul(readyMutex);
+        readyCondVar.wait(ul, []{ return readyFlag; });
+    }//release lock
+    
+    //do whatever shall happen after thread1 has prepared things
+    std::cout &lt;&lt; &quot;done&quot; &lt;&lt; std::endl&#39;
+}
+
+int main() {
+    auto f1 = std::async(std::launch::async, thread1);
+    auto f2 = std::async(std::launch::async, thread2);
+
+}</code></pre>
+
+<p>The waiting thread locks the mutex with a <code>unique_lock</code>, waits for the notification while checking the condition and releases the lock:</p>
+
+<pre><code class="language-cpp">{
+    std::unque_lock&lt;std::mutex&gt; ul(readyMutex);
+    readyCondVar.wait(ul, []{ return readyFlag; });
+}//release lock</code></pre>
+
+<p>Here, a <code>wait()</code> member for cond vars is used as follow: pass the lock <code>ul</code> for the mutex <code>readyMutex</code> as 1st argument and a lambda as callable object double checking the cond as second argument. The effect is that <code>wait()</code> internally calls a loop until the passed callable returns true. Thus, the code has the same effect as the following code:</p>
+
+<pre><code class="language-cpp">{
+    std::unque_lock&lt;std::mutex&gt; ul(readyMutex);
+    while (!readyFlag) {
+        readyCondVar.wait(ul);
+    }
+}//release lock</code></pre>
+
+<h3 id="toc_29">(ii) example of a multi-thread queue</h3>
+
+<p>three threads push values into a quque that two other threads read and process:</p>
+
+<pre><code class="language-cpp">std::queue&lt;int&gt; queue;
+std::mutex queueMutex;
+std::condition_variable queueCondVar;
+
+void provider (int val) {
+    //push different vals
+    for (int i=0; i&lt;6; ++i) {
+        {
+            std::lock_guard&lt;std::mutex&gt; lg(queueMutex);
+            queue.push(val+i);
+        }//release lock
+        queueCondVar.notify_one();
+        
+        std::this_thread::sleep_for(
+                    std::chrono::milliseconds(val));
+    }
+}
+
+void consumer (int num) {
+    //pop vals if available (num identifies the consumer)
+    while(true) {
+        int val;
+        {
+            std::unique_lock&lt;std::mutex&gt; ul(queueMutex);
+            queueCondVar.wait(ul, []{ return !queue.empty(); });
+            val = queue.front();
+            queue.pop();
+        }//release lock
+        std::cout &lt;&lt; &quot;consumer &quot; &lt;&lt; num &lt;&lt; &quot;: &quot; &lt;&lt; val &lt;&lt; endl;
+    }
+}
+
+int main() {
+    //start three providers for values 100+, 300+, 500+
+    auto p1 = std::async(std::launch::async, provider, 100);
+    auto p2 = std::async(std::launch::async, provider, 300);
+    auto p3 = std::async(std::launch::async, provider, 500);
+
+    //start two consumers printing the vals
+    auto c1 = std::async(std::launch::async, consumer, 1);
+    auto c2 = std::async(std::launch::async, consumer, 2);
+}</code></pre>
+
+<h2 id="toc_30"><a name="atomics"></a> 9. Atomics <a href="#top">&uarr;top</a></h2>
+
+<p>Once a <code>std::atomic&lt;T&gt;</code> object has been constructed, operations on it behave as if they were inside a mutex-protected critical section, but the operations are generally implemented using <u>special machine instructions</u> that are more efficient than would be the case if a mutex were employed.</p>
+
+<pre><code class="language-cpp">std::atomic&lt;int&gt; ai(0);     //initialize ai to 0
+ai = 10;                    //atomically set ai to 10
+std::cout &lt;&lt; ai;            //atomically read ai&#39;s value
+++ai;                       //atomically increment ai to 11
+--ai;                       //atomically decrement ai to 10</code></pre>
+
+<p>During execution of these statements, other therads reading <code>ai</code> may see only values of <code>0</code>, <code>10</code> or <code>11</code>. No other values are psbl.</p>
+
+<h3 id="toc_31">(i) examples of using atomics</h3>
+
+<p>using lock:</p>
+
+<pre><code class="language-cpp">#include &lt;mutex&gt;
+...
+   
+bool readyFlag;
+std::mutex readyFlagMutex;
+
+void thread1() {
+    // do something thread2 needs as preparation
+    ...
+    std::lock_guard&lt;std::mutex&gt; lg(readyFlagMutex); 
+    readyFlag = true;
+}
+
+void thread2() {
+    // wait until readyFlag is true (thread1 is done) 
+    {
+        std::unique_lock&lt;std::mutex&gt; ul(readyFlagMutex);
+        while (!readyFlag) {
+            ul.unlock();
+            std::this_thread::yield(); // hint to reschedule to the next thread 
+            std::this_thread::sleep_for(std::chrono::milliseconds(100)); 
+            ul.lock();
+        }
+    } // release lock
+
+    // do whatever shall happen after thread1 has prepared things
+    ...
+}</code></pre>
+
+<p>using atomic:</p>
+
+<pre><code class="language-cpp">#include &lt;atomic&gt; // for atomic types ...
+
+std::atomic&lt;bool&gt; readyFlag(false);
+
+void thread1() {
+    // do something thread2 needs as preparation ...
+    readyFlag.store(true);
+}
+
+void thread2() {
+    // wait until readyFlag is true (thread1 is done) 
+    while (!readyFlag.load()) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    }
+
+    // do whatever shall happen after thread1 has prepared things
+    ...
+}</code></pre>
+
+<h3 id="toc_32">(ii) operations</h3>
+
+<ul>
+<li><strong><code>load()</code></strong>: performs a so-called <strong>acquire</strong> operation on the affected mem loc, which by default ensures that all <u>following</u> mem operations, whether atomic or not, become visible to other threads <u>after</u> the load operation.</li>
+<li><strong><code>store()</code></strong>: performs a so-called <strong>release</strong> operation on the affected mem loc, which by default ensures that all <u>prior</u> mem operations, whether atomic or not, become visible to other threads <u>before</u> the effect of the store operation.</li>
+</ul>
+
+<pre><code class="language-cpp">long data;
+std::atomic&lt;bool&gt; readyFlag(false);
+
+void provider() {
+    //after reading a char
+    std::cout &lt;&lt; &quot;&lt;return&gt;&quot; &lt;&lt; std::endl;
+    std::cin.get();
+    
+    //provide some data
+    data = 42;
+    //add signal readiness
+    readyFlag.store(true);
+}
+
+void consumer() {
+    //wait for readiness and do sth else
+    while (!readyFlag.load()) {
+        std::cout.put(&#39;.&#39;).flush();
+        std:;this_thread::sleep_for(std::chrono::milliseconds(500));
+    }
+    
+    //and process provided data
+    std::cout &lt;&lt; &quot;\nvalue : &quot; &lt;&lt; data &lt;&lt; std::endl;
+}</code></pre>
+
+<p>Because the setting of data <em>happens before</em> the <code>provider()</code> stores true in the <code>readyFlag</code> and the processing of data <em>happens after</em> the <code>consumer()</code> has loaded true as value of the <code>readyFlag</code>, the processing of <code>data</code> is guaranteed to happen after the data was provided.</p>
+
+<p>This guarantee is provided because in all atomic operations, we use a default <em>memory order</em> named <strong>memory_order_seq_cst</strong> (<em>sequential consistent memory order</em>).</p>
+
+<h4 id="toc_33">std::atomic_flag</h4>
+
+<p><code>std::atomic_flag</code> is a really simple Boolean flag, and operations on this type are <strong>required</strong> (the <strong>only</strong> one guaranteed to be lcok-free) to be lock-free; and, unlike <code>std::atomic&lt;bool&gt;</code>, <code>std::atomic_flag</code> does not provide load or store operations.</p>
+
+<p>Once we have a simple lock-free Boolean flag, we can use it to implement a simple lock and thus implement all the the atomic types.</p>
+
+<p><code>std::atomic_flag</code> is &quot;really simple&quot; on the following aspects:</p>
+
+<ul>
+<li>Objs of type <code>std::atomic_flag</code> can be in one of two states: <em>set</em> or <em>clear</em>;</li>
+<li>objs of type <code>std::atomic_flag</code> <strong>must</strong> be inited with <code>ATOMIC_FLAG_INIT</code>, which sets the flag to <em>clear</em> state;</li>
+<li>once we have the flag obj inited, there are only three things we can do with it: <em>destroy</em> it (dstr), <em>clear</em> it (<code>clear()</code>), or <em>set it and query</em> the prev value (<code>test_and_set()</code>).</li>
+<li>all operations on an atomic type are defined as atomic, and asgnment and copy-construction are not permitted, because they involve two objs, which cannot be atomic for a single operation.</li>
+</ul>
+
+<pre><code class="language-cpp">std::atomic_flag lock = ATOMIC_FLAG_INIT;
+ 
+void f(int n) {
+    for (int cnt = 0; cnt &lt; 100; ++cnt) {
+        while (lock.test_and_set(std::memory_order_acquire))  // acquire lock
+             ; // spin
+        std::cout &lt;&lt; &quot;Output from thread &quot; &lt;&lt; n &lt;&lt; &#39;\n&#39;;
+        lock.clear(std::memory_order_release);               // release lock
+    }
+}
+ 
+int main() {
+    std::vector&lt;std::thread&gt; v;
+    for (int n = 0; n &lt; 10; ++n) {
+        v.emplace_back(f, n);
+    }
+    for (auto&amp; t : v) {
+        t.join();
+    }
+}</code></pre>
+
+<h4 id="toc_34">other atomic types</h4>
+
+<p>the remaining atomic types are all accessed through specializations of the <code>std::atomic&lt;&gt;</code> class template and are a bit more full-featured but may not be lock-free. On most popular platforms, it&#39;s expected that the atomic variants of all the built-in types (e.g., <code>std::atomic&lt;int&gt;</code> and <code>std::atomic&lt;void*&gt;</code>) are indeed lock-free, but it isn&#39;t required.</p>
+
+<p>the standard atomic types are not copyable or copy-assignable, and thus have no copy cstrs or copy asgnment operators. They do, however, support asgnment from and implicit conversion to the crspding built-in types as well as direct <code>load()</code>/<code>store()</code>, <code>exchange()</code>, <code>compare_exchange_weak()</code> and <code>compare_exchange_strong()</code>. They also support compound asgnment operators where <code>+=</code>, <code>-=</code>, <code>*=</code>, <code>|=</code>, etc.</p>
+
+<p>Unlike most assignment operators, the assignment operators for atomic types do not return a reference to their left-hand arguments. They return a copy of the stored value instead.</p>
+
+<ul>
+<li><strong><code>is_lock_free</code></strong>: the atomic operations on the given type are done directly with atomic instructions (<code>true</code>), or done by using a lock internal to the compiler and library (<code>false</code>);</li>
+</ul>
+
+<p><strong>std::atomic<bool></strong><br>
+<code>std::atomic&lt;bool&gt;</code> is the most basic of the atomic integral type. </p>
+
+<ul>
+<li><strong><code>load()</code></strong>: </li>
+<li><strong><code>store()</code></strong>: rather than using the restrictive <code>clear()</code> func of <code>std::atomic_flag</code>, writes of <code>std::atomic&lt;bool&gt;</code> use <code>store</code>;</li>
+<li><p><strong><code>exchange(des)</code></strong>: replace <code>test_and_set</code>; <code>exchange()</code> is a read-modify-write operation, allowing to replace the stored value with a new one of your choosing and atomically retrieve the original value;</p>
+
+<pre><code class="language-cpp">std::atomic&lt;bool&gt; b;
+bool x = b.load(std::memory_order_acquire);
+b.store(true);
+x = b.exchange(false, std::memory_order_acq_rel);</code></pre></li>
+</ul>
+
+<p>storing a new value (or not) depending on the current value:<br>
+the new operation is called compare/exchange, which compares the value of the atomic variable with a supplied expected value and stores the supplied desired value if they&#39;re equal; if the values are not equal, the expected value is updated with the actual value of the atomic variable. The return type is a bool, which is <code>true</code> if the store was performed and <code>false</code> ow.</p>
+
+<ul>
+<li><p><strong><code>compare_exchange_weak(exp, des)</code></strong>: the store might not be successful even if the orig value was equal to the expected value, in which case the value of the variable is unchanged and the return value is <code>false</code>; this is most likely happen on machines that lack a single compare-and-exchange instr.<br>
+because <code>compare_exchange_weak()</code> can fail spuriously, it must typically be used in a loop:</p>
+
+<pre><code class="language-cpp">bool expected = false;
+extern atomic&lt;bool&gt; b;         //set somewhere else
+//keep looping as long as &#39;expected&#39; is false, indicating suprious failure
+while(!b.compare_exchange_weak(expected, true) &amp;&amp; !expected);</code></pre></li>
+<li><p><strong><code>compare_exchange_strong(exp, des)</code></strong>: is guaranteed to return <code>false</code> only if the actual value wasn&#39;t equal to the <code>expected</code> value.</p></li>
+</ul>
+
+<p><strong>std::atomic&lt;T*&gt;</strong><br>
+The interface of <code>std::atomic&lt;T&gt;</code> is essentially the same with <code>std::atomic&lt;bool&gt;</code>. The new opertionss are the ptr arithmetic ones:</p>
+
+<ul>
+<li><p><strong><code>fetch_add()/fetch_sub()</code></strong>: do atomic addition and subtraction on the stored addr; <code>fetch_add()</code> is also known as <em>exchange-and-add</em>, and it&#39;s and atomic read-modify-write operation.<br>
+operators <code>+=/-=/++/--</code> are convenient wrappers;<br>
+if <code>x</code> is <code>std::stomic&lt;Foo*&gt;</code> to the 1st entry of an array of <code>Foo</code> objs, then <code>x+=3</code> changes it to point to the 4th entry and returns a plain <code>Foo*</code> that also points to that 4th entry; <code>fetch_add()/fetch_sub()</code> are slightly different in that they return the orig value (so <code>x.fetch_add(3)</code> will update <code>x</code> to point to the 4th value but return a ptr to the 1st value in the array).</p>
+
+<pre><code class="language-cpp">class Foo{};
+Foo some_array[5];
+std::atomic&lt;Foo*&gt; p(some_array);
+Foo* x = p.fetch_add(2);       //add 2 to p, return old value
+assert(x == some_array);
+assert(p.load() == &amp;some_array[2]);
+
+x=(p-=1);                      //subtract 1 from p, return new value
+assert(x == &amp;some_array[1]);
+assert(p.load() == &amp;some_array[1]);</code></pre></li>
+</ul>
+
+<p><strong>std::atomic&lt;T&gt;</strong><br>
+the remaining basic atomic types are essentially all the same: they&#39;re all atomic integral types and have the same interface as each other, except that the associated built-in type is different.</p>
+
+<p>as well as the usual set of operations (<code>load()</code>, <code>store()</code>, <code>exchange()</code>, <code>compare_exchange_weak()</code> and <code>compare_exchange_strong()</code>), hte atomic integral types such as <code>std::atomic&lt;int&gt;</code> and <code>std::atomic&lt;unsigned long long&gt;</code> have quite a comprehensive set of operations available: <code>fetch_add()</code>, <code>fetch_sub()</code>, <code>fetch_or</code>, <code>fetch_xor</code>, compound-asgnment forms of these operations (+=, -=, &amp;=, |=, and ^=), and ++/--. Only division, multiplication, and shift operators are missing. Because atomic integral values are typically used either as counters or as bitmasks, this isn&#39;t a particularly noticeable loss; additional operations can easily be done using <code>compare_exchange_weak()</code> in a loop, if required.</p>
+
+<h3 id="toc_35">the low-level interface of atomics</h3>
+
+<p>the <strong>low-level interface</strong> of atomics means using the atomic operations in a way that we have no guaranteed sequential consistency. Thus, compilers and hardware might (partially) reorder access on atomics.</p>
+
+<h4 id="toc_36">std::memory_order</h4>
+
+<p><code>std::memory_order</code> specifies how regular, non-atomic mem accesses are to be ordered around an atomic operation. Absent any constraint on a multi-core system, when multi threads simultaneously read and write to several variables, one thread can observe the values change in an order different from the order another thread wrote them. Indeed, the apprent order of changes can even differ among multi reader threads. Some similar effects can occur even on uniprocessor systems due to compiler transformations allowed by the mem model.</p>
+
+<p>The default behavior of all atomic operations in the library provides for <strong>sequential consistent ordering</strong>. The default can hurt performance, but the library&#39;s atomic operations can be given an additional <code>std::memory_order</code> argument to specify the exact constraints, beyond atomicity, that the compiler and processor must enforce that operation.</p>
+
+<ul>
+<li><p><strong><code>memory_order_relaxed</code></strong>: relaxed operations, there are no sync or ordering constraints, <u>only atomicity</u> is required of this operation;</p></li>
+<li><p><strong><code>memory_order_consume</code></strong>: a <u>load</u> operation with this memory order performs a <em>consume operation</em> on the affected memory location: <u>no reads in the current thread dependent on the value currently loaded can be reordered before this load</u>. This ensures that writes to data-dependent variables in other threads that release the same atomic variables are visible in the current thread. On most platforms, this affects compiler optimizations only.</p></li>
+<li><p><strong><code>memory_order_acquire</code></strong>: a <u>load</u> operation with this memory order performs the <em>acquire operation</em> on the affected mem loc: <u>no mem accesses in the current thread can be reordered before this load</u>. This ensures that all writes in other threads that release the same atomic variables are visible in the current thread.</p></li>
+<li><p><strong><code>memory_order_release</code></strong>: a <u>store</u> operation with this mem order performs the <em>release operation</em>: <u>no mem accesses in the current thread can be reordered after this store</u>. This ensures that all writes in the current thread are visible in other threads that acquire the same atomic variables and writes that carry a dependency into the atomic variable become visible in other threads that consume the same atomic.</p></li>
+<li><p><strong><code>memory_order_acq_rel</code></strong>: a <u>read-modify-write</u> operation with this mem order is both <em>acquire operation</em> and a <em>release operation</em>. <u>No mem accesses in the current thread can be reordered before this load</u>, and <u>no mem accesses in the current thread can be reordered after this store</u>. It is ensured that all writes in other threads that release the same atomic variable are visible before the modification and the modification is visible in other threads that acquire the same atomic variable.</p></li>
+<li><p><code>memory_order_seq_cst</code>: same as <code>memory_order_acq_rel</code>, plus a <u>single total order</u> exists in which all threads observe all modification in the same order.</p></li>
+</ul>
+
+<p><strong>relaxed ordering</strong>  </p>
+
+<pre><code class="language-cpp"> //x and y intially zero
+ 
+ // Thread 1:
+ r1 = y.load(memory_order_relaxed); // A
+ x.store(r1, memory_order_relaxed); // B
+ // Thread 2:
+ r2 = x.load(memory_order_relaxed); // C
+ y.store(42, memory_order_relaxed); // D</code></pre>
+
+<p>is allowed to produce <code>r1==r2==42</code> (i.e., <code>D-A-B-C</code>) because, although <code>A</code> is <em>sequenced-before</em> <code>B</code> within thread 1, and <code>C</code> is <em>sequenced-before</em> <code>D</code> within thread 2, nothing prevents <code>D</code> from appearing before <code>A</code> in the modification order of y, and <code>B</code> before <code>C</code> in the modification order of x. The side-effect of <code>D</code> on y could be visible to the load <code>A</code> in Thread 1 while the side-effect of <code>B</code> on x could be visible to the load <code>C</code> in Thread 2.</p>
+
+<p><strong>release-acquire ordering</strong><br>
+if an atomic store in thread A is tagged <code>memory_order_release</code> and an atomic load in thread B from the same variable is tagged <code>memory_order_acquire</code>, all mem writes (non-atomic and relaxed atomic) that <em>happend-before</em> the atomic store from the point of view of thread A, become <em>visible side-effect</em> in thread B, that is, once the atomic load is completed, thread B is guaranteed to see everything thread A wrote to mem.</p>
+
+<script type="text/javascript">
+var _self="undefined"!=typeof window?window:"undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?self:{},Prism=function(){var e=/\blang(?:uage)?-(?!\*)(\w+)\b/i,t=_self.Prism={util:{encode:function(e){return e instanceof n?new n(e.type,t.util.encode(e.content),e.alias):"Array"===t.util.type(e)?e.map(t.util.encode):e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/\u00a0/g," ")},type:function(e){return Object.prototype.toString.call(e).match(/\[object (\w+)\]/)[1]},clone:function(e){var n=t.util.type(e);switch(n){case"Object":var a={};for(var r in e)e.hasOwnProperty(r)&&(a[r]=t.util.clone(e[r]));return a;case"Array":return e.map&&e.map(function(e){return t.util.clone(e)})}return e}},languages:{extend:function(e,n){var a=t.util.clone(t.languages[e]);for(var r in n)a[r]=n[r];return a},insertBefore:function(e,n,a,r){r=r||t.languages;var l=r[e];if(2==arguments.length){a=arguments[1];for(var i in a)a.hasOwnProperty(i)&&(l[i]=a[i]);return l}var o={};for(var s in l)if(l.hasOwnProperty(s)){if(s==n)for(var i in a)a.hasOwnProperty(i)&&(o[i]=a[i]);o[s]=l[s]}return t.languages.DFS(t.languages,function(t,n){n===r[e]&&t!=e&&(this[t]=o)}),r[e]=o},DFS:function(e,n,a){for(var r in e)e.hasOwnProperty(r)&&(n.call(e,r,e[r],a||r),"Object"===t.util.type(e[r])?t.languages.DFS(e[r],n):"Array"===t.util.type(e[r])&&t.languages.DFS(e[r],n,r))}},plugins:{},highlightAll:function(e,n){for(var a,r=document.querySelectorAll('code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'),l=0;a=r[l++];)t.highlightElement(a,e===!0,n)},highlightElement:function(n,a,r){for(var l,i,o=n;o&&!e.test(o.className);)o=o.parentNode;o&&(l=(o.className.match(e)||[,""])[1],i=t.languages[l]),n.className=n.className.replace(e,"").replace(/\s+/g," ")+" language-"+l,o=n.parentNode,/pre/i.test(o.nodeName)&&(o.className=o.className.replace(e,"").replace(/\s+/g," ")+" language-"+l);var s=n.textContent,u={element:n,language:l,grammar:i,code:s};if(!s||!i)return t.hooks.run("complete",u),void 0;if(t.hooks.run("before-highlight",u),a&&_self.Worker){var g=new Worker(t.filename);g.onmessage=function(e){u.highlightedCode=e.data,t.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(u.element),t.hooks.run("after-highlight",u),t.hooks.run("complete",u)},g.postMessage(JSON.stringify({language:u.language,code:u.code,immediateClose:!0}))}else u.highlightedCode=t.highlight(u.code,u.grammar,u.language),t.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(n),t.hooks.run("after-highlight",u),t.hooks.run("complete",u)},highlight:function(e,a,r){var l=t.tokenize(e,a);return n.stringify(t.util.encode(l),r)},tokenize:function(e,n){var a=t.Token,r=[e],l=n.rest;if(l){for(var i in l)n[i]=l[i];delete n.rest}e:for(var i in n)if(n.hasOwnProperty(i)&&n[i]){var o=n[i];o="Array"===t.util.type(o)?o:[o];for(var s=0;s<o.length;++s){var u=o[s],g=u.inside,c=!!u.lookbehind,f=0,h=u.alias;u=u.pattern||u;for(var p=0;p<r.length;p++){var d=r[p];if(r.length>e.length)break e;if(!(d instanceof a)){u.lastIndex=0;var m=u.exec(d);if(m){c&&(f=m[1].length);var y=m.index-1+f,m=m[0].slice(f),v=m.length,k=y+v,b=d.slice(0,y+1),w=d.slice(k+1),P=[p,1];b&&P.push(b);var A=new a(i,g?t.tokenize(m,g):m,h);P.push(A),w&&P.push(w),Array.prototype.splice.apply(r,P)}}}}}return r},hooks:{all:{},add:function(e,n){var a=t.hooks.all;a[e]=a[e]||[],a[e].push(n)},run:function(e,n){var a=t.hooks.all[e];if(a&&a.length)for(var r,l=0;r=a[l++];)r(n)}}},n=t.Token=function(e,t,n){this.type=e,this.content=t,this.alias=n};if(n.stringify=function(e,a,r){if("string"==typeof e)return e;if("Array"===t.util.type(e))return e.map(function(t){return n.stringify(t,a,e)}).join("");var l={type:e.type,content:n.stringify(e.content,a,r),tag:"span",classes:["token",e.type],attributes:{},language:a,parent:r};if("comment"==l.type&&(l.attributes.spellcheck="true"),e.alias){var i="Array"===t.util.type(e.alias)?e.alias:[e.alias];Array.prototype.push.apply(l.classes,i)}t.hooks.run("wrap",l);var o="";for(var s in l.attributes)o+=(o?" ":"")+s+'="'+(l.attributes[s]||"")+'"';return"<"+l.tag+' class="'+l.classes.join(" ")+'" '+o+">"+l.content+"</"+l.tag+">"},!_self.document)return _self.addEventListener?(_self.addEventListener("message",function(e){var n=JSON.parse(e.data),a=n.language,r=n.code,l=n.immediateClose;_self.postMessage(t.highlight(r,t.languages[a],a)),l&&_self.close()},!1),_self.Prism):_self.Prism;var a=document.getElementsByTagName("script");return a=a[a.length-1],a&&(t.filename=a.src,document.addEventListener&&!a.hasAttribute("data-manual")&&document.addEventListener("DOMContentLoaded",t.highlightAll)),_self.Prism}();"undefined"!=typeof module&&module.exports&&(module.exports=Prism),"undefined"!=typeof global&&(global.Prism=Prism);
+</script>
+<script type="text/javascript">
+Prism.languages.clike={comment:[{pattern:/(^|[^\\])\/\*[\w\W]*?\*\//,lookbehind:!0},{pattern:/(^|[^\\:])\/\/.*/,lookbehind:!0}],string:/(["'])(\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,"class-name":{pattern:/((?:\b(?:class|interface|extends|implements|trait|instanceof|new)\s+)|(?:catch\s+\())[a-z0-9_\.\\]+/i,lookbehind:!0,inside:{punctuation:/(\.|\\)/}},keyword:/\b(if|else|while|do|for|return|in|instanceof|function|new|try|throw|catch|finally|null|break|continue)\b/,"boolean":/\b(true|false)\b/,"function":/[a-z0-9_]+(?=\()/i,number:/\b-?(?:0x[\da-f]+|\d*\.?\d+(?:e[+-]?\d+)?)\b/i,operator:/--?|\+\+?|!=?=?|<=?|>=?|==?=?|&&?|\|\|?|\?|\*|\/|~|\^|%/,punctuation:/[{}[\];(),.:]/};
+</script>
+<script type="text/javascript">
+Prism.languages.c=Prism.languages.extend("clike",{keyword:/\b(asm|typeof|inline|auto|break|case|char|const|continue|default|do|double|else|enum|extern|float|for|goto|if|int|long|register|return|short|signed|sizeof|static|struct|switch|typedef|union|unsigned|void|volatile|while)\b/,operator:/\-[>-]?|\+\+?|!=?|<<?=?|>>?=?|==?|&&?|\|?\||[~^%?*\/]/,number:/\b-?(?:0x[\da-f]+|\d*\.?\d+(?:e[+-]?\d+)?)[ful]*\b/i}),Prism.languages.insertBefore("c","string",{macro:{pattern:/(^\s*)#\s*[a-z]+([^\r\n\\]|\\.|\\(?:\r\n?|\n))*/im,lookbehind:!0,alias:"property",inside:{string:{pattern:/(#\s*include\s*)(<.+?>|("|')(\\?.)+?\3)/,lookbehind:!0},directive:{pattern:/(#\s*)\b(define|elif|else|endif|error|ifdef|ifndef|if|import|include|line|pragma|undef|using)\b/,lookbehind:!0,alias:"keyword"}}},constant:/\b(__FILE__|__LINE__|__DATE__|__TIME__|__TIMESTAMP__|__func__|EOF|NULL|stdin|stdout|stderr)\b/}),delete Prism.languages.c["class-name"],delete Prism.languages.c["boolean"];
+</script>
+<script type="text/javascript">
+Prism.languages.cpp=Prism.languages.extend("c",{keyword:/\b(alignas|alignof|asm|auto|bool|break|case|catch|char|char16_t|char32_t|class|compl|const|constexpr|const_cast|continue|decltype|default|delete|do|double|dynamic_cast|else|enum|explicit|export|extern|float|for|friend|goto|if|inline|int|long|mutable|namespace|new|noexcept|nullptr|operator|private|protected|public|register|reinterpret_cast|return|short|signed|sizeof|static|static_assert|static_cast|struct|switch|template|this|thread_local|throw|try|typedef|typeid|typename|union|unsigned|using|virtual|void|volatile|wchar_t|while)\b/,"boolean":/\b(true|false)\b/,operator:/[-+]{1,2}|!=?|<{1,2}=?|>{1,2}=?|\->|:{1,2}|={1,2}|\^|~|%|&{1,2}|\|?\||\?|\*|\/|\b(and|and_eq|bitand|bitor|not|not_eq|or|or_eq|xor|xor_eq)\b/}),Prism.languages.insertBefore("cpp","keyword",{"class-name":{pattern:/(class\s+)[a-z0-9_]+/i,lookbehind:!0}});
+</script>
+</body>
+
+</html>

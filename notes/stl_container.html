@@ -1,0 +1,1720 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title>stl_container</title>
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+<style type="text/css">
+/**
+ * prism.js default theme for JavaScript, CSS and HTML
+ * Based on dabblet (http://dabblet.com)
+ * @author Lea Verou
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: black;
+	text-shadow: 0 1px white;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+@media print {
+	code[class*="language-"],
+	pre[class*="language-"] {
+		text-shadow: none;
+	}
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #f5f2f0;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: slategray;
+}
+
+.token.punctuation {
+	color: #999;
+}
+
+.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #905;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #690;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+	color: #a67f59;
+	background: hsla(0, 0%, 100%, .5);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+	color: #07a;
+}
+
+.token.function {
+	color: #DD4A68;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+	color: #e90;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+</style>
+</head>
+<body>
+<h1 id="toc_0"><a name="stl"></a> Standard Template Library <a href="#top">&uarr;top</a></h1>
+
+<h2 id="toc_1">Table of contents</h2>
+
+<ol>
+<li><a href="#overview">Overview of the STL</a></li>
+<li><a href="#seq">Sequential containers</a></li>
+<li><a href="#adaptor">Container adaptors</a></li>
+<li><a href="#assoc">Associative containers</a></li>
+<li><a href="#iter">Iterator</a></li>
+<li><a href="#lambda">STL functors and lambdas</a></li>
+<li><a href="#append">Appendix</a></li>
+</ol>
+
+<p>STL is a C++ library of container classes, algorithms, and iterators; it provides many of the basic algorithms and data structures of computer science. The STL is a <strong>generic</strong> library, meaning that its components are heavily parameterized: almost every component in the STL is a template. (<a href="https://www.sgi.com/tech/stl/stl_introduction.html">stl_intro</a>)</p>
+
+<p><strong>Standard Library vs. Standard Template Library</strong><br>
+C++ standard library includes: Input/Output, Strings, Standard Template Library (algorithm, functional, Sequence /Associative /Unordered associative containers), C standard library and misc headers. (<a href="https://en.wikipedia.org/wiki/C%2B%2B_Standard_Library">wiki</a>)</p>
+
+<p><strong>STL vs. OOP</strong><br>
+Whereas OOP <u>encapsulates</u> data and algorithms as classes; the concept of STL is adversely based on a <u>separation</u> of data and operations, where data is managed by container classes, and the operations are defined by configurable algorithms, and iterators are the glue between these two components.</p>
+
+<p>All components in STL are templates for any type, and hence STL serves as a good example of <strong>generic programming</strong>. As for polymorphism, whereas OOP relies on virtual funcs to achieve <u>run-time</u> dynamic behaviors, types in STL (or generic programming) become known during <u>compilation</u>. </p>
+
+<h2 id="toc_2"><a name="overview"></a> 1. Overview of the STL <a href="#top">&uarr;top</a></h2>
+
+<p>STL is logically divided into six pieces, each consisting of generic components that interoperate with the rest of the library:  </p>
+
+<ul>
+<li><strong>Containers</strong>.<br>
+A container (or container class) is used to hold other objects (its elements). Containers are implemented as templates. (<a href="http://www.cplusplus.com/reference/stl/">stl-ref</a>, <a href="http://www.learncpp.com/cpp-tutorial/16-2-stl-containers-overview/">stl-overview</a>)
+
+<ul>
+<li><strong>sequence containers</strong>: sequence containers are ordered collections in which every element has a certain position, which only depends on the time and place of insertion. Including: <code>array</code>(c++11), <code>vector</code>, <code>deque</code>, <code>forward_list</code>(c++11), <code>list</code>.<br>
+usually implemented as <u>arrays or linked lists</u>.</li>
+<li><strong>associative containers</strong>: sorted collections in which the position of an element depends on its value (or key, if it&#39;s a key-value pair) due to a certain sorting criterion. Including: <code>set</code>, <code>multiset</code>, <code>map</code>, <code>multimap</code>.<br>
+usually implemented as <u>binary trees</u>.</li>
+<li><strong>unordered associative containers</strong> (c++11): unordered collections in which the position of an element doesn&#39;t matter. Including: <code>unordered_set</code>, <code>unordered_multiset</code>, <code>unordered_map</code>, <code>unordered_multimap</code>.<br>
+usually implemented as <u>hash tables</u>.</li>
+</ul></li>
+<li><strong>Iterators</strong>.<br>
+An iterator is an object that can traverse a container class without the user having to know the implementation details.</li>
+<li><strong>Algorithms</strong>.<br>
+STL also provides a number of generic algorithms, e.g., search, sort, insert, reorder and remove, etc, for working with elements of the container classes.<br>
+Note that algorithms are implemented as <u>global funcs</u> that operate using iterators.</li>
+<li><strong>Adapters</strong>.<br>
+Container adapters are interfaces created by limiting functionality in a pre-existing container and providing a different set of functionality. (<a href="http://www.codecogs.com/library/computing/stl/containers/adaptors/stack.php">stack</a>)<br></li>
+<li><strong>Functors</strong>.<br>
+Because so much of the STL relies on user-defined callback functions, the STL provides facilities for creating and modifying functions at runtime.</li>
+<li><strong>Allocators</strong>.<br>
+The STL allows clients of the container class to customize how memory is allocated and deallocated. <a href="https://www.sgi.com/tech/stl/stl_introduction.html">STL</a></li>
+</ul>
+
+<h2 id="toc_3"><a name="seq"></a> 2. Sequential containers <a href="#top">&uarr;top</a></h2>
+
+<p>All sequential containers provide <u>fast sequential access</u> to their elements, but differing on performance trade-offs relative to: 1) the costs to add or delete elements to the container; 2) the costs to perform nonseq access to eles in the container.  </p>
+
+<ul>
+<li><strong>array</strong>: fixed-size array, no insertion or removal;</li>
+<li><strong>vector</strong>: flexible-size array;</li>
+<li><strong>deque</strong>: double-ended queue;</li>
+<li><strong>list</strong>: double linked list, bidirectional seq access;</li>
+<li><strong>forward_list</strong>: singly linked list, unidirectional seq access;</li>
+<li><strong>string</strong>: a specialized container.</li>
+</ul>
+
+<h3 id="toc_4">(i) summary points</h3>
+
+<ul>
+<li><p><strong>array</strong> is the only fixed-sized container<br>
+Definition needs both element type and container size.<br>
+Although we cannot copy or assign objs of built-in array types, there is no such restriction on array.</p>
+
+<pre><code class="language-cpp">array&lt;int, 10&gt; ia1;        //ten default-init ints
+array&lt;int, 10&gt; ia2 = {0,1,2,3,4,5,6,7,8,9}; //list init
+array&lt;int, 10&gt; ia3 = {42}; //ia3[0] is 42, all others are 0
+
+array&lt;int, 10&gt; copy = ia2; //OK: so long as array types match</code></pre></li>
+<li><p><code>array</code>/<code>string</code>/<code>vector</code> hold elements in <strong>contiguous mem</strong></p></li>
+<li><p><code>array</code> does not support element insertion or removal, <code>vector</code> supports fast element insertion or removal at the end, <code>deque</code> are designed to be efficient performing insertions/removals from either the end or the beginning (other positions are uaually less efficient than in <code>list</code>); <code>list</code> and <code>forward_list</code> all support fast insertion or removal of elements anywhere in the container</p></li>
+<li><p><code>list</code> and <code>forward_list</code> preserves validity of iterators on insertion and removal, whereas <code>deque</code> invalidates all of them</p></li>
+<li><p><code>list</code> and <code>forward_list</code> are fast to add or remove ele, but no support on random access</p></li>
+<li><p><code>forward_list</code> and <code>array</code> were newly added in C++11</p></li>
+<li><p><strong>container elements are copies</strong><br>
+when we use an obj to init a container, or insert an obj into a container, a copy of that obj&#39;s value is placed in the container, not the obj itself.</p></li>
+</ul>
+
+<h3 id="toc_5">(ii) typical operations</h3>
+
+<ul>
+<li><p>adding elements<br>
+<strong>--&gt; push_back</strong><br>
+Aside from <strong>array</strong> and <strong>forward_list</strong>, every seq container (including <strong>string</strong>) supports <em>push_back</em><br>
+<strong>--&gt; push_front</strong><br>
+<strong>list/forward_list/deque</strong> support <em>push_front</em><br>
+<strong>--&gt; insert</strong><br>
+Inserts allows to add elements at a specified point.<br>
+It is legal to insert anywhere in a vector, deque, or string. However, doing so can be expensive.<br>
+<code>insert</code> <strong>copies</strong> objects into the container.</p>
+
+<pre><code class="language-cpp">vector&lt;string&gt; svec;
+list&lt;string&gt; slist;
+//equivalent to calling slist.push_front(&quot;hello&quot;)
+slist.insert(slist.begin(), &quot;hello&quot;);
+//no push_front on vector, but we can insert before begin()
+//WARN: inserting anywhere but the end might be slow
+svec.insert(svec.begin(), &quot;hello&quot;);</code></pre>
+
+<p><strong>--&gt; emplace</strong><br>
+<em>emplace_front/emplace/emplace_back</em> <strong>construct</strong> rather than copy elements.<br>
+When we call an emplace member, we pass arguments to a constructor for the element type. The emplace members use those arguments to construct an elem directly in space managed by the container.  </p>
+
+<pre><code class="language-cpp">//iter refers to an elem in c, which holds Sales_data eles
+c.emplace_back();              //uses the Sales_data default constructor
+c.emplace(iter, &quot;999-99999&quot;);  //Sales_data(string)
+c.emplace_front(&quot;978-05093&quot;, 25, 15.99);
+
+c.push_back(Sales_data(&quot;978-05093&quot;, 25, 15.99);</code></pre></li>
+<li><p>accessing elements<br>
+<strong>c.back()</strong> returns a ref to the last ele;<br>
+<strong>c.front()</strong> returns a ref to the first ele;<br>
+<strong>c[n]</strong> returns a ref at <em>n</em>;<br>
+<strong>c.at(n)</strong> returns a ref at <em>n</em>.</p>
+
+<pre><code class="language-cpp">c.front() = 42;     //assign 42 to first ele in c
+auto &amp;v = c.back(); //get a ref to last ele
+v = 1024;           //changes the ele in c
+auto v2 = c.back(); //v2 is NOT a ref, just a copy
+v2 = 0;             //no change to ele in c</code></pre></li>
+<li><p>erasing elements<br>
+<strong>pop_front and pop_back members</strong><br>
+these operations return <em>void</em>. If you need the value you are about to pop, you must store that value before doing the pop:  </p>
+
+<p><strong>removing an element</strong><br>
+erase a single ele denoted by an iterator, or a range of eles marked by a pair of iters.<br>
+return an iter referring to the loc <em>after</em> the (last) elem that was removed.</p>
+
+<pre><code class="language-cpp">list&lt;int&gt; lst = {0,1,2,3,4};
+auto it = lst.begin();
+while (it != lst.end())
+    if(*it % 2) it = lst.erase(it)
+    else ++it;</code></pre></li>
+</ul>
+
+<h3 id="toc_6">(iii) list</h3>
+
+<p>Lists are sequence containers that allow constant time insert and erase operations <strong>anywhere</strong> within the sequence, and iteration in both directions.
+Compared to <code>array</code>, <code>vector</code> and <code>deque</code>, lists perform generally better in inserting, extracting and moving elements in any position within the container for which an iterator has already been obtained.</p>
+
+<p>The main drawback of <code>list</code> and <code>forward_list</code> compared to other sequence containers is that they lack direct access to the elements by their pos.</p>
+
+<pre><code class="language-cpp">list&lt;char&gt; coll;                      //list container for char eles
+for(char c=&#39;a&#39;; c&lt;=&#39;z&#39;; ++c)
+    coll.push_back(c);
+//print use range-based for loop
+for(auto&amp; elem : coll)
+    cout &lt;&lt; elem &lt;&lt; endl;
+    
+//print use conventional way
+while(!coll.emptu()) {
+    coll &lt;&lt; coll.front() &lt;&lt; endl;   //returns 1st elem
+    coll.pop_front();               //removes 1st elem
+}</code></pre>
+
+<h3 id="toc_7">(iv) deque</h3>
+
+<p>Double-ended queues are sequence containers with dynamic sizes that can be expanded or contracted on both ends. <code>deque</code>s are not guaranteed to store all its elements in contiguous storage locations. Elems of a deque can be scattered in different chunks of storage, with the container keeping the necessary info internally to provide direct access to any of its elems in constant time and with a uniform sequential interface (through iters).</p>
+
+<pre><code class="language-cpp">std::deque&lt;std::string&gt; numbers;
+numbers.push_back(&quot;abc&quot;);
+std::string s = &quot;def&quot;;
+numbers.push_back(std::move(s));
+
+for(auto&amp;&amp; i : numbers) std::cout &lt;&lt; std::quoted(i) &lt;&lt; &#39; &#39;;
+std::cout &lt;&lt; &quot;\nMoved-from string holds &quot; &lt;&lt; std::quoted(s) &lt;&lt; &#39;\n&#39;;</code></pre>
+
+<p>Deque is typically implemented as a bunch of individual blocks, with the first block growing in one direction and the last block growing in the opposite direction.</p>
+
+<figure>
+  <center>
+  <img src="stl_img/deque.png" alt="The Pulpit Rock" width="400">
+  <figcaption>Fig.1 - <b>Internal structure of a deque</b>.</figcaption>
+  </center>
+</figure>
+
+<h3 id="toc_8">(v) may invalidate iterators</h3>
+
+<p>Pointers, references and iterater all provide indirect accesses to objects, but they are different:</p>
+
+<ul>
+<li>distinction between pointers and references lies at the language level; and they are usually translated to the same machine code by compiler;</li>
+<li>a pointer holds the address of a variable/object; it can be dereferenced to access the data pointed to;</li>
+<li>Iterators are a generalization of pointers: they are objects that point to other objects in a container.</li>
+</ul>
+
+<p>Operations that add or remove elems from a container can invalidate ptrs, refs or iters to container elems. An invalidated ptr, ref, or iter is one that no longer denotes an elem.</p>
+
+<p>After an oper that <strong>add</strong>s elems to a container: </p>
+
+<ul>
+<li>Iters, ptrs, and refs to a <code>vector</code> or <code>string</code> are invalid if the container was reallocated. If no reallocation happens, all indirect refs to elems before the insertion remain valid; those to elems after the insertion are invalid, because of the elem movement.</li>
+<li>Iters, ptrs, and refs to a <code>deque</code> are invalid if we add elems anywhere but at the front or back. If we add at front or back, iters are invalidated, but refs and ptrs to existing elems are not.</li>
+<li>Iters, ptrs, and refs to a <code>list</code> or <code>forward_list</code> remain valid.</li>
+</ul>
+
+<p>When we <strong>remove</strong> elems from a container, iters, ptrs and refs to the removed elems are invalidated. After we remove an elem,</p>
+
+<ul>
+<li>All other iters, refs, or ptrs to a <code>list</code> or <code>forward_list</code> remain valid.</li>
+<li>All other iters, refs, or ptrs to a <code>deque</code> are invalidated if the removed elems are anywhere but the front or back. If we remove elems at the back, the off-the-end iter is invalidated but other iters, refs and ptrs are unaffected; they are also unaffected if we remove from the front.</li>
+<li>All other iters, refs or ptrs to a <code>vector</code> or <code>string</code> remain valid for elems before the removal point. Note: the off-the-end iter is always invalidated when we remove elems.</li>
+</ul>
+
+<p>writing loop that change a container:<br>
+loops that add or remove elems of a <code>vector</code>, <code>string</code>, or <code>deque</code> must cater to the fact that iters, refs or ptrs might be invalidated. The program must ensure that the iter, ref, or ptr is refreshed on each trip through the loop.</p>
+
+<pre><code class="language-cpp">//remove even-valued eles, and insert a dup of odd
+vector&lt;int&gt; vi = {0,1,2,3,4,5,6,7,8,9};
+auto iter = vi.begin();
+while (iter != vi.end()){
+    if(*iter % 2){
+        iter = vi.insert(iter, *iter); //dup current elem
+        iter += 2; //advance past this elem and the one inserted before it
+    } else {
+        iter = vi.erase(iter); //remove even elem
+        //don&#39;t advance the iter, iter denotes the ele after the one we erased
+    }
+}</code></pre>
+
+<p>After the call to <code>erase</code>, no need to increment the iter, because the iter returned from <code>erase</code> denotes the next elem in the sequence. After the call to <code>insert</code>, we increment the iter twice. <code>insert</code> inserts before the given pos, and returns an iter to the inserted elem. Thus, after calling <code>insert</code>, iter denotes the (newly added) elem in front of the one we are processing.</p>
+
+<h2 id="toc_9"><a name="adaptor"></a> 3. Container adapters <a href="#top">&uarr;top</a></h2>
+
+<p>An <strong>adaptor</strong> is an mechanism for making one thing act like another. A container adaptor takes an existing container type and makes it act like a different type.</p>
+
+<p>Each adaptor defines two constructors: the default that creates an empty obj, and a constructor that takes a container and inits the adaptor by copying the given container. </p>
+
+<pre><code class="language-cpp">//copies eles from deq into stack
+stack&lt;int&gt; stk(deq);</code></pre>
+
+<p>By default, both <code>stack</code> and <code>queue</code> are implemented in terms of <code>deque</code>, and a <code>priority_queue</code> is implemented on a <code>vector</code>. We can override the default container type by naming a sequential container as a 2nd type argument when we create the adaptor:</p>
+
+<pre><code class="language-cpp">//empty stack implemented on top of vector
+stack&lt;string, vector&lt;string&gt;&gt; str_stk;
+//str_stk2 is implemented on top of vector
+stack&lt;string, vector&lt;string&gt;&gt; str_stk2(svec);</code></pre>
+
+<p>There are constraints on which containers can be used for a given adaptor. All of the adaptors require the ability to <strong>add and remove elems</strong>, and thus they cannot be built on <code>array</code>. Likewise, we cannot use <code>forward_list</code>, because all adaptors require operations that <strong>add, remove, or access the last elem</strong> in the container.</p>
+
+<h3 id="toc_10">(i) stack</h3>
+
+<p>manges its elems in LIFO, and requires only <code>push_back</code>, <code>pop_back</code> and <code>back</code> operations, so we can use any of remaining types to implement stack.</p>
+
+<pre><code class="language-cpp">std::stack&lt;std::string&gt; cards;
+cards.push(&quot;abc&quot;);
+cards.push(&quot;def&quot;);
+auto size = cards.size();
+std::string top_val = cards.top();
+//remove
+cards.pop();</code></pre>
+
+<figure>
+  <center>
+  <img src="stl_img/stack.png" alt="The Pulpit Rock" width="300">
+  <figcaption>Fig.2 - <b>Internal interface of a Stack</b>. Implemented using deque by default.</figcaption>
+  </center>
+</figure>
+
+<h3 id="toc_11">(ii) queue</h3>
+
+<p>manages its elems in FIFO, and requires <em>back</em>, <em>push_back</em>, <em>front</em> and <em>push_front</em>, so it can be built on a <em>list</em> or <em>deque</em> but not a vector.</p>
+
+<pre><code class="language-cpp">//build a stack of ints using a deque as the underlying container
+std::stack&lt;int, std::queue&lt;int&gt;&gt; stk;
+//build a queue of doubles using a list as the underlying container
+std::queue&lt;double, std::list&lt;double&gt;&gt; que;</code></pre>
+
+<figure>
+  <center>
+  <img src="stl_img/queue.png" alt="The Pulpit Rock" width="300">
+  <figcaption>Fig.3 - <b>Internal interface of a Queue</b>. Implemented using deque by default.</figcaption>
+  </center>
+</figure>
+
+<h3 id="toc_12">(iii) priority_queue</h3>
+
+<p>a container in which the elems may have different priorities, and the priority is based on a sorting criterion that the programmer may provide.
+A priority queue provides constant time lookup of the largest (by default) element, at the expense of logarithmic insertion and extraction.</p>
+
+<figure>
+  <center>
+  <img src="stl_img/prioq.png" alt="The Pulpit Rock" width="250">
+  <figcaption>Fig.4 - <b>Internal interface of a Priority queue</b>. Implemented using deque by default.</figcaption>
+  </center>
+</figure>
+
+<p>requires random access in addition to <code>front</code>, <code>push_back</code> and <code>pop_back</code> operations, it can be built on a <em>vector</em> or a <em>deque</em> but not on a list.</p>
+
+<pre><code class="language-cpp">templace&lt;typename T&gt;
+void print_queue(T&amp; q) {
+    while(!q.empty()){
+        std::cout &lt;&lt; q.top() &lt;&lt; &quot; &quot;;
+        q.pop();
+    }
+    std::cout &lt;&lt; &quot;\n&quot;;
+}
+
+int main() {
+    std::priority_queue&lt;int&gt; q;
+    for(int n : {1,8,5,6,3,4,0,9,7,2})
+        q.push(n);
+    print_queue(q);
+    
+    std::priority_queue&lt;int, std::vector&lt;int&gt;,
+        std::greater&lt;int&gt;&gt; q2;
+    for(int n : {1,8,5,6,3,4,0,9,7,2})
+        q2.push(n);
+    print_queue(q2);
+    
+    //using lambda to compare elements
+    auto cmp = [](int left, int right){
+        return (left^1)&lt;(right^1);};
+    std::priority_queue&lt;int, std::vector&lt;int&gt;,
+        decltype(cmp)&gt; q3(cmp);
+    
+    for(int n : {1,8,5,6,3,4,0,9,7,2})
+        q3.push(n);
+    print_queue(q3);
+}
+----------Output:
+9 8 7 6 5 4 3 2 1 0
+0 1 2 3 4 5 6 7 8 9
+8 9 6 7 4 5 2 3 0 1</code></pre>
+
+<h2 id="toc_13"><a name="assoc"></a> 4. Associative containers <a href="#top">&uarr;top</a></h2>
+
+<p>Whereas elements in a sequential container are stored and accessed sequentially by their <strong>position</strong>, elements in an associative container are stored and retrieved by a <strong>key</strong>.</p>
+
+<ul>
+<li><strong>map</strong>: associative array, holding key-value pairs</li>
+<li><strong>set</strong>: container in which the key is the value</li>
+<li><strong>multimap</strong>: map in which a key can appear multi times</li>
+<li><strong>multiset</strong>: set in which a key can appear multi times</li>
+<li><strong>unordered_map</strong>: map organized by a hash function</li>
+<li><strong>unordered_set</strong>: set organized by a hash function</li>
+<li><strong>unordered_multimap</strong>: Hashed map, key multi times</li>
+<li><strong>unordered_multiset</strong>: Hashed set, key multi times</li>
+</ul>
+
+<h3 id="toc_14">(i) map</h3>
+
+<p>In a <code>map</code>, the key values are generally used to sort and uniquely identify the elems, while the mapped values store the content associated to this key. Internally, the elems in a <code>map</code> are always sorted by its key following a specific strict weak ordering criterion indicated by its internal comparison object.</p>
+
+<p>Maps and multimaps are usually implemented as balanced trees, same with set and multisets. In fact, <code>set</code>, and <code>multiset</code> can be treated as special <code>map</code> and <code>multimap</code>, which have same value and key.</p>
+
+<figure>
+  <center>
+  <img src="stl_img/map.png" alt="The Pulpit Rock" width="300">
+  <figcaption>Fig.5 - <b>Internal structure of a map and multimap</b>.</figcaption>
+  </center>
+</figure>
+
+<h3 id="toc_15">(ii) set</h3>
+
+<p>Like all standardized associative container classes, sets and multisets are usually implemented as <strong>balanced binary trees</strong>, typically <strong>red-black trees</strong>. </p>
+
+<figure>
+  <center>
+  <img src="stl_img/set.png" alt="The Pulpit Rock" width="300">
+  <figcaption>Fig.6 - <b>Internal structure of a set and multiset</b>.</figcaption>
+  </center>
+</figure>
+
+<p>Set and multiset containers sort their elems automatically according to a certain sotring criterion.
+The major advantage of automatic sorting is that a binary tree performs well when elems with a certain value are searched, with logarithmic complexity. However, automatic sorting also imposes an important constraint: you may not change the value of an elem directly, because doing so might compromise the correct order. Therefore, to modify the value of an elem, you <u>must remove the elem having the old values and insert a new elem that has the new value</u>.</p>
+
+<h3 id="toc_16">(iii) unordered containers</h3>
+
+<p>Unordered containers allow for fast retrieval of individual elems based on their keys. Internally, the elems are not sorted in any particular order w.r.t either key or mapped values, but organized into buckets depending on their hash values to allow for fast access to individual elems directly by their key values.</p>
+
+<figure>
+  <center>
+  <img src="stl_img/unordered.png" alt="The Pulpit Rock" width="300">
+  <figcaption>Fig.7 - <b>Internal structure of unordered maps and multimaps</b>. Unordered sets and multisets have similar structures.</figcaption>
+  </center>
+</figure>
+
+<p>In unordered map or multimap, for each elem to store, which is a key/value pair, the hash function maps the value of the key to a bucket (slot) in the hash table. Each bucket manages a <strong>singly linked list</strong> containing all the elems for which the hash func yields the same value.</p>
+
+<p>The unordered containers are organized as a collection of <strong>buckets</strong>, each of which holds zero or more elements. These containers use a hash func to map elements to buckets. To access an elem, the container first computes the elem&#39;s hash code, which tells which bucket to search. The container puts all of its elems with a given hash value into the same bucket. If the container allows multi elems with a given key, all the elems with the same key will be in the same bucket. As a result, the performance of an unordered container depends on the quality of its hash func and on the number and size of its buckets.</p>
+
+<p>When a bucke holds several elems, those elems are searched sequentially to find the one we want. Typically, computing an elem&#39;s hash code and finding its bucket is a fast operation. However, if the bucket has many elems, many comparisons may be needed to find a particular elem.</p>
+
+<p>By default, the unordered containers use the <strong>==</strong> operator on the key type to compare elems. They also use an obj of type <code>hash&lt;key_type&gt;</code> to generate the hash code for each elem. The library supplies versions of the <strong>hash</strong> template for the built-in types, including ptrs. It also defines <code>hash</code> for some of the library types, including <code>string</code>s and smart ptr types. Thus, we can directly define unordered containers whose key is one of the built-in types (including ptr types), or a <code>string</code>, or a smart ptr.</p>
+
+<p>However, we cannot directly define an unordered container that uses a our own class types for its key type. We must supply our own hash template. To use <code>Sales_data</code> as the key, we need to supply funcs to replace both the <strong>==</strong> operator and to calculate a hash code.</p>
+
+<pre><code class="language-cpp">size_t hasher(const Sales_data &amp;sd){
+    return hash&lt;string&gt;()(sd.isbn());
+}
+bool eqOp(const Sales_data &amp;lhs, const Sales_data &amp;rhs){
+    return lhs.isbn() == rhs.isbn();
+}
+
+using SD_multiset = unordered_multiset&lt;Sales_data,
+                        decltype(hasher)*, decltype(eqOp)*&gt;;
+//arguments are the bucket size and ptr to the hash func and eq operator
+SD_multiset bookStore(42, hasher, eqOp);</code></pre>
+
+<h3 id="toc_17">(iv) using a map and set</h3>
+
+<p>A map is a collection of key-value pairs. And, map is often referred to as an <strong>associative array</strong>, which is like a &quot;normal&quot; array except that its subscripts don&#39;t have to be integers.</p>
+
+<pre><code class="language-cpp">//count the number of times each word occurs in the input
+map&lt;string, size_t&gt; word_count;
+string word;
+while(cin &gt;&gt; word)
+    ++ word_count[word];
+for(const auto &amp;w : word_count)
+    cout &lt;&lt; w.first &lt;&lt; &quot; occurs &quot; &lt;&lt; 
+            w.second &lt;&lt; &quot;times\n&quot;;</code></pre>
+
+<p>A set is simply a collection of keys.</p>
+
+<pre><code class="language-cpp">//count the number of times each word occurs in the input
+map&lt;string, size_t&gt; word_count;
+set&lt;string&gt; exclude = {&quot;The&quot;, &quot;But&quot;, &quot;And&quot;};
+
+string word;
+while(cin &gt;&gt; word)
+    //count only words that are not in execlude
+    if(exclude.find(word) == exclude.end())
+        ++ word_count[word];</code></pre>
+
+<h3 id="toc_18">(v) overview of the associative containers</h3>
+
+<p><strong>defining an associative container</strong>:</p>
+
+<pre><code class="language-cpp">map&lt;string, size_t&gt; word_count; //empty
+//list initialization
+set&lt;string&gt; exclude = {&quot;the&quot;, &quot;but&quot;, &quot;one&quot;};
+//three elements; authors maps last name to first
+map&lt;string, string&gt; authors = { {&quot;Joyce&quot;, &quot;James},
+                                {&quot;Xw&quot;, &quot;Zhang&quot;}};
+vector&lt;int&gt; ivec{1, 1, 2, 2, 3, 3, 4, 4, 5, 5};
+set&lt;int&gt; iset(ivec.cbegin(), ivec.cend()); //5 eles
+multiset&lt;int&gt; miset(ivec.cbegin(), ivec.cend()); //10 eles</code></pre>
+
+<p><strong>requirements on key type</strong>:<br>
+For the ordered containers - <code>map</code>, <code>multimap</code>, <code>set</code> and <code>multiset</code> - the key type must define a way to compare the elements. By default, the library uses <code>&lt;</code> operator for the key type to compare the keys. We can customize the comparison func:</p>
+
+<pre><code class="language-cpp">bool compareIsbn(const Sales_data &amp;lhs, const Sales_data &amp;rhs){
+    return lhs.isbn() &lt; rhs.isbn();
+}
+multiset&lt;Sales_data, decltype(compareIsbn)*&gt; bookStore(compareIsbn);</code></pre>
+
+<p>When use <code>decltype</code> to form a func ptr, we must add <code>*</code> to indicate that we&#39;re using a ptr to the given func type. We init <code>bookstore</code> from <code>compareIsbn</code>, which means that when we add elements to <code>bookstore</code>, those elements will be ordered by calling <code>compareIsbn</code>. Argument <code>compareIsbn</code> has the same effect as <code>&amp;compareIsbn</code>, as a func name is automatically converted into a ptr when needed.</p>
+
+<p><strong>the pair type</strong><br>
+<code>pair</code> is a library type defined in <code>utility</code> header. A <code>pair</code> holds two data members.</p>
+
+<pre><code class="language-cpp">pair&lt;string, string&gt; anon;          //holds two strs
+pair&lt;string, size_t&gt; word_count;    //holds a str and an size_t
+pair&lt;string, vector&lt;int&gt;&gt; line;     //holds a str and vector&lt;int&gt;
+pair&lt;string, string&gt; author{&quot;XW&quot;, &quot;Zhang&quot;};
+
+pair&lt;string, int&gt;
+process(vector&lt;string&gt; &amp;v){
+    //process v
+    if(!v.empty())
+        return {v.back(), v.back().size()}; //list init
+        //also OK: return pair&lt;string, int&gt;(...)
+        //also OK: return make_pair&lt;string, int&gt; (...)
+    else
+        return pair&lt;string, int&gt;();
+}</code></pre>
+
+<h3 id="toc_19">(vi) operations on associative containers</h3>
+
+<ul>
+<li><strong>key_type</strong>: type of the key for the container type;</li>
+<li><strong>mapped_type</strong>: type associated with each key; <code>map</code> types only</li>
+<li><strong>value_type</strong>: for <code>set</code>, same as <code>key_type</code>; for <code>map</code>, pair<const key_type, mapped_type></li>
+</ul>
+
+<pre><code class="language-cpp">set&lt;string&gt;::value_type v1;         //v1 is a string
+set&lt;string&gt;::key_type v2;           //v2 is a string
+map&lt;string, int&gt;::value_type v3;    //v3 is a pair&lt;const string, int&gt;
+map&lt;string, int&gt;::key_type v4;      //v4 is a string
+map&lt;string, int&gt;::mapped_type v5;   //v5 is an int</code></pre>
+
+<p><strong>associative container types</strong><br>
+when we dereference an iterator, we get a reference to a value of the container&#39;s <code>value_type</code>. For <code>map</code>, it is a <code>pair</code> in which <code>first</code> holds the <code>const</code> key and <code>second</code> holds the value:</p>
+
+<pre><code class="language-cpp">//get an iter to an element in word_count
+auto map_it = word_count.begin();
+//*map_it is a ref to a pair&lt;const string, size_t&gt; object
+cout &lt;&lt; map_it-&gt;first;          //key
+cout &lt;&lt; map_it-&gt;second;         //value
+map_it-&gt;first = &quot;new key&quot;;      //ERROR: key is const
+++ map_it-&gt;second;              //OK: can change value through an iter</code></pre>
+
+<p>Iterators for <code>set</code>s are <code>const</code><br>
+although the <code>set</code> types define both the <code>iterator</code> and <code>const_iterator</code> types, both give read-only access to the elements in <code>set</code>:</p>
+
+<pre><code class="language-cpp">set&lt;int&gt; iset = {0,1,2,3,4,5,6,7,8,9};
+set&lt;int&gt;::iterator set_it = iset.begin();
+if(set_it != iset.end()) {
+    *set_it = 42;               //ERROR: keys in a set are read-only
+    cout &lt;&lt; *set_it &lt;&lt; endl;    //OK: can read the key
+}</code></pre>
+
+<p>Iterating across an associative container  </p>
+
+<pre><code class="language-cpp">//get an iterator positioned on the 1st element
+auto map_it = word_count.begin();
+//compare the current iter to print the element key-value pairs
+while (map_it != word_count.cend()) {
+    //deref the iter to print the element key-value pairs
+    cout &lt;&lt; map_it-&gt;first &lt;&lt; &quot; &quot; &lt;&lt; map_it-&gt;second &lt;&lt; endl;
+    ++ map_it;  //increment the iter to denote the next element
+}</code></pre>
+
+<p>In general, we do not use the generic algorithms with the associative containers, because:</p>
+
+<ul>
+<li>keys are <code>const</code>, cannot be passed to algorithms that write to or reorder container elements;</li>
+<li>generic algorithms that read elements usually search the sequence, but associative containers can be found (quickly) by their key</li>
+</ul>
+
+<p><strong>adding elements</strong><br>
+the <code>insert</code> members add one element or a range of elements. Because <code>map</code> and <code>set</code> contain unique keys, inserting an element that is already present has no effect:</p>
+
+<pre><code class="language-cpp">vector&lt;int&gt; ivec = {2,4,6,8,2,4,6,8};    //ivec has 8 eles
+set&lt;int&gt; set2;                           //empty set
+set2.insert(ivec.cbegin(), ivec.cend()); //set2 has 4 eles
+set2.insert({1,3,5,7,1,3,5,7});          //set2 now has 8 eles
+
+//four ways to add word to word_count
+word_count.insert({word, 1});            //easiest way
+word_count.insert(make_pair(word, 1));
+word_count.insert(pair&lt;string, size_t&gt;(word, 1));
+//construct a new obj of the pair type to insert
+word_count.insert(map&lt;string, size_t&gt;::value_type(word, 1));</code></pre>
+
+<p><code>c.insert(args)</code> vs. <code>c.emplace(args)</code>  </p>
+
+<ul>
+<li>for <code>insert</code>, args are used to construct an element;</li>
+<li>for <code>emplace</code>, </li>
+</ul>
+
+<p>return from <code>insert</code><br>
+<code>insert</code> (or <code>emplace</code>) returns a <code>pair</code> telling whether the insertion happened. The <code>first</code> member of the <code>pair</code> is an iterator to the element with the given key; the <code>second</code> is <code>bool</code> indicating whether that element was inserted, or was already there.</p>
+
+<pre><code class="language-cpp">map&lt;string, size_t&gt; word_count;
+string word;
+while (cin &gt;&gt; word) {
+    //if word is already in word_count, insert does nothing
+    auto ret = word_count.insert({word, 1});
+    if(!ret.second)             //word was already in word_count
+        ++ ret.first-&gt;second;   //increment the counter
+}</code></pre>
+
+<p><code>++ ((ret.first)-&gt;second)</code>:  </p>
+
+<ul>
+<li><code>ret</code> holds the value returned by <code>insert</code>, which is a <code>pair</code></li>
+<li><code>ret.first</code> is the <code>first</code> member of that <code>pair</code>, which is a <code>map</code> iterator referring to the element with the given key</li>
+<li><code>ret.first-&gt;</code> dereferences that iter to fetch that element. Eles in the <code>map</code> are also pairs</li>
+<li><code>ret.first-&gt;second</code> is the value part of the map element <code>pair</code></li>
+<li><code>++ret.first-&gt;second</code> increments that value</li>
+</ul>
+
+<p><strong>erasing elements</strong><br>
+the associative counters define three versions of <code>erase</code> (c.erase(k), c.erase(p), c.erase(b, e)); as with sequential containers, we can erase one element or a range of elements by passing <code>erase</code> an iterator or an iter pair. The additional <code>erase</code> operation takes a <code>key_type</code> argument:</p>
+
+<pre><code class="language-cpp">//erase on a key returns #elements removed
+word_count.erase(removal_word);
+auto cnt = authors.erase(&quot;XW, Zhang&quot;);</code></pre>
+
+<p><strong>subscripting a map</strong><br>
+the <code>map</code> and <code>unordered_map</code> containers provide the subscript operator and a crspding <code>at</code> func. <code>set</code> types do not support subscripting because there is no &quot;value&quot; associated with a key; <code>multimap</code> and <code>unordered_multimap</code> don&#39;t support subscript because there may be more than one value associated with a given key.</p>
+
+<p><code>map</code> subscript takes an index (i.e., a key) and fetches the associated value; however, if the key is not already present, a new element is created and inserted into the <code>map</code> for that key. The associated value is value initialized.</p>
+
+<pre><code class="language-cpp">map&lt;string, size_t&gt; word_count; //empty map
+//insert a value-inited element with key Anna; then assign 1 to its val
+word_count[&quot;Anna&quot;] = 1;</code></pre>
+
+<p>the following steps take place:  </p>
+
+<ul>
+<li><code>word_count</code> is searched for the element whose key is <code>Anna</code>. Not found.</li>
+<li>A new key-value pair is inserted. The key is a const string holding Anna, and value is inited to be 0.</li>
+<li>the newly inserted element is fetched and is given the value 1.</li>
+</ul>
+
+<p>Unlike <code>vector</code> or <code>string</code>, the type returned by the <code>map</code> subscript operator (get <code>mapped_type</code>) differs from the type returned by dereferencing (get <code>value_type</code>) a <code>map</code> iter.</p>
+
+<p><strong>accessing elements</strong>  </p>
+
+<pre><code class="language-cpp">set&lt;int&gt; iset = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+iset.find(1);       //returns an iter that refers to the ele with key==1
+iset.find(11);      //returns the iter == iset.end()
+iset.count(1);      //returns 1
+iset.count(11);     //returns 0
+
+if(word_count.find(&quot;foobar&quot;) == word_count.end())
+    cout &lt;&lt; &quot;foobar is not in the map&quot; &lt;&lt; endl;</code></pre>
+
+<p>for <code>multimap</code> and <code>multiset</code>, there may be multi elements with the given key, those eles will be adjacent within the container.</p>
+
+<pre><code class="language-cpp">string search_item(&quot;Alain de Botton&quot;);  //author we&#39;ll look for
+auto entries = authros.count(search_item); //number of eles
+auto iter = authors.find(search_item);  //first entry for this author
+//loop through the #entries there are for this author
+while(entries) {
+    cout &lt;&lt; iter-&gt;second &lt;&lt; endl;       //print each title
+    ++ iter;                            //advance to the next title
+    -- entries;                         //keep track of how many we&#39;ve printed
+}</code></pre>
+
+<p>alternatively, we can solve the problem using <code>lower_bound</code> and <code>upper_bound</code>, each takes a key and returns an iterator.<br>
+If the key is in the container, the iter returned from <code>lower_bound</code> will refer to the 1st instance of that key and an iter returned by <code>upper_bound</code> will refer just after the last instance of the key. If the ele is not in the <code>multimap</code>, then <code>lower_bound</code> and <code>upper_bound</code> will return equal iters; both will refer to the point at which the key can be inserted without disrupting the order. Thus, calling <code>lower_bound</code> and <code>upper_bound</code> on the same key yields an iter range that denotes all the eles with that key.</p>
+
+<pre><code class="language-cpp">//beg and end denote the range of eles for this author
+for(auto beg = authors.lower_bound(search_item),
+        end = authors.upper_bound(search_item);
+    beg != end; ++beg)
+    cout &lt;&lt; beg-&gt;second &lt;&lt; endl;    //print each title</code></pre>
+
+<p>third way:</p>
+
+<pre><code class="language-cpp">//pos holds iters that denote the range of eles for this key
+for(auto pos = authors.equal_range(search_item);
+        pos.first != pos.second; ++pos.first)
+            cout &lt;&lt; pos.first-&gt;second &lt;&lt; endl; //print each title</code></pre>
+
+<h2 id="toc_20"><a name="iter"></a> 5. Iterator <a href="#top">&uarr;top</a></h2>
+
+<p>All containers define their own iterator types, so we don&#39;t need a special header file for using iters of containers. However, several definitions for special iters, such as reverse iters, and some auxiliary iter funcs are introduced by the <iterator> header file.</p>
+
+<p>Iters are objects that can iterate over elems of a sequence via a common interface that is adapted from ordinary ptrs. Iterators follow the concept of pure abstraction: anything that behaves like an iter is an iter.</p>
+
+<p>Iterators are subdivided into categories based on their general abilities:</p>
+
+<ul>
+<li><strong>forward iterators</strong>: can only iterate forward, using the increment operator; iter of <code>forward_list</code> is forward iters, and the iters of <code>unordered</code> are &quot;at least&quot; forward iters.</li>
+<li><strong>bidirectional iterators</strong>: can iterate in two directions, forward and backward; iters of <code>list</code>, <code>set</code>, <code>multiset</code>, <code>map</code> and <code>multimap</code> are birectional iters.</li>
+<li><strong>random-access iterators</strong>: have all the properties of bidirectional iters, and can further perform random access; iters of <code>vector</code>, <code>deque</code>, <code>array</code> and <code>string</code> are random access iters.</li>
+<li><strong>input/output iterators</strong>: are able to read/write some values while iterating forward.</li>
+</ul>
+
+<h3 id="toc_21">(i) iterator adapters</h3>
+
+<p>iterators are <em>pure abstractions</em>. Anything that behaves like an iter is an iter. STL provides several predefined special iters: <strong>iterator adapters</strong>. </p>
+
+<ul>
+<li><p><strong>insert iterators</strong> (inserters): are used to let algs operate in insert mode rather than in overwrite mode. Three different insert iters are defined w.r.t where the elems are inserted - at the front, at the end, or at a given position.</p>
+
+<pre><code class="language-cpp">list&lt;int&gt; coll1 = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+//copy the elems of coll1 into coll2 by appending them
+vector&lt;int&gt; coll2;
+copy(coll1.cbegin(), coll1.cend(),     //source
+    //back_inserter(container) --&gt; push_back(val)
+    //  defined in vector, deque, list and string
+    back_inserter(coll2));              //dest
+deque&lt;int&gt; coll3;
+copy(coll1.cbegin(), coll1.cend(),     //source
+    //front_inserter(container) --&gt; push_front(val)
+    //  defined in deque, list and forward_list
+    front_inserter(coll3));             //dest
+set&lt;int&gt; coll4;
+copy(coll1.cbegin(), coll1.cend(),     //source
+    //inserter(container, pos) --&gt; insert(pos, val)
+    //  defined in all containers, exept array and forward_list
+    inserter(coll4, coll4.begin()));   //dest
+</code></pre></li>
+<li><p><strong>stream iterators</strong>: read from or write to a stream.</p>
+
+<p>Example: read all words from the standard input and print a sorted list of them.</p>
+
+<pre><code class="language-cpp">vector&lt;string&gt; coll;
+//read all words from the standard input
+//-source: all strings until eof (or error)
+//-dest: coll(inserting)
+copy(istream_iterator&lt;string&gt;(cin), //start of source
+    istream_iterator&lt;string&gt;(),     //end of source
+    back_inserter(coll));           //dest
+
+//sort elems
+sort(coll.begin(), coll.end());
+
+//print all elems without duplicates
+//-source: coll
+//-dest: standard output (with newline bt elems)
+unique_copy(coll.cbegin(), coll.cend(),    //source
+    ostream_iterator&lt;string&gt;(cout, &quot;\n&quot;)); //dest</code></pre></li>
+<li><p><strong>reverse iterators</strong>: let algs operate backward by switching the call of an increment operator internally into a call of the decrement operator, and vice versa.</p>
+
+<pre><code class="language-cpp">vector&lt;int&gt; coll;
+for(int i=1; i&lt;=9; ++i)
+coll.push_back(i);
+//print all elems in reverse order
+copy(coll.crbegin(), coll.crend(),     //source
+    ostream_iterator&lt;int&gt;(cout, &quot; &quot;)); //dest</code></pre></li>
+<li><p><strong>move iterators</strong>: convert any access to the underlying elem into a move operation.</p></li>
+</ul>
+
+<pre><code class="language-cpp">std::list&lt;std::string&gt; s;
+...
+//copy strings into v1
+std::vector&lt;string&gt; v1(s.begin(), s.end());
+//move strings into v2
+std::vector&lt;string&gt; v2(make_move_iterator(s.begin()),
+                    make_move_iterator(s.end()));</code></pre>
+
+<h3 id="toc_22">(ii) auxiliary iterator functions</h3>
+
+<p>STL provides some auxiliary funcs for dealing with iters: <code>advance()</code>, <code>next()</code>, <code>prev()</code>, <code>distance()</code>, and <code>iter_swap()</code>; the first four give all iters some abilities usually provided only for random-access iters: to step more than one elem forward (or backward) and process the diff between iters. The last func allows to swap the value of two iters.</p>
+
+<p><strong>advance()</strong><br>
+increments the position of an iter passed as the argument.</p>
+
+<pre><code class="language-cpp">list&lt;int&gt; coll;
+for(int i=0; i&lt;=9; ++i)
+    coll.push_back(i);
+list&lt;int&gt;::iterator pos = coll.begin();
+//print actual elem
+cout &lt;&lt; *pos &lt;&lt; endl;
+
+//step three elems forward
+advance (pos, 3); //advance() has no return
+cout &lt;&lt; *pos &lt;&lt; endl;
+
+//step one elem backward
+advance(pos, -1);
+cout &lt;&lt; *pos &lt;&lt; endl;
+
+----output
+1
+4
+3</code></pre>
+
+<p><strong>next() and prev()</strong>  </p>
+
+<pre><code class="language-cpp">auto pos = coll.begin();
+while(pos != coll.end() &amp;&amp; std::next(pos) != coll.end()) {
+    ...
+    ++pos;
+}</code></pre>
+
+<p><strong>distance()</strong><br>
+return the differ between two iters.</p>
+
+<p><strong>iter_swap()</strong><br>
+swap the values to which two iters refer.</p>
+
+<pre><code class="language-cpp">//orig:
+//- 1 2 3 4 5 6 7 8 9
+
+//swap first and second value
+//- 2 1 3 4 5 6 7 8 9
+iter_swap(coll.begin(), next(coll.begin()));
+
+//swap first and last value
+//- 9 1 3 4 5 6 7 8 2
+iter_swap(coll.begin(), prev(coll.end()));</code></pre>
+
+<h2 id="toc_23"><a name="lambda"></a> 6. STL functors and lambdas <a href="#top">&uarr;top</a></h2>
+
+<h3 id="toc_24">(i) function objects</h3>
+
+<p>Classes that overload the call operator allow objs of its type to be used as if they were a func. And, such classes can also store state, so they are more flexible than ordinary funcs. Objects of classes that define the call operator are referred to as <strong>function objects</strong>, which &quot;act like funcs&quot;.</p>
+
+<pre><code class="language-cpp">class PrintString {
+ public:
+    PrintString(ostream &amp;o = cout, char c = &#39; &#39;):
+        os(o), sep(c) { }
+    void operator()(const string &amp;s) const { os &lt;&lt; s &lt;&lt; sep; }
+ private:
+    ostream &amp;os;        //stream on which to write
+    char sep;           //char to print after each output
+};
+
+PrintString printer;    //uses the defaults; prints to cout
+printer(s);             //prints s followed by a space on cout
+PrintString errors(cerr, &#39;\n&#39;);
+errors(s);              //prints s followed by a newline on cerr</code></pre>
+
+<p>Func objs are most often used as arguments to the generic algs.</p>
+
+<pre><code class="language-cpp">for_each(vs.begin(), vs.end(), PrintString(cerr, &#39;\n&#39;));</code></pre>
+
+<p>function objects as sorting criteria</p>
+
+<pre><code class="language-cpp">class Person {
+ public:
+    string firstname() const;
+    string lastname() const;
+    ...
+};
+//class for func predicate
+//- operator() returns whether a person is &lt; another
+class PersonSortCriterion {
+ public:
+    bool operator() (const Person&amp; p1, const Person&amp; p2) const {
+        return p1.lastname()&lt;p2.lastname() ||
+            (p1.lastname()==p2.lastname() &amp;&amp;
+             p1.firstname()&lt;p2.firstname());
+    }
+};
+int main(){
+    //create a set with special sorting criterion
+    set&lt;Person, PersonSortCriterion&gt; coll;
+    ...
+}</code></pre>
+
+<p><strong>library-defined function objects</strong><br>
+The standard library defines a set of classes that represent the arithmetic, relational, and logical operators. </p>
+
+<pre><code class="language-none">Arithmetic      Relational          logical
+plus            equal_to            logical_and
+minus           not_equal_to        logical_or
+multiplies      greater             logical_not
+divides         greater_equal
+modulus         less
+negate          less_equal</code></pre>
+
+<p>Each class define a call operator that applies the named operation. E.g., the <code>plus</code> class has a func-call operator that applies <code>+</code> to a pair of operands.</p>
+
+<pre><code class="language-cpp">plus&lt;int&gt; intAdd;                //func obj that can add two int values
+negate&lt;int&gt; intNegate;           //func obj that can negate an int value
+//uses intAdd::operator(int, int) to add 10 and 20
+int sum = intAdd(10, 20);        //i.e., sum = 30
+sum = intNegate(intAdd(10, 20)); //sum=-30</code></pre>
+
+<p>library func obj can be used with algs:</p>
+
+<pre><code class="language-cpp">//passes a temp func obj that applies the &lt;operator to two strings
+sort(svec.begin(), svec.end(), greater&lt;string&gt;());
+
+vector&lt;string *&gt; nameTable;     //vector of pointers
+//ERROR: the ptrs in nameTable are unrelated, so &lt; is undefined
+sort(nameTable.begin(), nameTable.end(),
+    [](string *a, string *b) { return a &lt; b; });
+//OK: library guarantees that less on ptr types is well defined
+sort(nameTable.begin(), nameTable.end(), less&lt;string*&gt;());</code></pre>
+
+<h3 id="toc_25">(ii) predicate</h3>
+
+<p>A <strong>predicate</strong> is an expr that can be called and that returns a value that can be used as a condition. The predicates used by library algs are either <strong>unary</strong> or <strong>binary</strong> ones. The algs that take predicates call the given predicate on the elems in the input range. As a result, it must be psbl to convert the elem type to the para type of the predicate.</p>
+
+<pre><code class="language-cpp">//comparison func to sort by word len
+bool isShorter(const string &amp;s1, const string &amp;s2){
+    return s1.size() &lt; s2.size();
+}
+//sort on word length, shortest to longest
+sort(words.begin(), words.end(), isShorter);</code></pre>
+
+<p>When we sort words by size, we also want to maitain alphabetic order among the elems that have the same length, which can be achieved using <code>stable_sort</code>. A stable_sort alg maintains the original order among equal elems.</p>
+
+<pre><code class="language-cpp">void elimDups(vector&lt;string&gt; &amp; words){
+    //sort words alphabetically so we can find dups
+    sort(words.begin(), words.end(),);
+    //unique reorders the input range so that each word appears once in the
+    //  front portion of the range and returns an iter one past the unique rang
+    auto end_unique = unique(words.begin(), words.end());
+    //erase uses a vector operation to remove nonunique elems
+    words.erase(end_unique, words.end());
+}
+
+elimDups(words);        //put words in alpha order and remove dups
+//resort by length, maintaining alpha rder among words of the same len
+stable_sort(words.begin(), words.end(), isShorter);</code></pre>
+
+<h3 id="toc_26">(iii) lambda expressions</h3>
+
+<p>The predicates can accept only one or two parameters. Differently, we can pass any kind of <strong>callable</strong> object to an algorithm. An obj or expr is callable if we can apply the call operator to it. callables can be: funcs, func pointers, class that overload the func-call operator, and lambda expressions.</p>
+
+<p>The lambda expr represents a callable unit of code. It can be thought of as an unamed, inline func. Like any func, a lambda has a return type, a para list, and a func body. Unlike a func, lambdas may be defined inside a func.</p>
+
+<pre><code class="language-none">[capture list](parameter list) --&gt; return type { function body }</code></pre>
+
+<ul>
+<li>capture list: is an (often empty) list of local variables defined in the enclosing function;</li>
+<li>return type, para list and func body are the same in any ordinary func. A lambda must use a trailing return (<code>-&gt; return type</code>) to specify a return type;</li>
+<li>we can omit either or both of the para list and return type but must always include the capture list and func body;</li>
+<li>if we omit the return type, the lambda has an inferred return type that depends on the code in the func body. If the func body is just a return statement, the return type is inferred from the type of the expr that is returned; ow, the return type is void.</li>
+</ul>
+
+<pre><code class="language-cpp">auto f = []{ return 42; }
+cout &lt;&lt; f() &lt;&lt; endl;
+
+//sort words by size, but maintain apha order of words of same size
+stable_sort(words.begin(), words.end(),
+            [](const string &amp;a, const string &amp;b)
+                { return a.size()&lt;b.size(); });</code></pre>
+
+<p>Although a lambda may appear inside a func, it can use vars local to that func only if it specifies which vars it intends to use. A lambda specifies the vars it will use by including those local vars in its capture list.</p>
+
+<pre><code class="language-cpp">void biggies(vector&lt;string&gt; &amp;words, vector&lt;string&gt;::size_type sz){
+    elimDups(words);
+    stable_sort(words.begin(), words.end(), isShorter);
+    //get an iter to the 1st elem whose size()&gt;=sz
+    auto wc = find_if(words.begin(), words.end(),
+                        [sz](const string &amp;a)
+                            { return a.size() &gt;= sz; });
+    //compute the #elems with size&gt;=sz
+    auto count = words.end() - wc;
+    //print words of the given size or longer, each one followed by a space
+    for_each(wc, words.end(),
+                [](const string &amp;s){ cout &lt;&lt; s &lt;&lt; &quot; &quot;; }
+}</code></pre>
+
+<p><strong>lambdas are function objects</strong><br>
+When we write a lambda, the compiler translates that expr into an unnamed obj of an unnamed class. The classes generated from a lambda contain an overloaded func-call operator.</p>
+
+<pre><code class="language-cpp">stable_sort(words.begin(), words.end(),
+            [](const string &amp;a, const string &amp;b)
+             { return a.size() &lt; b.size(); });
+//acts like an unnamed obj of a class looks like:
+class ShorterString {
+ public:
+    bool operator()(const string &amp;s1, const string &amp;s2) const
+    { return s1.size() &lt; s2.size(); }
+};</code></pre>
+
+<p>By default, lambdas may not change their captured variables, and hence, the func-call operator in a class generated from a lambda is a <code>const</code> member func; if the lambda is declared as <code>mutable</code>, then the call operator is not const.</p>
+
+<p><strong>classes representing lambdas with captures</strong><br>
+when a lambda captures a var by ref, it is up to the program to ensure that the var to which the ref refers exists when the lambda is executed. Therefore, the compiler is permitted to use hte ref directly without storing that ref as a data member in the generated class.</p>
+
+<p>In contrast, classes generated from lambdas that catpure vars by value have data members crspding to each such var. These classes also have a cstr to init these data members from the value of the captured vars. </p>
+
+<pre><code class="language-cpp">auto wc = find_if(words.begin(), words.end(),
+                    [sz](const string &amp;a) {
+                    return a.size() &gt;= sz;
+                }
+//generate a class like:
+class SizeComp {
+    //the synthesized class does not have a default cstr
+    SizeComp(size_t n) : sz(n) { }  //paras for each captured var
+    //call operator with the same return type, paras, and body as lambda
+    bool operator()(const string &amp;s) const
+    { return a.size() &gt;= sz; }
+ private:
+    size_t sz;                      //a data member for each var captured by val
+};</code></pre>
+
+<p><strong>lambda captures and returns</strong><br>
+when we pass a lambda to a func, we are defining both a new type and an obj of that type: the argument is an unnamed obj of this compiler-generated class type. By default, the class generated from a lambda contains a data member crspding to 
+the vars captured by the lambda. Like the data members of any class, the data members of a lambda are inited when a lambda obj is created.</p>
+
+<pre><code class="language-none">[]              empty capture list
+[names]         names is a comma-separated list of names local to the enclosing func;
+[&amp;]             implicit by reference capture list;
+[=]             implicit by value capture list;
+[&amp;, id_list]    id_list is a comma-separated list of zero or more vars from the enclosing function;
+[=,ref_list]    vars included in the ref_list are captured by ref.</code></pre>
+
+<p>capture by value:</p>
+
+<pre><code class="language-cpp">void fcn1(){
+    size_t v1 = 42;         //local var
+    //copies v1 into the callable obj named f
+    auto f = [v1] { return v1; };
+    v1 = 0;
+    auto j = f();           //j is 42; f stores a copy of v1 when we created it
+}</code></pre>
+
+<p>capture by reference:</p>
+
+<pre><code class="language-cpp">void fcn2(){
+    size_t v1 = 42;         //local var
+    //the obj f2 contains a ref to v1
+    auto f2 = [&amp;v1] { return v1; };
+    v1 = 0;
+    auto j = f2();          //j is 0; f2 stores v1; it doesn&#39;t store it
+}</code></pre>
+
+<p>implicit captures:<br>
+rather than explicitly listing the vars we want to use from the enclosing func, we can let the compiler infer which vars we use from the code in the lambda&#39;s body. <code>&amp;</code> tells the compiler to capture by ref, and <code>=</code> says the values are captured by value.</p>
+
+<pre><code class="language-cpp">//sz implicitly captures by value
+wc = find_if(words.begin(), words.end(),
+            [=](const string &amp;s)
+            { return s.size() &gt;= sz; });
+//mix implicit and explicit captures
+void biggies(vector&lt;string&gt; &amp;words,
+                vector&lt;string&gt;::size_type sz,
+                ostream &amp;os=cout, char c=&#39; &#39;) {
+    //os implicitly captured by ref, c explicitly captured by value
+    for_each(words.begin(), words.end(),
+            [&amp;, c](const string &amp;s) { os &lt;&lt; s &lt;&lt; c; });
+    //os explicitly captured by ref, c implicitly captured by value
+    for_each(words.begin(), words.end(),
+            [=, &amp;os](const string &amp;s) { os &lt;&lt; s &lt;&lt; c; });               
+}</code></pre>
+
+<p>By default, a lambda may not change the value of a var that it copies by value. To change the value of a captured var, we must follow the para list with the keyword <code>mutable</code>.</p>
+
+<pre><code class="language-cpp">void fcn3(){
+    size_t v1 = 42;         //local var
+    //f can change the value of the var it captures
+    auto f = [v1]() mutable { return ++v1; };
+    v1 = 0;
+    auto j = f();           //j is 43
+}</code></pre>
+
+<p>whether a var captured by ref can be changed depends only on whether that ref refers to a <code>const</code> or nonconst type:</p>
+
+<pre><code class="language-cpp">void fcn4(){
+    size_t v1 = 42;         //local var
+    //v1 is a ref to a nonconst var
+    //we can change the var through the ref inside f2
+    auto f2 = [&amp;v1] { return ++v1; };
+    v1 = 0;
+    auto j = f2();      //j is 1
+}</code></pre>
+
+<p><strong>specifying the lambda return type</strong><br>
+By default, if a lambda body contains any statments other than a <code>return</code>, that lambda is assumed to return <code>void</code>. Like other funcs that return void, lambdas inferred to return void may not return a value.</p>
+
+<pre><code class="language-cpp">//a single return
+transform(vi.begin(), vi.end(), vi.begin(),
+        [](int i) { return i&lt;0 ? -i : i; });
+        
+//ERROR: cannot deduce the return type for the lambda
+transform(vi.begin(), vi.end(), vi.begin(),
+        [](int i) { if(i&lt;0) return -i; else return i; });
+
+//OK: define a return type, trailing
+transform(vi.begin(), vi.end(), vi.begin(),
+        [](int i) -&gt; int
+        { if(i&lt;0) return -i; else return i; });</code></pre>
+
+<h3 id="toc_27">(iii) callable objects and function</h3>
+
+<p>C++ has several kinds of objects: <strong>functions</strong> and <strong>pointers to funcs</strong>, <strong>lambdas</strong>, <strong>objects created by bind</strong>, and <strong>classes that overload the func-call operator</strong>. Like any other obj, a callable obj has a type, e.g., each lambda has its own unique (unnamed) class type. Func and func-ptr types vary by their return type and argument types, etc.</p>
+
+<p>However, two callable objs with different types may share the same <strong>call signature</strong>, which specifies the type returned by a call to the obj and the argument type(s) that must be passed in the call, e.g. <code>int(int, int)</code>.</p>
+
+<p>We might want to define a <strong>function table</strong> to store &quot;pointers&quot; to these callables. When the program nees to execute a particular operation, it will look in the table to find which func to call:</p>
+
+<pre><code class="language-cpp">//ordinary func
+int add(int i, int j) { return i+j; }
+//lambda, which generates an unnamed func-obj class
+auto mod = [](int i, int j) { return i%j; };
+//func-obj class
+struct divide {
+    int operator()(int denominator, int divisor) {
+        return denominator / divisor;
+    }
+};
+
+//maps an operator to a ptr to a func taking two ints and returning an int
+map&lt;string, int(*)(int, int)&gt; binops;
+//OK: add is a ptr to func of the appropriate type
+binops.insert({&quot;+&quot;, add});      //{&quot;+&quot;, add} is a pair
+//ERROR: mod is not a ptr to func
+binops.insert({&quot;%&quot;, mod});</code></pre>
+
+<p>The problem is that <code>mod</code> is a lambda, and each lambda has its own class type, which does not match the type of the values stored in <code>binops</code>.  </p>
+
+<p>Solution is to use the new library type <strong>function</strong>.</p>
+
+<pre><code class="language-cpp">function&lt;int(int, int)&gt; f1 = add;             //func ptr
+function&lt;int(int, int)&gt; f2 = divide();        //obj of a func-obj class
+function&lt;int(int, int)&gt; f3 = [](int i, int j) //lambda
+                             { return i*j; };
+
+cout &lt;&lt; f1(4, 2) &lt;&lt; endl;                     //prints 6
+cout &lt;&lt; f2(4, 2) &lt;&lt; endl;                     //prints 2
+cout &lt;&lt; f3(4, 2) &lt;&lt; endl;                     //prints 8</code></pre>
+
+<p>we can now redefine the <code>map</code> using the <code>function</code> type, which can denote func ptrs, lambdas, or func objs, etc:</p>
+
+<pre><code class="language-cpp">map&lt;string, function&lt;int(int, int)&gt;&gt; binops = {
+    {&quot;+&quot;, add},                             //func ptr
+    {&quot;-&quot;, std::minus&lt;int&gt;()},               //lib func obj
+    {&quot;/&quot;, divide()},                        //user-defined func obj
+    {&quot;*&quot;, [](int i, int j){ return i*j; },  //unamed lambda
+    {&quot;%&quot;, mod},                             //named lambda obj
+};
+
+binops[&quot;+&quot;](10, 5);                         //calls add(10, 5)</code></pre>
+
+<p>we cannot (directly) store the name of an overloaded func in an obj of type <code>function</code>; instead we can use func ptr or lambda to disambiguate:</p>
+
+<pre><code class="language-cpp">int add(int i, int j) { return i+j; }
+Sales_data add(const Sales_data&amp;, const Sales_data&amp;);
+map&lt;string, function&lt;int(int, int)&gt;&gt;binops;
+binops.insert( {&quot;+&quot;, add} );                //ERROR: which add?
+
+//SOL1: store a func ptr instead of func name
+int (*fp) (int, int) = add;             //ptr to the add ver taking two ints
+binops.insert( {&quot;+&quot;, fp} );             //OK: fp points to the right add ver
+
+//SOL2: use lambda
+//OK: use a lambda to disambiguate which ver of add we want to use
+binops.insert( {&quot;+&quot;, [](int a, int b) { return add(a, b); } });</code></pre>
+
+<h3 id="toc_28">(iv) binding arguments</h3>
+
+<p>To use the same operation in many places, we should usually define a func rather than writing the same lambda expr multi times. However, it is not so easy to write a func to replace a lambda that captures local vars.</p>
+
+<pre><code class="language-cpp">//we cannot use the func as an argument to find_if, which takes a unary predicate
+bool check_size(const string &amp;s, string::size_type sz){
+    return s.size() &gt;= sz;
+}</code></pre>
+
+<p>we can solve the problem using <strong>bind</strong>, which takes a callable obj and generates a new callable that &quot;adapts&quot; the para list of the orig obj.</p>
+
+<pre><code class="language-cpp">//FORM: auto newCallable = bind(callable, arg_list);
+
+//check6 is a callable obj that takes one argu of type string
+//and calls check_size on its given string and the value 6
+auto check6 = bind(check_size, _1, 6);</code></pre>
+
+<p>The call to bind has only one placeholder, which means that <code>check6</code> takes a single argument. The placeholder appears first in arg_list, which means that the para in check6 crspds to the first para of <code>check_size</code>.</p>
+
+<p>we can use <code>bind</code> to bind or rearrange the parameters in the given callable.</p>
+
+<pre><code class="language-cpp">//g is callable obj that takes two arguments
+auto g = bind(f, a, b, _2, c, _1);</code></pre>
+
+<p>generates a new callable that takes two arguments, represented by the placeholders <code>_2</code> and <code>_1</code>. The 1st, 2nd and 4th arguments to <code>f</code> are bound to the given values <code>a</code>, <code>b</code> and <code>c</code>, respectively.</p>
+
+<p>The arguments to <code>g</code> are bound positionally to the placeholders, i.e, the first to <code>_1</code> and the second to <code>_2</code>.</p>
+
+<pre><code class="language-cpp">g(_1, _2) --&gt; f(a, b, _2, c, _1)
+
+//sort on word length, shortest to longest
+sort(words.begin(), words.end(), isShorter);
+//sort on word length, longest to shortest
+sort(words.begin(), words.end(), bind(isShorter, _2, _1));</code></pre>
+
+<p>By default, the arguments to <code>bind</code> that are not placeholders are copied into the callable obj that <code>bind</code> returns. However, as with lambdas, sometimes we have arguments that we want to bind but we want to pass by ref or we might want to bind an argument that has a type that we cannot copy.</p>
+
+<pre><code class="language-cpp">//os is a local var referring to an output stream
+c is a local var of type char
+for_each(words.begin(), words.end(),
+        [&amp;os, c](const string &amp;s) { os &lt;&lt; s &lt;&lt; c; });
+        
+//we can easily write a func to do the same job
+ostream &amp;print(ostream &amp;os, const string &amp;s, char c){
+    return os &lt;&lt; s &lt;&lt; c;
+}
+//however, we can&#39;t use bind directly to replace the capture of os
+// because ostream cannot be copies
+for_each(words.begin(), words.end(), bind(print, os, _1, &#39; &#39;));
+
+//use library ref to pass an obj to bind without copying
+for_each(words.begin(), words.end(),
+        bind(print, ref(os), _1, &#39; &#39;));</code></pre>
+
+<p>The <code>ref</code> func returns an obj that contains the given ref and that is itself copyable.</p>
+
+<h1 id="toc_29"><a name="append"></a> 7. Appendix <a href="#top">&uarr;top</a></h1>
+
+<h2 id="toc_30">Manipulating algorithms</h2>
+
+<p>several algs modify dest ranges. In particular, those algs may remove elems. </p>
+
+<h3 id="toc_31">&quot;removing&quot; elements</h3>
+
+<p>The <code>remove()</code> alg removes elems from a range. However, using this alg for all elems of a container operates in a surprising way.</p>
+
+<pre><code class="language-cpp">list&lt;int&gt; coll;
+//insert elems from 6 to 1 and 1 to 6
+for(int i=1; i&lt;=6; ++i) {
+    coll.push_front(i);
+    coll.push_back(i);
+}
+
+//print all elems of the collection
+cout &lt;&lt; &quot;pre: &quot;;
+copy(coll.cbegin(), coll.cend(),        //source
+    ostream_iterator&lt;int&gt;(cout, &quot; &quot;));  //dest
+cout &lt;&lt; endl;
+
+//remove all elems with value 3
+remove(coll.begin(), coll.end(),        //range
+        3);                             //value
+
+//print all elems of the collection
+cout &lt;&lt; &quot;post: &quot;;
+copy(coll.cbegin(), coll.cend(),        //source
+    ostream_iterator&lt;int&gt;(cout, &quot; &quot;));  //dest
+cout &lt;&lt; endl;</code></pre>
+
+<p>output:  </p>
+
+<pre><code class="language-none">pre:    6 5 4 3 2 1 1 2 3 4 5 6
+post:   6 5 4 2 1 1 2 4 5 6 5 6</code></pre>
+
+<p><code>remove()</code> did not change the #elems in the collection for which it was called, but t changed their order as if the elements has been removed. Each elem with value 3 was overwritten by the following elems. At the end of the collection, the old elems that were not overwritten by the alg remain unchanged. Logically, these elems no longer belong to the collection.</p>
+
+<pre><code class="language-cpp">list&lt;int&gt; coll;
+//insert elems from 6 to 1 and 1 to 6
+for(int i=1; i&lt;=6; ++i) {
+    coll.push_front(i);
+    coll.push_back(i);
+}
+
+//print all elems of the collection
+cout &lt;&lt; &quot;pre: &quot;;
+copy(coll.cbegin(), coll.cend(),        //source
+    ostream_iterator&lt;int&gt;(cout, &quot; &quot;));  //dest
+cout &lt;&lt; endl;
+
+//remove all elems with value 3
+//- retain new end
+list&lt;int&gt;::iterator end = remove(coll.begin(), coll.end(),
+        3);                             //value
+
+//print resulting elems of the collection
+copy(coll.begin(), end,                 //source
+    ostream_iterator&lt;int&gt;(cout, &quot; &quot;));  //dest
+cout &lt;&lt; endl;
+
+//print #removed elems
+cout &lt;&lt; &quot;#removed elems: &quot;
+        &lt;&lt; distance(end, coll.end()) &lt;&lt; endl;
+        
+//remove &quot;removed&quot; elems
+coll.erase(end, coll.end());
+
+//print all elems of the modified collection
+copy(coll.cbegin(), coll.cend(),        //source
+    ostream_iterator&lt;int&gt;(cout, &quot; &quot;));  //dest
+cout &lt;&lt; endl;</code></pre>
+
+<p>output:</p>
+
+<pre><code class="language-none">6 5 4 3 2 1 1 2 3 4 5 6
+6 5 4 2 1 1 2 4 5 6
+#removed elems: 2
+6 5 4 2 1 1 2 4 5 6</code></pre>
+
+<h3 id="toc_32">manipulating associative and unordered containers</h3>
+
+<p>manipulation algs - those that remove elems and those that reorder or modify elems - have another problem on associative or unordered containers, which cannot be used as a dest.</p>
+
+<p>To remove elems in associative containers? Call their member functions, e.g. <code>erase()</code>! </p>
+
+<h3 id="toc_33">algorithms vs. member functions</h3>
+
+<p>A container might have member funcs that provide much better performance. Again, take <code>remove()</code> as an example: if you call <code>remove</code> for elems of a list, the alg doesn&#39;t know that it is operating on a list and thus does what it does for any container - reorder the elems by changing their values. If, e.g., the alg removes the 1st elem, all the following elems are assigned to their previous elems, which contradicts the main advantage of lists - the ability to insert, move and remove elems by modifying the links instead of the values.</p>
+
+<p>To avoid bad performance, lists provide special member funs for all manipulating algs, which should be called instead.</p>
+
+<pre><code class="language-cpp">//remove all elems with value 3 (poor peformance)
+coll.erase(remove(coll.begin(), coll.end(), 3),
+                coll.end());
+//remove all elems with value 4 (good performance)
+coll.remove(4);</code></pre>
+
+<script type="text/javascript">
+var _self="undefined"!=typeof window?window:"undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?self:{},Prism=function(){var e=/\blang(?:uage)?-(?!\*)(\w+)\b/i,t=_self.Prism={util:{encode:function(e){return e instanceof n?new n(e.type,t.util.encode(e.content),e.alias):"Array"===t.util.type(e)?e.map(t.util.encode):e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/\u00a0/g," ")},type:function(e){return Object.prototype.toString.call(e).match(/\[object (\w+)\]/)[1]},clone:function(e){var n=t.util.type(e);switch(n){case"Object":var a={};for(var r in e)e.hasOwnProperty(r)&&(a[r]=t.util.clone(e[r]));return a;case"Array":return e.map&&e.map(function(e){return t.util.clone(e)})}return e}},languages:{extend:function(e,n){var a=t.util.clone(t.languages[e]);for(var r in n)a[r]=n[r];return a},insertBefore:function(e,n,a,r){r=r||t.languages;var l=r[e];if(2==arguments.length){a=arguments[1];for(var i in a)a.hasOwnProperty(i)&&(l[i]=a[i]);return l}var o={};for(var s in l)if(l.hasOwnProperty(s)){if(s==n)for(var i in a)a.hasOwnProperty(i)&&(o[i]=a[i]);o[s]=l[s]}return t.languages.DFS(t.languages,function(t,n){n===r[e]&&t!=e&&(this[t]=o)}),r[e]=o},DFS:function(e,n,a){for(var r in e)e.hasOwnProperty(r)&&(n.call(e,r,e[r],a||r),"Object"===t.util.type(e[r])?t.languages.DFS(e[r],n):"Array"===t.util.type(e[r])&&t.languages.DFS(e[r],n,r))}},plugins:{},highlightAll:function(e,n){for(var a,r=document.querySelectorAll('code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'),l=0;a=r[l++];)t.highlightElement(a,e===!0,n)},highlightElement:function(n,a,r){for(var l,i,o=n;o&&!e.test(o.className);)o=o.parentNode;o&&(l=(o.className.match(e)||[,""])[1],i=t.languages[l]),n.className=n.className.replace(e,"").replace(/\s+/g," ")+" language-"+l,o=n.parentNode,/pre/i.test(o.nodeName)&&(o.className=o.className.replace(e,"").replace(/\s+/g," ")+" language-"+l);var s=n.textContent,u={element:n,language:l,grammar:i,code:s};if(!s||!i)return t.hooks.run("complete",u),void 0;if(t.hooks.run("before-highlight",u),a&&_self.Worker){var g=new Worker(t.filename);g.onmessage=function(e){u.highlightedCode=e.data,t.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(u.element),t.hooks.run("after-highlight",u),t.hooks.run("complete",u)},g.postMessage(JSON.stringify({language:u.language,code:u.code,immediateClose:!0}))}else u.highlightedCode=t.highlight(u.code,u.grammar,u.language),t.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(n),t.hooks.run("after-highlight",u),t.hooks.run("complete",u)},highlight:function(e,a,r){var l=t.tokenize(e,a);return n.stringify(t.util.encode(l),r)},tokenize:function(e,n){var a=t.Token,r=[e],l=n.rest;if(l){for(var i in l)n[i]=l[i];delete n.rest}e:for(var i in n)if(n.hasOwnProperty(i)&&n[i]){var o=n[i];o="Array"===t.util.type(o)?o:[o];for(var s=0;s<o.length;++s){var u=o[s],g=u.inside,c=!!u.lookbehind,f=0,h=u.alias;u=u.pattern||u;for(var p=0;p<r.length;p++){var d=r[p];if(r.length>e.length)break e;if(!(d instanceof a)){u.lastIndex=0;var m=u.exec(d);if(m){c&&(f=m[1].length);var y=m.index-1+f,m=m[0].slice(f),v=m.length,k=y+v,b=d.slice(0,y+1),w=d.slice(k+1),P=[p,1];b&&P.push(b);var A=new a(i,g?t.tokenize(m,g):m,h);P.push(A),w&&P.push(w),Array.prototype.splice.apply(r,P)}}}}}return r},hooks:{all:{},add:function(e,n){var a=t.hooks.all;a[e]=a[e]||[],a[e].push(n)},run:function(e,n){var a=t.hooks.all[e];if(a&&a.length)for(var r,l=0;r=a[l++];)r(n)}}},n=t.Token=function(e,t,n){this.type=e,this.content=t,this.alias=n};if(n.stringify=function(e,a,r){if("string"==typeof e)return e;if("Array"===t.util.type(e))return e.map(function(t){return n.stringify(t,a,e)}).join("");var l={type:e.type,content:n.stringify(e.content,a,r),tag:"span",classes:["token",e.type],attributes:{},language:a,parent:r};if("comment"==l.type&&(l.attributes.spellcheck="true"),e.alias){var i="Array"===t.util.type(e.alias)?e.alias:[e.alias];Array.prototype.push.apply(l.classes,i)}t.hooks.run("wrap",l);var o="";for(var s in l.attributes)o+=(o?" ":"")+s+'="'+(l.attributes[s]||"")+'"';return"<"+l.tag+' class="'+l.classes.join(" ")+'" '+o+">"+l.content+"</"+l.tag+">"},!_self.document)return _self.addEventListener?(_self.addEventListener("message",function(e){var n=JSON.parse(e.data),a=n.language,r=n.code,l=n.immediateClose;_self.postMessage(t.highlight(r,t.languages[a],a)),l&&_self.close()},!1),_self.Prism):_self.Prism;var a=document.getElementsByTagName("script");return a=a[a.length-1],a&&(t.filename=a.src,document.addEventListener&&!a.hasAttribute("data-manual")&&document.addEventListener("DOMContentLoaded",t.highlightAll)),_self.Prism}();"undefined"!=typeof module&&module.exports&&(module.exports=Prism),"undefined"!=typeof global&&(global.Prism=Prism);
+</script>
+<script type="text/javascript">
+Prism.languages.clike={comment:[{pattern:/(^|[^\\])\/\*[\w\W]*?\*\//,lookbehind:!0},{pattern:/(^|[^\\:])\/\/.*/,lookbehind:!0}],string:/(["'])(\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,"class-name":{pattern:/((?:\b(?:class|interface|extends|implements|trait|instanceof|new)\s+)|(?:catch\s+\())[a-z0-9_\.\\]+/i,lookbehind:!0,inside:{punctuation:/(\.|\\)/}},keyword:/\b(if|else|while|do|for|return|in|instanceof|function|new|try|throw|catch|finally|null|break|continue)\b/,"boolean":/\b(true|false)\b/,"function":/[a-z0-9_]+(?=\()/i,number:/\b-?(?:0x[\da-f]+|\d*\.?\d+(?:e[+-]?\d+)?)\b/i,operator:/--?|\+\+?|!=?=?|<=?|>=?|==?=?|&&?|\|\|?|\?|\*|\/|~|\^|%/,punctuation:/[{}[\];(),.:]/};
+</script>
+<script type="text/javascript">
+Prism.languages.c=Prism.languages.extend("clike",{keyword:/\b(asm|typeof|inline|auto|break|case|char|const|continue|default|do|double|else|enum|extern|float|for|goto|if|int|long|register|return|short|signed|sizeof|static|struct|switch|typedef|union|unsigned|void|volatile|while)\b/,operator:/\-[>-]?|\+\+?|!=?|<<?=?|>>?=?|==?|&&?|\|?\||[~^%?*\/]/,number:/\b-?(?:0x[\da-f]+|\d*\.?\d+(?:e[+-]?\d+)?)[ful]*\b/i}),Prism.languages.insertBefore("c","string",{macro:{pattern:/(^\s*)#\s*[a-z]+([^\r\n\\]|\\.|\\(?:\r\n?|\n))*/im,lookbehind:!0,alias:"property",inside:{string:{pattern:/(#\s*include\s*)(<.+?>|("|')(\\?.)+?\3)/,lookbehind:!0},directive:{pattern:/(#\s*)\b(define|elif|else|endif|error|ifdef|ifndef|if|import|include|line|pragma|undef|using)\b/,lookbehind:!0,alias:"keyword"}}},constant:/\b(__FILE__|__LINE__|__DATE__|__TIME__|__TIMESTAMP__|__func__|EOF|NULL|stdin|stdout|stderr)\b/}),delete Prism.languages.c["class-name"],delete Prism.languages.c["boolean"];
+</script>
+<script type="text/javascript">
+Prism.languages.cpp=Prism.languages.extend("c",{keyword:/\b(alignas|alignof|asm|auto|bool|break|case|catch|char|char16_t|char32_t|class|compl|const|constexpr|const_cast|continue|decltype|default|delete|do|double|dynamic_cast|else|enum|explicit|export|extern|float|for|friend|goto|if|inline|int|long|mutable|namespace|new|noexcept|nullptr|operator|private|protected|public|register|reinterpret_cast|return|short|signed|sizeof|static|static_assert|static_cast|struct|switch|template|this|thread_local|throw|try|typedef|typeid|typename|union|unsigned|using|virtual|void|volatile|wchar_t|while)\b/,"boolean":/\b(true|false)\b/,operator:/[-+]{1,2}|!=?|<{1,2}=?|>{1,2}=?|\->|:{1,2}|={1,2}|\^|~|%|&{1,2}|\|?\||\?|\*|\/|\b(and|and_eq|bitand|bitor|not|not_eq|or|or_eq|xor|xor_eq)\b/}),Prism.languages.insertBefore("cpp","keyword",{"class-name":{pattern:/(class\s+)[a-z0-9_]+/i,lookbehind:!0}});
+</script>
+</body>
+
+</html>

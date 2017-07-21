@@ -1,0 +1,827 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title>ref-ptr</title>
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+<style type="text/css">
+/**
+ * prism.js default theme for JavaScript, CSS and HTML
+ * Based on dabblet (http://dabblet.com)
+ * @author Lea Verou
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: black;
+	text-shadow: 0 1px white;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+@media print {
+	code[class*="language-"],
+	pre[class*="language-"] {
+		text-shadow: none;
+	}
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #f5f2f0;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: slategray;
+}
+
+.token.punctuation {
+	color: #999;
+}
+
+.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #905;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #690;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+	color: #a67f59;
+	background: hsla(0, 0%, 100%, .5);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+	color: #07a;
+}
+
+.token.function {
+	color: #DD4A68;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+	color: #e90;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+</style>
+</head>
+<body>
+<h1 id="toc_0"><a name="top"></a>Table of Contents</h1>
+
+<ol>
+<li><a href="#reference">Reference</a></li>
+<li><a href="#pointer">Pointer</a></li>
+<li><a href="#const">const</a></li>
+<li><a href="#constexpr">constexpr</a></li>
+</ol>
+
+<h1 id="toc_1"><a name="reference"></a>1. Reference <a href="#top">&uarr;top</a></h1>
+
+<p>Reference is an <u><em>alias</em></u> to an already-existing object or function.  </p>
+
+<h2 id="toc_2">(1) Features:</h2>
+
+<ul>
+<li><p><strong>Init is required</strong>:  </p>
+
+<ul>
+<li>A reference is required to be initialized to refer to a valid object or function (i.e., cannot be rebinded).<br></li>
+</ul>
+
+<pre><code class="language-cpp">int ival = 1024;
+int &amp;refVal = ival; //refval refers to (another name for) ival
+int &amp;refVal2; //ERROR: a reference must be initialized</code></pre></li>
+<li><p><strong>Reference is just an alias</strong>: </p>
+
+<ul>
+<li>References are NOT objects; hence, there are no arrays of references, no pointers to references, and no references to references.</li>
+<li>all operations on that reference are actually operations on the referring object.</li>
+</ul></li>
+</ul>
+
+<h2 id="toc_3">(2) Usages</h2>
+
+<pre><code class="language-cpp">//int&amp; ref1 ＝1；//non-const lvalue reference cannot bind to a temporary
+const int&amp; ref2 = 2; //OK
+int val = 3;
+int&amp; ref3 = val; //OK</code></pre>
+
+<h1 id="toc_4"><a name="pointer"></a>2. Pointer <a href="#top">&uarr;top</a></h1>
+
+<p>A pointer is a type pointing to anothe type. A pointer is basically the same as common variables, storing a piece of data. Unlike normal variable which stores a value, e.g. int, double or char, a pointer stores a <u><em>memory address</em></u>.  </p>
+
+<p>Pointers are simply addresses. Deferencing a pointer involves copyting that pointer into a register, and then using this register in a memory reference.</p>
+
+<h2 id="toc_5">(1) pointer vs. reference</h2>
+
+<ul>
+<li>Like references, pointers are used for indirect access to other objects;</li>
+<li>Unlike a reference, a pointer is an object in its own right:
+
+<ul>
+<li>pointers can be assigned and copied</li>
+<li>a single pointer can point to several different objects over its lifetime</li>
+</ul></li>
+<li>Unlike a reference, a pointer need not be initalized at definition time.</li>
+</ul>
+
+<h2 id="toc_6">(2) void* pointer</h2>
+
+<p>A special pointer type that can hold the address of any object of any data type. But, the type of the object at that address is <u><em>unkown</em></u>.</p>
+
+<p>We cannot use a <code>void*</code> to operate on the object it addresses.</p>
+
+<p>Generally, we use a <code>void*</code> pointer to deal with memory as memory, rather than using the pointer to access object stored in that memory.</p>
+
+<pre><code class="language-cpp">int value = 1024;
+void *voidPtr = &amp;value;
+//cout &lt;&lt; *voidPtr &lt;&lt; endl; //ERROR: canot dereference
+int *intPtr = static_cast&lt;int*&gt;(voidPtr);
+cout &lt;&lt; *intPtr &lt;&lt; endl; //now, dereference as normal</code></pre>
+
+<h2 id="toc_7">(3) References to pointers</h2>
+
+<p>A reference is not an object. Hence, we cannot have a pointer to a reference. However, we can define a reference to a pointer.</p>
+
+<pre><code class="language-cpp">int i =42;
+int *p; //p is a pointer to int
+/* read from right to left:
+ * (a). &amp;r means r is a reference
+ * (b). * means r refers to a pointer
+ * (c). int means pointer points to an int
+ * together: r is a reference to a pointer to an int
+ */
+int *&amp;r = p; //r is a reference to the pointer p
+
+r = &amp;i; //r refers to a pointer; assigning &amp;i to r makes p point to i
+*r = 0; //dereferencing r yields i, pointed by p; changes i to 0</code></pre>
+
+<h2 id="toc_8">(4) Pointer and array</h2>
+
+<p>Array can hold objects of most any type, including pointers.<br>
+Array is an object, and thus we can define both pointers and references to arrays.</p>
+
+<h3 id="toc_9">(i) complicated array decl</h3>
+
+<pre><code class="language-cpp">int *ptrs[10]; //ptrs is an arr of ten ptrs to int
+int &amp;refs[10] = /* ? */; //ERROR: no arr of refs
+int (*Parray)[10] = &amp;arr; //Parray points to an arr of ten ints
+int (&amp;arrRef)[10] = arr; //arrRef refers to an arr of ten ints
+
+int *(&amp;arry)[10] = ptrs; //arry is a reference to an arr of ten points to int</code></pre>
+
+<h3 id="toc_10">(ii) pointer to array</h3>
+
+<p>Operations on arrays are often really operations on ptrs.</p>
+
+<ul>
+<li><p>when we use an array as an initializer for a var defined using auto, the deduced type is a ptr, not an arr:</p>
+
+<pre><code class="language-cpp">int ia[] = {0,1,2,3,4,5,6,7,8,9}; ia is an arr of ten ints
+auto ia2(ia); //ia2 is an int* that points to 1st ele in ia
+ia2 = 42; //ERROR: ia2 is ptr, can&#39;t assign int to ptr</code></pre>
+
+<p>The compiler does the underlying conversion as: <code>auto ia2(&amp;ia[0])</code>. The conversion does not happen for <em>decltype</em>:</p>
+
+<pre><code class="language-cpp">//ia3 is an array of ten ints
+decltype(ia) ia3 = {0,1,2,3,4,5,6,7,8,9};
+ia3 = p; //ERROR: can&#39;t assign int* to array
+ia3[4] = i; //OK</code></pre></li>
+</ul>
+
+<p>Pointers are iterators</p>
+
+<pre><code class="language-cpp">int *p = &amp;ia[2]; //p points to the ele indexed by 2
+int j = p[1]; //p[1] i.e. *(p+1), ia[3]
+int k = p[-2]; //p[-2] is the same ele as ia[0]</code></pre>
+
+<h3 id="toc_11">(iii) pointer and multiD array</h3>
+
+<p>MultiD array is actually array of arrays.</p>
+
+<pre><code class="language-none">int ia[3][4]; //array if size 3; each ele is an arr of ints of size 4
+int (*p)[4] = ia; //p points to an arr of 4 ints
+p = &amp;ia[2]; //p now points to the last ele in ia</code></pre>
+
+<h2 id="toc_12">(5) Pointer and function</h2>
+
+<p>A function ptr is just that - a ptr that denotes a func rather than an obj.<br>
+Like any other ptr, a func ptr points to a particular type.<br>
+A func&#39;s type is determined by its return type and the types of its paras.<br>
+The func&#39;s name is not part of its scope.</p>
+
+<pre><code class="language-cpp">//type: bool(const string&amp;, const string&amp;)
+bool lengthCompare(const string &amp;, const string &amp;);
+-----------
+//form: return_type (*func)(parameter list)
+bool (*pf)(const string &amp;, const string &amp;); //uninit</code></pre>
+
+<h3 id="toc_13">(i) using function pointers</h3>
+
+<p>When we use the name of a func as a value, the func is automatically converted to a pointer.</p>
+
+<pre><code class="language-cpp">pf = lengthCompare; //pf points to the func
+pf = &amp;lengthCompare; //&#39;&amp;&#39; is optional</code></pre>
+
+<p>We can use a ptr to a func to call the func to which the ptr points.</p>
+
+<pre><code class="language-cpp">bool b1 = pf(&quot;hello&quot;, &quot;goodbye&quot;); //calls lengthCompare
+bool b2 = (*pf)(&quot;hello&quot;, &quot;goodbye&quot;); //ditto
+bool b3 = lengthCompare(&quot;hello&quot;, &quot;goodbye&quot;); //ditto</code></pre>
+
+<h3 id="toc_14">(ii) pointers to overloaded functions</h3>
+
+<pre><code class="language-cpp">void ff(int*);
+void ff(unsigned int);
+void (*pf1)(unsigned int) = ff; //pf1 points to ff(unsigned)</code></pre>
+
+<p>The compiler uses the type of the ptr to decide which overloaded func to use.</p>
+
+<h3 id="toc_15">(iii) functions pointer parameters</h3>
+
+<pre><code class="language-cpp">//3rd para is a func type and is auto treated as a ptr to func
+void useBigger(const string &amp;s1, const string &amp;s2,
+                bool pf(const string &amp;, const string &amp;));
+//equival decl: explicitly define the para as a ptr to func
+void useBigger(const string &amp;s1, const string &amp;s2,
+                bool (*pf)(const string &amp;, const string &amp;));
+--------------
+//auto converts the func to a ptr to func
+useBigger(s1, s2, lengthCompare);</code></pre>
+
+<p>Type aliases, along with decltype enable simpler code to use func ptrs:</p>
+
+<pre><code class="language-cpp">//Func and Func2 have func types
+typedef bool Func(const string&amp;, const string&amp;);
+typedef decltype(lengthCompare) Func2; //same type
+//FuncP and FuncP2 have ptr to func type
+typedef bool(*FuncP)(const string&amp;, const string&amp;);
+typedef decltype(lengthCompare) *FuncP2; //same type</code></pre>
+
+<h4 id="toc_16">(iv) returning a pointer to function</h4>
+
+<pre><code class="language-cpp">using F = int(int*, int); //F is a func type, not a ptr
+using PF = int(*)(int*, int); //PF is a ptr type</code></pre>
+
+<p>Unlike what happens to paras that have func type, the return type is not auto converted to a ptr type.<br>
+Thus, we must explicitly specify that the return type is a ptr type:</p>
+
+<pre><code class="language-cpp">PF f1(int); //OK: pf is a ptr to func; f1 returns a ptr to func
+F f1(int); //ERROR: F is a func type; f1 can&#39;t return a func
+F *f1(int); //OK: explicitly specify that the return type is a ptr to func
+------------------
+//we can directly declare f1
+int (*f1(int))(int*, int);
+//we can also simplify the decl using a trailing return
+auto f1(int) -&gt; int (*)(int*, int)</code></pre>
+
+<h1 id="toc_17"><a name="const"></a>3. const <a href="#top">&uarr;top</a></h1>
+
+<p>Const is to make a variable unchangeable.</p>
+
+<ul>
+<li>Const object <strong>must be initialized</strong>, because we can&#39;t change the value after creation.</li>
+<li>By default, const objects are <strong>local</strong> to a file
+
+<ul>
+<li>const variables are defined as local to a file. When we define a const with the same name in multiple files, it is as if we had written definitions for separate variables in each file</li>
+<li>to share a const object among multi files, we must define the variable as <strong>extern</strong></li>
+</ul></li>
+</ul>
+
+<h2 id="toc_18">(1) Reference to const</h2>
+
+<p>a reference that refers to a const type. A <em>reference to const</em> cannot be used to change the bound object.</p>
+
+<pre><code class="language-cpp">const int ci = 1024;
+const int &amp;r1 = ci; //OK: both ref and obj are const
+r1 = 42; //ERROR: r1 is a reference to const
+int &amp;r2 = ci; //ERROR: nonconst ref to const obj</code></pre>
+
+<p><strong>A reference to const may refer to an object that is NOT const</strong><br>
+a reference to const resticts <u><em>ONLY what we can do through that reference</em></u>, but says nothing about whether the underlying object itself is const or not.</p>
+
+<pre><code class="language-cpp">int i = 42;
+int &amp;r1 = i; //r1 bound to i
+const int &amp;r2 = i; //r2 also bound to i; but cannot change i
+r1 = 0; //OK
+r2 = 0; //ERROR: r2 is a reference to const</code></pre>
+
+<h2 id="toc_19">(2) Pointers and const</h2>
+
+<ul>
+<li>pointer to const
+
+<ul>
+<li>like <em>reference to const</em>, a <em>pointer to const</em> cannot be used to change the pointed object;</li>
+<li>must store the address of a <em>const object</em> only in a <em>pointer to const</em></li>
+<li><em>pointers and references to const</em> are pointers or references <strong>&quot;that think they point or refer to const&quot;</strong></li>
+</ul></li>
+</ul>
+
+<pre><code class="language-cpp">const double pi = 3.14; //pi is const, val cannot be changed
+double *ptr = &amp;pi; //ERROR: ptr is a plain pointer
+const double *cptr = &amp;pi; //OK: cptr points to a double that is const
+*cptr = 42; //ERROR: cannot assign to *cptr
+
+double dval = 3.14; //a plain double
+cptr = &amp;dval; //OK: but cannot change dval via cptr</code></pre>
+
+<ul>
+<li>const pointer
+Unlike references, pointers are objects. Hence, we can have a pointer that is <strong>itself</strong> const.</li>
+</ul>
+
+<pre><code class="language-cpp">int errNumb = 0;
+int *const curErr = &amp;errNumb; //curErr always points to errNumb
+const double pi = 3.14;
+const double *const pip = &amp;pi; //pip is a const ptr to a const obj</code></pre>
+
+<h2 id="toc_20">(3) const in object</h2>
+
+<p>In OOP, a &#39;method&#39; of an object has access to the member variables.</p>
+
+<pre><code class="language-cpp">class Class1{
+    void Method1();
+    int MemberVariable;
+}
+//method1() has no explicit paras but it can still alter &#39;MemberVariable&#39;
+void Class1::Method1(){
+    MemberVariable1 += 1;
+}</code></pre>
+
+<p>To avoid this, we can put <code>const</code> after the para list:</p>
+
+<pre><code class="language-cpp">class Class2{
+    void Method1() const;
+    int MemberVariable;
+}</code></pre>
+
+<p><code>const int* const Method3(const int* const&amp;) const;</code><br>
+<strong>const-1</strong>: returns a pointer to const<br>
+<strong>const-2</strong>: the returned pointer itself is const<br>
+<strong>const-3 and -4</strong>: parameter is a const pointer to a pointer, which points to a const int<br>
+<strong>const-5</strong>: the method cannot alter member fields.  </p>
+
+<h2 id="toc_21">(4) Top-level const</h2>
+
+<p>A pointer is an object that can point to a different object. As a result, we can talk independently about whether a pointer is const and whether the objects to which it can point are const.  </p>
+
+<ul>
+<li><strong>top-level const</strong>: the pointer itself is a const<br>
+-- can appear in any obj type (primitive, class, ptr, etc)</li>
+<li><strong>low-level const</strong>: point to a const object<br>
+-- appear in base type of compound types, like pointers and references</li>
+</ul>
+
+<pre><code class="language-cpp">int i = 0;
+int *const p1 = &amp;i; //top-level, cannot change p1
+const int ci = 42; //top-level, cannot change ci
+const int *p2 = &amp;ci; //low-level, cannot change *p2
+const int *const p3 = p2; //left-low, right-top
+const int &amp;r = i; //low-level, cannot change i via r</code></pre>
+
+<ul>
+<li><p><em>top-level</em> const is <em>ignored</em> when copying objs</p>
+
+<pre><code class="language-cpp">i = ci; //OK: top-level const in ci is ignored
+p2 = p3; //OK: top-level const in p3 is ignored</code></pre></li>
+<li><p><em>low-level</em> const is <em>never ignored</em><br>
+-- objs must have the same low-level const or there must be available conversion<br>
+-- in general, we can convert a nonconst to const</p>
+
+<pre><code class="language-cpp">int *p = p2; //ERROR: p2 has low-level const but p doesn&#39;t
+p2 = p3; //OK: same low-level const
+p2 = &amp;i; //OK: can convert int* to const int*
+int &amp;r = ci; //ERROR: cannot bind int&amp; to a const int obj
+const int &amp;r2 = i; //OK: can bind const int&amp; to plain int</code></pre></li>
+</ul>
+
+<h1 id="toc_22"><a name="constexpr"></a>4. constexpr <a href="#top">&uarr;top</a></h1>
+
+<p>Conceptually, constexpr indicates a value that&#39;s not only constant, it&#39;s known during compilation.</p>
+
+<pre><code class="language-cpp">const int *p = nullptr; //p is a ptr to a const int
+constexpr int *q = nullptr; //q is a const ptr to int</code></pre>
+
+<ul>
+<li>constexpr objects are in fact const and they do have values <strong>known at compile time</strong>
+
+<ul>
+<li>values known during compilation are privileged. They may be placed in read-only memory.</li>
+<li><u><em>all constexpr objects are const, but no all const objects are constexpr</em></u></li>
+</ul></li>
+<li><p>constexpr functions</p>
+
+<ul>
+<li>  can be used in contexts that demand compile-time constants</li>
+<li>  if a constexpr function is called with one or more values that are not known during compilation, it acts like a normal function, computing its result at runtime.</li>
+</ul>
+
+<pre><code class="language-cpp">constexpr
+int pow(int base, int exp) noexcept{
+...
+}
+
+//called in compilation
+constexpr auto numConds = 5;
+std::array&lt;int, pow(3, numConds)&gt; results;
+
+//called in runtime
+auto base = readFromDB(&quot;base&quot;);
+auto exp = readFromDB(&quot;exponent&quot;);
+auto baseToExp = pow(base, exp);</code></pre></li>
+</ul>
+
+<script type="text/javascript">
+var _self="undefined"!=typeof window?window:"undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?self:{},Prism=function(){var e=/\blang(?:uage)?-(?!\*)(\w+)\b/i,t=_self.Prism={util:{encode:function(e){return e instanceof n?new n(e.type,t.util.encode(e.content),e.alias):"Array"===t.util.type(e)?e.map(t.util.encode):e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/\u00a0/g," ")},type:function(e){return Object.prototype.toString.call(e).match(/\[object (\w+)\]/)[1]},clone:function(e){var n=t.util.type(e);switch(n){case"Object":var a={};for(var r in e)e.hasOwnProperty(r)&&(a[r]=t.util.clone(e[r]));return a;case"Array":return e.map&&e.map(function(e){return t.util.clone(e)})}return e}},languages:{extend:function(e,n){var a=t.util.clone(t.languages[e]);for(var r in n)a[r]=n[r];return a},insertBefore:function(e,n,a,r){r=r||t.languages;var l=r[e];if(2==arguments.length){a=arguments[1];for(var i in a)a.hasOwnProperty(i)&&(l[i]=a[i]);return l}var o={};for(var s in l)if(l.hasOwnProperty(s)){if(s==n)for(var i in a)a.hasOwnProperty(i)&&(o[i]=a[i]);o[s]=l[s]}return t.languages.DFS(t.languages,function(t,n){n===r[e]&&t!=e&&(this[t]=o)}),r[e]=o},DFS:function(e,n,a){for(var r in e)e.hasOwnProperty(r)&&(n.call(e,r,e[r],a||r),"Object"===t.util.type(e[r])?t.languages.DFS(e[r],n):"Array"===t.util.type(e[r])&&t.languages.DFS(e[r],n,r))}},plugins:{},highlightAll:function(e,n){for(var a,r=document.querySelectorAll('code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'),l=0;a=r[l++];)t.highlightElement(a,e===!0,n)},highlightElement:function(n,a,r){for(var l,i,o=n;o&&!e.test(o.className);)o=o.parentNode;o&&(l=(o.className.match(e)||[,""])[1],i=t.languages[l]),n.className=n.className.replace(e,"").replace(/\s+/g," ")+" language-"+l,o=n.parentNode,/pre/i.test(o.nodeName)&&(o.className=o.className.replace(e,"").replace(/\s+/g," ")+" language-"+l);var s=n.textContent,u={element:n,language:l,grammar:i,code:s};if(!s||!i)return t.hooks.run("complete",u),void 0;if(t.hooks.run("before-highlight",u),a&&_self.Worker){var g=new Worker(t.filename);g.onmessage=function(e){u.highlightedCode=e.data,t.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(u.element),t.hooks.run("after-highlight",u),t.hooks.run("complete",u)},g.postMessage(JSON.stringify({language:u.language,code:u.code,immediateClose:!0}))}else u.highlightedCode=t.highlight(u.code,u.grammar,u.language),t.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(n),t.hooks.run("after-highlight",u),t.hooks.run("complete",u)},highlight:function(e,a,r){var l=t.tokenize(e,a);return n.stringify(t.util.encode(l),r)},tokenize:function(e,n){var a=t.Token,r=[e],l=n.rest;if(l){for(var i in l)n[i]=l[i];delete n.rest}e:for(var i in n)if(n.hasOwnProperty(i)&&n[i]){var o=n[i];o="Array"===t.util.type(o)?o:[o];for(var s=0;s<o.length;++s){var u=o[s],g=u.inside,c=!!u.lookbehind,f=0,h=u.alias;u=u.pattern||u;for(var p=0;p<r.length;p++){var d=r[p];if(r.length>e.length)break e;if(!(d instanceof a)){u.lastIndex=0;var m=u.exec(d);if(m){c&&(f=m[1].length);var y=m.index-1+f,m=m[0].slice(f),v=m.length,k=y+v,b=d.slice(0,y+1),w=d.slice(k+1),P=[p,1];b&&P.push(b);var A=new a(i,g?t.tokenize(m,g):m,h);P.push(A),w&&P.push(w),Array.prototype.splice.apply(r,P)}}}}}return r},hooks:{all:{},add:function(e,n){var a=t.hooks.all;a[e]=a[e]||[],a[e].push(n)},run:function(e,n){var a=t.hooks.all[e];if(a&&a.length)for(var r,l=0;r=a[l++];)r(n)}}},n=t.Token=function(e,t,n){this.type=e,this.content=t,this.alias=n};if(n.stringify=function(e,a,r){if("string"==typeof e)return e;if("Array"===t.util.type(e))return e.map(function(t){return n.stringify(t,a,e)}).join("");var l={type:e.type,content:n.stringify(e.content,a,r),tag:"span",classes:["token",e.type],attributes:{},language:a,parent:r};if("comment"==l.type&&(l.attributes.spellcheck="true"),e.alias){var i="Array"===t.util.type(e.alias)?e.alias:[e.alias];Array.prototype.push.apply(l.classes,i)}t.hooks.run("wrap",l);var o="";for(var s in l.attributes)o+=(o?" ":"")+s+'="'+(l.attributes[s]||"")+'"';return"<"+l.tag+' class="'+l.classes.join(" ")+'" '+o+">"+l.content+"</"+l.tag+">"},!_self.document)return _self.addEventListener?(_self.addEventListener("message",function(e){var n=JSON.parse(e.data),a=n.language,r=n.code,l=n.immediateClose;_self.postMessage(t.highlight(r,t.languages[a],a)),l&&_self.close()},!1),_self.Prism):_self.Prism;var a=document.getElementsByTagName("script");return a=a[a.length-1],a&&(t.filename=a.src,document.addEventListener&&!a.hasAttribute("data-manual")&&document.addEventListener("DOMContentLoaded",t.highlightAll)),_self.Prism}();"undefined"!=typeof module&&module.exports&&(module.exports=Prism),"undefined"!=typeof global&&(global.Prism=Prism);
+</script>
+<script type="text/javascript">
+Prism.languages.clike={comment:[{pattern:/(^|[^\\])\/\*[\w\W]*?\*\//,lookbehind:!0},{pattern:/(^|[^\\:])\/\/.*/,lookbehind:!0}],string:/(["'])(\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,"class-name":{pattern:/((?:\b(?:class|interface|extends|implements|trait|instanceof|new)\s+)|(?:catch\s+\())[a-z0-9_\.\\]+/i,lookbehind:!0,inside:{punctuation:/(\.|\\)/}},keyword:/\b(if|else|while|do|for|return|in|instanceof|function|new|try|throw|catch|finally|null|break|continue)\b/,"boolean":/\b(true|false)\b/,"function":/[a-z0-9_]+(?=\()/i,number:/\b-?(?:0x[\da-f]+|\d*\.?\d+(?:e[+-]?\d+)?)\b/i,operator:/--?|\+\+?|!=?=?|<=?|>=?|==?=?|&&?|\|\|?|\?|\*|\/|~|\^|%/,punctuation:/[{}[\];(),.:]/};
+</script>
+<script type="text/javascript">
+Prism.languages.c=Prism.languages.extend("clike",{keyword:/\b(asm|typeof|inline|auto|break|case|char|const|continue|default|do|double|else|enum|extern|float|for|goto|if|int|long|register|return|short|signed|sizeof|static|struct|switch|typedef|union|unsigned|void|volatile|while)\b/,operator:/\-[>-]?|\+\+?|!=?|<<?=?|>>?=?|==?|&&?|\|?\||[~^%?*\/]/,number:/\b-?(?:0x[\da-f]+|\d*\.?\d+(?:e[+-]?\d+)?)[ful]*\b/i}),Prism.languages.insertBefore("c","string",{macro:{pattern:/(^\s*)#\s*[a-z]+([^\r\n\\]|\\.|\\(?:\r\n?|\n))*/im,lookbehind:!0,alias:"property",inside:{string:{pattern:/(#\s*include\s*)(<.+?>|("|')(\\?.)+?\3)/,lookbehind:!0},directive:{pattern:/(#\s*)\b(define|elif|else|endif|error|ifdef|ifndef|if|import|include|line|pragma|undef|using)\b/,lookbehind:!0,alias:"keyword"}}},constant:/\b(__FILE__|__LINE__|__DATE__|__TIME__|__TIMESTAMP__|__func__|EOF|NULL|stdin|stdout|stderr)\b/}),delete Prism.languages.c["class-name"],delete Prism.languages.c["boolean"];
+</script>
+<script type="text/javascript">
+Prism.languages.cpp=Prism.languages.extend("c",{keyword:/\b(alignas|alignof|asm|auto|bool|break|case|catch|char|char16_t|char32_t|class|compl|const|constexpr|const_cast|continue|decltype|default|delete|do|double|dynamic_cast|else|enum|explicit|export|extern|float|for|friend|goto|if|inline|int|long|mutable|namespace|new|noexcept|nullptr|operator|private|protected|public|register|reinterpret_cast|return|short|signed|sizeof|static|static_assert|static_cast|struct|switch|template|this|thread_local|throw|try|typedef|typeid|typename|union|unsigned|using|virtual|void|volatile|wchar_t|while)\b/,"boolean":/\b(true|false)\b/,operator:/[-+]{1,2}|!=?|<{1,2}=?|>{1,2}=?|\->|:{1,2}|={1,2}|\^|~|%|&{1,2}|\|?\||\?|\*|\/|\b(and|and_eq|bitand|bitor|not|not_eq|or|or_eq|xor|xor_eq)\b/}),Prism.languages.insertBefore("cpp","keyword",{"class-name":{pattern:/(class\s+)[a-z0-9_]+/i,lookbehind:!0}});
+</script>
+</body>
+
+</html>
