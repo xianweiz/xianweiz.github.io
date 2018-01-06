@@ -7,6 +7,13 @@ body {
     color: #000;
 }
 
+del {
+		color: #f00;
+}
+del span {
+		color: #000;
+}
+
 div#header {
     margin: auto;
     text-align: left;
