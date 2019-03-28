@@ -1,0 +1,47 @@
+GIT
+* clone a remote git
+$git clone ssh://<xxx>
+$git checkout origin/<branch-x>
+$git checkout -b <branch-x>
+
+* pull down a remote branch
+$git fetch origin <branch-x>
+$git checkout <branch-x>
+
+* push to remote for review
+$git push origin HEAD:refs/for<branch-x>
+
+* status
+$git status -uno
+$git ls-files --modified | xargs git add
+
+* stash
+$git stash
+$git stash pop
+$git stash apply "stash@{0}"
+$git stash drop
+
+* patch
+$git log -n 1 -p > <xxx>.patch
+$git apply <xxx>.patch
+$git diff > <xxx>.diff
+$patch -p1 < <xxx>.diff
+
+* rename branch
+$git branch -m <yyy>
+$git branch -m <xxx> <yyy>
+
+* log
+$git log --graph --decorate --pretty
+
+$git merge <branch-x>
+$git reflog show <branch-y>
+$git reset --keep "<branch-y>@{1}"
+
+GPU
+* AMD/NV terms
+WG = TB/CTA, WF = Warp, WI = Thread, NDRange = Grid, CU = SM, SIMD = SP(cuda core), SIMD_width = #lanes(or ALUs)/SIMD
+* FLOPs
+4 SIMDs/CU x 10 WFs/SIMD = 40 Active WFs/CU
+64 WIs/WF x 40 Active WFs = 2560 Active WIs/CU
+32 CUs x 4 SIMDs/CU x 16 Lanes/SIMD = 2040 Max FP ops/cycle
