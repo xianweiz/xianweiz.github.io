@@ -38,6 +38,10 @@ $git merge <branch-x>
 $git reflog show <branch-y>
 $git reset --keep "<branch-y>@{1}"
 
+* list changes of a commit
+$git show --name-only <commit>
+$git diff <commit>^!
+
 GPU
 * AMD/NV terms
 WG = TB/CTA, WF = Warp, WI = Thread, NDRange = Grid, CU = SM, SIMD = SP(cuda core), SIMD_width = #lanes(or ALUs)/SIMD
