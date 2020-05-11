@@ -17,6 +17,7 @@ $git ls-files --modified | xargs git add
 
 * stash
 $git stash
+$git stash list
 $git stash pop
 $git stash apply "stash@{0}"
 $git stash drop
@@ -44,8 +45,43 @@ $git diff <commit>^!
 
 GPU
 * AMD/NV terms
-WG = TB/CTA, WF = Warp, WI = Thread, NDRange = Grid, CU = SM, SIMD = SP(cuda core), SIMD_width = #lanes(or ALUs)/SIMD
+WG = TB/CTA, WF = Warp, WI = Thread, NDRange = Grid, CU = SM, 4 SIMDs/CU, 16lanes/SIMD, lane = SP(cuda core), SIMD_width = #lanes(or ALUs)/SIMD
 * FLOPs
 4 SIMDs/CU x 10 WFs/SIMD = 40 Active WFs/CU
 64 WIs/WF x 40 Active WFs = 2560 Active WIs/CU
 32 CUs x 4 SIMDs/CU x 16 Lanes/SIMD = 2040 Max FP ops/cycle
+
+Each SIMD unit contains 16 stream cores, and each stream core houses five processing elements. Thus, each compute unit in the ATI Radeon HD 5870 has 80 (16 × 5) processing elements.
+
+* Install/Uninstall
+$sudo apt-get install <cython>
+$dpkg -l | grep <cython>
+$sudo apt-get remove <cython>
+$sudo apt-get autoremove
+$sudo apt-get clean
+
+$sudo apt-get install python-pip
+$sudo pip install Cython=0.23.4
+$sudo pip uninstall cython
+
+$sudo pip uninstall cython
+(pkg_resources.DistributionNotFound: The 'pip==20.0.2' distribution was not found and is required by the application)
+$sudo easy_install pip
+$sudo pip uninstall cython
+
+$sudo ln -sf /usr/bin/python2.7 /usr/bin/python
+python print array: print(*L, sep=', ')
+
+Makefile print:
+$(error   VAR is $(VAR))
+$(warning VAR is $(VAR))
+$(info    VAR is $(VAR)
+
+shell python -V 2>/dev/null
+
++pycfg := python3-config
++ifneq (,$(findstring Python 3,$(shell python -V 2>/dev/null)))
++       pycfg = python-config
++endif
+
+if sys.version_info.major < 3
