@@ -85,3 +85,8 @@ shell python -V 2>/dev/null
 +endif
 
 if sys.version_info.major < 3
+
+public GPU docs:
+https://llvm.org/docs/AMDGPUUsage.html
+https://www.olcf.ornl.gov/wp-content/uploads/2019/10/ORNL_Application_Readiness_Workshop-AMD_GPU_Basics.pdf
+
