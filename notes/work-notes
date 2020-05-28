@@ -90,3 +90,26 @@ public GPU docs:
 https://llvm.org/docs/AMDGPUUsage.html
 https://www.olcf.ornl.gov/wp-content/uploads/2019/10/ORNL_Application_Readiness_Workshop-AMD_GPU_Basics.pdf
 
+## makefile with hierarchy
+# specify each subdir here
+SUBDIRS = test_cache test_bw
+
+TARGETS = all clean
+
+.PHONY: $(TARGETS) default
+
+# change this line to change the default action
+# (using one of the targets above)
+default: all
+
+define do-target
+$(1): $$(foreach subdir, $$(SUBDIRS), $(1)-$$(subdir))
+
+$(1)-%:
+    $$(MAKE) -C $$* $(1)
+endef
+
+$(foreach tgt, $(TARGETS), $(eval $(call do-target,$(tgt))))
+
+
+
