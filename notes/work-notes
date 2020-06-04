@@ -111,5 +111,31 @@ endef
 
 $(foreach tgt, $(TARGETS), $(eval $(call do-target,$(tgt))))
 
+redirect stdout/stderr
+$ ./run.sh >> log 2>&1
+
+#-- show os info
+$cat /etc/os-release
+#-- enable root, and create a user
+$sudo passwd root
+$sudo useradd <xxx>
+$sudo passwd <xxx>
+$sudo usermod -aG sudo <xxx>
+
+#-- ssh permission
+$vim /etc/ssh/sshd_config
+    AllowUsers <xxx>
+$service ssh reload
+ 
+ #-- gpu info
+ $lspci | grep VGA
+ 
+ https://askubuntu.com/questions/19486/how-do-i-add-a-kernel-boot-parameter
+$sudo vim /etc/default/grub
+ GRUB_CMDLINE_LINUX="amdgpu.ras_enable=0"
+$sudo update-grub
+<reboot> 
+
+
 
 
