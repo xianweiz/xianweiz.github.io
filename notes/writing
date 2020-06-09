@@ -1,0 +1,158 @@
+### Abstract
+with the advent of xxx, xxx are now widely used to xxx
+many techniques have been proposed xxx
+xxx becomes inevitable in xxx, which is a major obstacle for xxx
+xxx is very challenging, espcially for xxx, due to xxx
+xxx is a promising xxx due to xxx. However, xxx
+many xxx are commonly limited in scope, xxx
+we address the challenges of designing ...
+we demonsrate the efficacy of
+trade off accuracy for better performance
+prototype, premilinary results, case studies
+general/versatile/holistic/multipurpose/multifaceted
+variable/convertible/flexible/adaptable/dynamic
+technology agnostic, application-independent
+
+### Introduction
+with the number of system parameters on the rise
+with growing complexity of
+drive the need for increasing the
+exacerbate these challenges
+is extremely challenging
+due to these advantages, in recent years, xxx has been
+despite these advantages and applicability to xxx, xxx suffers from xxx
+considerably/significantly/increasingly/drastically/exceedingly/extremely/exponentially/numeriously/undue
+attempt to, seek to, aim at, target at
+define/develop/design/implement/propose/formulate/investigate/look into/address/deploy
+mitigate/alleviate/improve/prolong/extend/accelerate/relieve the stress/overcome the barrier/eliminate/boost/maximize/facilitate
+use/leverage/utilize/employ/adopt/exploit/amortize/drive/extend/apply/expand
+we develop a new framework, xxx.
+, which we call xxx,
+the main contributions of this paper are as follows:
+in particular, the major contributions of this paper are as follows:
+xxx is build on three primary contributions:
+our contributions can be summarized as follows:
+the work makes the following contributions:
+to the best of our knowledge
+the rest of this paper is organized as follows.
+introduce/illustrate/demonstrate/present/discuss/elaborate/cover/conclude (conclusions are drawn in Section)
+
+### Background
+the high-level architecture of xxx, based on xxx
+as the basic unit of,
+consists of, contain, is composed of, is divided/partitioned into
+group/cluster/bundle
+surrounding/adjacent/neighbor/consecutive
+for the sake of simplicity,
+for ease of explanation/presentation,
+are exposed to
+unintentional hw errors, deliberate malicious attacks
+in this manner/fashion
+basic/fundamental/foundational/rudimentary/elemental/radical/primitive/intrinsic
+usually/typically/commonly/representatively
+standard/criteria/qualification
+disclose/release/publicize
+due to, because of, thanks to, owing to, account for
+
+### Motivation
+advsersely affect performance, inefficiency, constraints, applicability
+obstacle, hinder the wider adoption, constrain, prevent us from using, inevitable
+guaranteeing perfect functionality across a broad range of systems has become extremely expensive
+a fundamental requirement is to understand how xxx affect xxx
+it is essential to distinguish and identify
+it is crucial that
+understanding xxx is essential for
+require/demand/necessitate
+distinguish/differentiate/highlight/emphasize/focus on/target at
+important/critical/essential/urgent/strongly demanded
+pitfall/drawback/issue/problematic/errorneous/corruption/crash
+reveal/identify/locate/pinpoint/characterize/annotate
+we make the following key observations
+observations/findings/insights
+inspire/motivate/hint
+to reap the benefits of
+to this end, we propose/develop
+advantangeous over, is more plausible, are suitable for
+describe in detail the
+
+### Design
+incorporates the features highlighted in ...
+The info is propagated to
+control the degree of approximation
+four modules are instantiated
+the resultant behavior
+in the presence of data errors
+in the absence of systematic methodologies
+is agnostic to, without any knowledge of
+prohibitive overhead, moderate changes, trivial efforts
+suffer from, vulnerable to, susceptible to
+it should be noted that, it is noteworthy that
+is not within the research scope of this paper
+without loss of generality
+without compromising
+is defined as
+mix/merge/combine/integrate/incorporate/complement/consolidate/aggregate/in conjuction with
+individual/standalone/separate/isolate/decouple/their respective xxx/indepdendent
+
+### Experimental Methodology
+To demonstrate the efficacy of
+a lightweight sw routine that is invoked to evaluate
+we demonstate one example use-case
+synthetic workloads, in-situ and composed applications
+
+### Results
+orders of magnitude fewe
+several orders of magnitude larger than
+... refers to ...
+they account for
+to quantify the output
+gold standard, ground truth, gold copy
+operations are concentrated in some regions
+show/imply/indicate/demonstrate/manifest/observe/report/illustrate/plot/refer to/summarize/present/cover/represent/correspond to
+result in a degradation of
+
+### Related Work
+state-of-the-art, prior work, related work, previous studies
+it was previously shown that
+have investigated the feasibility of
+undertake an example case study
+several works have been proposed in the context of xxx
+have been actively conducted, have been widely explored in literature
+which was later used to
+xxx continued the line of research by
+recent studies suggest that
+many studies tried to xxx
+previous studies have mainly used xxx
+are overly conservative
+alternative, orthogonal
+
+### Conclusion
+in this paper, we address the challenge of xxx
+to this end, we propose xxx
+in this paper, we present xxx, a xxx
+we demonstrate the efficacy of
+our methodology is well suited for a large class of workloads
+due to these advantages, we believe that xxx has the potential for
+in the future, we plan to ...
+xxx is part of future work
+
+### Words
+induce/enact/derive
+in terms of, take into account
+incur/involve/embrace
+probabilistic/stochastic
+exceed/overwhelm
+worsen/exacerbate/accure
+feasible/practical/realistic
+regardless of
+result in, lead to, consequently, subsequently
+thereby, hence, therefore, accordingly
+as opposed to, contrary, in contrast, is reversed
+steadily/progressively/at pace
+provided/supplied
+in response to
+undergo
+moreover, in addition, furthermore, apart from
+ensure/guarantee
+succint/concise/compact/condensed
+in lieu of
