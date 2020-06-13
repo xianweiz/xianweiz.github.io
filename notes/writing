@@ -1,5 +1,5 @@
 ### Abstract
-with the advent of xxx, xxx are now widely used to xxx
+with the advent of xxx, xxx is now widely used to xxx
 many techniques have been proposed xxx
 xxx becomes inevitable in xxx, which is a major obstacle for xxx
 xxx is very challenging, espcially for xxx, due to xxx
@@ -12,6 +12,7 @@ prototype, premilinary results, case studies
 general/versatile/holistic/multipurpose/multifaceted
 variable/convertible/flexible/adaptable/dynamic
 technology agnostic, application-independent
+original, non-existent, pioneering, primitive, first-hand
 
 ### Introduction
 with the number of system parameters on the rise
@@ -25,7 +26,7 @@ considerably/significantly/increasingly/drastically/exceedingly/extremely/expone
 attempt to, seek to, aim at, target at
 define/develop/design/implement/propose/formulate/investigate/look into/address/deploy
 mitigate/alleviate/improve/prolong/extend/accelerate/relieve the stress/overcome the barrier/eliminate/boost/maximize/facilitate
-use/leverage/utilize/employ/adopt/exploit/amortize/drive/extend/apply/expand
+use/leverage/utilize/employ/adopt/exploit/amortize/drive/extend/apply/expand/reinforce
 we develop a new framework, xxx.
 , which we call xxx,
 the main contributions of this paper are as follows:
@@ -42,7 +43,7 @@ the high-level architecture of xxx, based on xxx
 as the basic unit of,
 consists of, contain, is composed of, is divided/partitioned into
 group/cluster/bundle
-surrounding/adjacent/neighbor/consecutive
+surrounding/adjacent/neighbor/consecutive, align next to
 for the sake of simplicity,
 for ease of explanation/presentation,
 are exposed to
@@ -50,13 +51,28 @@ unintentional hw errors, deliberate malicious attacks
 in this manner/fashion
 basic/fundamental/foundational/rudimentary/elemental/radical/primitive/intrinsic
 usually/typically/commonly/representatively
-standard/criteria/qualification
-disclose/release/publicize
+standard/criteria/criterion/qualification
+disclose/release/publicize, disclosure
+intellectual property, proprietary information
 due to, because of, thanks to, owing to, account for
+in terms of, with respect to, referencing
+take into account, considering
+enough, sufficient, adequate, a plethora of
+multiple, a variety of, various, manifold, diverse
+solution, resolution, design, method
+keep, hold, retain, put on hold
+prior to, ahead of, in advance of, preceding
+suitable, appropriate, proper, applicable, relevant, pertinent, eligible
+steady, stable, consistent, unchanging, invariable, compatible. coherent
+apparent, obvious, evident, noticeable, clear, manifest
+high-profile, top-tier, preeminent, prestigious, notorious, distinguished, prominent, noteworthy, remarkable
+complicated, complex, intricate, tricky, nontrivial
+primary, bakcup/secondary, predominant, dominated, central, foremost
 
 ### Motivation
-advsersely affect performance, inefficiency, constraints, applicability
-obstacle, hinder the wider adoption, constrain, prevent us from using, inevitable
+advsersely affect performance, inefficiency, constraints, applicability, restricted use of
+obstacle, hinder the wider adoption, constrain, prevent us from using
+inevitable, unavoidable, mandatory, required, is obligated to
 guaranteeing perfect functionality across a broad range of systems has become extremely expensive
 a fundamental requirement is to understand how xxx affect xxx
 it is essential to distinguish and identify
@@ -72,8 +88,15 @@ observations/findings/insights
 inspire/motivate/hint
 to reap the benefits of
 to this end, we propose/develop
+That said, nonetheless, despite that, in spite of that
 advantangeous over, is more plausible, are suitable for
 describe in detail the
+be designated as, are intended to
+practice, policy, principle, routine, theory
+in some limited instances, under certain circumstances
+contingent, conditional, dependent
+an initiative for
+biased, skewed, distorted
 
 ### Design
 incorporates the features highlighted in ...
@@ -87,29 +110,53 @@ is agnostic to, without any knowledge of
 prohibitive overhead, moderate changes, trivial efforts
 suffer from, vulnerable to, susceptible to
 it should be noted that, it is noteworthy that
-is not within the research scope of this paper
+is not within the research scope of this paper, are outside the scope of this paper
 without loss of generality
 without compromising
 is defined as
 mix/merge/combine/integrate/incorporate/complement/consolidate/aggregate/in conjuction with
 individual/standalone/separate/isolate/decouple/their respective xxx/indepdendent
+comply with, conform to, agree with, match, in accordance with
+initiate, trigger, launch
+remove, eradicate, eliminate, detach, de-couple, get rid of
+logical organization, resident in, monolythic single-die design
+transition to
 
 ### Experimental Methodology
 To demonstrate the efficacy of
 a lightweight sw routine that is invoked to evaluate
 we demonstate one example use-case
-synthetic workloads, in-situ and composed applications
+synthetic workloads, in-situ and composed applications, a collection of applications
+the stated goal, the combined set of features, different aspects of
+collectively, comprehensive, overall
+is focused on, in the context of
+is incoporated into, are all integrated into, is combined into
+scaled-down, project the power consumption, extrapolate, exploratory
+faithfully support
+massive multi-threading
+detailed evaluation
+subsequent sections
 
 ### Results
 orders of magnitude fewe
 several orders of magnitude larger than
 ... refers to ...
+, which accounts for the
 they account for
 to quantify the output
 gold standard, ground truth, gold copy
 operations are concentrated in some regions
 show/imply/indicate/demonstrate/manifest/observe/report/illustrate/plot/refer to/summarize/present/cover/represent/correspond to
 result in a degradation of
+the resulting benefit
+exhibit, show, illustrate, represent, depict, mark, reveal, 
+expected, predicted, anticipated, desired
+breaks down the contributions of
+as much as a 2x slowdown
+with a potential of reaching up to 3x speedup
+negatively impact, a modest improvement, deliver remarkable improvements
+provide the ability to, offer the performance, offer several critical advantages, reduce the cost of control flow
+bring the benefit of, eliminate the need for, 
 
 ### Related Work
 state-of-the-art, prior work, related work, previous studies
@@ -125,14 +172,22 @@ many studies tried to xxx
 previous studies have mainly used xxx
 are overly conservative
 alternative, orthogonal
+motivating a plethora of work on
+the research carried out
+the recent advances in
+it has now become possible to
+
 
 ### Conclusion
 in this paper, we address the challenge of xxx
+is intended to address two main challenges
 to this end, we propose xxx
 in this paper, we present xxx, a xxx
 we demonstrate the efficacy of
 our methodology is well suited for a large class of workloads
 due to these advantages, we believe that xxx has the potential for
+strategic directions
+open opportunities for
 in the future, we plan to ...
 xxx is part of future work
 
