@@ -6,10 +6,12 @@ xxx is very challenging, espcially for xxx, due to xxx
 xxx is a promising xxx due to xxx. However, xxx
 many xxx are commonly limited in scope, xxx
 we address the challenges of designing ...
+to meet the challenges of, to meet these needs, to meet the rapidly growing needs/demands of
 we demonsrate the efficacy of
 trade off accuracy for better performance
 prototype, premilinary results, case studies
-general/versatile/holistic/multipurpose/multifaceted
+unleash the power of, a revolutionary new
+general/generic/versatile/elastic/holistic/multipurpose/multifaceted
 variable/convertible/flexible/adaptable/dynamic
 technology agnostic, application-independent
 original, non-existent, pioneering, primitive, first-hand
@@ -39,9 +41,15 @@ the rest of this paper is organized as follows.
 introduce/illustrate/demonstrate/present/discuss/elaborate/cover/conclude (conclusions are drawn in Section)
 
 ### Background
+the era of
+the all new architecture
+the next wave of architectures
+spanning from PCs to desktops
+continue to grow in size, complexity and diversity
+xxx has fundamentally evolved and shifted over the last decade toward greater programmability.
 the high-level architecture of xxx, based on xxx
 as the basic unit of,
-consists of, contain, is composed of, is divided/partitioned into
+consists of, contain, comprise of, is composed of, is constructed from, is divided/partitioned into
 group/cluster/bundle
 surrounding/adjacent/neighbor/consecutive, align next to
 for the sake of simplicity,
@@ -54,6 +62,7 @@ usually/typically/commonly/representatively
 standard/criteria/criterion/qualification
 disclose/release/publicize, disclosure
 intellectual property, proprietary information
+is at the heart of, is at the core of, is the essence of the architecture
 due to, because of, thanks to, owing to, account for
 in terms of, with respect to, referencing
 take into account, considering
@@ -63,7 +72,7 @@ solution, resolution, design, method
 keep, hold, retain, put on hold
 prior to, ahead of, in advance of, preceding
 suitable, appropriate, proper, applicable, relevant, pertinent, eligible
-steady, stable, consistent, unchanging, invariable, compatible. coherent
+steady, stable, consistent, unchanging, invariable, compatible, coherent
 apparent, obvious, evident, noticeable, clear, manifest
 high-profile, top-tier, preeminent, prestigious, notorious, distinguished, prominent, noteworthy, remarkable
 complicated, complex, intricate, tricky, nontrivial
@@ -93,7 +102,7 @@ advantangeous over, is more plausible, are suitable for
 describe in detail the
 be designated as, are intended to
 practice, policy, principle, routine, theory
-in some limited instances, under certain circumstances
+in some limited instances, under certain circumstances, a very limited range of, with stringent limitations
 contingent, conditional, dependent
 an initiative for
 biased, skewed, distorted
@@ -121,6 +130,22 @@ initiate, trigger, launch
 remove, eradicate, eliminate, detach, de-couple, get rid of
 logical organization, resident in, monolythic single-die design
 transition to
+designed from the ground up for
+scale across a variety of platforms
+the first instantiation of the
+backwards compatibility
+is private to each CU, lie outside of the
+, which is part of the,
+encapsulate
+is closely associated with, tied together, house all resources
+introduce a feature known as xxx that
+to accomodate
+first incarnation of
+co-exist harmoniously
+creat their own
+simplifying the design of
+key fatures are briefly highlighted below (and described in detail in subsequent sections)
+we list a few of those new features below.
 
 ### Experimental Methodology
 To demonstrate the efficacy of
@@ -134,13 +159,20 @@ is incoporated into, are all integrated into, is combined into
 scaled-down, project the power consumption, extrapolate, exploratory
 faithfully support
 massive multi-threading
+employ a two-level cache hierarchy
 detailed evaluation
+back-to-back execution
+operate at full rate, at full throughput
+, and many more
+customer usage patterns
+is known in advance
 subsequent sections
 
 ### Results
-orders of magnitude fewe
+orders of magnitude fewer
 several orders of magnitude larger than
 ... refers to ...
+is referred to as
 , which accounts for the
 they account for
 to quantify the output
@@ -152,11 +184,37 @@ the resulting benefit
 exhibit, show, illustrate, represent, depict, mark, reveal, 
 expected, predicted, anticipated, desired
 breaks down the contributions of
+the contributing factors to xxx are
 as much as a 2x slowdown
+, delivering up to 2x performance
+, which is twice the throughput of
 with a potential of reaching up to 3x speedup
 negatively impact, a modest improvement, deliver remarkable improvements
 provide the ability to, offer the performance, offer several critical advantages, reduce the cost of control flow
-bring the benefit of, eliminate the need for, 
+bring the benefit of, eliminate the need for
+boost performance, improve efficiency
+As one example,
+accumulate, collectively, putting together
+variants
+superb, elegant, exceptional, tremendous, one distinct advantage, substantial improvement, a tremendous step forward
+, combined with
+combined, unified, integrated, aggregated, batched, bundled, grouped
+sturate, thrash, error-resilient
+as the name implies
+fall back to
+robust, solid, sound
+ampilify
+to attain the benefits of
+raise the bar yet again on
+raise utilization rates at no additional cost
+as discussed above,
+alongside the
+oversubsribe
+can be thought of as
+proportionally
+, yielding
+chunks of
+fall into two categories
 
 ### Related Work
 state-of-the-art, prior work, related work, previous studies
@@ -170,26 +228,40 @@ xxx continued the line of research by
 recent studies suggest that
 many studies tried to xxx
 previous studies have mainly used xxx
-are overly conservative
-alternative, orthogonal
+are overly conservative, impose a constraint on
+alternative, orthogonal, an alterative to
 motivating a plethora of work on
 the research carried out
 the recent advances in
+more recently,
 it has now become possible to
-
+cutting-edge, groundbreaking performance
+take this to the next level
+a very common approach
+redesigned/rearchitected/rebuilt
+improve ease of programming
+are specialized
+no longer needed
 
 ### Conclusion
+is the foundation for
 in this paper, we address the challenge of xxx
 is intended to address two main challenges
+it is especially important
 to this end, we propose xxx
 in this paper, we present xxx, a xxx
 we demonstrate the efficacy of
+unprecedented acceleration at every scale
 our methodology is well suited for a large class of workloads
 due to these advantages, we believe that xxx has the potential for
 strategic directions
+a simple and universal recipe
+the best of both worlds
 open opportunities for
+are not limited to, can be extended to
 in the future, we plan to ...
 xxx is part of future work
+looking into the future,
 
 ### Words
 induce/enact/derive
@@ -200,6 +272,7 @@ exceed/overwhelm
 worsen/exacerbate/accure
 feasible/practical/realistic
 regardless of
+additionally, furthermore, moreover, in addition, besides
 result in, lead to, consequently, subsequently
 thereby, hence, therefore, accordingly
 as opposed to, contrary, in contrast, is reversed
