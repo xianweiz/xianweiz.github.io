@@ -1,286 +1,310 @@
 ### Abstract
-with the advent of xxx, xxx is now widely used to xxx
-many techniques have been proposed xxx
-xxx becomes inevitable in xxx, which is a major obstacle for xxx
-xxx is very challenging, espcially for xxx, due to xxx
-xxx is a promising xxx due to xxx. However, xxx
-many xxx are commonly limited in scope, xxx
-we address the challenges of designing ...
-to meet the challenges of, to meet these needs, to meet the rapidly growing needs/demands of
-we demonsrate the efficacy of
-trade off accuracy for better performance
-prototype, premilinary results, case studies
-unleash the power of, a revolutionary new
-general/generic/versatile/elastic/holistic/multipurpose/multifaceted
-variable/convertible/flexible/adaptable/dynamic
-technology agnostic, application-independent
-original, non-existent, pioneering, primitive, first-hand
+<Trend>
+ with the advent of xxx, xxx is now widely used to xxx
+ xxx have emerged as a major driver for the computing industry
+ many techniques have been proposed xxx
+<Challenge>
+ xxx becomes inevitable in xxx, which is a major obstacle for xxx
+ xxx is very challenging, espcially for xxx, due to xxx
+ xxx is a promising xxx due to xxx. However, xxx
+ many xxx are commonly limited in scope, xxx
+<Solution>
+ we address the challenges of designing ...
+ to meet the challenges of, to meet these needs, to meet the rapidly growing needs/demands of
+<Result>
+ we demonsrate the efficacy of
+ trade off accuracy for better performance
+ prototype, premilinary results, case studies
+ unleash the power of, a revolutionary new
+<Advantage>
+ general/generic/versatile/elastic/holistic/multipurpose/multifaceted
+ variable/convertible/flexible/adaptable/dynamic
+ technology agnostic, application-independent
+ original, non-existent, pioneering, primitive, first-hand
 
 ### Introduction
-with the number of system parameters on the rise
-with growing complexity of
-drive the need for increasing the
-exacerbate these challenges
-is extremely challenging
-due to these advantages, in recent years, xxx has been
-despite these advantages and applicability to xxx, xxx suffers from xxx
-considerably/significantly/increasingly/drastically/exceedingly/extremely/exponentially/numeriously/undue
-attempt to, seek to, aim at, target at
-define/develop/design/implement/propose/formulate/investigate/look into/address/deploy
-mitigate/alleviate/improve/prolong/extend/accelerate/relieve the stress/overcome the barrier/eliminate/boost/maximize/facilitate
-use/leverage/utilize/employ/adopt/exploit/amortize/drive/extend/apply/expand/reinforce
-we develop a new framework, xxx.
-, which we call xxx,
-the main contributions of this paper are as follows:
-in particular, the major contributions of this paper are as follows:
-xxx is build on three primary contributions:
-our contributions can be summarized as follows:
-the work makes the following contributions:
-to the best of our knowledge
-the rest of this paper is organized as follows.
-introduce/illustrate/demonstrate/present/discuss/elaborate/cover/conclude (conclusions are drawn in Section)
+<Big-picture>
+ the era of
+ with the number of system parameters on the rise
+ with growing complexity of
+ drive the need for increasing the
+ due to these advantages, in recent years, xxx has been
+<Issue>
+ exacerbate these challenges
+ is extremely challenging
+ despite these advantages and applicability to xxx, xxx suffers from xxx
+ optimizing xxx is important, but complicated
+<Direction>
+ attempt to, seek to, aim at, target at
+ define/develop/design/implement/propose/formulate/investigate/look into/address/deploy
+ mitigate/alleviate/improve/prolong/extend/accelerate/relieve the stress/overcome the barrier/eliminate/boost/maximize/facilitate
+ use/leverage/utilize/employ/adopt/exploit/amortize/drive/extend/apply/expand/reinforce
+ considerably/significantly/increasingly/drastically/exceedingly/extremely/exponentially/numeriously/undue
+<Design>
+ we develop a new framework, xxx.
+ , which we call xxx,
+<Contribution>
+ the main contributions of this paper are as follows:
+ in particular, the major contributions of this paper are as follows:
+ xxx is build on three primary contributions:
+ our contributions can be summarized as follows:
+ the work makes the following contributions:
+ to the best of our knowledge, this is first work to
+<Organization>
+ the rest of this paper is organized as follows.
+ introduce/illustrate/demonstrate/present/discuss/elaborate/cover/conclude (conclusions are drawn in Section)
 
 ### Background
-the era of
-the all new architecture
-the next wave of architectures
-spanning from PCs to desktops
-continue to grow in size, complexity and diversity
-xxx has fundamentally evolved and shifted over the last decade toward greater programmability.
-the high-level architecture of xxx, based on xxx
-as the basic unit of,
-consists of, contain, comprise of, is composed of, is constructed from, is divided/partitioned into
-group/cluster/bundle
-surrounding/adjacent/neighbor/consecutive, align next to
-for the sake of simplicity,
-for ease of explanation/presentation,
-are exposed to
-unintentional hw errors, deliberate malicious attacks
-in this manner/fashion
-basic/fundamental/foundational/rudimentary/elemental/radical/primitive/intrinsic
-usually/typically/commonly/representatively
-standard/criteria/criterion/qualification
-disclose/release/publicize, disclosure
-intellectual property, proprietary information
-is at the heart of, is at the core of, is the essence of the architecture
-due to, because of, thanks to, owing to, account for
-in terms of, with respect to, referencing
-take into account, considering
-enough, sufficient, adequate, a plethora of
-multiple, a variety of, various, manifold, diverse
-solution, resolution, design, method
-keep, hold, retain, put on hold
-prior to, ahead of, in advance of, preceding
-suitable, appropriate, proper, applicable, relevant, pertinent, eligible
-steady, stable, consistent, unchanging, invariable, compatible, coherent
-apparent, obvious, evident, noticeable, clear, manifest
-high-profile, top-tier, preeminent, prestigious, notorious, distinguished, prominent, noteworthy, remarkable
-complicated, complex, intricate, tricky, nontrivial
-primary, bakcup/secondary, predominant, dominated, central, foremost
+<Big-picture>
+ continue to grow in size, complexity and diversity
+ xxx has fundamentally evolved and shifted over the last decade toward greater programmability.
+ spanning from PCs to desktops
+ due to, because of, thanks to, owing to, account for
+<High-level>
+ the all new architecture
+ the next wave of architectures
+ the high-level architecture of xxx, based on xxx
+ usually/typically/commonly/representatively
+<Detail>
+ as the basic unit of,
+ is at the heart of, is at the core of, is the essence of the architecture
+ basic/fundamental/foundational/rudimentary/elemental/radical/primitive/intrinsic
+ consists of, contain, comprise of, is composed of, is constructed from, is divided/partitioned into
+ group/cluster/bundle
+ surrounding/adjacent/neighbor/consecutive, align next to
+<Technical>
+ standard/criteria/criterion/qualification
+ disclose/release/publicize, disclosure
+ intellectual property, proprietary information
+ is accurate as of the date provided
+ unintentional hw errors, deliberate malicious attacks
+ in this manner/fashion
+<Misc>
+ for the sake of simplicity, for ease of explanation/presentation,
+ in terms of, with respect to, referencing
+ take into account, considering
+ enough, sufficient, adequate, a plethora of
+ multiple, a variety of, various, manifold, diverse
+ solution, resolution, design, method
+ suitable, appropriate, proper, applicable, relevant, pertinent, eligible
+ steady, stable, consistent, unchanging, invariable, compatible, coherent
+ apparent, obvious, evident, noticeable, clear, manifest
+ high-profile, top-tier, preeminent, prestigious, notorious, distinguished, prominent, noteworthy, remarkable
+ primary, bakcup/secondary, predominant, dominated, central (are central to), foremost
 
 ### Motivation
-advsersely affect performance, inefficiency, constraints, applicability, restricted use of
-obstacle, hinder the wider adoption, constrain, prevent us from using
-inevitable, unavoidable, mandatory, required, is obligated to
-guaranteeing perfect functionality across a broad range of systems has become extremely expensive
-a fundamental requirement is to understand how xxx affect xxx
-it is essential to distinguish and identify
-it is crucial that
-understanding xxx is essential for
-require/demand/necessitate
-distinguish/differentiate/highlight/emphasize/focus on/target at
-important/critical/essential/urgent/strongly demanded
-pitfall/drawback/issue/problematic/errorneous/corruption/crash
-reveal/identify/locate/pinpoint/characterize/annotate
-we make the following key observations
-observations/findings/insights
-inspire/motivate/hint
-to reap the benefits of
-to this end, we propose/develop
-That said, nonetheless, despite that, in spite of that
-advantangeous over, is more plausible, are suitable for
-describe in detail the
-be designated as, are intended to
-practice, policy, principle, routine, theory
-in some limited instances, under certain circumstances, a very limited range of, with stringent limitations
-contingent, conditional, dependent
-an initiative for
-biased, skewed, distorted
+<Challenge>
+ complicated, complex, intricate, tricky, nontrivial
+ advsersely affect performance, inefficiency, constraints, applicability, restricted use of
+ obstacle, hinder the wider adoption, constrain, prevent us from using
+ inevitable, unavoidable, mandatory, required, is obligated to
+ guaranteeing perfect functionality across a broad range of systems has become extremely expensive
+ in some limited instances, under certain circumstances, a very limited range of, with stringent limitations
+ contingent, conditional, dependent
+ biased, skewed, distorted
+<Goal>
+ a fundamental requirement is to understand how xxx affect xxx
+ it is essential to distinguish and identify
+ it is crucial that
+ understanding xxx is essential for
+ require/demand/necessitate
+ distinguish/differentiate/highlight/emphasize/focus on/target at
+ important/critical/essential/urgent/strongly demanded
+<Observation>
+ reveal/identify/locate/pinpoint/characterize/annotate
+ pitfall/drawback/issue/problematic/errorneous/corruption/crash
+ we make the following key observations
+ observations/findings/insights
+ inspire/motivate/hint
+<Design>
+ to this end, we propose/develop
+ be designated as, are intended to
+ an initiative for
+ practice, policy, principle, routine, theory
+ to reap the benefits of
+ advantangeous over, is more plausible, are suitable for
+ describe in detail the
 
 ### Design
-incorporates the features highlighted in ...
-The info is propagated to
-control the degree of approximation
-four modules are instantiated
-the resultant behavior
-in the presence of data errors
-in the absence of systematic methodologies
-is agnostic to, without any knowledge of
-prohibitive overhead, moderate changes, trivial efforts
-suffer from, vulnerable to, susceptible to
-it should be noted that, it is noteworthy that
-is not within the research scope of this paper, are outside the scope of this paper
-without loss of generality
-without compromising
-is defined as
-mix/merge/combine/integrate/incorporate/complement/consolidate/aggregate/in conjuction with
-individual/standalone/separate/isolate/decouple/their respective xxx/indepdendent
-comply with, conform to, agree with, match, in accordance with
-initiate, trigger, launch
-remove, eradicate, eliminate, detach, de-couple, get rid of
-logical organization, resident in, monolythic single-die design
-transition to
-designed from the ground up for
-scale across a variety of platforms
-the first instantiation of the
-backwards compatibility
-is private to each CU, lie outside of the
-, which is part of the,
-encapsulate
-is closely associated with, tied together, house all resources
-introduce a feature known as xxx that
-to accomodate
-first incarnation of
-co-exist harmoniously
-creat their own
-simplifying the design of
-key fatures are briefly highlighted below (and described in detail in subsequent sections)
-we list a few of those new features below.
+<High-level>
+ suffer from, vulnerable to, susceptible to
+ the resultant behavior
+ in the presence of data errors, in the absence of systematic methodologies
+ simplifying the design of, to accomodate
+ introduce a feature known as xxx that, incorporates the features highlighted in ...
+ key fatures are briefly highlighted below (and described in detail in subsequent sections)
+ we list a few of those new features below.
+<Elaborate>
+ four modules are instantiated, without loss of generality
+ logical organization, resident in, monolythic single-die design
+ is private to each CU, lie outside of the, which is part of the,
+ is closely associated with, tied together, house all resources, encapsulate
+ initiate, trigger, launch, transition to, the info is propagated to
+ is defined as
+ it should be noted that, it is noteworthy that
+ control the degree of approximation
+ is not within the research scope of this paper, are outside the scope of this paper
+<Advantages>
+ prohibitive overhead, moderate changes, trivial efforts
+ without compromising
+ is agnostic to, without any knowledge of
+ individual/standalone/separate/isolate/decouple/their respective xxx/indepdendent
+ remove, eradicate, eliminate, detach, de-couple, get rid of
+ mix/merge/combine/integrate/incorporate/complement/consolidate/aggregate/in conjuction with
+ comply with, conform to, agree with, match, in accordance with
+ designed from the ground up for
+ scale across a variety of platforms
+ the first instantiation of the, first incarnation of
+ co-exist harmoniously, backwards compatibility
 
 ### Experimental Methodology
-To demonstrate the efficacy of
-a lightweight sw routine that is invoked to evaluate
-we demonstate one example use-case
-synthetic workloads, in-situ and composed applications, a collection of applications
-the stated goal, the combined set of features, different aspects of
-collectively, comprehensive, overall
-is focused on, in the context of
-is incoporated into, are all integrated into, is combined into
-scaled-down, project the power consumption, extrapolate, exploratory
-faithfully support
-massive multi-threading
-employ a two-level cache hierarchy
-detailed evaluation
-back-to-back execution
-operate at full rate, at full throughput
-, and many more
-customer usage patterns
-is known in advance
-subsequent sections
+<Goal>
+ to demonstrate the efficacy of, we demonstate one example use-case
+ the stated goal, the combined set of features, different aspects of
+ collectively, comprehensive, overall
+ is focused on, in the context of
+<System>
+ is incoporated into, are all integrated into, is combined into
+ a lightweight sw routine that is invoked to evaluate
+ faithfully support, with high fidelity
+ massive multi-threading
+ employ a two-level cache hierarchy
+ back-to-back execution
+ operate at full rate, at full throughput
+<Applications>
+ synthetic workloads, in-situ and composed applications, a collection of applications, a wide variety of suites, and many more
+ customer usage patterns
+<Method>
+ scaled-down, project the power consumption, extrapolate, exploratory
+ detailed evaluation
+ at runtime, is known in advance
+ set the parameters to match xxx as closely as possible
+ probabilistic/stochastic
+<Misc>
+ subsequent sections, in the remainder of this paper
 
 ### Results
-orders of magnitude fewer
-several orders of magnitude larger than
-... refers to ...
-is referred to as
-, which accounts for the
-they account for
-to quantify the output
-gold standard, ground truth, gold copy
-operations are concentrated in some regions
-show/imply/indicate/demonstrate/manifest/observe/report/illustrate/plot/refer to/summarize/present/cover/represent/correspond to
-result in a degradation of
-the resulting benefit
-exhibit, show, illustrate, represent, depict, mark, reveal, 
-expected, predicted, anticipated, desired
-breaks down the contributions of
-the contributing factors to xxx are
-as much as a 2x slowdown
-, delivering up to 2x performance
-, which is twice the throughput of
-with a potential of reaching up to 3x speedup
-negatively impact, a modest improvement, deliver remarkable improvements
-provide the ability to, offer the performance, offer several critical advantages, reduce the cost of control flow
-bring the benefit of, eliminate the need for
-boost performance, improve efficiency
-As one example,
-accumulate, collectively, putting together
-variants
-superb, elegant, exceptional, tremendous, one distinct advantage, substantial improvement, a tremendous step forward
-, combined with
-combined, unified, integrated, aggregated, batched, bundled, grouped
-sturate, thrash, error-resilient
-as the name implies
-fall back to
-robust, solid, sound
-ampilify
-to attain the benefits of
-raise the bar yet again on
-raise utilization rates at no additional cost
-as discussed above,
-alongside the
-oversubsribe
-can be thought of as
-proportionally
-, yielding
-chunks of
-fall into two categories
+<Figure/Table>
+ As Figure 1 shows, Table 1 lists, summaried in Table 1, Table 1 summarizes, Figure 2 provides additional detail on
+ show/imply/indicate/demonstrate/manifest/observe/report/illustrate/plot/refer to/summarize/present/cover/represent/correspond to
+ to quantify the output
+<Result>
+ the resulting benefit
+ bring the benefit of, eliminate the need for
+ negatively impact, a modest improvement, deliver remarkable improvements
+ boost performance, improve efficiency
+<Data>
+ gold standard, ground truth, gold copy
+ orders of magnitude fewer
+ several orders of magnitude larger than
+ result in a degradation of
+ as much as a 2x slowdown, delivering up to 2x performance, which is twice the throughput of
+ with a potential of reaching up to 3x speedup
+ proportionally, oversubsribe, chunks of
+<Explain>
+ ... refers to ..., is referred to as
+ in terms of, take into account
+ which accounts for the, they account for
+ , yielding
+ operations are concentrated in some regions
+ As one example,
+ exhibit, show, illustrate, represent, depict, mark, reveal, 
+ expected, predicted, anticipated, desired
+ breaks down the contributions of, the contributing factors to xxx are
+ accumulate, collectively, putting together, in the aggregate, in total, as a whole, combined with
+ combined, unified, integrated, aggregated, batched, bundled, grouped, variants
+ fall into two categories, behave simiarly to, in comparison, alongside the
+<Imply>
+ as discussed above/below,
+ provide the ability to, offer the performance, offer several critical advantages, reduce the cost of control flow
+ superb, elegant, exceptional, tremendous, one distinct advantage, substantial improvement, a tremendous step forward
+ sturate, thrash, error-resilient, robust, solid, sound
+ as the name implies, can be thought of as
+ amplify, fall back to
+ to attain the benefits of
+ raise the bar yet again on, raise utilization rates at no additional cost
 
 ### Related Work
-state-of-the-art, prior work, related work, previous studies
-it was previously shown that
-have investigated the feasibility of
-undertake an example case study
-several works have been proposed in the context of xxx
-have been actively conducted, have been widely explored in literature
-which was later used to
-xxx continued the line of research by
-recent studies suggest that
-many studies tried to xxx
-previous studies have mainly used xxx
-are overly conservative, impose a constraint on
-alternative, orthogonal, an alterative to
-motivating a plethora of work on
-the research carried out
-the recent advances in
-more recently,
-it has now become possible to
-cutting-edge, groundbreaking performance
-take this to the next level
-a very common approach
-redesigned/rearchitected/rebuilt
-improve ease of programming
-are specialized
-no longer needed
+<Prior>
+ state-of-the-art, prior work, related work, previous studies
+ it was previously shown that
+ have investigated the feasibility of
+ undertake an example case study
+ several works have been proposed in the context of xxx
+ have been actively conducted, have been widely explored in literature
+ xxx continued the line of research by
+ recent studies suggest that, many studies tried to xxx, previous studies have mainly used xxx
+ the research carried out, the recent advances in, more recently,
+ it has now become possible to
+<Achievement>
+ which was later used to
+ motivating a plethora of work on
+ take this to the next level, no longer needed
+ improve ease of programming
+ cutting-edge, groundbreaking performance
+<Compare>
+ are overly conservative, impose a constraint on
+ alternative, orthogonal, an alterative to
+ a very common approach
+ redesigned/rearchitected/rebuilt
+ are specialized
+ differeing from prior xxx work,
 
 ### Conclusion
-is the foundation for
-in this paper, we address the challenge of xxx
-is intended to address two main challenges
-it is especially important
-to this end, we propose xxx
-in this paper, we present xxx, a xxx
-we demonstrate the efficacy of
-unprecedented acceleration at every scale
-our methodology is well suited for a large class of workloads
-due to these advantages, we believe that xxx has the potential for
-strategic directions
-a simple and universal recipe
-the best of both worlds
-open opportunities for
-are not limited to, can be extended to
-in the future, we plan to ...
-xxx is part of future work
-looking into the future,
+<Target>
+ worsen/exacerbate/accure/exceed/overwhelm
+ is the foundation for
+ it is especially important
+ in this paper, we address the challenge of xxx
+ is intended to address two main challenges
+<Design>
+ to this end, we propose xxx
+ in this paper, we present xxx, a xxx
+ feasible/practical/realistic
+<Gains>
+ we demonstrate the efficacy of
+ unprecedented acceleration at every scale
+ our methodology is well suited for a large class of workloads
+ due to these advantages, we believe that xxx has the potential for
+ strategic directions
+ a simple and universal recipe
+ the best of both worlds
+ open opportunities for
+<Future>
+ are not limited to, can be extended to
+ in the future, we plan to ...
+ xxx is part of future work
+ looking into the future,
 
 ### Words
-induce/enact/derive
-in terms of, take into account
-incur/involve/embrace
-probabilistic/stochastic
-exceed/overwhelm
-worsen/exacerbate/accure
-feasible/practical/realistic
-regardless of
-additionally, furthermore, moreover, in addition, besides
-result in, lead to, consequently, subsequently
-thereby, hence, therefore, accordingly
-as opposed to, contrary, in contrast, is reversed
-steadily/progressively/at pace
-provided/supplied
-in response to
-undergo
-moreover, in addition, furthermore, apart from
-ensure/guarantee
-succint/concise/compact/condensed
-in lieu of
+<So>
+ thereby, hence, therefore, accordingly, consequently, correspondingly
+ result in, lead to, consequently, in response to
+ pursuant to a provision, in accordance with, as reported by, as stated in, conforming to, in line with, in accordance with
+<But>
+ That said, nonetheless, despite that, in spite of that, in spite of, regardless of, irrespective of
+<More>
+ additionally, furthermore, moreover, in addition, besides, apart from
+ extra, additional, supplementary, spare
+<Before>
+ prior to, ahead of, in advance of, preceding
+<Then>
+ later, afterwards, subsequently, thereafter, hereafter, thereupon
+<Diff>
+ as opposed to, contrary, in contrast, is reversed, in comparison, differing from
+<Must>
+ require, demand, necessitate, urgent, critical, essential, mandatory, compulsory
+ precondition, prerequisite, fundamental, required to, compelled to, obliged to, be under an obligation to
+<Optional>
+ alternative, replacement, substitute, in lieu of, proxy, elective, nonmandatory, noncompulsory, voluntary, arbitrary, discretional
+<Progress>
+ steadily/progressively/at pace
+<Obstacle>
+ hold, retain, put on hold
+ undergo, are exposed to
+<TBD>
+ induce/enact/derive
+ incur/involve/embrace
+ provided/supplied
+ ensure/guarantee
+ succint/concise/compact/condensed
