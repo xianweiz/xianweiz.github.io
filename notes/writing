@@ -8,6 +8,10 @@
  xxx is very challenging, espcially for xxx, due to xxx
  xxx is a promising xxx due to xxx. However, xxx
  many xxx are commonly limited in scope, xxx
+ has received comparatively little attention, due in part to xxx
+ a lack of support from
+ closed-source platform
+ subject to certain restrictions, limitations and exceptions
 <Solution>
  we address the challenges of designing ...
  to meet the challenges of, to meet these needs, to meet the rapidly growing needs/demands of
@@ -17,6 +21,9 @@
  prototype, premilinary results, case studies
  unleash the power of, a revolutionary new
 <Advantage>
+ provide much-needed flexibility
+ a viable alterative
+ to shed light on
  general/generic/versatile/elastic/holistic/multipurpose/multifaceted
  variable/convertible/flexible/adaptable/dynamic
  technology agnostic, application-independent
@@ -63,6 +70,7 @@
 <High-level>
  the all new architecture
  the next wave of architectures
+ key enabling technology
  the high-level architecture of xxx, based on xxx
  usually/typically/commonly/representatively
 <Detail>
@@ -102,6 +110,7 @@
  in some limited instances, under certain circumstances, a very limited range of, with stringent limitations
  contingent, conditional, dependent
  biased, skewed, distorted
+ pose a risk of, lag behind, excess labor supply
 <Goal>
  a fundamental requirement is to understand how xxx affect xxx
  it is essential to distinguish and identify
@@ -200,7 +209,8 @@
  result in a degradation of
  as much as a 2x slowdown, delivering up to 2x performance, which is twice the throughput of
  with a potential of reaching up to 3x speedup
- proportionally, oversubsribe, chunks of
+ proportionally, disproportionately, oversubsribe, chunks of
+ nearly quadrupled
 <Explain>
  ... refers to ..., is referred to as
  in terms of, take into account
@@ -213,7 +223,7 @@
  breaks down the contributions of, the contributing factors to xxx are
  accumulate, collectively, putting together, in the aggregate, in total, as a whole, combined with
  combined, unified, integrated, aggregated, batched, bundled, grouped, variants
- fall into two categories, behave simiarly to, in comparison, alongside the
+ fall into two categories, behave simiarly to, in comparison with, alongside the
 <Imply>
  as discussed above/below,
  provide the ability to, offer the performance, offer several critical advantages, reduce the cost of control flow
@@ -280,7 +290,8 @@
 <So>
  thereby, hence, therefore, accordingly, consequently, correspondingly
  result in, lead to, consequently, in response to
- pursuant to a provision, in accordance with, as reported by, as stated in, conforming to, in line with, in accordance with
+ pursuant to a provision, in accordance with, as reported by, as stated in, conforming to, in line/alignment/conjuction with, commensurate with, adhere to
+ in light of the above
 <But>
  That said, nonetheless, despite that, in spite of that, in spite of, regardless of, irrespective of
 <More>
@@ -290,8 +301,10 @@
  prior to, ahead of, in advance of, preceding
 <Then>
  later, afterwards, subsequently, thereafter, hereafter, thereupon
+<Same>
+counterpart, equivalent, peer, identical, comparable, interchangable, tantamount
 <Diff>
- as opposed to, contrary, in contrast, is reversed, in comparison, differing from
+ as opposed to, contrary, in contrast, is reversed, in comparison, differing from, deviate from
 <Must>
  require, demand, necessitate, urgent, critical, essential, mandatory, compulsory
  precondition, prerequisite, fundamental, required to, compelled to, obliged to, be under an obligation to
@@ -302,9 +315,207 @@
 <Obstacle>
  hold, retain, put on hold
  undergo, are exposed to
+<Worse>
+ worsen, degrade, decline, fade, decay, collapse, deteriorated sharply, become progressively worse
+<Emphasize>
+ highlight, call out major differences
+<Example>
+ as exemplified by
+ including A and B to name a few
+ as evidenced by
+<Math>
+ lump sum
+ midpoint
 <TBD>
  induce/enact/derive
  incur/involve/embrace
  provided/supplied
  ensure/guarantee
  succint/concise/compact/condensed
+ pillars
+ productivity inhibitors
+ impressive innovations
+ key takeaways
+ features and pitfalls, roadmap, portability, compatibility
+ delve into
+ become even more pronounced
+ pertaining to
+ more amenable for
+ hinder, hindrance
+ intrinsic
+ is perceived as
+ in the midst of
+ fractionally
+ has exorbitantly exhibited
+ increase marginally, negligible
+ solidify
+ is of paramount importance to
+ rigorous power constraints, stringent requirements, impose formidable challenges to
+ unveil
+ (hereinafter "")
+ pivotal
+ articulate
+ in furtherance of
+ out of the scope of this work
+ rapid evolvement
+ endow, entitle
+ infiltrate
+ handheld devices
+ are trended to
+ compact, repercussion
+ and vice versa
+ compromised
+ stimulate an increasing focus on
+ fulfil its perf and power constraint, fulfil this purpose
+ for the sake of
+ quantization, calibration
+ diminish
+ resort to xxx as the fundamental backbone
+ stem from
+ , as we all know,
+ is comparatively close to
+ incur
+ one-case-for-all, "one edge of the sword"
+ under such circumstances
+ paradigm
+ suppress
+ comply with, abide by
+ render
+ be harnessed as, is entitled to
+ circumvent
+ concretely, empirically
+ unitary precision
+ universally applicable
+ overwhelming preference to
+ be decomposed into 4 steps
+ radix point
+ iconic representations
+ accured/accumulated
+ forfeited
+
+### Comment
+It looks ok, but it would be nice if the comments were a bit more detailed.
+It would be nice if this patch was better commented,
+It is not clear what xxx
+It is not initially obvious to me why xxx
+I am fine with it as-is, but have one suggestion. You can decide if it's worth changing or not.
+It has a much better chance of getting approved if xxx
+Need to clarify how the default values were chosen.
+It is a bit inconsistent using the terms xxx and xxx. That may be sth we want to make clear.
+
+### Review
+<Summary>
+Targeting at, propose, evaluation
+
+<Strength>
+--- motivation
+strongly motivated to solve xxx
+xxx is definitely desirable
+provide excellent insights into xxx
+the paper is insightful and interesting
+innovative to provide new insights of
+several aspects of this paper are appealing
+the paper can open a new research direction towards xxx
+new research direction that can potentially open up a new work in this field
+--- design
+the design is useful to facilitate the exploration of xxx
+the work is unique in the sense that xxx
+make a tangible contribution to xxx
+Useful tool/platform
+practical to implement in a real system
+model details are well elaborated and test is pretty easy to follow
+--- evaluation
+impressive study with real data
+present a number of compelling use cases
+a concrete use-case is provided
+comprehensive and detaild studies
+impressive and comprehensive experimental studies
+the discussion and analysis are very insightful
+--- writing
+conduct a good investigation of existing approaches
+
+<Weakness>
+--- novelty
+no major new ideas
+the novelty of the approach is not clear
+limited novelty in terms of xxx
+incremental improvement
+the work appears rather incremental, applying a known technique from the lierature
+stitch together existing techniques to achieve the desired effect
+it lacks design innovations and as a full system paper it is not well shaped
+--- applicability
+applicable to a narrow set of applications
+generality of the technique is not clear,
+the proposed scheme is quite complex
+cannot be deployed in practice on commodity hw with minimal architectural changes
+this limits the scope and usefulness of your work
+--- flaws
+xxx are not considered and even not discussed
+xxx claim is dubious
+section xxx appears to belie this claim
+data to support that claim is missing
+doesn't provide sufficient insight into why xxx
+there is no clear use case
+--- evaluation
+extremely weak evaluation
+didn't extensively evaluate
+no quantitative comparison is done against prior arts
+overheads are not well explored
+without further justificatio, I would doubt
+--- writing
+the references are almost a decade old
+is very poorly written, missing key ideas
+due to rushed writing
+need to have a clear definition of
+topics that would be nice to cover
+
+<Comment>
+I felt some aspects of the paper could be improved
+my primary concern is on the xxx
+can you provide arguments to highlight novelty and suitability for xxx?
+the paper is more suitable for a xxx conference.
+the paper could be significantly improved with xxx
+use more realistic metrics
+how well the approach will generalize to xxx?
+issues in comparison with prior works
+would the design apply to other xxx?
+describe the design in a more elaborate manner
+how much feasible it is to xxx
+
+<Discussion>
+--- negative
+I personally still have concerns with xxx
+I still don't think my concern was adequately addressed
+overall, I won't be opposed to a reject
+I would be more comfortable for the paper to be rejected
+the paper needs a proper new iteration
+has numerous weakneses, so I am not in favor of accepting it
+the response doesn't strongly support the xxx
+I am not convinced by the rebuttal and revision
+I prefer this paper to be accepted as an short paper
+--- positive
+we can mark it as on online-accept
+I propose we tag this paper as online-accept
+I am sticking with my accept
+it is a shoo-in
+leaning to accept
+I remain at my original position, weak accept
+I vote accept; for me, there is enough new thrust (e.g., ) to excite the readers
+--- neutral
+I would prefer to hear more positive reviwers
+would like to hear suggestions from other reviewers, maybe the direction and model are prominent engout to get it accepted?
+I will keep my score unchanged
+after reading other reviews, I think my opinion still holds
+what is your most updated opinion on this paper?
+would you like to argue against this paper?
+a better question is: would you be opposed to acceptance of this paper?
+irrespective of what we finally decide, I'd like authors to take note of your criticism and improve the final version
+if you feel comfortable, could you write two-three lines specifically pointing out what things could be improved. If not, I'm going to rephrase your comment to use toward that purpose.
+let's vote on this: accept/reject. Please (unambiguously) pick only one side.
+
+### Rebuttal
+we would like to thank the reviewers for their in-depth reviews and invaluable comments on the manuscript
+summary of major changes are described below
+the parimary challenge we aim to address is xxx
+we perform a more in-depth overhead analysis
+xxx are outside of the scope of xxx, which is an attractive feature for future work
