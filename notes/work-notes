@@ -1,4 +1,8 @@
 GIT
+* setup
+$vim ~/.gitconfig
+$vim ~/.ssh/config
+
 * clone a remote git
 $git clone ssh://<xxx>
 $git checkout origin/<branch-x>
@@ -10,6 +14,21 @@ $git checkout <branch-x>
 
 * push to remote for review
 $git push origin HEAD:refs/for<branch-x>
+
+* commit
+$git commit
+$git commit --amend
+
+* merge
+$git merge
+$git merge --squash
+
+* rebase
+$git rebase <commit>
+$git rebase -i <commit>
+
+* cherry-pick
+$git cherry-pick <commit>
 
 * status
 $git status -uno
