@@ -5,7 +5,7 @@ Q2. 请概括性谈一谈你的研究方向
 A2：
 我所作方向主要是围绕应用需求来优化GPU和memory系统结构以提升全局性能；
 大概的研究流程是：1）分析应用程序，确定性能或能耗瓶颈；2）提出软件或硬件层面的解决方案；3）实现并验证方案有效性；
-常用工具是profiler （e.g.， PinTool, nvprof/rocmprof）和simulator（e.g.，gem5)，常用语言是C/C++, Python, Bash, CUDA/OpenCL等。
+常用工具是profiler （e.g.， Pintool, nvprof/rocprof）和simulator（e.g.，gem5)，常用语言是C/C++, Python, Bash, CUDA/OpenCL等。
 
 Q3. 如果我之前做算法（或电子、自动化），会不会有问题？
 A3：不会有问题，反而更可能提供非常好的切入点：
