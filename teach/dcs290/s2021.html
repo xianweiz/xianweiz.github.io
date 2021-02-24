@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>sysu_dcs290</title>
+        <link href="../main.css" rel="stylesheet" />
+    </head>
+<center>
+	<p><font size="+2" face="Arial, Helvetica, sans-serif" color="#004c00"><b>SYSU-DCS290： 编译原理 (Compilation Principle)，Spring 2021</b></font>
+	</p>
+</center>
+
+    <body class='container'>
+         <h2 id='section_title'> <span class='highlight'> <font color="#006600"> > Instructor</font></span></h2>
+     - <b>Name</b>: <a class="link-other" href="http://sdcs.sysu.edu.cn/content/5592">张献伟</a><br>
+     - <b>Email</b>: zhangxw79[AT]mail.sysu.edu.cn<br>
+     - <b>Office Hours</b>: Thu 16:20 - 18:00 (实验中心 E401)
+         <h2 id='section_title'> <span class='highlight'> <font color="#006600"> > Lecture</font></span></h2>
+     - <b>Schedule</b>: Thu 14:20 - 16:00 (wk1-19), Tue 14:20 - 16:00 (wk1-9)<br>
+     - <b>Location</b>: C303
+         <p>
+         <h2 id='section_title'> <span class='highlight'> <font color="#006600"> > Lab</font></span></h2>
+     - <b>Schedule</b>: Thu 16:20 - 18:00 (wk1-19)<br>
+     - <b>Location</b>: 实验中心 E401
+         <p>
+         <h2 id='section_title'> <span class='highlight'><font color="#006600"> > Teaching Assistants</font></span></h2>
+     - 莫则威 (mozw5[AT]mail2.sysu.edu.cn)<br>
+     - 王子彦(wangzy75[AT]mail2.sysu.edu.cn)
+         <p>
+         <h2 id='section_title'> <span class='highlight'><font color="#006600"> > Schedule</font></span></h2>
+         <p>
+
+         
+<table width="100%" border="2" cellspacing="0" cellpadding="0"> 
+ <tr bgcolor="#C8C4B3">
+  <td width="20%"><font face="Arial, Helvetica, sans-serif"><b>Week/Date</b></font>
+  </td>
+  <td width="50%"><font face="Arial, Helvetica, sans-serif"><b>Topic</b></font>
+  </td>
+  <td width="30%" align="center"><font face="Arial, Helvetica, sans-serif">
+     <b>Note</b></font>
+  </td>
+ </tr>
+
+ <tr>
+  <td>wk1: Feb 25</td>
+  <td><a class="link-other" href="slides/lec_0.pdf">Overview</a></td>
+  <td align="center"><a class="link-other" href="slides/lab_0.pdf">Lab</a></td>
+ </tr>
+
+ <tr bgcolor="#E2E2E2">
+  <td>wk2: Mar 2</td>
+  <td>Lexical Analysis: Regular Expression</td>
+  <td align="center"></td>
+ </tr>
+ <tr bgcolor="#E2E2E2">
+  <td>wk2: Mar 4</td>
+  <td>Lexical Analysis: NFA, DFA (1)</td>
+  <td align="center">Lab (<font color="purple">Proj1: Scanner</font>)</td>
+ </tr>
+
+ <tr>
+  <td>wk3: Mar 9</td>
+  <td>Lexical Analysis: NFA, DFA (2)</td>
+  <td align="center"></td>
+ </tr>
+ <tr>
+  <td>wk3: Mar 11</td>
+  <td>Syntax Analysis: CFG</td>
+  <td align="center">Lab</td>
+ </tr>
+
+ <tr bgcolor="#E2E2E2">
+  <td>wk4: Mar 16</td>
+  <td>Syntax Analysis: Top-down (1)</td>
+  <td align="center"></td>
+ </tr>
+ <tr bgcolor="#E2E2E2">
+  <td>wk4: Mar 18</td>
+  <td>Syntax Analysis: Top-down (2)</td>
+  <td align="center">Lab</td>
+ </tr>
+
+ <tr>
+  <td>wk5: Mar 23</td>
+  <td>Syntax Analysis: Bottom-up, LR (1)</td>
+  <td align="center"></td>
+ </tr>
+ <tr>
+  <td>wk5: Mar 25</td>
+  <td>Syntax Analysis: Bottom-up, LR (2)</td>
+  <td align="center">Lab (<font color="red">Proj1 due</font>, <font color="purple">Proj2: Parser</font>)
+  </td>
+ </tr>
+
+ <tr bgcolor="#E2E2E2">
+  <td>wk6: Mar 30</td>
+  <td>Syntax Analysis: LR</td>
+  <td align="center"></td>
+ </tr>
+ <tr bgcolor="#E2E2E2">
+  <td>wk6: Apr 1</td>
+  <td>Syntax Analysis: YACC tools</td>
+  <td align="center">Lab</td>
+ </tr>
+
+ <tr>
+  <td>wk7: Apr 6</td>
+  <td>Semantic Analysis: Symbol Table</td>
+  <td align="center"></td>
+ </tr>
+ <tr>
+  <td>wk7: Apr 8</td>
+  <td>Semantic Analysis: Type Check</td>
+  <td align="center">Lab</td>
+ </tr>
+
+ <tr bgcolor="#E2E2E2">
+  <td>wk8: Apr 13</td>
+  <td>Semantic Analysis: Syntax Directed Translation (1)</td>
+  <td align="center"></td>
+ </tr>
+ <tr bgcolor="#E2E2E2">
+  <td>wk8: Apr 15</td>
+  <td>Semantic Analysis: Syntax Directed Translation (2)</td>
+  <td align="center">Lab (<font color="red">Proj2 due</font>, <font color="purple">Proj3: Semantic</font>)</td>
+ </tr>
+
+ <tr>
+  <td>wk9: Apr 20</td>
+  <td>Review: Frontend</td>
+  <td align="center"></td>
+ </tr>
+ <tr>
+  <td>wk9: Apr 22</td>
+  <td>Overview: Backend</td>
+  <td align="center">Lab</td>
+ </tr>
+
+ <tr bgcolor="#ECC86E">
+  <td>wk10: Apr 27/29</td>
+  <td>NO CLASS</td>
+  <td align="center">Exercises</td>
+ </tr>
+
+ <tr>
+  <td>wk11: May 6</td>
+  <td>Intermediate Code: IR</td>
+  <td align="center">Lab</td>
+ </tr>
+
+<tr bgcolor="#E2E2E2">
+  <td>wk12: May 13</td>
+  <td>Intermediate Code: Generation</td>
+  <td align="center">Lab (<font color="red">Proj3 due</font>, <font color="purple">Proj4: Code Generation</font>)</td>
+ </tr>
+
+ <tr>
+  <td>wk13: May 20</td>
+  <td>Runtime Management</td>
+  <td align="center">Lab</td>
+ </tr>
+
+<tr bgcolor="#E2E2E2">
+  <td>wk14: May 27</td>
+  <td>Runtime Code Generation</td>
+  <td align="center">Lab</td>
+ </tr>
+
+ <tr>
+  <td>wk15: Jun 3</td>
+  <td>Code Optimization</td>
+  <td align="center">Lab</td>
+ </tr>
+
+<tr bgcolor="#E2E2E2">
+  <td>wk16: Jun 10</td>
+  <td>Control Flow, Data Flow</td>
+  <td align="center">Lab</td>
+ </tr>
+
+ <tr>
+  <td>wk17: Jun 17</td>
+  <td>Target Code Generation</td>
+  <td align="center">Lab (<font color="red">Proj4 due</font>)</td>
+ </tr>
+
+<tr bgcolor="#E2E2E2">
+  <td>wk18: Jun 24</td>
+  <td>Advanced Compilation Techniques</td>
+  <td align="center">Lab</td>
+ </tr>
+
+ <tr>
+  <td>wk19: Jul 1</td>
+  <td>Review: Frontend + Backend</td>
+  <td align="center">Lab</td>
+ </tr>
+
+ <tr bgcolor="#ECC86E">
+  <td>wk20: Jul 8</td>
+  <td>NO CLASS</td>
+  <td align="center">FINAL EXAM</td>
+ </tr>
+
+</table>
+
+         
+    </body>
+</html>
