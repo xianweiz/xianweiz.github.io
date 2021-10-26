@@ -1,0 +1,75 @@
+=============================================================================
+
+Paper Title:
+
+Authors:
+
+Reviewer:
+
+=============================================================================
+
+A. Overall merit (mark one with a "X")
+Please provide your recommendation.
+
+[ ] Reject: This paper should not be in the program.
+[ ] Weak reject: I'd rather this paper not be in the program.
+[ ] Weak accept: I'd prefer for this paper to be in the program.
+[ ] Accept: This paper should be in the program.
+[ ] Strong accept: This paper really ought to be in the program.
+
+
+=============================================================================
+
+B. Reviewer's expertise (mark one with a "X")
+Please select the option that most closely expresses your qualification as a
+Reviewer for this paper.
+
+[ ] Little familiarity: I can give my two cents.
+[ ] Some familiarity: I can provide an educated review.
+[ ] Knowledgeable: I can review this paper with confidence.
+[ ] Expert: I'd expect to be assigned a paper like this one.
+
+
+=============================================================================
+
+C. For the next several queries, please rate the paper on a scale of 1-4, 
+where the quality increases as the number increases. A rating of 1 is 
+the lowest (worst) and a rating of 4 is the highest (best).  Mark each
+category with "1", "2", "3", or "4".
+
+[ ] Originality (Does the paper make an original contribution?)
+[ ] Technical merit (Is the paper technically sound?)
+[ ] Clarity (Was the paper clear and easy to understand with proper English?)
+[ ] Overall rating (What is your general impression of the paper?)
+[ ] Confidence (Your technical confidence in the review.) 
+
+
+=============================================================================
+
+D. Paper summary
+Please provide a short summary of the paper that captures the key contributions
+in your review.
+
+
+=============================================================================
+E. Key strengths and weaknesses
+Please provide up to three strengths and three weaknesses, in the form of short
+(+) and (-) bullets, respectively.
+
+
+=============================================================================
+
+F. Comments to authors (these comments will be sent to the paper authors)
+Please provide detailed comments that support your scores, as well as
+Constructive feedback to make the paper stronger. This should constitute the
+meat of your review, however do not expect authors to address this section
+In their rebuttal.
+
+
+=============================================================================
+
+G. Miscellaneous comments (hidden from authors)
+Please enter any comments that you may want to disclose.
+
+
+=============================================================================
