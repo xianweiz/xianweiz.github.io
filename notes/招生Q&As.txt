@@ -2,7 +2,7 @@ Q1. 能简单谈一谈你的研究方向吗？
 A1：我的主要研究方向是计算机体系结构和系统，主要是围绕前沿应用需求来优化GPU和memory系统结构以提升全局性能；
 目前其他研究方向也包括编译、应用及AI等，但基本都涉及到系统结构。
 大概的研究流程是：1）分析应用程序，确定性能或能耗瓶颈；2）设计软件或硬件层面的解决方案；3）实现并验证方案有效性；
-常用工具是profiler （e.g.， Pintool, nvprof/rocprof）和simulator（e.g.，gem5)，常用语言是C/C++, Python, Bash, CUDA/OpenCL等。
+常用工具是profiler （e.g.， Pintool, nvprof/rocprof）、clang/LLVM和simulator（e.g.，gem5)，常用语言是C/C++, Python, Bash, CUDA/OpenCL等。
 
 Q2. 你的方向是不是很“硬件”？
 A2：是用“软件”的方法研究“软硬件”系统结构，但通常并不涉及底层实现和电路。
@@ -48,4 +48,4 @@ A9：作为一个熟悉软硬件系统、兼顾“专”和“广”的毕业生
 当然，针对AI等智能应用加速的startups也是很好地选择。
 
 Q10. 怎么联系你以更进一步的互相了解？
-A10：发送邮件至xianwei.zhang[at]nscc-gz.cn，我发您我的个人详细简历，同时也可以安排当面或电话沟通。
+A10：发送邮件至zhangxw79[at]mail.sysu.edu.cn，我发您我的个人详细简历，同时也可以安排当面或电话沟通。
