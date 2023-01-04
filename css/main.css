@@ -265,3 +265,8 @@ img.name {
     vertical-align: middle;
     width: 80px;
 }
+
+sup {
+  vertical-align: super;
+  font-size: tiny;
+}
