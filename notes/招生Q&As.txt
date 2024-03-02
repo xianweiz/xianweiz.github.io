@@ -1,5 +1,5 @@
-Q0. 可否先介绍下arcSYSu？
-A0: arcSYSu的全称是ARChitecture and SYStem Upscaling @ SYSU，也是“arcSYSu refines computing system uses”的回文缩写。
+Q0. 可否先介绍下lab？
+A0: lab名称为arcSYSu，全称是ARChitecture and SYStem Upscaling @ SYSU，也是“arcSYSu refines computing system uses”的回文缩写。
 arcSYSu是一个系统研究小组的自定义名称，目前方向集中在GPU、编译、存储、基础软件框架等，成员是直接接受张献伟老师指导的学生。
 arcSYSu与超算中心系统方向各位老师及其他方向老师的研究组在项目、论文、指导等各方面有紧密联系。
 
