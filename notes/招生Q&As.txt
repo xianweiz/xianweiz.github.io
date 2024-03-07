@@ -1,6 +1,6 @@
 Q0. 可否先介绍下lab？
-A0: lab名称为arcSYSu，全称是"ARChitecture and SYStem Upscaling @ SYSU"，也是“arcSYSu refines computing system uses”的回文缩写。
-arcSYSu是一个系统研究小组的自定义名称，目前方向集中在GPU、编译、存储、基础软件框架等，成员是直接接受张献伟老师指导的学生（包括其他老师学生）。
+A0: lab名称为arcSYSu，全称是"ARChitecture and SYStem Upscaling @ SYSU"，也是“arcSYSu refines computing system uses”的递归缩写。
+arcSYSu是一个系统研究小组的自定义名称，目前方向集中在GPU、编译、存储、基础软件框架等，成员是直接接受xianweiz指导的学生（也包括一些其他老师学生）。
 arcSYSu与超算中心系统方向各位老师及其他方向老师的研究组在项目、论文、指导等各方面有紧密联系。
 
 Q1. 能简单谈一谈你的研究方向吗？
@@ -58,4 +58,4 @@ A9：目前组内研究生16人（2021 - 2023级），预计未来也会维持�
 
 Q10. 怎么联系你以更进一步的互相了解？
 A10：发送邮件至zhangxw79[at]mail.sysu.edu.cn，可以安排当面或电话沟通；
-或，查阅https://xianweiz.github.io/联系组内学生，可以了解到更全面信息以做判断。
+或，查阅https://xianweiz.github.io/联系组内学生，可以了解到更全面和综合信息以做判断。
