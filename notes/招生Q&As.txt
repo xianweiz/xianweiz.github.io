@@ -4,8 +4,8 @@ arcSYSu是一个系统研究小组的自定义名称，目前方向集中在GPU�
 arcSYSu与超算中心系统方向各位老师及其他方向老师的研究组在项目、论文、指导等各方面有紧密联系。
 
 Q1. 能简单谈一谈你的研究方向吗？
-A1：我的主要研究方向是计算机体系结构、编译和系统，主要是围绕前沿高性能和智能应用需求来优化计算机系统（GPU、memory等）以提升全局性能；
-目前其他研究方向也包括HPC应用及AI等，会更多偏向于算法和业务，但基本都涉及到系统结构层面。
+A1：我的主要研究方向是计算机体系结构、编译和系统，主要是围绕前沿高性能和智能应用需求来设计和优化计算机系统（GPU、memory等）以提升全局性能；
+目前其他研究方向也包括HPC应用及AI等，会更多偏向于算法和业务，但又基本都涉及到系统层面。
 大概的研究流程是“应用出发 - 系统设计 - 回到应用”：1）分析应用程序，确定性能或能耗瓶颈；2）设计软件或硬件层面的解决方案；3）实现并验证方案有效性；
 常用工具是profiler（e.g.，nvprof/rocprof）、clang/LLVM、CUDA/ROCm Runtime、simulator（e.g.，gpgpusim、gem5)，
 常用语言是C/C++, Python, Bash, CUDA/HIP/OpenCL等。
@@ -17,12 +17,13 @@ A2：是用“软件”的方法研究“软硬件”系统结构，更多要求
 Q3. 你招学生最看重哪些方面？
 A3：
 踏实上进的态度、良好的自我能驱动性（self-motivated）；
-对计算机系统有兴趣（e.g., 好奇程序从源代码到执行的过程）；
+有对自我优秀的追求，而非仅仅提升学历或满足毕业要求；
+对计算机系统和应用有兴趣（e.g., 好奇程序从源代码到执行的过程）；
 有一定的计算机基础，熟悉1-2门编程语言（注：并不需要熟悉Q1/A1提到的工具或语言）。
 
 Q4. 选你作为导师，有何优势？
 A4：
-在工业界和学术界都有过经历，能够从更实用的角度指导研究，及在就业/深造上给予建议；
+在工业界和学术界都有过经历，能够从更实用和长远发展的角度培养指导，及在就业/深造上给予建议；
 坚信导师应该和学生一起成长，会全流程亲自指导培养；
 有一定的合作资源，可以推荐到国内外高校或企业；
 平台方面，国家超算广州中心（“天河二号”）拥有国际一流的软硬件资源和前沿科研项目。
@@ -31,8 +32,21 @@ Q5. 具体来讲，你会怎么指导学生？
 A5：
 选题：根据学生背景和兴趣帮助选定方向，共同研读讨论文献
 研究：全流程指导研究开展，定期1x1讨论，平等沟通
-能力：培养动手实践、独立思考和团队协作
+能力：培养动手实践、独立思考、双向沟通和团队协作
 眼界：鼓励对外交流，赞助参加国内外会议和活动
+
+另，我所认同的advisor/advisee relationship:
+[Harcol@CMU, https://web.eecs.umich.edu/~twenisch/docs/JobTalkTalk.pdf]
+In research, you and your advisor will work side-by-side:
+Your advisor will still tell you what to do, give you ideas for problems to work on, ...
+However, when you and your advisor are working on a problem together, you will work as equals.
+You will both learn from each other.
+You will make discoveries together ...
+
+[Herman@ColumbiaU, https://www.nature.com/articles/nj7124-228a]
+Supervised research is a symbiotic (although not symmetric) interaction between student and adviser.
+Mentors and students must have common research interests and compatible work habits.
+Students need to grow professionally and advisers need to assist them.
 
 Q6. 你对学生有什么总体培养目标？
 A6：系统方向通常是全栈性的，因而一个合格的毕业生应该兼顾“专”和“广”。
@@ -40,10 +54,12 @@ A6：系统方向通常是全栈性的，因而一个合格的毕业生应该兼
 广：建立从算法到系统的全面认知
 关于毕业标准，并无量化要求（例如，几篇论文、什么级别），但总体认同研究生阶段需要在实践、研究和沟通能力上获得质的提升（Be Professional），
 且应该在个人简历中的项目和研究方面有直接的体现，在就业市场和长远发展要具有相当的竞争力。
+[提醒：以上目标和要求可能并不容易达到，plz think twice]
 
 Q7. 你怎么看待实习和工业界？
 A7：计算机系统的研究是紧密联系产业界的，而实习是非常好的了解业界前沿和提升自己的机会，所以实习是鼓励的（当然，最好是和自己所作方向相关）；
 另，学术界和工业界都有很好地平台和机会，所以更多是个人选择，并无优劣之分。
+我总体认同未来是不确定的，要保留更多的可能性，要把路尽量走宽，而不要迫不得已。
 
 Q8. 如果选择去工业界，有哪些适合的公司和岗位？
 A8：作为一个熟悉软硬件系统和应用、兼顾“专”和“广”的毕业生，选择面很宽：
@@ -59,4 +75,4 @@ A9：目前组内研究生16人（2021 - 2023级），预计未来也会维持�
 
 Q10. 怎么联系你以更进一步的互相了解？
 A10：发送邮件至zhangxw79[at]mail.sysu.edu.cn，可以安排当面或电话沟通；
-或，查阅https://xianweiz.github.io/联系组内学生，可以了解到更全面和综合信息以做判断。
+或，查阅https://xianweiz.github.io/联系组内学生，可以了解到更全面客观和综合信息以做判断。
