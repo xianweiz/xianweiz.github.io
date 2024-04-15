@@ -1,6 +1,6 @@
 Q0. 可否先介绍下lab？
 A0: lab名称为arcSYSu，全称是"ARChitecture and SYStem Upscaling @ SYSU"，也是“arcSYSu refines computing system uses”的递归缩写。
-arcSYSu是一个系统研究小组的自定义名称，目前方向集中在GPU、编译、存储、基础软件框架等，成员是直接接受xianweiz指导的学生（也包括一些其他老师学生）。
+arcSYSu是一个研究小组的自定义名称，目前方向集中在GPU、编译、存储、基础软件框架等，成员是直接接受xianweiz指导的学生（也包括一些其他老师学生）。
 arcSYSu与超算中心系统方向各位老师及其他方向老师的研究组在项目、论文、指导等各方面有紧密联系。
 
 Q1. 能简单谈一谈你的研究方向吗？
@@ -35,8 +35,8 @@ A5：
 能力：培养动手实践、独立思考、双向沟通和团队协作
 眼界：鼓励对外交流，赞助参加国内外会议和活动
 
-另，我所认同的advisor/advisee relationship:
-[Harcol@CMU, https://web.eecs.umich.edu/~twenisch/docs/JobTalkTalk.pdf]
+另，我所认同的advisor/advisee relationship，供参考:
+[Harcol@CMU, https://www.cs.cmu.edu/~harchol/gradschooltalk.pdf]
 In research, you and your advisor will work side-by-side:
 Your advisor will still tell you what to do, give you ideas for problems to work on, ...
 However, when you and your advisor are working on a problem together, you will work as equals.
