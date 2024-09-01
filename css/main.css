@@ -23,7 +23,7 @@ div#header {
     color: #fff;
     font-size:28px;
 }
-hr { 
+hr {
     display: block;
     margin-top: 0.5em;
     margin-bottom: 0.5em;
@@ -32,12 +32,12 @@ hr {
     border-style: inset;
     border-width: 1px;
     border-top:1px dotted #808080;
-} 
+}
 
-hr.paper{ 
-    height:1px; 
-    visibility:hidden; 
-    margin-bottom:-1px; 
+hr.paper{
+    height:1px;
+    visibility:hidden;
+    margin-bottom:-1px;
 }
 
 p.small{
@@ -60,17 +60,17 @@ div#YR {
 /*
     The class Selector
     Selects elements with a specific class attribute.
-    
+
     CSS:
     .center {
         text-align: center;
         color: red;
     }
- 
+
     HTML:
     <h1 class="center"> xxx </h1>
     <p class="center"> xxx </p>
- 
+
     Specify that only specific HTML elements should be affected by a class:
     p.center {
         text-align: center
@@ -122,17 +122,17 @@ nav
 {
     text-align:center;
     background-color:#000;
-    
+
 }
 
 #banner nav {
-    background: #000305;
+    background: #F0F0F0;
     font-size: 1.143em;
     height: 50px;
     line-height: 30px;
     margin: 0 auto 2em auto;
     padding: 0;
-    
+
     border-radius: 5px;
 }
 
@@ -171,7 +171,7 @@ ul li
     Uses the id attribute of an HTML element to select a specific element.
     An id should be unique within a page, so the id selector is used if u want to select a single, unique element.
     To select an element with a specific id: #id_name
- 
+
     CSS:
     #para1 {
         text-align: center;
@@ -179,25 +179,25 @@ ul li
     }
     HTML:
     <p id="para1">Hello World!</p>
- 
+
     h1#para1 {
     }
     h1#para2 {
     }
- 
+
     <h1 class='xx' id='para1'> aaa </h1>
     <h1 class='xx' id='para2'> bbb </h2>
  */
 
 /*
     Grouping Selectors
- 
+
     CSS:
     h1, h2, p {
         text-align: center;
         color: red;
     }
- 
+
     HTML:
     <h1> xxx </h1>
     <h2> yyy <h2>
@@ -220,7 +220,7 @@ header
 
 footer
 {
-    padding:5px;
+    padding:0px;
     text-align:center;
     font-weight:bold;
 }
@@ -235,11 +235,22 @@ footer
 }
 
 .link-body{ text-decoration: none; border-bottom:1px dotted; border-color:#555; color: #555;}
-.link-body:hover{ 
-    border-color:red; 
+.link-body:hover{
+    border-color:red;
 }
 .link-body:visited{
     /*color:#000000;*/
+}
+
+.link-head {
+    text-decoration: none;
+    color: #006633;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.link-head:hover {
+    color: #036;
 }
 
 span.me {
