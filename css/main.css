@@ -19,7 +19,7 @@ div#header {
     text-align: left;
     padding-top: 10px;
     padding-bottom: 10px;
-    background-color:#000;
+    background-color:#808080;
     color: #fff;
     font-size:28px;
 }
@@ -126,9 +126,9 @@ nav
 }
 
 #banner nav {
-    background: #F0F0F0;
+    background: #fff;
     font-size: 1.143em;
-    height: 50px;
+    height: 30px; <!-- distance to 'About' -->
     line-height: 30px;
     margin: 0 auto 2em auto;
     padding: 0;
@@ -137,7 +137,7 @@ nav
 }
 
 #banner nav ul {list-style: none; margin: 0 auto; width: 100%;}
-#banner nav li {float: left; display: inline; margin: 0;}
+#banner nav li {float: left; display: inline; margin: 0; }
 
 #banner nav a:link {
     color: #09c;
@@ -149,7 +149,7 @@ nav
 
 ul {
     list-style-type: circle;
-    padding-left:25px;
+    padding-left:0px;
     padding-right:5px;
     padding-top:-10px;
     margin: 0px;
@@ -218,6 +218,25 @@ header
     text-align:center;
 }
 
+/* ========== */
+/* Page content */
+.content {
+  padding: 0px;
+}
+
+/* The sticky class is added to the header with JS when it reaches its scroll position */
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%
+}
+
+/* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */
+.sticky + .content {
+  padding-top: 30px;
+}
+/* ========== */
+
 footer
 {
     padding:0px;
@@ -245,7 +264,7 @@ footer
 .link-head {
     text-decoration: none;
     color: #006633;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
 }
 
