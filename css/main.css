@@ -277,6 +277,10 @@ span.me {
     color: #808080;
 }
 
+span.stu {
+    text-decoration: underline;
+}
+
 span.hl {
     font-weight: bold;
     color: #FF0000;
